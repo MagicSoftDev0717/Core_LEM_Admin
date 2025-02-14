@@ -39,7 +39,7 @@ const navItems: NavItem[] = [
      subItems: [{ name: "Activities", path: "/activities", pro: false },
                 { name: "Re-Assign Activitiexs", path: "/reassign_act", pro: false },
                 { name: "Calendar", path: "/calendar_act", pro: false },
-                { name: "Activity Group Manager", path: "/", pro: false }
+                { name: "Activity Group Manager", path: "/group_act", pro: false }
      ],
   },
   {
