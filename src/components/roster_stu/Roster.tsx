@@ -9,7 +9,7 @@ import {
     TableHeader,
     TableRow,
 } from "../ui/table";
-import * as XLSX from "xlsx";
+// import * as XLSX from "xlsx";
 
 interface Order {
     id: number;
