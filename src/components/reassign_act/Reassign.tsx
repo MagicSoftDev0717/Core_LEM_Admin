@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from "react";
 // import { Filter } from "lucide-react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHeader,
-  TableRow,
-} from "../ui/table";
+// import {
+//   Table,
+//   TableBody,
+//   TableCell,
+//   TableHeader,
+//   TableRow,
+// } from "../ui/table";
 // import Badge from "../ui/badge/Badge";
 // import Image from "next/image";
 import * as XLSX from "xlsx";
@@ -105,27 +105,6 @@ const tableData: Order[] = [
 ];
 
 export default function BasicTableOne() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 5;
-  //const [isFilterOpen, setIsFilterOpen] = useState(false); // State to control filter dropdown visibility
-
-  const exportToExcel = () => {
-    const ws = XLSX.utils.json_to_sheet(
-      tableData.map((order) => ({
-        "First Name": order.user.firstName,
-        "Last Name": order.user.lastName,
-        "Contact Type": order.contactType,
-        Subject: order.subject,
-        "Contact Info": order.contactInfo,
-        Status: order.status,
-        Priority: order.priority,
-        "Due Date": order.dueDate,
-      }))
-    );
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Orders");
-    XLSX.writeFile(wb, "table_data.xlsx");
-  };
 
   return (
     <div>
@@ -151,7 +130,7 @@ export default function BasicTableOne() {
             </div>
 
             <div className="self-end" style={{marginTop: '15px'}}>
-              <button onClick={exportToExcel}
+              <button 
                 className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
               >Save
               </button>
