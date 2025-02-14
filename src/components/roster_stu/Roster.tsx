@@ -92,76 +92,74 @@ const tableData: Order[] = [
 export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 5;
-    const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
 
-    const filteredData = selectedLetter
-        ? tableData.filter(order => order.user.firstName.startsWith(selectedLetter))
-        : tableData;
 
     const exportToExcel = () => {
-        const ws = XLSX.utils.json_to_sheet(
-            tableData.map((order) => ({
-                "First Name": order.user.firstName,
-                "Last Name": order.user.lastName,
-                "Contact Type": order.contactType,
-                Subject: order.subject,
-                "Contact Info": order.contactInfo,
-                Status: order.status,
-                Priority: order.priority,
-                "Due Date": order.dueDate,
-            }))
-        );
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, "Orders");
-        XLSX.writeFile(wb, "table_data.xlsx");
-    };
-
-
-    const [isActive, setIsActive] = useState(false);
-
-    const toggleSwitch = () => {
-        setIsActive(!isActive);
+        // const ws = XLSX.utils.json_to_sheet(
+        //     tableData.map((order) => ({
+        //         "First Name": order.user.firstName,
+        //         "Last Name": order.user.lastName,
+        //         "Contact Type": order.contactType,
+        //         Subject: order.subject,
+        //         "Contact Info": order.contactInfo,
+        //         Status: order.status,
+        //         Priority: order.priority,
+        //         "Due Date": order.dueDate,
+        //     }))
+        // );
+        // const wb = XLSX.utils.book_new();
+        // XLSX.utils.book_append_sheet(wb, ws, "Orders");
+        // XLSX.writeFile(wb, "table_data.xlsx");
     };
 
     return (
         <div>
             <div className="mb-6">
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-5 gap-2">
                     {/* Label and Combo Box */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Student Name:</label>
-                        <input type="text" className="px-2 py-1 border rounded-lg text-xs w-1/2" />
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
+                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+                            <option value=""></option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Date:</label>
+                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+                            <option value=""></option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
                     </div>
 
                     <div className="self-end" style={{ marginTop: '15px' }}>
                         <button onClick={exportToExcel}
                             className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
-                        >Scan QR
+                        >Refresh
+                        </button>
+                    </div>
+                    <div></div>
+                    <div></div>
+                    <div>
+                    <button onClick={exportToExcel}
+                            className="px-2 py-1 bg-gray-600 text-white rounded-lg w-1/2"
+                        >IN-001
+                        </button>
+                    </div>
+                    <div>
+                    <button onClick={exportToExcel}
+                            className="px-2 py-1 bg-orange-600 text-white rounded-lg w-1/2"
+                        >OUT-123
                         </button>
                     </div>
 
-                    <div>
+                    <div className="self-end" style={{ marginTop: '15px' }}>
                         <input type="checkbox" className="mr-2" />
-                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Show Inactive Learning Plan(s)</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" className="mr-2" />
-                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Show Initial Sort Order</label>
+                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Checked In Only </label>
                     </div>
                 </div>
-            </div>
-
-            <div className="flex justify-end space-x-2 mb-4">
-                {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(letter => (
-                    <button
-                        key={letter}
-                        onClick={() => setSelectedLetter(selectedLetter === letter ? null : letter)}
-                        className={`px-1 py-0.5 rounded-lg text-sm font-semibold transition duration-200 ${selectedLetter === letter ? "bg-blue-500 text-white" : "bg-gray-300 text-gray-800"
-                            }`}
-                    >
-                        {letter}
-                    </button>
-                ))}
             </div>
 
             <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
@@ -175,7 +173,7 @@ export default function BasicTableOne() {
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Current Status
+                                        First Name
                                     </TableCell>
                                     <TableCell
                                         isHeader
@@ -187,34 +185,40 @@ export default function BasicTableOne() {
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Student Name
+                                        Membership
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Last Activity
+                                        Delivery
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Logos
+                                        Remaining
+                                    </TableCell>
+                                    <TableCell
+                                        isHeader
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                    >
+                                        Time In
+                                    </TableCell>
+                                    <TableCell
+                                        isHeader
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                    >
+                                        Action
                                     </TableCell>
                                 </TableRow>
                             </TableHeader>
                             {/* Table Body */}
                             <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                                {filteredData.map(order => (
+                                {tableData.map((order) => (
                                     <TableRow key={order.id}>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            <button
-                                                onClick={toggleSwitch}
-                                                className={`w-20 px-4 py-2 rounded-full text-white font-semibold transition duration-300
-                                                 ${isActive ? "bg-yellow-500" : "bg-gray-500"}`}
-                                            >
-                                                {isActive ? "In" : "Out"}
-                                            </button>
+                                            {order.user.firstName}
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                             {order.user.lastName}
@@ -257,4 +261,4 @@ export default function BasicTableOne() {
             </div>
         </div>
     );
-}
+};

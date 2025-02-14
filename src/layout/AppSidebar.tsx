@@ -57,7 +57,7 @@ const navItems: NavItem[] = [
     subItems: [{ name: "Students", path: "/students", pro: false },
       { name: "Learning Plan Manager", path: "/planmanager_stu", pro: false },
       { name: "Student Attenance", path: "/attendance_stu", pro: false },
-      { name: "Student Roster", path: "/group_act", pro: false },
+      { name: "Student Roster", path: "/roster_stu", pro: false },
       { name: "Attendance Summary Chart", path: "/group_act", pro: false }
     ],
   },
