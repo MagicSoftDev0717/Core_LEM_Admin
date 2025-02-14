@@ -108,7 +108,7 @@ const tableData: Order[] = [
 export default function BasicTableOne() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5;
-  const [isFilterOpen, setIsFilterOpen] = useState(false); // State to control filter dropdown visibility
+  //const [isFilterOpen, setIsFilterOpen] = useState(false); // State to control filter dropdown visibility
 
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(
