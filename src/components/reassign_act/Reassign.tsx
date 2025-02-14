@@ -12,20 +12,20 @@ import React from "react";
 // import Image from "next/image";
 // import * as XLSX from "xlsx";
 
-interface Order {
-  id: number;
-  user: {
-    //image: string;
-    firstName: string;
-    lastName: string;
-  };
-  contactType: string;
-  subject: string;
-  contactInfo: string;
-  priority: string;
-  status: string;
-  dueDate: string;
-}
+// interface Order {
+//   id: number;
+//   user: {
+//     //image: string;
+//     firstName: string;
+//     lastName: string;
+//   };
+//   contactType: string;
+//   subject: string;
+//   contactInfo: string;
+//   priority: string;
+//   status: string;
+//   dueDate: string;
+// }
 
 // const tableData: Order[] = [
 //   {
