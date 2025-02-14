@@ -36,7 +36,11 @@ const navItems: NavItem[] = [
   {
     icon: "/images/Icon/Girl Running.svg",
     name: "Activites",
-    path: "/activities",
+     subItems: [{ name: "Activities", path: "/activities", pro: false },
+                { name: "Re-Assign Activitiexs", path: "/reassign_act", pro: false },
+                { name: "Calendar", path: "/calendar_act", pro: false },
+                { name: "Activity Group Manager", path: "/", pro: false }
+     ],
   },
   {
     icon: "/images/Icon/Omnichannel.svg",
@@ -143,7 +147,7 @@ const AppSidebar: React.FC = () => {
                     : "menu-item-icon-inactive"
                 }`}
               >
-                {nav.icon}
+                <img src={typeof nav.icon === "string" ? nav.icon : ""} alt={nav.name ?? "icon"} className="icon" />
               </span>
               {(isExpanded || isHovered || isMobileOpen) && (
                 <span className={`menu-item-text`}>{nav.name}</span>
