@@ -81,7 +81,7 @@ export default function NotificationDropdown() {
         <ul className="flex flex-col h-auto overflow-y-auto custom-scrollbar">
           {/* Example notification items */}
           <li>
-            <DropdownItem
+            {/* <DropdownItem
               onItemClick={closeDropdown}
               className="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
             >
@@ -113,11 +113,11 @@ export default function NotificationDropdown() {
                   <span>5 min ago</span>
                 </span>
               </span>
-            </DropdownItem>
+            </DropdownItem> */}
           </li>
 
           <li>
-            <DropdownItem
+            {/* <DropdownItem
               onItemClick={closeDropdown}
               className="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
             >
@@ -149,11 +149,11 @@ export default function NotificationDropdown() {
                   <span>8 min ago</span>
                 </span>
               </span>
-            </DropdownItem>
+            </DropdownItem> */}
           </li>
 
           <li>
-            <DropdownItem
+            {/* <DropdownItem
               onItemClick={closeDropdown}
               className="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
               href="#"
@@ -186,11 +186,11 @@ export default function NotificationDropdown() {
                   <span>15 min ago</span>
                 </span>
               </span>
-            </DropdownItem>
+            </DropdownItem> */}
           </li>
 
           <li>
-            <DropdownItem
+            {/* <DropdownItem
               onItemClick={closeDropdown}
               className="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
               href="#"
@@ -223,7 +223,7 @@ export default function NotificationDropdown() {
                   <span>1 hr ago</span>
                 </span>
               </span>
-            </DropdownItem>
+            </DropdownItem> */}
           </li>
 
           <li>
@@ -263,11 +263,11 @@ export default function NotificationDropdown() {
           </li>
 
           <li>
-            <DropdownItem
+            {/* <DropdownItem
               onItemClick={closeDropdown}
               className="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
-            >
-              <span className="relative block w-full h-10 rounded-full z-1 max-w-10">
+            > */}
+              {/* <span className="relative block w-full h-10 rounded-full z-1 max-w-10">
                 <Image
                   width={40}
                   height={40}
@@ -294,12 +294,12 @@ export default function NotificationDropdown() {
                   <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
                   <span>8 min ago</span>
                 </span>
-              </span>
-            </DropdownItem>
+              </span> */}
+            {/* </DropdownItem> */}
           </li>
 
           <li>
-            <DropdownItem
+            {/* <DropdownItem
               onItemClick={closeDropdown}
               className="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
             >
@@ -331,11 +331,11 @@ export default function NotificationDropdown() {
                   <span>15 min ago</span>
                 </span>
               </span>
-            </DropdownItem>
+            </DropdownItem> */}
           </li>
 
           <li>
-            <DropdownItem
+            {/* <DropdownItem
               onItemClick={closeDropdown}
               className="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
               href="#"
@@ -368,7 +368,7 @@ export default function NotificationDropdown() {
                   <span>1 hr ago</span>
                 </span>
               </span>
-            </DropdownItem>
+            </DropdownItem> */}
           </li>
           {/* Add more items as needed */}
         </ul>
