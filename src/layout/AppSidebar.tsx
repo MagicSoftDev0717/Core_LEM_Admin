@@ -173,7 +173,9 @@ const AppSidebar: React.FC = () => {
                       : "menu-item-icon-inactive"
                   }`}
                 >
-                  <img src={nav.icon} alt={nav.name} className="icon" />
+                  <img src={typeof nav.icon === "string" ? nav.icon : ""} alt={nav.name ?? "icon"} className="icon" />
+
+                  {/* <img src={nav.icon} alt={nav.name} className="icon" /> */}
                 </span>
                 {(isExpanded || isHovered || isMobileOpen) && (
                   <span className={`menu-item-text`}>{nav.name}</span>
