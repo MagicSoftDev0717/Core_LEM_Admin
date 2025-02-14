@@ -75,7 +75,7 @@ const navItems: NavItem[] = [
   {
     icon: "/images/Icon/Tools.svg",
     name: "Business Tools",
-    path: "/",
+    path: "/business",
   },
   
 ];
