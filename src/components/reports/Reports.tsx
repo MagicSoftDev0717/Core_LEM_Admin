@@ -193,7 +193,6 @@ export default function BasicTableOne() {
             <div>
             <input type="checkbox" className="mr-2" />
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Show Lead Subsources</label>
-              
             </div>
           </div>
         </div>

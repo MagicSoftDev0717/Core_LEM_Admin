@@ -103,7 +103,7 @@ import React from "react";
 //     dueDate: "26/11/23"
 //   },
 // ];
-
+import Button from "../ui/button/Button";
 export default function BasicTableOne() {
 
   return (
@@ -130,10 +130,10 @@ export default function BasicTableOne() {
             </div>
 
             <div className="self-end" style={{marginTop: '15px'}}>
-              <button 
+              <Button 
                 className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
               >Save
-              </button>
+              </Button>
             </div>
           </div>
         </div>

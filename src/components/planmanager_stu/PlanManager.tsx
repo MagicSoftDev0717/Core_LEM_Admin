@@ -1,5 +1,7 @@
+
 "use client";
 import React, { useState } from "react";
+import Button from "../ui/button/Button";
 import {
     Table,
     TableBody,
@@ -7,14 +9,8 @@ import {
     TableHeader,
     TableRow,
 } from "../ui/table";
-// import Badge from "../ui/badge/Badge";
-// import Image from "next/image";
 import * as XLSX from "xlsx";
-import { Modal } from "../ui/modal";
-import Label from "../form/Label";
-import Button from "../ui/button/Button";
-import Input from "../form/input/InputField";
-import { useModal } from "@/hooks/useModal";
+
 interface Order {
     id: number;
     user: {
@@ -110,8 +106,8 @@ const tableData: Order[] = [
 export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 5;
+    //const [isFilterOpen, setIsFilterOpen] = useState(false); // State to control filter dropdown visibility
 
-    const { isOpen, openModal, closeModal } = useModal();
     const exportToExcel = () => {
         const ws = XLSX.utils.json_to_sheet(
             tableData.map((order) => ({
@@ -130,65 +126,71 @@ export default function BasicTableOne() {
         XLSX.writeFile(wb, "table_data.xlsx");
     };
 
-    const handleSave = () => {
-        // Handle save logic here
-        console.log("Saving changes...");
-        closeModal();
-    };
-
     return (
         <div>
             <div className="mb-6">
                 <div className="grid grid-cols-3 gap-2">
                     {/* Label and Combo Box */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Group Name:</label>
-                        <input type="text" className="px-2 py-1 border rounded-lg text-xs w-1/2" />
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
+                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+                            <option value="">All</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Student:</label>
+                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+                            <option value="">Option 1</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Learning Plan:</label>
+                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+                            <option value="">Option 1</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Type:</label>
+                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+                            <option value="">Option 1</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">LP Item View:</label>
+                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+                            <option value="">Option 1</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
                     </div>
 
                     <div className="self-end" style={{ marginTop: '15px' }}>
-                        <button
+                        <button onClick={exportToExcel}
                             className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
                         >Search
                         </button>
                     </div>
-                </div>
-            </div>
 
-            <div className="flex justify-between items-center mt-4">
-                <div className="flex justify-start" style={{ marginBottom: '10px' }}>
-                    <button
-                        onClick={openModal}
-                        className="px-4 py-2 bg-blue-600 text-white rounded-lg"
-                    >
-                        Add Group
-                    </button>
-                    <Modal
-                        isOpen={isOpen}
-                        onClose={closeModal}
-                        className="max-w-[600px] p-5 lg:p-10"
-                    >
-                        <h2 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">Create New Group</h2>
-                        <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2">
-                            <div className="col-span-1 sm:col-span-2">
-                                <Label>Group Name:</Label>
-                                <Input type="text" placeholder="Input a group name" />
-                            </div>
-
-                            <div className="col-span-1 sm:col-span-2">
-                                <Label>Group Description:</Label>
-                                <Input type="text" placeholder="Input a group description" />
-                            </div>
-                        </div>
-                        <div className="flex items-center justify-end w-full gap-3 mt-8">
-                            <Button size="sm" variant="outline" onClick={closeModal}>
-                                Close
-                            </Button>
-                            <Button size="sm" onClick={handleSave}>
-                                Save
-                            </Button>
-                        </div>
-                    </Modal>
+                    <div>
+                        <input type="checkbox" className="mr-2" />
+                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Show Inactive Learning Plan(s)</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" className="mr-2" />
+                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Show Initial Sort Order</label>
+                    </div>
                 </div>
             </div>
 
@@ -203,43 +205,49 @@ export default function BasicTableOne() {
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Group Name
+                                        First Name
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Description
+                                        Last Name
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Users
+                                        Created Date
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Assigned Activities
+                                        Lead/Account
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Unassigned Activities
+                                        Mobile Phone
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Total Activities
+                                        Email
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Centres
+                                        Mailing City
+                                    </TableCell>
+                                    <TableCell
+                                        isHeader
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                    >
+                                        Mailing Country
                                     </TableCell>
                                 </TableRow>
                             </TableHeader>
@@ -268,6 +276,9 @@ export default function BasicTableOne() {
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                             {order.status}
                                         </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            {order.priority}
+                                        </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
@@ -293,48 +304,21 @@ export default function BasicTableOne() {
                 </div>
 
                 {/* Export to Excel button (Right aligned) */}
-                <div className="flex justify-end">
-                    <button
+                <div className="flex justify-end gap-2">
+                    <Button
                         onClick={exportToExcel}
                         className="px-4 py-2 bg-blue-600 text-white rounded-lg"
                     >
                         Export to Excel
-                    </button>
-                </div >
-            </div >
-
-
-            {/* {isModalOpen && (
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-                        <h2 className="text-xl font-bold mb-4">Create New Group</h2>
-                        <input
-                            type="text"
-                            placeholder="Input group name"
-                            className="w-full p-2 border border-gray-300 rounded-md mb-4"
-                        />
-                        <input
-                            type="text"
-                            placeholder="Enter group description"
-                            className="w-full p-2 border border-gray-300 rounded-md mb-4"
-                        />
-                        <div className="flex justify-end space-x-2">
-                            <button
-                                onClick={closeModal}
-                                className="px-4 py-2 bg-gray-400 text-white rounded-lg"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                className="px-4 py-2 bg-blue-600 text-white rounded-lg"
-                            >
-                                Create
-                            </button>
-                        </div>
-                    </div>
+                    </Button>
+                    <Button
+                        onClick={exportToExcel}
+                        className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+                    >
+                        Print Mode
+                    </Button>
                 </div>
-            )} */}
-        </div >
-
+            </div>
+        </div>
     );
 }

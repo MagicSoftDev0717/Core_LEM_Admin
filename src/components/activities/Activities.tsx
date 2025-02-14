@@ -13,6 +13,12 @@ import {
 import Image from "next/image";
 import * as XLSX from "xlsx";
 
+import { Modal } from "../ui/modal";
+import Label from "../form/Label";
+import Button from "../ui/button/Button";
+import Input from "../form/input/InputField";
+import { useModal } from "@/hooks/useModal";
+
 interface Order {
   id: number;
   user: {
@@ -41,54 +47,54 @@ const tableData: Order[] = [
     priority: "Normal",
     dueDate: "26/11/23",
   },
-    {
+  {
     id: 2,
     user: {
       image: "/images/user/user-18.jpg",
       name: "Kaiya George",
-     // role: "Project Manager",
+      // role: "Project Manager",
     },
     contactType: "Student",
     subject: "Math",
     contactInfo: "01234567890",
     status: "Started",
     priority: "Normal",
-     dueDate: "26/11/23"
+    dueDate: "26/11/23"
   },
   {
     id: 3,
     user: {
       image: "/images/user/user-17.jpg",
       name: "Zain Geidt",
-     // role: "Content Writing",
+      // role: "Content Writing",
     },
     contactType: "Student",
     subject: "Math",
     contactInfo: "01234567890",
     status: "Started",
     priority: "Normal",
-     dueDate: "26/11/23"
+    dueDate: "26/11/23"
   },
   {
     id: 4,
     user: {
       image: "/images/user/user-20.jpg",
       name: "Abram Schleifer",
-     // role: "Digital Marketer",
+      // role: "Digital Marketer",
     },
     contactType: "Student",
     subject: "Math",
     contactInfo: "01234567890",
     status: "Started",
     priority: "Normal",
-     dueDate: "26/11/23"
+    dueDate: "26/11/23"
   },
   {
     id: 5,
     user: {
       image: "/images/user/user-21.jpg",
       name: "Carla George",
-     // role: "Front-end Developer",
+      // role: "Front-end Developer",
     },
     contactType: "Student",
     subject: "Math",
@@ -103,7 +109,7 @@ export default function BasicTableOne() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5;
   const [isFilterOpen, setIsFilterOpen] = useState(false); // State to control filter dropdown visibility
-
+  const { isOpen, openModal, closeModal } = useModal();
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(
       tableData.map((order) => ({
@@ -121,37 +127,67 @@ export default function BasicTableOne() {
     XLSX.writeFile(wb, "table_data.xlsx");
   };
 
+  const handleSave = () => {
+    // Handle save logic here
+    console.log("Saving changes...");
+    closeModal();
+  };
   return (
     <div>
       {/* Button Container */}
       <div className="flex justify-between mb-6">
         <div className="space-x-2">
-          <button className="px-4 py-2 bg-gray-500 text-white rounded-lg">
+          <Button className="px-4 py-2 bg-gray-500 text-white rounded-lg">
             My Activies
-          </button>
-          <button className="px-4 py-2 bg-gray-500 text-white rounded-lg">
+          </Button>
+
+          <Button onClick={openModal}
+            className="px-4 py-2 bg-gray-500 text-white rounded-lg">
             Create Activity
-          </button>
-          <button className="px-4 py-2 bg-gray-500 text-white rounded-lg">
+          </Button>
+          <Modal
+            isOpen={isOpen}
+            onClose={closeModal}
+            className="max-w-[600px] p-5 lg:p-10"
+          >
+            <h2 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">Create Activity</h2>
+            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
+              <div className="col-span-1">
+                <Label>Contact Type:</Label>
+                <Input type="text" placeholder="Guardian Email Bounced..." />
+              </div>
+              <div className="col-span-1">
+                <Label>Contact Name:</Label>
+                <Input type="text" placeholder="Unassigned" />
+              </div>
+              <div className="col-span-1" style={{marginTop: '25px'}}>
+                <Button size="sm" onClick={handleSave} >
+                  Search
+                </Button>
+              </div>
+            </div>
+          </Modal>
+
+          <Button className="px-4 py-2 bg-gray-500 text-white rounded-lg">
             Add Completed Activity
-          </button>
+          </Button>
         </div>
 
         {/* Filter Button with reduced width */}
-        <button
-        className="px-4 py-2 bg-gray-200 rounded-lg flex items-center gap-2"
+        <Button
+          className="px-4 py-2 bg-gray-200 rounded-lg flex items-center gap-2"
           onClick={() => setIsFilterOpen(!isFilterOpen)} // Toggle filter visibility
         >
           <Filter size={16} /> Filter
-        </button>
+        </Button>
       </div>
 
       {/* Editable Combo Boxes above Filter */}
       {isFilterOpen && (
         <div className="mb-6">
           <div className="grid grid-cols-3 gap-2">
-             {/* Label and Combo Box */}
-             <div>
+            {/* Label and Combo Box */}
+            <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Activity Type:</label>
               <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
                 <option value="">All</option>
@@ -233,18 +269,18 @@ export default function BasicTableOne() {
               </select>
             </div>
             <div>
-            
+
             </div>
-            <div style={{marginTop: '15px'}}>
-              <button onClick={exportToExcel}
+            <div style={{ marginTop: '15px' }}>
+              <Button onClick={exportToExcel}
                 className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
               >Search
-              </button>
+              </Button>
             </div>
             <div>
-            <input type="checkbox" className="mr-2" />
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Show Billing Exceptions Activities Only Search My Activities</label>
-              
+              <input type="checkbox" className="mr-2" />
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Show Billing Exceptions Activities Only Search My Activities</label>
+
             </div>
           </div>
         </div>
@@ -321,11 +357,11 @@ export default function BasicTableOne() {
                             alt={order.user.name}
                           />
                         </div>
-                        
-                          <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
-                            {order.user.name}
-                          </span>
-                       
+
+                        <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
+                          {order.user.name}
+                        </span>
+
                       </div>
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
@@ -364,9 +400,8 @@ export default function BasicTableOne() {
           {[...Array(totalPages)].map((_, index) => (
             <button
               key={index}
-              className={`w-8 h-8 rounded-full ${
-                currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-200"
-              }`}
+              className={`w-8 h-8 rounded-full ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
               onClick={() => setCurrentPage(index + 1)}
             >
               {index + 1}
