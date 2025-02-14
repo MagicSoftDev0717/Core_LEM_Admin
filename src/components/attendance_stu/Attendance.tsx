@@ -206,7 +206,8 @@ export default function BasicTableOne() {
                             </TableHeader>
                             {/* Table Body */}
                             <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                                {tableData.map((order) => (
+                            {filteredData.map(order => (
+                                    
                                     <TableRow key={order.id}>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                             <button
