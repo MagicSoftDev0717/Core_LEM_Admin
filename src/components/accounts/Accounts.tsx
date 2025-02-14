@@ -1,7 +1,5 @@
-
 "use client";
 import React, { useState } from "react";
-import { Filter } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -9,8 +7,9 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import Badge from "../ui/badge/Badge";
-import Image from "next/image";
+
+// import Badge from "../ui/badge/Badge";
+// import Image from "next/image";
 import * as XLSX from "xlsx";
 
 interface Order {
@@ -108,8 +107,7 @@ const tableData: Order[] = [
 export default function BasicTableOne() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5;
-  const [isFilterOpen, setIsFilterOpen] = useState(false); // State to control filter dropdown visibility
-
+ 
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(
       tableData.map((order) => ({

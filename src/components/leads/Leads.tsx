@@ -9,8 +9,8 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import Badge from "../ui/badge/Badge";
-import Image from "next/image";
+// import Badge from "../ui/badge/Badge";
+// import Image from "next/image";
 import * as XLSX from "xlsx";
 
 interface Order {
