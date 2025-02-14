@@ -20,22 +20,22 @@ export default function Dropdowns() {
       <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 xl:gap-6">
         <ComponentCard title="Default Dropdown">
           <div className="pb-[300px]">
-            <AccountMenuDropdown />
+            {/* <AccountMenuDropdown /> */}
           </div>
         </ComponentCard>{" "}
         <ComponentCard title="Dropdown With Divider">
           <div className="pb-[300px]">
-            <DropdownWithDivider />
+            {/* <DropdownWithDivider /> */}
           </div>
         </ComponentCard>{" "}
         <ComponentCard title="Dropdown With Icon">
           <div className="pb-[300px]">
-            <DropdownWithIcon />
+            {/* <DropdownWithIcon /> */}
           </div>
         </ComponentCard>{" "}
         <ComponentCard title="Dropdown With Icon and Divider">
           <div className="pb-[300px]">
-            <DropdownWithIconAndDivider />
+            {/* <DropdownWithIconAndDivider /> */}
           </div>
         </ComponentCard>
       </div>
