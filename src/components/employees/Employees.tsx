@@ -161,7 +161,7 @@ export default function BasicTableOne() {
             </div>
 
             <div className="self-end" style={{marginTop: '15px'}}>
-              <button onClick={exportToExcel}
+              <button
                 className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
               >Search
               </button>
@@ -172,13 +172,11 @@ export default function BasicTableOne() {
         <div className="flex items-center mt-4">
             <div className="flex gap-x-8" style={{marginBottom: '10px'}}>
                 <button
-                    onClick={exportToExcel}
                     className="px-4 py-2 bg-blue-600 text-white rounded-lg"
                 >
                     Add Employee
                 </button>
                 <button
-                    onClick={exportToExcel}
                     className="px-4 py-2 bg-blue-600 text-white rounded-lg"
                 >
                     ORG Chart

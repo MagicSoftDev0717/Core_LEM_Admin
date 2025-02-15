@@ -272,7 +272,7 @@ export default function BasicTableOne() {
 
             </div>
             <div style={{ marginTop: '15px' }}>
-              <Button onClick={exportToExcel}
+              <Button
                 className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
               >Search
               </Button>

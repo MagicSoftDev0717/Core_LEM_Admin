@@ -163,7 +163,7 @@ export default function BasicTableOne() {
             </div>
 
             <div className="self-end" style={{marginTop: '15px'}}>
-              <button onClick={exportToExcel}
+              <button
                 className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
               >Search
               </button>
