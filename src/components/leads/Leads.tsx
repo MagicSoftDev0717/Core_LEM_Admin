@@ -195,19 +195,32 @@ export default function BasicTableOne() {
               </select>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Start:</label>
-              <select className="px-2 py-1 border rounded-lg text-xs w-1/4">
-                <option value="">14/2/25</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-              </select>
-              <select className="px-2 py-1 border rounded-lg text-xs w-1/4">
-                <option value="">14/2/25</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-              </select>
+            <div className="flex items-center gap-0">
+              {/* Start Field */}
+              <div className="flex flex-col">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Start:
+                </label>
+                <select className="px-4 py-2 border rounded-lg text-xs w-32">
+                  <option value="">Option 1</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
+              </div>
+
+              {/* End Field */}
+              <div className="flex flex-col">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  End:
+                </label>
+                <select className="px-4 py-2 border rounded-lg text-xs w-32">
+                  <option value="">Option 1</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
+              </div>
             </div>
+            
             <div style={{ marginTop: '15px' }}>
               <button
                 className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"

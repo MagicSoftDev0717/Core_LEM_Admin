@@ -1,7 +1,7 @@
 
 "use client";
 import React, { useState } from "react";
-// import Button from "../ui/button/Button";
+import { useRouter } from "next/navigation";
 import {
     Table,
     TableBody,
@@ -9,7 +9,9 @@ import {
     TableHeader,
     TableRow,
 } from "../ui/table";
-// import * as XLSX from "xlsx";
+// import Badge from "../ui/badge/Badge";
+//import Image from "next/image";
+import * as XLSX from "xlsx";
 
 interface Order {
     id: number;
@@ -30,7 +32,9 @@ const tableData: Order[] = [
     {
         id: 1,
         user: {
-            firstName: "Lindsey", lastName: "Curtis"
+            //image: "/images/user/user-17.jpg",
+            firstName: "Lindsey",
+            lastName: "Curtis"
         },
         contactType: "Student",
         subject: "Math",
@@ -42,7 +46,10 @@ const tableData: Order[] = [
     {
         id: 2,
         user: {
-            firstName: "Kaiya", lastName: "George"
+            //image: "/images/user/user-18.jpg",
+            firstName: "Kaiya",
+            lastName: "George"
+            // role: "Project Manager",
         },
         contactType: "Student",
         subject: "Math",
@@ -54,7 +61,10 @@ const tableData: Order[] = [
     {
         id: 3,
         user: {
-            firstName: "Zain", lastName: "Geidt"
+            //image: "/images/user/user-17.jpg",
+            firstName: "Zain",
+            lastName: "Geidt"
+            // role: "Content Writing",
         },
         contactType: "Student",
         subject: "Math",
@@ -66,7 +76,10 @@ const tableData: Order[] = [
     {
         id: 4,
         user: {
-            firstName: "Abram", lastName: "Schleifer"
+            //image: "/images/user/user-20.jpg",
+            firstName: "Abram",
+            lastName: "Schleifer"
+            // role: "Digital Marketer",
         },
         contactType: "Student",
         subject: "Math",
@@ -78,7 +91,10 @@ const tableData: Order[] = [
     {
         id: 5,
         user: {
-            firstName: "Carla", lastName: "George"
+            //image: "/images/user/user-21.jpg",
+            firstName: "Carla",
+            lastName: "George"
+            // role: "Front-end Developer",
         },
         contactType: "Student",
         subject: "Math",
@@ -92,25 +108,32 @@ const tableData: Order[] = [
 export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 5;
-
+    // const [isFilterOpen, setIsFilterOpen] = useState(false); // State to control filter dropdown visibility
 
     const exportToExcel = () => {
-        // const ws = XLSX.utils.json_to_sheet(
-        //     tableData.map((order) => ({
-        //         "First Name": order.user.firstName,
-        //         "Last Name": order.user.lastName,
-        //         "Contact Type": order.contactType,
-        //         Subject: order.subject,
-        //         "Contact Info": order.contactInfo,
-        //         Status: order.status,
-        //         Priority: order.priority,
-        //         "Due Date": order.dueDate,
-        //     }))
-        // );
-        // const wb = XLSX.utils.book_new();
-        // XLSX.utils.book_append_sheet(wb, ws, "Orders");
-        // XLSX.writeFile(wb, "table_data.xlsx");
+        const ws = XLSX.utils.json_to_sheet(
+            tableData.map((order) => ({
+                "First Name": order.user.firstName,
+                "Last Name": order.user.lastName,
+                "Contact Type": order.contactType,
+                Subject: order.subject,
+                "Contact Info": order.contactInfo,
+                Status: order.status,
+                Priority: order.priority,
+                "Due Date": order.dueDate,
+            }))
+        );
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Orders");
+        XLSX.writeFile(wb, "table_data.xlsx");
     };
+
+    //Add to Teachers
+      const router = useRouter();
+    
+      const addtoTeacher = () => {
+        router.push("/addteacher_tc"); // Navigate to the 'lead' page
+      };
 
     return (
         <div>
@@ -118,43 +141,17 @@ export default function BasicTableOne() {
                 <div className="grid grid-cols-4 gap-2">
                     {/* Label and Combo Box */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Student Name:</label>
-                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
-                            <option value=""></option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Lead Status:</label>
-                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
-                            <option value=""></option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Teacher Name:</label>
+                        <input type="text" className="px-2 py-1 w-1/8 bg-gray-900 text-gray-700 border rounded-lg" placeholder="Type a name" />
                     </div>
 
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Enfollment Filter:</label>
-                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
-                            <option value=""></option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
-                    </div>
-                    <div className="self-end">
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Missing School Year:</label>
-                        <input type="checkbox" className="mr-2" />
-                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Show only Students with no School Year</label>
-                    </div>
-                    <div className="flex items-center gap-0">
+                    <div className="flex items-center gap-4">
                         {/* Start Field */}
                         <div className="flex flex-col">
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Start:
                             </label>
-                            <select className="px-4 py-2 border rounded-lg text-xs w-32">
+                            <select className="px-4 py-2 bg-gray-900 text-gray-700 border rounded-lg text-xs w-32">
                                 <option value="">Option 1</option>
                                 <option value="1">Option 1</option>
                                 <option value="2">Option 2</option>
@@ -166,23 +163,24 @@ export default function BasicTableOne() {
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 End:
                             </label>
-                            <select className="px-4 py-2 border rounded-lg text-xs w-32">
+                            <select className="px-4 py-2 bg-gray-900 text-gray-700 border rounded-lg text-xs w-32">
                                 <option value="">Option 1</option>
                                 <option value="1">Option 1</option>
                                 <option value="2">Option 2</option>
                             </select>
                         </div>
                     </div>
+
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
-                            <option value=""></option>
+                        <select className="px-4 py-2 bg-gray-900 text-gray-700 border rounded-lg text-xs w-1/2">
+                            <option value="">Option 1</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
                     </div>
-                    <div></div>
-                    <div className="self-end" style={{ marginTop: '15px' }}>
+
+                    <div className="self-end">
                         <button
                             className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
                         >Search
@@ -191,38 +189,16 @@ export default function BasicTableOne() {
                 </div>
             </div>
 
-            {/* Line Separator */}
-            <hr className="my-6" />
-
-            <div className="mb-6">
-                <div className="grid grid-cols-4 gap-2">
-                    {/* Label and Combo Box */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Update School Year to:</label>
-                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
-                            <option value=""></option>
-                            <option value="1">Option 1</option>
-                        </select>
-                    </div>
-
-                    <div className="self-end" style={{ marginTop: '15px' }}>
-                        <button
-                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
-                        >Updated Selected
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div className="flex justify-between items-center mt-4">
-                <div className="flex justify-start" style={{ marginBottom: '10px' }}>
-                    <button
+            <div className="flex items-center mt-4">
+                <div className="flex gap-x-8" style={{ marginBottom: '10px' }}>
+                    <button onClick={addtoTeacher}
                         className="px-4 py-2 bg-blue-600 text-white rounded-lg"
                     >
-                        Add Student
+                        Add Teacher
                     </button>
                 </div>
             </div>
+
             <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
                 <div className="max-w-full overflow-x-auto">
                     <div className="min-w-[1102px]">
@@ -246,43 +222,31 @@ export default function BasicTableOne() {
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Year
+                                        School
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        School Year
+                                        Department
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Teacher
+                                        Description
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Lead/Account
+                                        Mobile Phone
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Enrolment Status
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
-                                    >
-                                        Last Attendance
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
-                                    >
-                                        Virtual Center
+                                        Email
                                     </TableCell>
                                 </TableRow>
                             </TableHeader>
@@ -302,19 +266,14 @@ export default function BasicTableOne() {
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                             {order.subject}
                                         </TableCell>
-                                        <TableCell className="px- py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.subject}
-                                        </TableCell>
-                                        <TableCell className="px- py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.subject}
-                                        </TableCell><TableCell className="px- py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.subject}
-                                        </TableCell>
-                                        <TableCell className="px- py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                             {order.contactInfo}
                                         </TableCell>
-                                        <TableCell className="px- py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.contactType}
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            {order.contactInfo}
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            {order.status}
                                         </TableCell>
                                     </TableRow>
                                 ))}
@@ -339,15 +298,17 @@ export default function BasicTableOne() {
                         </button>
                     ))}
                 </div>
+
                 {/* Export to Excel button (Right aligned) */}
                 <div className="flex justify-end">
                     <button
                         onClick={exportToExcel}
                         className="px-4 py-2 bg-blue-600 text-white rounded-lg"
-                    >Export to Excel
+                    >
+                        Export to Excel
                     </button>
                 </div>
             </div>
-        </div >
+        </div>
     );
-};
+}

@@ -46,7 +46,7 @@ const navItems: NavItem[] = [
     icon: "/images/Icon/Omnichannel.svg",
     name: "Leads",
     subItems: [{ name: "Leads", path: "/leads", pro: false },
-                { name: "Teachers", path: "/reassign_act", pro: false },
+                { name: "Teachers", path: "/teacher_ld", pro: false },
                 { name: "Schools", path: "/calendar_act", pro: false },
                 { name: "Community Contracts", path: "/group_act", pro: false }
               ],
