@@ -1,116 +1,12 @@
 
 "use client";
 import React, { useState } from "react";
-import Button from "../ui/button/Button";
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHeader,
-    TableRow,
-} from "../ui/table";
-// import * as XLSX from "xlsx";
+// import Button from "../ui/button/Button";
 
-interface Order {
-    id: number;
-    user: {
-        //image: string;
-        firstName: string;
-        lastName: string;
-    };
-    contactType: string;
-    subject: string;
-    contactInfo: string;
-    priority: string;
-    status: string;
-    dueDate: string;
-}
-
-const tableData: Order[] = [
-    {
-        id: 1,
-        user: {
-            firstName: "Lindsey", lastName: "Curtis"
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23",
-    },
-    {
-        id: 2,
-        user: {
-            firstName: "Kaiya", lastName: "George"
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-    {
-        id: 3,
-        user: {
-            firstName: "Zain", lastName: "Geidt"
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-    {
-        id: 4,
-        user: {
-            firstName: "Abram", lastName: "Schleifer"
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-    {
-        id: 5,
-        user: {
-            firstName: "Carla", lastName: "George"
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-];
 
 export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 5;
-
-
-    const exportToExcel = () => {
-        // const ws = XLSX.utils.json_to_sheet(
-        //     tableData.map((order) => ({
-        //         "First Name": order.user.firstName,
-        //         "Last Name": order.user.lastName,
-        //         "Contact Type": order.contactType,
-        //         Subject: order.subject,
-        //         "Contact Info": order.contactInfo,
-        //         Status: order.status,
-        //         Priority: order.priority,
-        //         "Due Date": order.dueDate,
-        //     }))
-        // );
-        // const wb = XLSX.utils.book_new();
-        // XLSX.utils.book_append_sheet(wb, ws, "Orders");
-        // XLSX.writeFile(wb, "table_data.xlsx");
-    };
 
     return (
         <div>
