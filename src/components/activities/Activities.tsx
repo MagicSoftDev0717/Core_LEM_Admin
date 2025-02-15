@@ -110,6 +110,10 @@ export default function BasicTableOne() {
   const totalPages = 5;
   const [isFilterOpen, setIsFilterOpen] = useState(false); // State to control filter dropdown visibility
   const { isOpen, openModal, closeModal } = useModal();
+
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [selectedActivity, setSelectedActivity] = useState<Order | null>(null);
+
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(
       tableData.map((order) => ({
@@ -132,6 +136,18 @@ export default function BasicTableOne() {
     console.log("Saving changes...");
     closeModal();
   };
+
+
+  const openEditModal = (activity: Order) => {
+    setSelectedActivity(activity);
+    setIsEditOpen(true);
+  };
+
+  const closeEditModal = () => {
+    setIsEditOpen(false);
+    setSelectedActivity(null);
+  };
+
   return (
     <div>
       {/* Button Container */}
@@ -349,6 +365,12 @@ export default function BasicTableOne() {
                   >
                     Due Date
                   </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                  >
+                    Action
+                  </TableCell>
                 </TableRow>
               </TableHeader>
               {/* Table Body */}
@@ -393,6 +415,21 @@ export default function BasicTableOne() {
                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                       {order.dueDate}
                     </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      <div className="flex items-center justify-center gap-2">
+                        <button className="text-gray-500 hover:text-error-500 dark:text-gray-400 dark:hover:text-gray-500" onClick={() => openEditModal(order)}>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                          </svg>
+                        </button>
+                        <button className="text-gray-500 hover:text-error-500 dark:text-gray-400 dark:hover:text-gray-500">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                          </svg>
+
+                        </button>
+                      </div>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -427,6 +464,55 @@ export default function BasicTableOne() {
           </button>
         </div>
       </div>
+
+      <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[600px] p-5 lg:p-10">
+        <h2 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">Edit Activity</h2>
+        {selectedActivity && (
+          <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
+            <div className="col-span-1">
+              <Label>Subject:</Label>
+              <Input type="text" defaultValue={selectedActivity.subject} />
+            </div>
+            <div className="col-span-1">
+              <Label>Assign to:</Label>
+              <Input type="text" defaultValue={selectedActivity.user.name} />
+            </div>
+            <div className="col-span-1">
+              <Label>Activity Group:</Label>
+              <Input type="text" defaultValue={selectedActivity.priority} />
+            </div>
+            <div className="col-span-1">
+              <Label>Activity Type:</Label>
+              <Input type="text" defaultValue={selectedActivity.priority} />
+            </div>
+            <div className="col-span-1">
+              <Label>Status:</Label>
+              <Input type="text" defaultValue={selectedActivity.status} />
+            </div>
+            <div className="col-span-1">
+              <Label>Due Date:</Label>
+              <Input type="text" defaultValue={selectedActivity.dueDate} />
+            </div>
+            <div className="col-span-1">
+              <Label>Priority:</Label>
+              <Input type="text" defaultValue={selectedActivity.priority} />
+            </div>
+            <div className="col-span-1">
+              <Label>Reminder:</Label>
+              <Input type="text" defaultValue={selectedActivity.priority} />
+            </div>
+            <div className="col-span-3 text-right">
+              <Button size="sm" onClick={closeEditModal}>
+                Cancel
+              </Button>
+              <Button size="sm" className="ml-2 bg-blue-500 text-white" onClick={() => console.log("Edit Saved")}>
+                Save
+              </Button>
+            </div>
+          </div>
+        )}
+      </Modal>
+
     </div>
   );
 }
