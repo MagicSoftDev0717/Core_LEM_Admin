@@ -319,11 +319,11 @@ export default function BasicTableOne() {
             </div>
 
             <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[1000px] p-5 lg:p-10">
-                <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Edit Teacher</h2>
+                <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Ealing School</h2>
                 {selectedActivity && (
                     <div>
                         <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
-                            Teacher Information
+                            School Information
                         </h4>
 
                         <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">

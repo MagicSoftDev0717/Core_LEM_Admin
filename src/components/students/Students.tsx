@@ -351,7 +351,6 @@ export default function BasicTableOne() {
       <div className="flex justify-between items-center mt-4">
         <div className="flex justify-start" style={{marginBottom: '10px'}}>
             <button
-                onClick={exportToExcel}
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg"
             >
                 Add Student
