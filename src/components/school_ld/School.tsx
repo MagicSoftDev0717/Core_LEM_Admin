@@ -9,8 +9,10 @@ import {
     TableHeader,
     TableRow,
 } from "../ui/table";
-// import Badge from "../ui/badge/Badge";
-//import Image from "next/image";
+import { Modal } from "../ui/modal";
+import Label from "../form/Label";
+import Input from "../form/input/InputField";
+import Button from "../ui/button/Button";
 import * as XLSX from "xlsx";
 
 interface Order {
@@ -108,7 +110,19 @@ const tableData: Order[] = [
 export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 5;
-    // const [isFilterOpen, setIsFilterOpen] = useState(false); // State to control filter dropdown visibility
+
+    const [isEditOpen, setIsEditOpen] = useState(false);
+    const [selectedActivity, setSelectedActivity] = useState<Order | null>(null);
+
+    const openEditModal = (activity: Order) => {
+        setSelectedActivity(activity);
+        setIsEditOpen(true);
+    };
+
+    const closeEditModal = () => {
+        setIsEditOpen(false);
+        setSelectedActivity(null);
+    };
 
     const exportToExcel = () => {
         const ws = XLSX.utils.json_to_sheet(
@@ -303,6 +317,118 @@ export default function BasicTableOne() {
                     </button>
                 </div>
             </div>
+
+            <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[1000px] p-5 lg:p-10">
+                <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Edit Teacher</h2>
+                {selectedActivity && (
+                    <div>
+                        <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
+                            Teacher Information
+                        </h4>
+
+                        <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
+                            <div className="col-span-1">
+                                <Label>Name*:</Label>
+                                <select className="px-6 py-3 bg-gray-900 text-gray-600 border rounded-lg text-xs w-1/2">
+                                    <option value="">All</option>
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                </select>
+                            </div>
+
+                            <div className="col-span-1">
+                                <Label>Principal:</Label>
+                                <Input type="text" placeholder="Hasan" />
+                            </div>
+
+                            <div className="col-span-1">
+                                <Label>Assistant:</Label>
+                                <Input type="text" placeholder="Ali" />
+                            </div>
+
+                            <div className="col-span-1">
+                                <Label>Phone:</Label>
+                                <Input type="text" placeholder="+09 363 398 46" />
+                            </div>
+
+                            <div className="col-span-1">
+                                <Label>Email:</Label>
+                                <Input type="email" placeholder="hasaneducationadvisor@gmail.com" />
+                            </div>
+
+                            <div className="col-span-1">
+                                <Label>Website:</Label>
+                                <Input type="text" placeholder="core.learnenglishmaths.com" />
+                            </div>
+
+                            <div className="col-span-1">
+                                <Label>Website PSTA:</Label>
+                                <Input type="text" placeholder="" />
+                            </div>
+
+                            <div className="col-span-1">
+                                <Label>District:</Label>
+                                <Input type="text" placeholder="" />
+                            </div>
+
+                            <div className="col-span-1">
+                                <Label>School Type:</Label>
+                                <Input type="text" placeholder="" />
+                            </div>
+                        </div>
+
+                        {/* Line Separator */}
+                        <hr className="my-6" />
+
+                        {/* Address Information */}
+
+                        <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
+                            Address Information
+                        </h4>
+
+                        <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
+                            <div className="col-span-1">
+                                <Label>Street Address 1:</Label>
+                                <Input type="text" placeholder="" />
+                            </div>
+
+                            <div className="col-span-1">
+                                <Label>Street Address 2:</Label>
+                                <Input type="text" placeholder="" />
+                            </div>
+
+                            <div className="col-span-1">
+                                <Label>City:</Label>
+                                <Input type="email" placeholder="England" />
+                            </div>
+
+                            <div className="col-span-1">
+                                <Label>County:</Label>
+                                <Input type="text" placeholder="" />
+                            </div>
+
+                            <div className="col-span-1">
+                                <Label>Postal Code:</Label>
+                                <Input type="text" placeholder="29407" />
+                            </div>
+
+                            <div className="col-span-1">
+                                <Label>Country:</Label>
+                                <Input type="email" placeholder="United Kingdom" />
+                            </div>
+                        </div>
+
+                        <div className="flex items-center justify-end w-full gap-3 mt-6">
+                            <Button size="sm" variant="outline">
+                                Cancel
+                            </Button>
+                            <Button size="sm">
+                                Save
+                            </Button>
+                        </div>
+                    </div>
+                )}
+            </Modal>
         </div>
     );
 }
