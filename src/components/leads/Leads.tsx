@@ -12,6 +12,9 @@ import {
 } from "../ui/table";
 // import Badge from "../ui/badge/Badge";
 // import Image from "next/image";
+import { Modal } from "../ui/modal";
+import Label from "../form/Label";
+import Input from "../form/input/InputField";
 import Button from "../ui/button/Button";
 import * as XLSX from "xlsx";
 
@@ -111,6 +114,19 @@ export default function BasicTableOne() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5;
   const [isFilterOpen, setIsFilterOpen] = useState(false); // State to control filter dropdown visibility
+
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [selectedActivity, setSelectedActivity] = useState<Order | null>(null);
+
+  const openEditModal = (activity: Order) => {
+    setSelectedActivity(activity);
+    setIsEditOpen(true);
+  };
+
+  const closeEditModal = () => {
+    setIsEditOpen(false);
+    setSelectedActivity(null);
+  };
 
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(
@@ -220,7 +236,7 @@ export default function BasicTableOne() {
                 </select>
               </div>
             </div>
-            
+
             <div style={{ marginTop: '15px' }}>
               <button
                 className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
@@ -418,6 +434,12 @@ export default function BasicTableOne() {
                   >
                     Year
                   </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                  >
+                    Action
+                  </TableCell>
                 </TableRow>
               </TableHeader>
               {/* Table Body */}
@@ -450,6 +472,24 @@ export default function BasicTableOne() {
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                       {order.dueDate}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      {order.dueDate}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      <div className="flex items-center justify-center gap-2">
+                        <button className="text-gray-500 hover:text-error-500 dark:text-gray-400 dark:hover:text-gray-500" onClick={() => openEditModal(order)}>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                          </svg>
+                        </button>
+                        <button className="text-gray-500 hover:text-error-500 dark:text-gray-400 dark:hover:text-gray-500">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                          </svg>
+
+                        </button>
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -485,6 +525,346 @@ export default function BasicTableOne() {
           </button>
         </div>
       </div>
+
+
+
+
+      <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[1000px] p-5 lg:p-10">
+        <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Edit Activity</h2>
+
+        {selectedActivity && (
+          <div>
+            <h4 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Lead Guardian Information</h4>
+
+            <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-4 lg:grid-cols-6">
+              <div className="col-span-1">
+                <Label>Situation</Label>
+                <select className="w-full px-2 py-1 border rounded-lg text-sm">
+                  <option value="">All</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
+              </div>
+
+              <div className="col-span-1">
+                <Label>First Name*:</Label>
+                <Input type="text" placeholder="Hasan" className="w-full" />
+              </div>
+
+              <div className="col-span-1">
+                <Label>Last Name*:</Label>
+                <Input type="text" placeholder="Ali" className="w-full" />
+              </div>
+
+              <div className="col-span-1">
+                <Label>Home Phone:</Label>
+                <Input type="text" placeholder="+09 363 398 46" className="w-full" />
+              </div>
+
+              <div className="col-span-1">
+                <Label>Mobile Phone:</Label>
+                <Input type="text" placeholder="+09 363 398 46" className="w-full" />
+              </div>
+
+              <div className="col-span-1">
+                <Label>Other Phone:</Label>
+                <Input type="text" placeholder="+09 363 398 46" className="w-full" />
+              </div>
+
+              <div className="col-span-1">
+                <Label>Email:</Label>
+                <Input type="text" placeholder="hasaneducationadvisor@gmail.com" className="w-full" />
+              </div>
+
+              <div className="col-span-1">
+                <Label>Lead Status:</Label>
+                <select className="w-full px-2 py-1 border rounded-lg text-sm">
+                  <option value="">All</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
+              </div>
+
+              <div className="col-span-1">
+                <Label>Rating:</Label>
+                <Input type="text" placeholder="" className="w-full" />
+              </div>
+
+              <div className="col-span-1">
+                <Label>Referral Account:</Label>
+                <Input type="text" placeholder="Team Manager" className="w-full" />
+              </div>
+
+              <div className="col-span-1">
+                <Label>Referral Account:</Label>
+                <Input type="text" placeholder="Team Manager" className="w-full" />
+              </div>
+
+              <div className="col-span-1">
+                <Label>Email:</Label>
+                <input type="checkbox" className="mr-2" placeholder="Team Manager" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Email Opt Out:</label>
+              </div>
+
+            </div>
+            <hr className="my-1" />
+            
+            {/* Address Information */}
+            <h4 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Address Information</h4>
+
+            <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-4 lg:grid-cols-5">
+              <div className="col-span-1">
+                <Label>Street Address 1:</Label>
+                <Input type="text" className="w-full" />
+              </div>
+
+              <div className="col-span-1">
+                <Label>City:</Label>
+                <Input type="text" placeholder="England" className="w-full" />
+              </div>
+
+              <div className="col-span-1">
+                <Label>Postal Code:</Label>
+                <Input type="text" placeholder="29407" className="w-full" />
+              </div>
+
+              <div className="col-span-1">
+                <Label>Country:</Label>
+                <Input type="text" placeholder="United Kingdom" className="w-full" />
+              </div>
+            </div>
+
+            <hr className="my-1" />
+
+            {/* Description Information */}
+
+            <h4 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">
+              Description Information
+            </h4>
+
+            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
+              <div className="col-span-1">
+                <Label>Description:</Label>
+                <Input type="text" placeholder="" />
+              </div>
+
+              <div className="col-span-1">
+                <Label>Customer Comments:</Label>
+                <Input type="text" placeholder="" />
+              </div>
+
+              <div className="col-span-1"></div>
+
+            </div>
+
+            {/* Line Separator */}
+            <hr className="my-1" />
+
+
+            {/**Lead Interest */}
+
+            <h4 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">
+              Lead Interest
+            </h4>
+
+            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-5">
+
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Regular Program</label>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Home School</label>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Exam Prep</label>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Summer Program</label>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Assessment Only</label>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Enrichment</label>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Private Lessons</label>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">@Home</label>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Other</label>
+              </div>
+            </div>
+
+            <hr className="my-1" />
+
+            {/* Lead Source */}
+            <h4 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Lead Source</h4>
+
+            <div className="grid grid-cols-1 gap-x-3 gap-y-3 sm:grid-cols-6">
+
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" placeholder="Team Manager" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Location Visibility</label>
+              </div>
+              <div className="col-span-1">
+                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                  <option value="">All</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Events (Non-School)</label>
+              </div>
+              <div className="col-span-1">
+                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                  <option value="">All</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Internet</label>
+              </div>
+              <div className="col-span-1">
+                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                  <option value="">All</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">TV</label>
+              </div>
+              <div className="col-span-1">
+                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                  <option value="">All</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Referral</label>
+              </div>
+              <div className="col-span-1">
+                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                  <option value="">All</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Radio</label>
+              </div>
+              <div className="col-span-1">
+                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                  <option value="">All</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">School Related</label>
+              </div>
+              <div className="col-span-1">
+                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                  <option value="">All</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Other</label>
+              </div>
+              <div className="col-span-1">
+                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                  <option value="">All</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Previously Attended</label>
+              </div>
+              <div className="col-span-1">
+                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                  <option value="">All</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Direct Mail</label>
+              </div>
+              <div className="col-span-1">
+                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                  <option value="">All</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Print (Non-School)</label>
+              </div>
+              <div className="col-span-1">
+                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                  <option value="">All</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
+              </div>
+              <div className="col-span-1">
+                <input type="checkbox" className="mr-2" />
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Not Specified</label>
+              </div>
+              <div style={{ marginTop: '-10px' }}>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Name:</label>
+                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                  <option value="">All</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </select>
+              </div>
+            </div>
+
+            <hr className="my-1" />
+
+            {/* Action Buttons */}
+            <div className="flex justify-end space-x-3">
+              <Button size="sm" onClick={closeEditModal} className="bg-gray-500 text-white">
+                Cancel
+              </Button>
+              <Button size="sm" className="bg-blue-500 text-white" onClick={() => console.log("Edit Saved")}>
+                Save
+              </Button>
+            </div>
+          </div>
+        )}
+      </Modal>
+
+
     </div>
   );
 }
