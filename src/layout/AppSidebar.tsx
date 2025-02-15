@@ -47,7 +47,7 @@ const navItems: NavItem[] = [
     name: "Leads",
     subItems: [{ name: "Leads", path: "/leads", pro: false },
                 { name: "Teachers", path: "/teacher_ld", pro: false },
-                { name: "Schools", path: "/calendar_act", pro: false },
+                { name: "Schools", path: "/school_ld", pro: false },
                 { name: "Community Contracts", path: "/group_act", pro: false }
               ],
   },
