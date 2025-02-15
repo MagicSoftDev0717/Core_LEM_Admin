@@ -130,11 +130,11 @@ export default function BasicTableOne() {
     XLSX.writeFile(wb, "table_data.xlsx");
   };
 
-
+  //Add to Leads
   const router = useRouter();
 
   const addtoLead = () => {
-    router.push("/leads/addleads"); // Navigate to the 'lead' page
+    router.push("/addlead_ld"); // Navigate to the 'lead' page
   };
 
   return (

@@ -130,23 +130,14 @@ export default function BasicTableOne() {
                     {/* Label and Combo Box */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Student Name:</label>
-                        <input type="text" className="px-2 py-1 border rounded-lg text-xs w-1/2" />
+                        <input type="text" className="px-2 py-1 border rounded-lg text-xs w-1/2" placeholder="Type a name"/>
                     </div>
 
                     <div className="self-end" style={{ marginTop: '15px' }}>
-                        <button onClick={exportToExcel}
-                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
+                        <button
+                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/3"
                         >Scan QR
                         </button>
-                    </div>
-
-                    <div>
-                        <input type="checkbox" className="mr-2" />
-                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Show Inactive Learning Plan(s)</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" className="mr-2" />
-                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Show Initial Sort Order</label>
                     </div>
                 </div>
             </div>

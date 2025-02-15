@@ -58,7 +58,8 @@ const navItems: NavItem[] = [
       { name: "Learning Plan Manager", path: "/planmanager_stu", pro: false },
       { name: "Student Attenance", path: "/attendance_stu", pro: false },
       { name: "Student Roster", path: "/roster_stu", pro: false },
-      { name: "Attendance Summary Chart", path: "/group_act", pro: false }
+      { name: "Attendance Summary Chart", path: "/summarychart_stu", pro: false },
+      { name: "School Year Bulk Update", path: "/yearbulk_stu", pro: false }
     ],
   },
   {

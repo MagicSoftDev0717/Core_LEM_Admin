@@ -115,8 +115,52 @@ export default function BasicTableOne() {
     return (
         <div>
             <div className="mb-6">
-                <div className="grid grid-cols-5 gap-2">
+                <div className="grid grid-cols-4 gap-2">
                     {/* Label and Combo Box */}
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Student Name:</label>
+                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+                            <option value=""></option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Lead Status:</label>
+                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+                            <option value=""></option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Enfollment Filter:</label>
+                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+                            <option value=""></option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
+                    </div>
+                    <div className="self-end">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Missing School Year:</label>
+                        <input type="checkbox" className="mr-2" />
+                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Show only Students with no School Year</label>
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Start:</label>
+                        <select className="px-2 py-1 border rounded-lg text-xs w-1/4">
+                            <option value="">14/2/25</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
+                        <select className="px-2 py-1 border rounded-lg text-xs w-1/4">
+                            <option value="">14/2/25</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
+                    </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
                         <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
@@ -125,43 +169,48 @@ export default function BasicTableOne() {
                             <option value="2">Option 2</option>
                         </select>
                     </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Date:</label>
-                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
-                            <option value=""></option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
-                    </div>
-
+                    <div></div>
                     <div className="self-end" style={{ marginTop: '15px' }}>
-                        <button onClick={exportToExcel}
+                        <button
                             className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
-                        >Refresh
+                        >Search
                         </button>
-                    </div>
-                    <div></div>
-                    <div></div>
-                    <div>
-                        <button onClick={exportToExcel}
-                            className="px-2 py-1 bg-gray-600 text-white rounded-lg w-1/2"
-                        >IN-001
-                        </button>
-                    </div>
-                    <div>
-                        <button onClick={exportToExcel}
-                            className="px-2 py-1 bg-orange-600 text-white rounded-lg w-1/2"
-                        >OUT-123
-                        </button>
-                    </div>
-
-                    <div className="self-end" style={{ marginTop: '15px' }}>
-                        <input type="checkbox" className="mr-2" />
-                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Checked In Only </label>
                     </div>
                 </div>
             </div>
 
+            {/* Line Separator */}
+            <hr className="my-6" />
+
+            <div className="mb-6">
+                <div className="grid grid-cols-4 gap-2">
+                    {/* Label and Combo Box */}
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Update School Year to:</label>
+                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+                            <option value=""></option>
+                            <option value="1">Option 1</option>
+                        </select>
+                    </div>
+
+                    <div className="self-end" style={{ marginTop: '15px' }}>
+                        <button
+                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
+                        >Updated Selected
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div className="flex justify-between items-center mt-4">
+                <div className="flex justify-start" style={{ marginBottom: '10px' }}>
+                    <button
+                        className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+                    >
+                        Add Student
+                    </button>
+                </div>
+            </div>
             <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
                 <div className="max-w-full overflow-x-auto">
                     <div className="min-w-[1102px]">
@@ -185,31 +234,43 @@ export default function BasicTableOne() {
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Membership
+                                        Year
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Delivery
+                                        School Year
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Remaining
+                                        Teacher
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Time In
+                                        Lead/Account
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Action
+                                        Enrolment Status
+                                    </TableCell>
+                                    <TableCell
+                                        isHeader
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                    >
+                                        Last Attendance
+                                    </TableCell>
+                                    <TableCell
+                                        isHeader
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                    >
+                                        Virtual Center
                                     </TableCell>
                                 </TableRow>
                             </TableHeader>
@@ -230,36 +291,18 @@ export default function BasicTableOne() {
                                             {order.subject}
                                         </TableCell>
                                         <TableCell className="px- py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                           {<label>---</label>}
+                                            {order.subject}
                                         </TableCell>
                                         <TableCell className="px- py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {<Button onClick={exportToExcel}
-                                                className="px-1 py-1 bg-blue-600 text-white rounded-lg"
-                                            >- - : - -
-                                            </Button>}
+                                            {order.subject}
                                         </TableCell><TableCell className="px- py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            <div className="flex item-center justify-center gap-x-2">
-                                                {<Button onClick={exportToExcel}
-                                                    className="px-1 py-1 bg-blue-600 text-white rounded-lg "
-                                                >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
-                                                    </svg>
-
-                                                </Button>}
-                                                {<Button onClick={exportToExcel}
-                                                    className="px-1 py-1 bg-blue-600 text-white rounded-lg"
-                                                >45 Min
-                                                </Button>}
-                                                {<Button onClick={exportToExcel}
-                                                    className="px-1 py-1 bg-blue-600 text-white rounded-lg"
-                                                >60 Min
-                                                </Button>}
-                                                {<Button onClick={exportToExcel}
-                                                    className="px-1 py-1 bg-blue-600 text-white rounded-lg"
-                                                >90 Min
-                                                </Button>}
-                                            </div>
+                                            {order.subject}
+                                        </TableCell>
+                                        <TableCell className="px- py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            {order.contactInfo}
+                                        </TableCell>
+                                        <TableCell className="px- py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            {order.contactType}
                                         </TableCell>
                                     </TableRow>
                                 ))}
@@ -284,7 +327,15 @@ export default function BasicTableOne() {
                         </button>
                     ))}
                 </div>
+                {/* Export to Excel button (Right aligned) */}
+                <div className="flex justify-end">
+                    <button
+                        onClick={exportToExcel}
+                        className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+                    >Export to Excel
+                    </button>
+                </div>
             </div>
-        </div>
+        </div >
     );
 };
