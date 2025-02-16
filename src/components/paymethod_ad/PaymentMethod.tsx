@@ -6,20 +6,6 @@ import Label from "../form/Label";
 import Button from "../ui/button/Button";
 import Input from "../form/input/InputField";
 
-interface Order {
-    id: number;
-    user: {
-        //image: string;
-        firstName: string;
-        lastName: string;
-    };
-    contactType: string;
-    subject: string;
-    contactInfo: string;
-    priority: string;
-    status: string;
-    dueDate: string;
-}
 export default function BasicTableOne() {
     const [isEditOpen, setIsEditOpen] = useState(false);
 
