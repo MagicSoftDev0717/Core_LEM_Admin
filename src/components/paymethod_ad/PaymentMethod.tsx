@@ -23,7 +23,7 @@ interface Order {
 export default function BasicTableOne() {
     const [isEditOpen, setIsEditOpen] = useState(false);
 
-    const openCreditDebit = (activity: Order) => {
+    const openCreditDebit = () => {
         setIsEditOpen(true);
     };
 
@@ -107,7 +107,7 @@ export default function BasicTableOne() {
                 {/* Title */}
                 <h2 className="mb-2 text-2xl font-semibold text-gray-900 dark:text-white">Credit / Debit</h2>
                 <p className="mb-6 text-sm text-gray-500 dark:text-gray-400">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry of standard dummy text ever since the 1500s.
                 </p>
 
                 {/* Flex container to separate form and card */}
@@ -151,7 +151,8 @@ export default function BasicTableOne() {
                     {/* Right Side - Card Display */}
                     <div className="w-full md:w-1/2 flex  items-center justify-center">
                         <div className="w-80 h-44 bg-gradient-to-r from-green-500 to-blue-900 rounded-xl p-6 flex flex-col justify-center shadow-lg">
-                            <h3 className="text-white text-lg font-semibold">Zeenath</h3>
+                            <h3 className="text-white text-end text-lg font-semibold">Zeenath</h3>
+                            <br />
                             <div className="text-white text-xl tracking-widest">•••• 9426</div>
                             <div className="flex justify-between text-white text-sm">
                                 <span>01/25</span>
