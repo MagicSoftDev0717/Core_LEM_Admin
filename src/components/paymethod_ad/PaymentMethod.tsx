@@ -20,96 +20,15 @@ interface Order {
     status: string;
     dueDate: string;
 }
-
-const tableData: Order[] = [
-    {
-        id: 1,
-        user: {
-            //image: "/images/user/user-17.jpg",
-            firstName: "Lindsey",
-            lastName: "Curtis"
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23",
-    },
-    {
-        id: 2,
-        user: {
-            //image: "/images/user/user-18.jpg",
-            firstName: "Kaiya",
-            lastName: "George"
-            // role: "Project Manager",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-    {
-        id: 3,
-        user: {
-            //image: "/images/user/user-17.jpg",
-            firstName: "Zain",
-            lastName: "Geidt"
-            // role: "Content Writing",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-    {
-        id: 4,
-        user: {
-            //image: "/images/user/user-20.jpg",
-            firstName: "Abram",
-            lastName: "Schleifer"
-            // role: "Digital Marketer",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-    {
-        id: 5,
-        user: {
-            //image: "/images/user/user-21.jpg",
-            firstName: "Carla",
-            lastName: "George"
-            // role: "Front-end Developer",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-];
-
 export default function BasicTableOne() {
     const [isEditOpen, setIsEditOpen] = useState(false);
-    const [selectedActivity, setSelectedActivity] = useState<Order | null>(null);
 
     const openCreditDebit = (activity: Order) => {
-        setSelectedActivity(activity);
         setIsEditOpen(true);
     };
 
     const closeEditModal = () => {
         setIsEditOpen(false);
-        setSelectedActivity(null);
     };
 
     return (
@@ -253,3 +172,5 @@ export default function BasicTableOne() {
 
     );
 }
+
+
