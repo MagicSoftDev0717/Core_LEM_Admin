@@ -530,7 +530,7 @@ export default function BasicTableOne() {
 
 
       <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[1000px] p-5 lg:p-10">
-        <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Edit Activity</h2>
+        <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Edit Lead</h2>
 
         {selectedActivity && (
           <div>

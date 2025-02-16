@@ -23,8 +23,37 @@ export default function BasicTableOne() {
         console.log("Canceling...");
 
     };
+    //Invoice
+    const handleInvoice = () => {
+        router.push("/invoice_ad"); // Navigate to the 'lead' page
+        console.log("Saving changes...");
+
+    };
+    //Enrollment
+    const handleEnrollment = () => {
+        router.push("/enrollment_ad"); // Navigate to the 'lead' page
+        console.log("Saving changes...");
+
+    };
+    //Payment Method
+    const handlePayMethod = () => {
+        router.push("/paymethod_ad"); // Navigate to the 'lead' page
+        console.log("Saving changes...");
+
+    };
     return (
         <div>
+            <div className="bg-gray-200 dark:bg-gray-800 p-6 rounded-3xl w-full">
+                <div className="grid grid-cols-8 gap-x-1 gap-y-1 mt-6">
+                    <Button size="sm" variant="outline">Edit</Button>
+                    <Button size="sm" variant="outline" onClick={handleEnrollment}>Enrollments</Button>
+                    <Button size="sm" variant="outline" onClick={handleInvoice}>Invoices</Button>
+                    <Button size="sm" variant="outline" onClick={handlePayMethod}>Payment Methods</Button>
+                </div>
+            </div>
+
+            {/* Line Separator */}
+            <hr className="my-4" />
             <div className="bg-gray-200 dark:bg-gray-800 p-6 rounded-3xl w-full">
 
                 <h4 className="mb-2 text-base font-medium text-gray-800 dark:text-white/90">
@@ -32,7 +61,7 @@ export default function BasicTableOne() {
                 </h4>
 
                 <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-4 mt-6">
-                <div className="col-span-1">
+                    <div className="col-span-1">
                         <Label>Billing Day:</Label>
                         <select className="px-4 py-2 bg-gray-900 text-white border rounded-lg text-xs w-full">
                             <option value="">All</option>
@@ -43,7 +72,7 @@ export default function BasicTableOne() {
 
                     <div className="col-span-1">
                         <Label>Active Payment Method:</Label>
-                        <Label>Change Payment Method</Label>
+                        <a>Change Payment Method</a>
                     </div>
 
                     <div className="col-span-1">
