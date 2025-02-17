@@ -1,6 +1,6 @@
 
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Filter } from "lucide-react";
 import {
@@ -18,103 +18,48 @@ import Input from "../form/input/InputField";
 import Button from "../ui/button/Button";
 import * as XLSX from "xlsx";
 
-interface Order {
+interface Lead {
   id: number;
-  user: {
-    image: string;
-    firstName: string;
-    lastName: string;
-  };
-  contactType: string;
-  subject: string;
-  contactInfo: string;
-  priority: string;
+  fname: string;
+  lname: string;
+  createdDate: string;
+  mobile: string;
+  email: string;
   status: string;
-  dueDate: string;
 }
 
-const tableData: Order[] = [
-  {
-    id: 1,
-    user: {
-      image: "/images/user/user-17.jpg",
-      firstName: "Lindsey",
-      lastName: "Curtis"
-    },
-    contactType: "Student",
-    subject: "Math",
-    contactInfo: "01234567890",
-    status: "Started",
-    priority: "Normal",
-    dueDate: "26/11/23",
-  },
-  {
-    id: 2,
-    user: {
-      image: "/images/user/user-18.jpg",
-      firstName: "Kaiya",
-      lastName: "George"
-      // role: "Project Manager",
-    },
-    contactType: "Student",
-    subject: "Math",
-    contactInfo: "01234567890",
-    status: "Started",
-    priority: "Normal",
-    dueDate: "26/11/23"
-  },
-  {
-    id: 3,
-    user: {
-      image: "/images/user/user-17.jpg",
-      firstName: "Zain",
-      lastName: "Geidt"
-      // role: "Content Writing",
-    },
-    contactType: "Student",
-    subject: "Math",
-    contactInfo: "01234567890",
-    status: "Started",
-    priority: "Normal",
-    dueDate: "26/11/23"
-  },
-  {
-    id: 4,
-    user: {
-      image: "/images/user/user-20.jpg",
-      firstName: "Abram",
-      lastName: "Schleifer"
-      // role: "Digital Marketer",
-    },
-    contactType: "Student",
-    subject: "Math",
-    contactInfo: "01234567890",
-    status: "Started",
-    priority: "Normal",
-    dueDate: "26/11/23"
-  },
-  {
-    id: 5,
-    user: {
-      image: "/images/user/user-21.jpg",
-      firstName: "Carla",
-      lastName: "George"
-      // role: "Front-end Developer",
-    },
-    contactType: "Student",
-    subject: "Math",
-    contactInfo: "01234567890",
-    status: "Started",
-    priority: "Normal",
-    dueDate: "26/11/23"
-  },
-];
 
 export default function BasicTableOne() {
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 5;
+  const [leads, setLeads] = useState<Lead[]>([]);
+  // const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false); // State to control filter dropdown visibility
- //Edit
+  const totalPages = 5;
+
+
+  // Fetch leads from the server (Replace with actual API)
+  useEffect(() => {
+    async function fetchLeads() {
+      try {
+        const response = await fetch(`/api/addlead_ld?page=${currentPage}`);
+        const data = await response.json();
+        console.log("Fetched data:", data); // Debugging log
+        if (data.lead_data !== undefined) {
+          setLeads(data.lead_data);
+        } else {
+          console.error("API response is not an array:", data);
+          setLeads([]); // Ensure leads remains an array
+        }
+      } catch (error) {
+        console.error("Error fetching leads:", error);
+      }
+    }
+    fetchLeads();
+  }, [currentPage]);
+
+
+
+  //Edit
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [selectedActivity, setSelectedActivity] = useState<Order | null>(null);
 
@@ -127,24 +72,27 @@ export default function BasicTableOne() {
     setIsEditOpen(false);
     setSelectedActivity(null);
   };
+  //Load the lead data from db
 
-  const exportToExcel = () => {
-    const ws = XLSX.utils.json_to_sheet(
-      tableData.map((order) => ({
-        "First Name": order.user.firstName,
-        "Last Name": order.user.lastName,
-        "Contact Type": order.contactType,
-        Subject: order.subject,
-        "Contact Info": order.contactInfo,
-        Status: order.status,
-        Priority: order.priority,
-        "Due Date": order.dueDate,
-      }))
-    );
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Orders");
-    XLSX.writeFile(wb, "table_data.xlsx");
-  };
+  // Fetch messages from the server with pagination
+
+  // const exportToExcel = () => {
+  //   const ws = XLSX.utils.json_to_sheet(
+  //     tableData.map((order) => ({
+  //       "First Name": order.user.firstName,
+  //       "Last Name": order.user.lastName,
+  //       "Contact Type": order.contactType,
+  //       Subject: order.subject,
+  //       "Contact Info": order.contactInfo,
+  //       Status: order.status,
+  //       Priority: order.priority,
+  //       "Due Date": order.dueDate,
+  //     }))
+  //   );
+  //   const wb = XLSX.utils.book_new();
+  //   XLSX.utils.book_append_sheet(wb, ws, "Orders");
+  //   XLSX.writeFile(wb, "table_data.xlsx");
+  // };
 
   //Add to Leads
   const router = useRouter();
@@ -243,15 +191,14 @@ export default function BasicTableOne() {
             </div>
 
             <div style={{ marginTop: '15px' }}>
-              <button
+              <Button
                 className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
               >Search
-              </button>
+              </Button>
             </div>
           </div>
         </div>
       )}
-
 
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
         <div className="max-w-full overflow-x-auto">
@@ -318,46 +265,46 @@ export default function BasicTableOne() {
               </TableHeader>
               {/* Table Body */}
               <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                {tableData.map((order) => (
-                  <TableRow key={order.id}>
-                    <TableCell className="px-5 py-4 sm:px-6 text-center">
+                <TableRow> 
+                  <TableCell className="px-5 py-4 sm:px-6 text-center">
 
-                      <span className="block font-medium text-center text-gray-800 text-theme-sm dark:text-white/90">
-                        UK Traning
-                      </span>
+                    <span className="block font-medium text-center text-gray-800 text-theme-sm dark:text-white/90">
+                      UK Traning
+                    </span>
 
-                    </TableCell>
-                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      9
-                    </TableCell>
-                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      5
-                    </TableCell>
-                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      34
-                    </TableCell>
-                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      1
-                    </TableCell>
-                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      29
-                    </TableCell>
-                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      02
-                    </TableCell>
-                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      -
-                    </TableCell>
-                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      -
-                    </TableCell>
-                  </TableRow>
-                ))}
+                  </TableCell>
+                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                    9
+                  </TableCell>
+                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                    5
+                  </TableCell>
+                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                    34
+                  </TableCell>
+                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                    1
+                  </TableCell>
+                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                    29
+                  </TableCell>
+                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                    02
+                  </TableCell>
+                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                    -
+                  </TableCell>
+                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                    -
+                  </TableCell>
+                </TableRow>
+                {/* ))} */}
               </TableBody>
             </Table>
           </div>
         </div>
       </div>
+
 
       {/* Line Separator */}
       <hr className="my-6" />
@@ -449,41 +396,41 @@ export default function BasicTableOne() {
               </TableHeader>
               {/* Table Body */}
               <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                {tableData.map((order) => (
-                  <TableRow key={order.id}>
+                {Array.isArray(leads) && leads.map((lead) => (
+                  <TableRow key={lead.id}>
                     <TableCell className="px-5 py-4 sm:px-6 text-center text-theme-sm dark:text-gray-400">
-                      {order.user.firstName}
+                      {lead.fname}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      {order.user.lastName}
+                      {lead.lname}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      {order.contactType}
+                      {lead.createdDate}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      {order.contactInfo}
+                      {lead.mobile}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      {order.subject}
+                      {lead.email}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      {order.contactInfo}
+                      {lead.status}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      {order.status}
+                      {lead.mobile}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      {order.priority}
+                      {lead.email}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      {order.dueDate}
+                      {lead.status}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      {order.dueDate}
+                      {lead.status}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                       <div className="flex items-center justify-center gap-2">
-                        <button className="text-gray-500 hover:text-error-500 dark:text-gray-400 dark:hover:text-gray-500" onClick={() => openEditModal(order)}>
+                        <button className="text-gray-500 hover:text-error-500 dark:text-gray-400 dark:hover:text-gray-500"> {/* onClick={() => openEditModal(order)} */}
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                           </svg>
@@ -514,8 +461,7 @@ export default function BasicTableOne() {
 
       {/* Pagination and Export to Excel button aligned */}
       <div className="flex justify-between items-center mt-4">
-        {/* Pagination (Centered) */}
-        <div className="flex justify-center space-x-2 flex-grow">
+        <div className="flex justify-center mt-4 space-x-2">
           {[...Array(totalPages)].map((_, index) => (
             <button
               key={index}
@@ -531,16 +477,13 @@ export default function BasicTableOne() {
         {/* Export to Excel button (Right aligned) */}
         <div className="flex justify-end">
           <button
-            onClick={exportToExcel}
+            // onClick={exportToExcel}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg"
           >
             Export to Excel
           </button>
         </div>
       </div>
-
-
-
 
       <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[1000px] p-5 lg:p-10">
         <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Edit Lead</h2>
@@ -852,7 +795,7 @@ export default function BasicTableOne() {
                 <input type="checkbox" className="mr-2" />
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Not Specified</label>
               </div>
-              <div style={{ marginTop: '-10px'}}>
+              <div style={{ marginTop: '-10px' }}>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Name:</label>
                 <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
                   <option value="">All</option>
@@ -876,6 +819,7 @@ export default function BasicTableOne() {
           </div>
         )}
       </Modal>
+
 
 
     </div>
