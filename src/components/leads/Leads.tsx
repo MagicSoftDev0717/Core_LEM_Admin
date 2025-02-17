@@ -114,7 +114,7 @@ export default function BasicTableOne() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5;
   const [isFilterOpen, setIsFilterOpen] = useState(false); // State to control filter dropdown visibility
-
+ //Edit
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [selectedActivity, setSelectedActivity] = useState<Order | null>(null);
 
@@ -153,6 +153,11 @@ export default function BasicTableOne() {
     router.push("/addlead_ld"); // Navigate to the 'lead' page
   };
 
+  //Details View
+  const handleDetails = () => {
+    router.push("/details_ld"); // Navigate to the 'lead' page
+  };
+
   return (
     <div>
       {/* Button Container */}
@@ -177,7 +182,7 @@ export default function BasicTableOne() {
             {/* Label and Combo Box */}
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Name:</label>
-              <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs w-1/2">
                 <option value="">All</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
@@ -186,7 +191,7 @@ export default function BasicTableOne() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Lead Status:</label>
-              <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs w-1/2">
                 <option value="">Option 1</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
@@ -195,7 +200,7 @@ export default function BasicTableOne() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Filter:</label>
-              <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs w-1/2">
                 <option value="">Option 1</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
@@ -204,7 +209,7 @@ export default function BasicTableOne() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-              <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs w-1/2">
                 <option value="">Option 1</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
@@ -217,7 +222,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   Start:
                 </label>
-                <select className="px-4 py-2 border rounded-lg text-xs w-32">
+                <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-xs w-32">
                   <option value="">Option 1</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -229,7 +234,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   End:
                 </label>
-                <select className="px-4 py-2 border rounded-lg text-xs w-32">
+                <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-xs w-32">
                   <option value="">Option 1</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -483,6 +488,14 @@ export default function BasicTableOne() {
                             <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                           </svg>
                         </button>
+                        <button className="text-gray-500 hover:text-error-500 dark:text-gray-400 dark:hover:text-gray-500" data-tooltip-target="More..." onClick={handleDetails}>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-gray-600 dark:text-gray-300"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 4h.01M4.5 12a7.5 7.5 0 1115 0 7.5 7.5 0 01-15 0z" />
+                          </svg>
+                        </button>
                         <button className="text-gray-500 hover:text-error-500 dark:text-gray-400 dark:hover:text-gray-500">
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
@@ -539,7 +552,7 @@ export default function BasicTableOne() {
             <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-4 lg:grid-cols-6">
               <div className="col-span-1">
                 <Label>Situation</Label>
-                <select className="w-full px-2 py-1 border rounded-lg text-sm">
+                <select className="w-full bg-gray-900 px-2 py-1 border rounded-lg text-sm">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -578,7 +591,7 @@ export default function BasicTableOne() {
 
               <div className="col-span-1">
                 <Label>Lead Status:</Label>
-                <select className="w-full px-2 py-1 border rounded-lg text-sm">
+                <select className="w-full bg-gray-900 px-2 py-1 border rounded-lg text-sm">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -608,7 +621,7 @@ export default function BasicTableOne() {
 
             </div>
             <hr className="my-1" />
-            
+
             {/* Address Information */}
             <h4 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Address Information</h4>
 
@@ -719,7 +732,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Location Visibility</label>
               </div>
               <div className="col-span-1">
-                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -730,7 +743,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Events (Non-School)</label>
               </div>
               <div className="col-span-1">
-                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -741,7 +754,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Internet</label>
               </div>
               <div className="col-span-1">
-                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -752,7 +765,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">TV</label>
               </div>
               <div className="col-span-1">
-                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -763,7 +776,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Referral</label>
               </div>
               <div className="col-span-1">
-                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -774,7 +787,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Radio</label>
               </div>
               <div className="col-span-1">
-                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -785,7 +798,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">School Related</label>
               </div>
               <div className="col-span-1">
-                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -796,7 +809,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Other</label>
               </div>
               <div className="col-span-1">
-                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -807,7 +820,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Previously Attended</label>
               </div>
               <div className="col-span-1">
-                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -818,7 +831,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Direct Mail</label>
               </div>
               <div className="col-span-1">
-                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -829,7 +842,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Print (Non-School)</label>
               </div>
               <div className="col-span-1">
-                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -839,9 +852,9 @@ export default function BasicTableOne() {
                 <input type="checkbox" className="mr-2" />
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Not Specified</label>
               </div>
-              <div style={{ marginTop: '-10px' }}>
+              <div style={{ marginTop: '-10px'}}>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Name:</label>
-                <select className="px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
