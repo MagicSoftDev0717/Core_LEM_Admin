@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import {
     Table,
     TableBody,
@@ -49,15 +48,6 @@ export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 5;
 
-    //Add to Leads
-    const router = useRouter();
-
-    const handleDetails = () => {
-        router.push("/detail_ac"); // Navigate to the 'lead' page
-        // Handle save logic here
-        console.log("Saving changes...");
-
-    };
     const exportToExcel = () => {
         const ws = XLSX.utils.json_to_sheet(
             tableData.map((order) => ({
