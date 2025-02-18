@@ -123,7 +123,7 @@ export default function BasicTableOne() {
                             <option value="2">Option 2</option>
                         </select>
                     </div>
-                    <div className="self-end" style={{ marginTop: '15px', marginLeft: '160px' }}>
+                    <div className="self-end" style={{ marginTop: '15px'}}>
                         <button
                             className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/3"
                         >Search

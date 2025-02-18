@@ -98,9 +98,9 @@ const navItems: NavItem[] = [
       { name: "Lead Tracking", path: "/leadtrack_rp", pro: false },
       { name: "Lead Roster Report", path: "/ldroster_rp", pro: false },
       { name: "Lead Conversion Report", path: "/ldconversion_rp", pro: false },
-      { name: "Referral Report", path: "/yearbulk_stu", pro: false },
-      { name: "Billing Exceptions Report", path: "/summarychart_stu", pro: false },
-      { name: "Parent Communication Report", path: "/yearbulk_stu", pro: false }
+      { name: "Referral Report", path: "/referral_rp", pro: false },
+      { name: "Billing Exceptions Report", path: "/billing_rp", pro: false },
+      { name: "Parent Communication Report", path: "/parent_rp", pro: false }
     ],
   },
   {

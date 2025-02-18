@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-
 import {
     Table,
     TableBody,
@@ -70,21 +69,12 @@ export default function BasicTableOne() {
     return (
         <div>
             <div className="mb-6">
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-4 gap-2">
                     {/* Label and Combo Box */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Pre/Post:</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Lead/Account:</label>
                         <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs dark:text-gray-500 w-1/2">
                             <option value="">All</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Grouped or Ungrouped:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -96,7 +86,7 @@ export default function BasicTableOne() {
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Start:
                             </label>
-                            <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-xs text-gray-500 w-32">
+                            <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-xs text-gray-500 w-24">
                                 <option value="">Option 1</option>
                                 <option value="1">Option 1</option>
                                 <option value="2">Option 2</option>
@@ -108,7 +98,7 @@ export default function BasicTableOne() {
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 End:
                             </label>
-                            <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-xs text-gray-500 w-32">
+                            <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-xs text-gray-500 w-24">
                                 <option value="">Option 1</option>
                                 <option value="1">Option 1</option>
                                 <option value="2">Option 2</option>
@@ -117,38 +107,6 @@ export default function BasicTableOne() {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Enrollment Status(Clear):</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Assesment Type:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Assessment Level:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Delivery</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
-                    </div>
-                    <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
                         <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs text-gray-500 w-1/2">
                             <option value="">Option 1</option>
@@ -156,19 +114,10 @@ export default function BasicTableOne() {
                             <option value="2">Option 2</option>
                         </select>
                     </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Students Without Add-on:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
-                    </div>
-                    <div></div>
-                    <div></div>
-                    <div className="self-end" style={{ marginTop: '15px'}}>
+                    
+                    <div className="self-end" style={{ marginTop: '15px', marginLeft: '160px' }}>
                         <button
-                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/3"
+                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
                         >Search
                         </button>
                     </div>
@@ -198,125 +147,37 @@ export default function BasicTableOne() {
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Y.O.P
+                                        Conversion Date
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Assess Title
+                                        Students
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Levels
+                                        Status
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        #Post Attempts
-                                    </TableCell>
-                                </TableRow>
-                            </TableHeader>
-                            {/* Table Body */}
-                            <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                                <TableRow>
-                                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        50.00%
-                                    </TableCell>
-                                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        22.67
-                                    </TableCell>
-                                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        709.445%
-                                    </TableCell>
-                                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        18
-                                    </TableCell>
-                                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        22.36
-                                    </TableCell>
-                                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        0.77
-                                    </TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </div>
-                </div>
-            </div>
-
-            {/* Line Separator */}
-            <hr className="my-6" />
-
-            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
-                <div className="max-w-full overflow-x-auto">
-                    <div className="min-w-[1102px]">
-                        <Table>
-                            {/* Table Header */}
-                            <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
-                                <TableRow>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
-                                    >
-                                        First Name
+                                        Referral Account
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Last Name
+                                        Referral Teacher
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Y.O.P
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
-                                    >
-                                        Assess Title
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
-                                    >
-                                        Levels
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
-                                    >
-                                        #Post Attempts
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
-                                    >
-                                        Pre Assess Date
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
-                                    >
-                                        Pre Assess Date
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
-                                    >
-                                        Post Assess Score
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
-                                    >
-                                        Post Assess Date
+                                        Referral Email
                                     </TableCell>
                                 </TableRow>
                             </TableHeader>
@@ -344,9 +205,6 @@ export default function BasicTableOne() {
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                             {order.status}
-                                        </TableCell>
-                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.priority}
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                             {order.priority}
