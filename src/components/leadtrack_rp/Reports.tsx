@@ -42,67 +42,7 @@ const tableData: Order[] = [
     status: "Started",
     priority: "Normal",
     dueDate: "26/11/23",
-  },
-    {
-    id: 2,
-    user: {
-      //image: "/images/user/user-18.jpg",
-      firstName: "Kaiya",
-      lastName: "George"
-     // role: "Project Manager",
-    },
-    contactType: "Student",
-    subject: "Math",
-    contactInfo: "01234567890",
-    status: "Started",
-    priority: "Normal",
-     dueDate: "26/11/23"
-  },
-  {
-    id: 3,
-    user: {
-      //image: "/images/user/user-17.jpg",
-      firstName: "Zain",
-      lastName: "Geidt"
-     // role: "Content Writing",
-    },
-    contactType: "Student",
-    subject: "Math",
-    contactInfo: "01234567890",
-    status: "Started",
-    priority: "Normal",
-     dueDate: "26/11/23"
-  },
-  {
-    id: 4,
-    user: {
-      //image: "/images/user/user-20.jpg",
-      firstName: "Abram",
-      lastName: "Schleifer"
-     // role: "Digital Marketer",
-    },
-    contactType: "Student",
-    subject: "Math",
-    contactInfo: "01234567890",
-    status: "Started",
-    priority: "Normal",
-     dueDate: "26/11/23"
-  },
-  {
-    id: 5,
-    user: {
-      //image: "/images/user/user-21.jpg",
-      firstName: "Carla",
-      lastName: "George"
-     // role: "Front-end Developer",
-    },
-    contactType: "Student",
-    subject: "Math",
-    contactInfo: "01234567890",
-    status: "Started",
-    priority: "Normal",
-    dueDate: "26/11/23"
-  },
+  }
 ];
 
 export default function BasicTableOne() {
@@ -139,7 +79,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   Start:
                 </label>
-                <select className="px-4 py-2 border rounded-lg text-xs w-32">
+                <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-500 w-32">
                   <option value="">Option 1</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -151,7 +91,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   End:
                 </label>
-                <select className="px-4 py-2 border rounded-lg text-xs w-32">
+                <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-500 w-32">
                   <option value="">Option 1</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -161,7 +101,7 @@ export default function BasicTableOne() {
 
              <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Lead Status:</label>
-              <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
                 <option value="">All</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
@@ -170,7 +110,7 @@ export default function BasicTableOne() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Conversion Status:</label>
-              <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
                 <option value="">Option 1</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
@@ -179,7 +119,7 @@ export default function BasicTableOne() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Lead Sources:</label>
-              <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
                 <option value="">Option 1</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
@@ -188,7 +128,7 @@ export default function BasicTableOne() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-              <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
                 <option value="">Option 1</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
@@ -208,6 +148,81 @@ export default function BasicTableOne() {
             </div>
           </div>
         </div>
+
+        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
+        <div className="max-w-full overflow-x-auto">
+          <div className="min-w-[1102px]">
+            <Table>
+              {/* Table Header */}
+              <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
+                <TableRow>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                  >
+                    Lead Source
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                  >
+                    Total Leads
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                  >
+                    New Assessments
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                  >
+                    New Student Signups
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                  >
+                    Converted Accounts
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                  >
+                    Account Conversion Rate
+                  </TableCell>
+                </TableRow>
+              </TableHeader>
+              {/* Table Body */}
+              <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
+                  <TableRow>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      Totals
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      8
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      8
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      5
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      6
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      75.00%
+                    </TableCell>
+                  </TableRow>
+              </TableBody>
+            </Table>
+          </div>
+        </div>
+      </div>
+       {/* Line Separator */}
+       <hr className="my-6" />
 
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
         <div className="max-w-full overflow-x-auto">
@@ -232,37 +247,49 @@ export default function BasicTableOne() {
                     isHeader
                     className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                   >
-                    Title
+                    Created Date
                   </TableCell>
                   <TableCell
                     isHeader
                     className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                   >
-                    Hire Date
+                    Location/Visibility
                   </TableCell>
                   <TableCell
                     isHeader
                     className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                   >
-                    Inactive Date
+                    Internet
                   </TableCell>
                   <TableCell
                     isHeader
                     className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                   >
-                    Employment Status
+                    Referral
                   </TableCell>
                   <TableCell
                     isHeader
                     className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                   >
-                    Description
+                    School Related
                   </TableCell>
                   <TableCell
                     isHeader
                     className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                   >
-                    Primary Centre
+                    Previously Attended
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                  >
+                    Direct Mail
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                  >
+                    Print(Non-School)
                   </TableCell>
                 </TableRow>
               </TableHeader>
