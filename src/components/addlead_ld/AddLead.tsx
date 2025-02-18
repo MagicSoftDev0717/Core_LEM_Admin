@@ -88,12 +88,12 @@ export default function BasicTableOne() {
 
                 <div className="col-span-1">
                     <Label>First Name*:</Label>
-                    <Input type="text" name="fname" value={formData.fname} onChange={handleChange} placeholder="Hasan" />
+                    <Input type="text" name="fname" defaultValue={formData.fname} onChange={handleChange} placeholder="Hasan" />
                 </div>
 
                 <div className="col-span-1">
                     <Label>Last Name*:</Label>
-                    <Input type="tex" name="lname" value={formData.lname} onChange={handleChange} placeholder="Ali" />
+                    <Input type="tex" name="lname" defaultValue={formData.lname} onChange={handleChange} placeholder="Ali" />
                 </div>
 
                 <div className="col-span-1">
@@ -103,7 +103,7 @@ export default function BasicTableOne() {
 
                 <div className="col-span-1">
                     <Label>Mobile Phone:</Label>
-                    <Input type="text" name="mobile" value={formData.mobile} onChange={handleChange} placeholder="+09 363 398 46" />
+                    <Input type="text" name="mobile" defaultValue={formData.mobile} onChange={handleChange} placeholder="+09 363 398 46" />
                 </div>
 
                 <div className="col-span-1">
@@ -137,7 +137,7 @@ export default function BasicTableOne() {
 
                 <div className="col-span-1">
                     <Label>Email:</Label>
-                    <Input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="hasaneducationadvisor@gmail.com" />
+                    <Input type="email" name="email" defaultValue={formData.email} onChange={handleChange} placeholder="hasaneducationadvisor@gmail.com" />
                 </div>
 
                 <div className="col-span-1">
