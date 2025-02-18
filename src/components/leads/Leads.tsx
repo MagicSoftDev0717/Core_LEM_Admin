@@ -57,46 +57,8 @@ export default function BasicTableOne() {
     fetchLeads();
   }, [currentPage]);
 
-
-
-  //Edit
-  const [isEditOpen, setIsEditOpen] = useState(false);
-  const [selectedActivity, setSelectedActivity] = useState<Order | null>(null);
-
-  const openEditModal = (activity: Order) => {
-    setSelectedActivity(activity);
-    setIsEditOpen(true);
-  };
-
-  const closeEditModal = () => {
-    setIsEditOpen(false);
-    setSelectedActivity(null);
-  };
-  //Load the lead data from db
-
-  // Fetch messages from the server with pagination
-
-  // const exportToExcel = () => {
-  //   const ws = XLSX.utils.json_to_sheet(
-  //     tableData.map((order) => ({
-  //       "First Name": order.user.firstName,
-  //       "Last Name": order.user.lastName,
-  //       "Contact Type": order.contactType,
-  //       Subject: order.subject,
-  //       "Contact Info": order.contactInfo,
-  //       Status: order.status,
-  //       Priority: order.priority,
-  //       "Due Date": order.dueDate,
-  //     }))
-  //   );
-  //   const wb = XLSX.utils.book_new();
-  //   XLSX.utils.book_append_sheet(wb, ws, "Orders");
-  //   XLSX.writeFile(wb, "table_data.xlsx");
-  // };
-
   //Add to Leads
   const router = useRouter();
-
   const addtoLead = () => {
     router.push("/addlead_ld"); // Navigate to the 'lead' page
   };
@@ -106,6 +68,48 @@ export default function BasicTableOne() {
     router.push("/details_ld"); // Navigate to the 'lead' page
   };
 
+
+
+
+  //Edit Lead
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
+
+  const openEditModal = (lead: Lead) => {
+    setSelectedLead(lead);
+    setIsEditOpen(true);
+  };
+
+  const closeEditModal = () => {
+    setIsEditOpen(false);
+    setSelectedLead(null);
+  };
+
+
+
+  //Load the lead data from db
+
+  // Fetch messages from the server with pagination
+
+  const exportToExcel = () => {
+    const ws = XLSX.utils.json_to_sheet(
+      tableData.map((order) => ({
+        "First Name": order.user.firstName,
+        "Last Name": order.user.lastName,
+        "Contact Type": order.contactType,
+        Subject: order.subject,
+        "Contact Info": order.contactInfo,
+        Status: order.status,
+        Priority: order.priority,
+        "Due Date": order.dueDate,
+      }))
+    );
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Orders");
+    XLSX.writeFile(wb, "table_data.xlsx");
+  };
+
+  
   return (
     <div>
       {/* Button Container */}
@@ -430,7 +434,7 @@ export default function BasicTableOne() {
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                       <div className="flex items-center justify-center gap-2">
-                        <button className="text-gray-500 hover:text-error-500 dark:text-gray-400 dark:hover:text-gray-500"> {/* onClick={() => openEditModal(order)} */}
+                        <button className="text-gray-500 hover:text-error-500 dark:text-gray-400 dark:hover:text-gray-500" onClick={() => openEditModal(lead)}>
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                           </svg>
@@ -477,7 +481,7 @@ export default function BasicTableOne() {
         {/* Export to Excel button (Right aligned) */}
         <div className="flex justify-end">
           <button
-            // onClick={exportToExcel}
+            onClick={exportToExcel}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg"
           >
             Export to Excel
@@ -488,14 +492,14 @@ export default function BasicTableOne() {
       <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[1000px] p-5 lg:p-10">
         <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Edit Lead</h2>
 
-        {selectedActivity && (
+        {selectedLead && (
           <div>
             <h4 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Lead Guardian Information</h4>
 
             <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-4 lg:grid-cols-6">
               <div className="col-span-1">
                 <Label>Situation</Label>
-                <select className="w-full bg-gray-900 px-2 py-1 border rounded-lg text-sm">
+                <select className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -504,7 +508,7 @@ export default function BasicTableOne() {
 
               <div className="col-span-1">
                 <Label>First Name*:</Label>
-                <Input type="text" placeholder="Hasan" className="w-full" />
+                <Input type="text" name="fname" value={selectedLead.fname} placeholder="Hasan" className="w-full" />
               </div>
 
               <div className="col-span-1">
@@ -534,7 +538,7 @@ export default function BasicTableOne() {
 
               <div className="col-span-1">
                 <Label>Lead Status:</Label>
-                <select className="w-full bg-gray-900 px-2 py-1 border rounded-lg text-sm">
+                <select className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -559,7 +563,7 @@ export default function BasicTableOne() {
               <div className="col-span-1">
                 <Label>Email:</Label>
                 <input type="checkbox" className="mr-2" placeholder="Team Manager" />
-                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Email Opt Out:</label>
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-500">Email Opt Out:</label>
               </div>
 
             </div>
@@ -568,10 +572,20 @@ export default function BasicTableOne() {
             {/* Address Information */}
             <h4 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Address Information</h4>
 
-            <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-4 lg:grid-cols-5">
+            <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-4 lg:grid-cols-3">
               <div className="col-span-1">
                 <Label>Street Address 1:</Label>
                 <Input type="text" className="w-full" />
+              </div>
+
+              <div className="col-span-1">
+                <Label>Street Address 2:</Label>
+                <Input type="text" className="w-full" />
+              </div>
+
+              <div className="col-span-1">
+                <Label>County:</Label>
+                <Input type="text" placeholder="England" className="w-full" />
               </div>
 
               <div className="col-span-1">
@@ -675,7 +689,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Location Visibility</label>
               </div>
               <div className="col-span-1">
-                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full text-gray-500">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -686,7 +700,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Events (Non-School)</label>
               </div>
               <div className="col-span-1">
-                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full text-gray-500">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -697,7 +711,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Internet</label>
               </div>
               <div className="col-span-1">
-                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full text-gray-500">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -708,7 +722,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">TV</label>
               </div>
               <div className="col-span-1">
-                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full text-gray-500">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -719,7 +733,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Referral</label>
               </div>
               <div className="col-span-1">
-                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full text-gray-500">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -730,7 +744,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Radio</label>
               </div>
               <div className="col-span-1">
-                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full text-gray-500">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -741,7 +755,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">School Related</label>
               </div>
               <div className="col-span-1">
-                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full text-gray-500">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -752,7 +766,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Other</label>
               </div>
               <div className="col-span-1">
-                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full text-gray-500">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -763,7 +777,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Previously Attended</label>
               </div>
               <div className="col-span-1">
-                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full text-gray-500">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -774,7 +788,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Direct Mail</label>
               </div>
               <div className="col-span-1">
-                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full text-gray-500">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -785,7 +799,7 @@ export default function BasicTableOne() {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Print (Non-School)</label>
               </div>
               <div className="col-span-1">
-                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full text-gray-500">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>
@@ -797,7 +811,7 @@ export default function BasicTableOne() {
               </div>
               <div style={{ marginTop: '-10px' }}>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Name:</label>
-                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full">
+                <select className="bg-gray-900 px-2 py-1 border rounded-lg text-xs w-full text-gray-500">
                   <option value="">All</option>
                   <option value="1">Option 1</option>
                   <option value="2">Option 2</option>

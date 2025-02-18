@@ -6,13 +6,13 @@ import Label from "../form/Label";
 import Input from "../form/input/InputField";
 
 // Define TypeScript interface for form data
-interface LeadFormData {
-    fname: string;
-    lname: string;
-    email: string;
-    mobile: string;
-    status: string;
-  }
+// interface LeadFormData {
+//     fname: string;
+//     lname: string;
+//     email: string;
+//     mobile: string;
+//     status: string;
+//   }
   
 export default function BasicTableOne() {
 
@@ -51,7 +51,7 @@ export default function BasicTableOne() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData),
           });
-          console.log(response);
+          console.log("dddd: ", formData);
           const data = await response.json();
           if (data.success) {
             alert("Lead saved successfully!");
@@ -123,8 +123,8 @@ export default function BasicTableOne() {
 
                 <div className="col-span-1">
                     <Label>Lead Status:</Label>
-                    <select name="status" value={formData.status} onChange={handleChange} className="dark:bg-gray-900 dark:text-gray-600 px-6 py-3 border rounded-lg text-xs w-full">
-                        <option value="">All</option>
+                    <select name="status" value={formData.status} onChange={handleChange} className="dark:bg-gray-900 dark:text-gray-600 px-6 py-3 border rounded-lg text-sm w-full">
+                        <option value="">Select the option</option>
                         <option value="1">Assessed</option>
                         <option value="2">Open</option>
                     </select>
