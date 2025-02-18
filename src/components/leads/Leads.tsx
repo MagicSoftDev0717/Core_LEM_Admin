@@ -93,15 +93,11 @@ export default function BasicTableOne() {
 
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(
-      tableData.map((order) => ({
-        "First Name": order.user.firstName,
-        "Last Name": order.user.lastName,
-        "Contact Type": order.contactType,
-        Subject: order.subject,
-        "Contact Info": order.contactInfo,
-        Status: order.status,
-        Priority: order.priority,
-        "Due Date": order.dueDate,
+      leads.map((order) => ({
+        "First Name": order.fname,
+        "Last Name": order.lname,
+        status: order.status,
+
       }))
     );
     const wb = XLSX.utils.book_new();
@@ -508,7 +504,7 @@ export default function BasicTableOne() {
 
               <div className="col-span-1">
                 <Label>First Name*:</Label>
-                <Input type="text" name="fname" value={selectedLead.fname} placeholder="Hasan" className="w-full" />
+                <Input type="text" name="fname" defaultValue={selectedLead.fname} placeholder="Hasan" className="w-full" />
               </div>
 
               <div className="col-span-1">
