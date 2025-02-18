@@ -45,24 +45,24 @@ export default function BasicTableOne() {
       };
 
     const handleAddLead = async () => {
-        try {
-          const response = await fetch("/api/addlead_ld", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData),
-          });
-          console.log("dddd: ", formData);
-          const data = await response.json();
-          if (data.success) {
-            alert("Lead saved successfully!");
-            router.push("/leads"); // Navigate to the 'lead' page
-          } else {
-            alert("Error saving lead.");
-          }
-        } catch (error) {
-          console.error("Error:", error);
-          alert("An error occurred.");
-        }
+        // try {
+        //   const response = await fetch("/api/addlead_ld", {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify(formData),
+        //   });
+        //   console.log("dddd: ", formData);
+        //   const data = await response.json();
+        //   if (data.success) {
+        //     alert("Lead saved successfully!");
+        //     router.push("/leads"); // Navigate to the 'lead' page
+        //   } else {
+        //     alert("Error saving lead.");
+        //   }
+        // } catch (error) {
+        //   console.error("Error:", error);
+        //   alert("An error occurred.");
+        // }
       };
     const handleCancel = () => {
         router.push("/leads"); // Navigate to the 'lead' page
