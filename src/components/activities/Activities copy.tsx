@@ -163,7 +163,7 @@ export default function BasicTableOne() {
 
         {/* Filter Button with reduced width */}
         <Button
-          className="px-4 py-2 bg-gray-500 rounded-lg flex items-center gap-2"
+          className="px-4 py-2 bg-gray-200 rounded-lg flex items-center gap-2"
           onClick={() => setIsFilterOpen(!isFilterOpen)} // Toggle filter visibility
         >
           <Filter size={16} /> Filter

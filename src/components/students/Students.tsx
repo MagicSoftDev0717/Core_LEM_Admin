@@ -9,9 +9,9 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-// import Badge from "../ui/badge/Badge";
-//import Image from "next/image";
+
 import * as XLSX from "xlsx";
+import Button from "../ui/button/Button";
 
 interface Order {
   id: number;
@@ -137,12 +137,12 @@ export default function BasicTableOne() {
         </div>
 
         {/* Filter Button with reduced width */}
-        <button
-        className="px-4 py-2 bg-gray-200 rounded-lg flex items-center gap-2"
+        <Button
+        className="px-4 py-2 bg-gray-500 rounded-lg flex items-center gap-2"
           onClick={() => setIsFilterOpen(!isFilterOpen)} // Toggle filter visibility
         >
           <Filter size={16} /> Filter
-        </button>
+        </Button>
       </div>
 
       {/* Editable Combo Boxes above Filter */}
