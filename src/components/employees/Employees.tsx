@@ -1,7 +1,7 @@
 
 "use client";
 import React, { useState } from "react";
-// import { Filter } from "lucide-react";
+import { useRouter } from "next/navigation";
 import {
   Table,
   TableBody,
@@ -58,57 +58,21 @@ const tableData: Order[] = [
     priority: "Normal",
      dueDate: "26/11/23"
   },
-  {
-    id: 3,
-    user: {
-      //image: "/images/user/user-17.jpg",
-      firstName: "Zain",
-      lastName: "Geidt"
-     // role: "Content Writing",
-    },
-    contactType: "Student",
-    subject: "Math",
-    contactInfo: "01234567890",
-    status: "Started",
-    priority: "Normal",
-     dueDate: "26/11/23"
-  },
-  {
-    id: 4,
-    user: {
-      //image: "/images/user/user-20.jpg",
-      firstName: "Abram",
-      lastName: "Schleifer"
-     // role: "Digital Marketer",
-    },
-    contactType: "Student",
-    subject: "Math",
-    contactInfo: "01234567890",
-    status: "Started",
-    priority: "Normal",
-     dueDate: "26/11/23"
-  },
-  {
-    id: 5,
-    user: {
-      //image: "/images/user/user-21.jpg",
-      firstName: "Carla",
-      lastName: "George"
-     // role: "Front-end Developer",
-    },
-    contactType: "Student",
-    subject: "Math",
-    contactInfo: "01234567890",
-    status: "Started",
-    priority: "Normal",
-    dueDate: "26/11/23"
-  },
 ];
 
 export default function BasicTableOne() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5;
-  // const [isFilterOpen, setIsFilterOpen] = useState(false); // State to control filter dropdown visibility
+  //Add to Leads
+    const router = useRouter();
+    const addToEmployee = () => {
+      router.push("/addemployee_em"); // Navigate to the 'lead' page
+    };
+  
+    //Details View
+    // const handleDetails = () => {
+    //   router.push("/details_ld"); // Navigate to the 'lead' page
+    // };
 
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(
@@ -171,7 +135,7 @@ export default function BasicTableOne() {
 
         <div className="flex items-center mt-4">
             <div className="flex gap-x-8" style={{marginBottom: '10px'}}>
-                <button
+                <button onClick={addToEmployee}
                     className="px-4 py-2 bg-blue-600 text-white rounded-lg"
                 >
                     Add Employee

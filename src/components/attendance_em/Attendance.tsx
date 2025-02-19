@@ -1,4 +1,5 @@
 
+
 "use client";
 import React, { useState } from "react";
 import Button from "../ui/button/Button";
@@ -82,8 +83,12 @@ export default function BasicTableOne() {
                 <div className="grid grid-cols-3 gap-2">
                     {/* Label and Combo Box */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Student Name:</label>
-                        <input type="text" className="px-2 py-1 border rounded-lg text-xs w-1/2" placeholder="Type a name"/>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Employee Name:</label>
+                        <input type="text" className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm w-1/2" placeholder="Type a name" />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centre Name:</label>
+                        <input type="text" className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm w-1/2" placeholder="Type a name" />
                     </div>
 
                     <div className="self-end" style={{ marginTop: '15px' }}>
@@ -125,7 +130,7 @@ export default function BasicTableOne() {
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Last Name
+                                        Employee Name
                                     </TableCell>
                                     <TableCell
                                         isHeader
@@ -138,6 +143,12 @@ export default function BasicTableOne() {
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
                                         Last Activity
+                                    </TableCell>
+                                    <TableCell
+                                        isHeader
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                    >
+                                        Time Out
                                     </TableCell>
                                     <TableCell
                                         isHeader
@@ -165,6 +176,9 @@ export default function BasicTableOne() {
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                             {order.contactType}
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            {order.subject}
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                             {order.subject}

@@ -75,7 +75,13 @@ const navItems: NavItem[] = [
   {
     icon: "/images/Icon/Employees.svg",
     name: "Employees",
-    path: "/employees",
+    subItems: [{ name: "Employee Management", path: "/employees", pro: false },
+      { name: "Employee Attendance", path: "/attendance_em", pro: false },
+      { name: "Instruction Manager", path: "/instruction_em", pro: false },
+      { name: "Answer Key", path: "/answer_em", pro: false },
+      { name: "Attendance Ratio Chart", path: "/ratio_em", pro: false },
+      { name: "Employee Timesheets", path: "/timesheet_em", pro: false }
+    ],
   },
   {
     icon: "/images/Icon/Badge.svg",

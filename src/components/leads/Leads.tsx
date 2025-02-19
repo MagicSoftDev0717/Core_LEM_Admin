@@ -69,8 +69,6 @@ export default function BasicTableOne() {
   };
 
 
-
-
   //Edit Lead
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
