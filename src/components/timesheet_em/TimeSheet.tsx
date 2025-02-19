@@ -1,6 +1,7 @@
 
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Table,
   TableBody,
@@ -8,6 +9,9 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
+// import Badge from "../ui/badge/Badge";
+//import Image from "next/image";
+import * as XLSX from "xlsx";
 
 interface Order {
   id: number;
@@ -59,7 +63,35 @@ const tableData: Order[] = [
 export default function BasicTableOne() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5;
+  //Add to Leads
+    const router = useRouter();
+    const addToEmployee = () => {
+      router.push("/addemployee_em"); // Navigate to the 'lead' page
+    };
   
+    //Details View
+    // const handleDetails = () => {
+    //   router.push("/details_ld"); // Navigate to the 'lead' page
+    // };
+
+  const exportToExcel = () => {
+    const ws = XLSX.utils.json_to_sheet(
+      tableData.map((order) => ({
+        "First Name": order.user.firstName,
+        "Last Name": order.user.lastName,
+        "Contact Type": order.contactType,
+        Subject: order.subject,
+        "Contact Info": order.contactInfo,
+        Status: order.status,
+        Priority: order.priority,
+        "Due Date": order.dueDate,
+      }))
+    );
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Orders");
+    XLSX.writeFile(wb, "table_data.xlsx");
+  };
+
   return (
     <div>
         <div className="mb-6">
@@ -75,7 +107,7 @@ export default function BasicTableOne() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Employee Status:</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Title Filter:</label>
               <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs w-1/2">
                 <option value="">Option 1</option>
                 <option value="1">Option 1</option>
@@ -112,13 +144,37 @@ export default function BasicTableOne() {
                     isHeader
                     className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                   >
-                    First Name
+                    Action
                   </TableCell>
                   <TableCell
                     isHeader
                     className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                   >
-                    Last Name
+                    Date
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                  >
+                    Time In
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                  >
+                    Time Out
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                  >
+                    Duration(Minutes)
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                  >
+                    Duration(Hours)
                   </TableCell>
                 </TableRow>
               </TableHeader>
@@ -131,6 +187,18 @@ export default function BasicTableOne() {
                     </TableCell>
                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                       {order.user.lastName}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      {order.contactType}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      {order.subject}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      {order.contactInfo}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      {order.contactInfo}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -160,9 +228,10 @@ export default function BasicTableOne() {
         {/* Export to Excel button (Right aligned) */}
         <div className="flex justify-end">
           <button
+            onClick={exportToExcel}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg"
           >
-            Answer Key Search
+            Export to Excel
           </button>
         </div>
       </div>
