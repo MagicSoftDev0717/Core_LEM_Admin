@@ -60,17 +60,7 @@ const tableData: Order[] = [
 export default function BasicTableOne() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5;
-  //Add to Leads
-    const router = useRouter();
-    const addToEmployee = () => {
-      router.push("/addemployee_em"); // Navigate to the 'lead' page
-    };
   
-    //Details View
-    // const handleDetails = () => {
-    //   router.push("/details_ld"); // Navigate to the 'lead' page
-    // };
-
   return (
     <div>
         <div className="mb-6">
