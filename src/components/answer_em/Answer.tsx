@@ -72,9 +72,9 @@ export default function BasicTableOne() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">--Select One--:</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Answer Key Type</label>
             <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
-              <option value="">All</option>
+              <option value="">--Select One--:</option>
               <option value="1">Option 1</option>
               <option value="2">Option 2</option>
             </select>

@@ -19,27 +19,11 @@ interface Order {
     dueDate: string;
 }
 
-const tableData: Order[] = [
-    {
-        id: 1,
-        user: {
-            firstName: "Lindsey", lastName: "Curtis"
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23",
-    },
-
-];
 
 export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 5;
-    const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
-
+    
     return (
         <div>
             <div className="mb-6">
