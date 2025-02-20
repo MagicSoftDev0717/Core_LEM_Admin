@@ -2,7 +2,6 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Filter } from "lucide-react";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/light.css";
 import {
