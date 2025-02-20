@@ -2,6 +2,12 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Filter } from "lucide-react";
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/themes/light.css";
+import {
+    CalenderIcon
+} from "../../icons/index";
 import {
     Table,
     TableBody,
@@ -60,51 +66,7 @@ const tableData: Order[] = [
         priority: "Normal",
         dueDate: "26/11/23"
     },
-    {
-        id: 3,
-        user: {
-            //image: "/images/user/user-17.jpg",
-            firstName: "Zain",
-            lastName: "Geidt"
-            // role: "Content Writing",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-    {
-        id: 4,
-        user: {
-            //image: "/images/user/user-20.jpg",
-            firstName: "Abram",
-            lastName: "Schleifer"
-            // role: "Digital Marketer",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-    {
-        id: 5,
-        user: {
-            //image: "/images/user/user-21.jpg",
-            firstName: "Carla",
-            lastName: "George"
-            // role: "Front-end Developer",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
+
 ];
 
 export default function BasicTableOne() {
@@ -113,6 +75,17 @@ export default function BasicTableOne() {
 
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [selectedActivity, setSelectedActivity] = useState<Order | null>(null);
+
+    const [dateOfStart, setDateOfStart] = useState("");
+    const [dateOfEnd, setDateOfEnd] = useState("");
+
+    const handleStartDate = (date: Date[]) => {
+        setDateOfStart(date[0].toLocaleDateString()); // Handle selected date and format it
+    };
+
+    const handleEndDate = (date: Date[]) => {
+        setDateOfEnd(date[0].toLocaleDateString()); // Handle selected date and format it
+    };
 
     const openEditModal = (activity: Order) => {
         setSelectedActivity(activity);
@@ -152,36 +125,58 @@ export default function BasicTableOne() {
     return (
         <div>
             <div className="mb-6">
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-3 gap-2">
                     {/* Label and Combo Box */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Teacher Name:</label>
                         <input type="text" className="px-2 py-1 w-1/8 bg-gray-900 text-gray-700 border rounded-lg" placeholder="Type a name" />
                     </div>
 
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                         {/* Start Field */}
-                        <div className="flex flex-col">
+                        <div className="flatpickr-wrapper flex flex-col w-1/3"> {/* Adjusted width */}
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Start:
                             </label>
-                            <select className="px-4 py-2 bg-gray-900 text-gray-700 border rounded-lg text-xs w-32">
-                                <option value="">Option 1</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                            </select>
+                            <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
+                                <Flatpickr
+                                    value={dateOfStart} // Set the value to the state
+                                    onChange={handleStartDate} // Handle the date change
+                                    options={{
+                                        dateFormat: "Y-m-d", // Set the date format
+                                    }}
+                                    placeholder="Start Date"
+                                    className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+                                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+                                   dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                />
+                                <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
+                                    <CalenderIcon />
+                                </span>
+                            </div>
                         </div>
 
                         {/* End Field */}
-                        <div className="flex flex-col">
+                        <div className="flatpickr-wrapper flex flex-col w-1/3"> {/* Adjusted width */}
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 End:
                             </label>
-                            <select className="px-4 py-2 bg-gray-900 text-gray-700 border rounded-lg text-xs w-32">
-                                <option value="">Option 1</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                            </select>
+                            <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
+                                <Flatpickr
+                                    value={dateOfEnd} // Set the value to the state
+                                    onChange={handleEndDate} // Handle the date change
+                                    options={{
+                                        dateFormat: "Y-m-d", // Set the date format
+                                    }}
+                                    placeholder="End Date"
+                                    className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+                                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+                                   dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                />
+                                <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
+                                    <CalenderIcon />
+                                </span>
+                            </div>
                         </div>
                     </div>
 
@@ -193,7 +188,8 @@ export default function BasicTableOne() {
                             <option value="2">Option 2</option>
                         </select>
                     </div>
-
+                    <div></div>
+                    <div></div>                        
                     <div className="self-end">
                         <button
                             className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"

@@ -3,6 +3,12 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Filter } from "lucide-react";
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/themes/light.css";
+import {
+  CalenderIcon
+} from "../../icons/index";
+
 import {
   Table,
   TableBody,
@@ -35,6 +41,17 @@ export default function BasicTableOne() {
   // const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false); // State to control filter dropdown visibility
   const totalPages = 5;
+
+  const [dateOfStart, setDateOfStart] = useState("");
+  const [dateOfEnd, setDateOfEnd] = useState("");
+
+  const handleStartDate = (date: Date[]) => {
+    setDateOfStart(date[0].toLocaleDateString()); // Handle selected date and format it
+  };
+
+  const handleEndDate = (date: Date[]) => {
+    setDateOfEnd(date[0].toLocaleDateString()); // Handle selected date and format it
+  };
 
 
   // Fetch leads from the server (Replace with actual API)
@@ -103,7 +120,7 @@ export default function BasicTableOne() {
     XLSX.writeFile(wb, "table_data.xlsx");
   };
 
-  
+
   return (
     <div>
       {/* Button Container */}
@@ -162,29 +179,51 @@ export default function BasicTableOne() {
               </select>
             </div>
 
-            <div className="flex items-center gap-0">
+            <div className="flex items-center gap-2">
               {/* Start Field */}
-              <div className="flex flex-col">
+              <div className="flatpickr-wrapper flex flex-col w-1/4"> {/* Adjusted width */}
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   Start:
                 </label>
-                <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-xs w-32">
-                  <option value="">Option 1</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                </select>
+                <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
+                  <Flatpickr
+                    value={dateOfStart} // Set the value to the state
+                    onChange={handleStartDate} // Handle the date change
+                    options={{
+                      dateFormat: "Y-m-d", // Set the date format
+                    }}
+                    placeholder="Start Date"
+                    className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+               dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                  />
+                  <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
+                    <CalenderIcon />
+                  </span>
+                </div>
               </div>
 
               {/* End Field */}
-              <div className="flex flex-col">
+              <div className="flatpickr-wrapper flex flex-col w-1/4"> {/* Adjusted width */}
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   End:
                 </label>
-                <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-xs w-32">
-                  <option value="">Option 1</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                </select>
+                <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
+                  <Flatpickr
+                    value={dateOfEnd} // Set the value to the state
+                    onChange={handleEndDate} // Handle the date change
+                    options={{
+                      dateFormat: "Y-m-d", // Set the date format
+                    }}
+                    placeholder="End Date"
+                    className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+               dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                  />
+                  <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
+                    <CalenderIcon />
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -263,7 +302,7 @@ export default function BasicTableOne() {
               </TableHeader>
               {/* Table Body */}
               <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                <TableRow> 
+                <TableRow>
                   <TableCell className="px-5 py-4 sm:px-6 text-center">
 
                     <span className="block font-medium text-center text-gray-800 text-theme-sm dark:text-white/90">
