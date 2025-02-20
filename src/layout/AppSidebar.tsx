@@ -65,7 +65,12 @@ const navItems: NavItem[] = [
   {
     icon: "/images/Icon/Bank.svg",
     name: "Accounts",
-    path: "/accounts",
+    subItems: [{ name: "Account Management", path: "/manage_ac", pro: false },
+      { name: "Payment Reconciliation", path: "/planmanager_stu", pro: false },
+      { name: "Membership Setup", path: "/assess_rp", pro: false },
+      { name: "Enrolment Opportunity Dashboard", path: "/asspro_rp", pro: false },
+      { name: "Enrollment Report", path: "/enroll_rp", pro: false }
+    ],
   },
   {
     icon: "/images/Icon/Guardians.svg",
