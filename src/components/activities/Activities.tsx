@@ -22,7 +22,7 @@ import { useModal } from "@/hooks/useModal";
 interface Order {
   id: number;
   user: {
-    image: string;
+    // image: string;
     name: string;
   };
   contactType: string;
@@ -37,7 +37,7 @@ const tableData: Order[] = [
   {
     id: 1,
     user: {
-      image: "/images/user/user-17.jpg",
+      // image: "/images/user/user-17.jpg",
       name: "Lindsey Curtis",
     },
     contactType: "Student",
@@ -50,7 +50,7 @@ const tableData: Order[] = [
   {
     id: 2,
     user: {
-      image: "/images/user/user-18.jpg",
+      // image: "/images/user/user-18.jpg",
       name: "Kaiya George",
       // role: "Project Manager",
     },
@@ -61,20 +61,7 @@ const tableData: Order[] = [
     priority: "Normal",
     dueDate: "26/11/23"
   },
-  {
-    id: 3,
-    user: {
-      image: "/images/user/user-17.jpg",
-      name: "Zain Geidt",
-      // role: "Content Writing",
-    },
-    contactType: "Student",
-    subject: "Math",
-    contactInfo: "01234567890",
-    status: "Started",
-    priority: "Normal",
-    dueDate: "26/11/23"
-  },
+  
 ];
 
 export default function BasicTableOne() {
@@ -291,55 +278,55 @@ export default function BasicTableOne() {
                 <TableRow>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                   >
                     Contact
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                   >
                     Contact Type
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                   >
                     Subject
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                   >
                     Comments
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                   >
                     Contact Info
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                   >
                     Status
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                   >
                     Priority
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                   >
                     Due Date
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                   >
                     Action
                   </TableCell>
@@ -350,15 +337,15 @@ export default function BasicTableOne() {
                 {tableData.map((order) => (
                   <TableRow key={order.id}>
                     <TableCell className="px-5 py-4 sm:px-6 text-center">
-                      <div className="flex items-center justify-start gap-3">
-                        <div className="w-10 h-10 overflow-hidden rounded-full">
+                      <div className="flex items-center justify-center gap-3">
+                        {/* <div className="w-10 h-10 overflow-hidden rounded-full">
                           <Image
                             width={40}
                             height={40}
                             src={order.user.image}
                             alt={order.user.name}
                           />
-                        </div>
+                        </div> */}
 
                         <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
                           {order.user.name}
