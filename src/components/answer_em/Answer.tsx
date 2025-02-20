@@ -39,67 +39,55 @@ const tableData: Order[] = [
     priority: "Normal",
     dueDate: "26/11/23",
   },
-    {
+  {
     id: 2,
     user: {
       //image: "/images/user/user-18.jpg",
       firstName: "Kaiya",
       lastName: "George"
-     // role: "Project Manager",
+      // role: "Project Manager",
     },
     contactType: "Student",
     subject: "Math",
     contactInfo: "01234567890",
     status: "Started",
     priority: "Normal",
-     dueDate: "26/11/23"
+    dueDate: "26/11/23"
   },
 ];
 
 export default function BasicTableOne() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5;
-  
+
   return (
     <div>
-        <div className="mb-6">
-          <div className="grid grid-cols-4 gap-2">
-             {/* Label and Combo Box */}
-             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Employee Name:</label>
-              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs w-1/2">
-                <option value="">All</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-              </select>
-            </div>
+      <div className="mb-6">
+        <div className="grid grid-cols-4 gap-2">
+          {/* Label and Combo Box */}
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Employee Status:</label>
-              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs w-1/2">
-                <option value="">Option 1</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-              </select>
-            </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Employee Key Type:</label>
+            <input type="text" className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm w-1/2" placeholder="days" />
+          </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs w-1/2">
-                <option value="">Option 1</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-              </select>
-            </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">--Select One--:</label>
+            <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
+              <option value="">All</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+            </select>
+          </div>
 
-            <div className="self-end" style={{marginTop: '15px'}}>
-              <button
-                className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
-              >Search
-              </button>
-            </div>
+          <div className="self-end" style={{ marginTop: '15px' }}>
+            <button
+              className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
+            >Search
+            </button>
           </div>
         </div>
+      </div>
 
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
         <div className="max-w-full overflow-x-auto">
@@ -147,9 +135,8 @@ export default function BasicTableOne() {
           {[...Array(totalPages)].map((_, index) => (
             <button
               key={index}
-              className={`w-8 h-8 rounded-full ${
-                currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-200"
-              }`}
+              className={`w-8 h-8 rounded-full ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
               onClick={() => setCurrentPage(index + 1)}
             >
               {index + 1}
