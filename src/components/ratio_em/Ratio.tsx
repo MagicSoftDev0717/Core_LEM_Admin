@@ -2,15 +2,7 @@
 
 "use client";
 import React, { useState } from "react";
-import Button from "../ui/button/Button";
 import LineChartOne from "@/components/charts/line/LineChartOne";
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHeader,
-    TableRow,
-} from "../ui/table";
 
 interface Order {
     id: number;
@@ -47,10 +39,6 @@ export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 5;
     const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
-
-    const filteredData = selectedLetter
-        ? tableData.filter(order => order.user.firstName.startsWith(selectedLetter))
-        : tableData;
 
     return (
         <div>
@@ -110,7 +98,7 @@ export default function BasicTableOne() {
                     </div>
                 </div>
             </div>
-            
+
             <hr className="my-6" />
 
             <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
