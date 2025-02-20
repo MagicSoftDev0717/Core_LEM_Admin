@@ -4,21 +4,6 @@
 import React, { useState } from "react";
 import LineChartOne from "@/components/charts/line/LineChartOne";
 
-interface Order {
-    id: number;
-    user: {
-        //image: string;
-        firstName: string;
-        lastName: string;
-    };
-    contactType: string;
-    subject: string;
-    contactInfo: string;
-    priority: string;
-    status: string;
-    dueDate: string;
-}
-
 
 export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
