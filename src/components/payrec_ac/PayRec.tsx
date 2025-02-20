@@ -1,8 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { Modal } from "../ui/modal";
-import Label from "../form/Label";
-import Input from "../form/input/InputField";
 import Button from "../ui/button/Button";
 import {
     Table,
