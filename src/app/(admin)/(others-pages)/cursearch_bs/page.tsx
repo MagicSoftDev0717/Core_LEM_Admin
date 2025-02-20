@@ -1,4 +1,4 @@
-import Business from "@/components/business/Business";
+import Business from "@/components/cursearch_bs/Business";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import { Metadata } from "next";
 import React from "react";

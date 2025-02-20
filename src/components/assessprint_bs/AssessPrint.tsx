@@ -55,51 +55,7 @@ const tableData: Order[] = [
     priority: "Normal",
      dueDate: "26/11/23"
   },
-  {
-    id: 3,
-    user: {
-      //image: "/images/user/user-17.jpg",
-      firstName: "Zain",
-      lastName: "Geidt"
-     // role: "Content Writing",
-    },
-    contactType: "Student",
-    subject: "Math",
-    contactInfo: "01234567890",
-    status: "Started",
-    priority: "Normal",
-     dueDate: "26/11/23"
-  },
-  {
-    id: 4,
-    user: {
-      //image: "/images/user/user-20.jpg",
-      firstName: "Abram",
-      lastName: "Schleifer"
-     // role: "Digital Marketer",
-    },
-    contactType: "Student",
-    subject: "Math",
-    contactInfo: "01234567890",
-    status: "Started",
-    priority: "Normal",
-     dueDate: "26/11/23"
-  },
-  {
-    id: 5,
-    user: {
-      //image: "/images/user/user-21.jpg",
-      firstName: "Carla",
-      lastName: "George"
-     // role: "Front-end Developer",
-    },
-    contactType: "Student",
-    subject: "Math",
-    contactInfo: "01234567890",
-    status: "Started",
-    priority: "Normal",
-    dueDate: "26/11/23"
-  },
+  
 ];
 
 export default function BasicTableOne() {
@@ -131,32 +87,23 @@ export default function BasicTableOne() {
           <div className="flex grid grid-cols-5 gap-3">
              {/* Label and Combo Box */}
              <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Search:</label>
-              <input type="text" className="px-2 py-1 border rounded-lg text-xs w-1/2" />
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Assess Name:</label>
+              <input type="text" className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2" placeholder="Search..."/>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Assess Filter:</label>
+              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
+                <option value="">None</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Type:</label>
-              <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
-                <option value="">Option 1</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Tag(s):</label>
-              <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
-                <option value="">Option 1</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Level(s):</label>
-              <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
-                <option value="">Option 1</option>
+              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
+                <option value="">--Select One--</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
               </select>
@@ -176,43 +123,43 @@ export default function BasicTableOne() {
           <div className="min-w-[1102px]">
             <Table>
               {/* Table Header */}
-              <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
+              <TableHeader className="dark:bg-gray-500 border-b border-gray-100 dark:border-white/[0.5]">
                 <TableRow>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                   >
                     Title
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
+                  >
+                    File Name
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                   >
                     Description
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                   >
-                    Barcode
+                    Test User Group
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                   >
-                    Type
+                    Created By
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                   >
-                    Tag(s)
-                  </TableCell>
-                  <TableCell
-                    isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
-                  >
-                    Level(s)
+                    Last Mode.Date
                   </TableCell>
                 </TableRow>
               </TableHeader>
