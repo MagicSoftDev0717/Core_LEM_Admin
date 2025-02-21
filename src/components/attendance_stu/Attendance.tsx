@@ -83,7 +83,7 @@ export default function BasicTableOne() {
                     {/* Label and Combo Box */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Student Name:</label>
-                        <input type="text" className="px-2 py-1 border rounded-lg text-xs w-1/2" placeholder="Type a name"/>
+                        <input type="text" className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2" placeholder="Type a name"/>
                     </div>
 
                     <div className="self-end" style={{ marginTop: '15px' }}>
@@ -170,7 +170,7 @@ export default function BasicTableOne() {
                                             {order.subject}
                                         </TableCell>
                                         <TableCell className="px- py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {<Button onClick={exportToExcel}
+                                            {<Button
                                                 className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/3"
                                             >Check
                                             </Button>}

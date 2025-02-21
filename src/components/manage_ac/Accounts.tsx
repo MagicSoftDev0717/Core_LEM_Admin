@@ -208,9 +208,9 @@ export default function BasicTableOne() {
           <div></div>
           <div></div>
 
-          <div className="self-end" style={{ marginTop: '15px', marginLeft: '160px' }}>
+          <div className="self-end" style={{ marginTop: '15px' }}>
             <button
-              className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/4"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/2"
             >Search
             </button>
           </div>
@@ -226,55 +226,55 @@ export default function BasicTableOne() {
                 <TableRow>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     First Name
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Last Name
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Created Date
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Mobile Phone
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Email
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Bill Street
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Billing City
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Account Status
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Action
                   </TableCell>

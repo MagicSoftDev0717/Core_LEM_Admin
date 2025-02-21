@@ -56,51 +56,7 @@ const tableData: Order[] = [
         priority: "Normal",
         dueDate: "26/11/23"
     },
-    {
-        id: 3,
-        user: {
-            //image: "/images/user/user-17.jpg",
-            firstName: "Zain",
-            lastName: "Geidt"
-            // role: "Content Writing",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-    {
-        id: 4,
-        user: {
-            //image: "/images/user/user-20.jpg",
-            firstName: "Abram",
-            lastName: "Schleifer"
-            // role: "Digital Marketer",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-    {
-        id: 5,
-        user: {
-            //image: "/images/user/user-21.jpg",
-            firstName: "Carla",
-            lastName: "George"
-            // role: "Front-end Developer",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
+    
 ];
 
 export default function BasicTableOne() {
@@ -133,8 +89,8 @@ export default function BasicTableOne() {
                     {/* Label and Combo Box */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
-                            <option value="">All</option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -142,8 +98,8 @@ export default function BasicTableOne() {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Student:</label>
-                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
-                            <option value="">Option 1</option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -151,8 +107,8 @@ export default function BasicTableOne() {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Learning Plan:</label>
-                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
-                            <option value="">Option 1</option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -160,8 +116,8 @@ export default function BasicTableOne() {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Type:</label>
-                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
-                            <option value="">Option 1</option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -169,8 +125,8 @@ export default function BasicTableOne() {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">LP Item View:</label>
-                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
-                            <option value="">Option 1</option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -178,14 +134,14 @@ export default function BasicTableOne() {
 
                     <div className="self-end" style={{ marginTop: '15px' }}>
                         <button onClick={exportToExcel}
-                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
+                            className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/2"
                         >Search
                         </button>
                     </div>
 
                     <div>
                         <input type="checkbox" className="mr-2" />
-                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Show Inactive Learning Plan(s)</label>
+                        <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Show Inactive Learning Plan(s)</label>
                     </div>
                     <div>
                         <input type="checkbox" className="mr-2" />
@@ -312,7 +268,6 @@ export default function BasicTableOne() {
                         Export to Excel
                     </Button>
                     <Button
-                        onClick={exportToExcel}
                         className="px-4 py-2 bg-blue-600 text-white rounded-lg"
                     >
                         Print Mode

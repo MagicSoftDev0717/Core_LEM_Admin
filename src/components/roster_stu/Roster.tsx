@@ -51,42 +51,6 @@ const tableData: Order[] = [
         priority: "Normal",
         dueDate: "26/11/23"
     },
-    {
-        id: 3,
-        user: {
-            firstName: "Zain", lastName: "Geidt"
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-    {
-        id: 4,
-        user: {
-            firstName: "Abram", lastName: "Schleifer"
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-    {
-        id: 5,
-        user: {
-            firstName: "Carla", lastName: "George"
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
 ];
 
 export default function BasicTableOne() {
@@ -119,16 +83,16 @@ export default function BasicTableOne() {
                     {/* Label and Combo Box */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
-                            <option value=""></option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Date:</label>
-                        <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
-                            <option value=""></option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -136,7 +100,7 @@ export default function BasicTableOne() {
 
                     <div className="self-end" style={{ marginTop: '15px' }}>
                         <button onClick={exportToExcel}
-                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
+                            className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/2"
                         >Refresh
                         </button>
                     </div>
@@ -144,13 +108,13 @@ export default function BasicTableOne() {
                     <div></div>
                     <div>
                         <button onClick={exportToExcel}
-                            className="px-2 py-1 bg-gray-600 text-white rounded-lg w-1/2"
+                            className="px-4 py-2 bg-gray-600 text-white rounded-lg w-1/2"
                         >IN-001
                         </button>
                     </div>
                     <div>
                         <button onClick={exportToExcel}
-                            className="px-2 py-1 bg-orange-600 text-white rounded-lg w-1/2"
+                            className="px-4 py-2 bg-orange-600 text-white rounded-lg w-1/2"
                         >OUT-123
                         </button>
                     </div>
@@ -171,43 +135,43 @@ export default function BasicTableOne() {
                                 <TableRow>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         First Name
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Last Name
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Membership
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Delivery
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Remaining
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Time In
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Action
                                     </TableCell>
