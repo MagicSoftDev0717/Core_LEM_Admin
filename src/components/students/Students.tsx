@@ -1,6 +1,7 @@
 
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Filter } from "lucide-react";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/light.css";
@@ -80,6 +81,13 @@ export default function BasicTableOne() {
   const handleEndDate = (date: Date[]) => {
     setDateOfEnd(date[0].toLocaleDateString()); // Handle selected date and format it
   };
+
+  //Add to Leads
+    const router = useRouter();
+    const addToStudent = () => {
+      router.push("/addstudent_stu"); // Navigate to the 'lead' page
+    };
+  
 
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(
@@ -343,7 +351,7 @@ export default function BasicTableOne() {
 
       <div className="flex justify-between items-center mt-4">
         <div className="flex justify-start" style={{ marginBottom: '10px' }}>
-          <button
+          <button onClick={addToStudent}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg"
           >
             Add Student
