@@ -1,4 +1,4 @@
-import AddSchool from "@/components/addschool_sc/AddSchool";
+import AddSchool from "@/components/addschool_ld/AddSchool";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import { Metadata } from "next";
 import React from "react";

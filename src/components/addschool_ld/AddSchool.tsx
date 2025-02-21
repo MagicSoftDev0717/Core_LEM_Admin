@@ -32,7 +32,7 @@ export default function BasicTableOne() {
             <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
                 <div className="col-span-1">
                     <Label>Name*:</Label>
-                    <select className="px-6 py-3 bg-gray-900 text-gray-600 border rounded-lg text-xs w-1/2">
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-1/2">
                         <option value="">All</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>

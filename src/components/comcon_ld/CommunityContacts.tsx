@@ -58,51 +58,6 @@ const tableData: Order[] = [
         priority: "Normal",
         dueDate: "26/11/23"
     },
-    {
-        id: 3,
-        user: {
-            //image: "/images/user/user-17.jpg",
-            firstName: "Zain",
-            lastName: "Geidt"
-            // role: "Content Writing",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-    {
-        id: 4,
-        user: {
-            //image: "/images/user/user-20.jpg",
-            firstName: "Abram",
-            lastName: "Schleifer"
-            // role: "Digital Marketer",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-    {
-        id: 5,
-        user: {
-            //image: "/images/user/user-21.jpg",
-            firstName: "Carla",
-            lastName: "George"
-            // role: "Front-end Developer",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
 ];
 
 export default function BasicTableOne() {
@@ -142,13 +97,13 @@ export default function BasicTableOne() {
                     {/* Label and Combo Box */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Community Contacts Name:</label>
-                        <input type="text" className="px-2 py-1 w-1/8 bg-gray-900 text-gray-700 border rounded-lg" placeholder="Search" />
+                        <input type="text" className="px-4 py-2 w-1/8 dark:bg-gray-900 text-gray-700 border text-sm rounded-lg" placeholder="Search" />
                     </div>
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-                        <select className="px-4 py-2 bg-gray-900 text-gray-700 border rounded-lg text-xs w-1/2">
-                            <option value="">Select</option>
+                        <select className="px-4 py-2 dark:bg-gray-900 text-gray-700 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -156,7 +111,7 @@ export default function BasicTableOne() {
 
                     <div className="self-end">
                         <button
-                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
+                            className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/2"
                         >Search
                         </button>
                     </div>
@@ -182,25 +137,25 @@ export default function BasicTableOne() {
                                 <TableRow>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Name
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Number
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Email
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         City
                                     </TableCell>

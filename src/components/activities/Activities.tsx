@@ -15,7 +15,6 @@ import Button from "../ui/button/Button";
 import Input from "../form/input/InputField";
 import { useModal } from "@/hooks/useModal";
 
-
 import {
   Table,
   TableBody,
@@ -23,9 +22,6 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-// import Badge from "../ui/badge/Badge";
-//import Image from "next/image";
-
 
 interface Order {
   id: number;
@@ -92,8 +88,6 @@ export default function BasicTableOne() {
     setDateOfEnd(date[0].toLocaleDateString()); // Handle selected date and format it
   };
 
-
-
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(
       tableData.map((order) => ({
@@ -117,7 +111,6 @@ export default function BasicTableOne() {
     closeModal();
   };
 
-
   const openEditModal = (activity: Order) => {
     setSelectedActivity(activity);
     setIsEditOpen(true);
@@ -127,8 +120,6 @@ export default function BasicTableOne() {
     setIsEditOpen(false);
     setSelectedActivity(null);
   };
-
-
 
   return (
     <div>
@@ -307,8 +298,8 @@ export default function BasicTableOne() {
               </Button>
             </div>
             <div>
-              <input type="checkbox" className="mr-2" />
-              <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Show Billing Exceptions Activities Only Search My Activities</label>
+              <input type="checkbox" className="mr-2 dark:bg-gray-900" />
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-500">Show Billing Exceptions Activities Only Search My Activities</label>
 
             </div>
           </div>

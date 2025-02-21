@@ -128,7 +128,7 @@ export default function BasicTableOne() {
                     {/* Label and Combo Box */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Teacher Name:</label>
-                        <input type="text" className="px-2 py-1 w-1/8 bg-gray-900 text-gray-700 border rounded-lg" placeholder="Type a name" />
+                        <input type="text" className="px-4 py-2 w-1/8 dark:bg-gray-900 text-gray-700 border rounded-lg dark:text-gray-400" placeholder="Type a name" />
                     </div>
 
                     <div className="flex items-center gap-2">
@@ -181,7 +181,7 @@ export default function BasicTableOne() {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-                        <select className="px-4 py-2 bg-gray-900 text-gray-700 border rounded-lg text-xs w-1/2">
+                        <select className="px-4 py-2 dark:bg-gray-900 text-gray-700 border rounded-lg text-sm dark:text-gray-400 w-1/2">
                             <option value="">Option 1</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
@@ -191,7 +191,7 @@ export default function BasicTableOne() {
                     <div></div>                        
                     <div className="self-end">
                         <button
-                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
+                            className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/2"
                         >Search
                         </button>
                     </div>
@@ -217,49 +217,49 @@ export default function BasicTableOne() {
                                 <TableRow>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         First Name
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Last Name
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         School
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Department
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Description
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Mobile Phone
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Email
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Action
                                     </TableCell>
@@ -351,7 +351,7 @@ export default function BasicTableOne() {
                         <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-5">
                             <div className="col-span-1">
                                 <Label>Situation</Label>
-                                <select className="px-6 py-3 bg-gray-900 text-gray-600 border rounded-lg text-xs w-1/2">
+                                <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:tex-gray-400 w-1/2">
                                     <option value="">All</option>
                                     <option value="1">Option 1</option>
                                     <option value="2">Option 2</option>
@@ -376,7 +376,7 @@ export default function BasicTableOne() {
                             <div className="col-span-1">
                                 <Label>Email:</Label>
                                 <input type="checkbox" className="mr-2" placeholder="Team Manager" />
-                                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Email Opt Out:</label>
+                                <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Email Opt Out:</label>
                             </div>
 
                             <div className="col-span-1">
@@ -472,7 +472,7 @@ export default function BasicTableOne() {
 
                         <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
                             <div className="col-span-1">
-                                <textarea rows={6} cols={80} className="bg-gray-900 text-gray-600border rounded-lg" placeholder="Type your message here..." />
+                                <textarea rows={6} cols={80} className="dark:bg-gray-900 text-gray-600 border rounded-lg" placeholder="Type your message here..." />
                             </div>
                         </div>
 

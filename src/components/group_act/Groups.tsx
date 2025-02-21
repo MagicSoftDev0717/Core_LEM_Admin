@@ -60,51 +60,7 @@ const tableData: Order[] = [
         priority: "Normal",
         dueDate: "26/11/23"
     },
-    {
-        id: 3,
-        user: {
-            //image: "/images/user/user-17.jpg",
-            firstName: "Zain",
-            lastName: "Geidt"
-            // role: "Content Writing",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-    {
-        id: 4,
-        user: {
-            //image: "/images/user/user-20.jpg",
-            firstName: "Abram",
-            lastName: "Schleifer"
-            // role: "Digital Marketer",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-    {
-        id: 5,
-        user: {
-            //image: "/images/user/user-21.jpg",
-            firstName: "Carla",
-            lastName: "George"
-            // role: "Front-end Developer",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
+    
 ];
 
 export default function BasicTableOne() {
@@ -143,12 +99,12 @@ export default function BasicTableOne() {
                     {/* Label and Combo Box */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Group Name:</label>
-                        <input type="text" className="px-2 py-1 border rounded-lg text-xs w-1/2" />
+                        <input type="text" className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2" placeholder="Search"/>
                     </div>
 
                     <div className="self-end" style={{ marginTop: '15px' }}>
                         <button
-                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
+                            className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/2"
                         >Search
                         </button>
                     </div>
@@ -161,14 +117,14 @@ export default function BasicTableOne() {
                         onClick={openModal}
                         className="px-4 py-2 bg-blue-600 text-white rounded-lg"
                     >
-                        Add Group
+                        Create Group
                     </button>
                     <Modal
                         isOpen={isOpen}
                         onClose={closeModal}
                         className="max-w-[600px] p-5 lg:p-10"
                     >
-                        <h2 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">Create New Group</h2>
+                        <h2 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">Create Activity Group</h2>
                         <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2">
                             <div className="col-span-1 sm:col-span-2">
                                 <Label>Group Name:</Label>

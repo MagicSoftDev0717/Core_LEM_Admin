@@ -1,7 +1,5 @@
-
 "use client";
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/light.css";
 import {
@@ -14,10 +12,9 @@ import {
     TableHeader,
     TableRow,
 } from "../ui/table";
-import { Modal } from "../ui/modal";
-import Label from "../form/Label";
-import Input from "../form/input/InputField";
-import Button from "../ui/button/Button";
+
+//import Label from "../form/Label";
+//import Button from "../ui/button/Button";
 import * as XLSX from "xlsx";
 
 interface Order {
@@ -50,30 +47,11 @@ const tableData: Order[] = [
         priority: "Normal",
         dueDate: "26/11/23",
     },
-    {
-        id: 2,
-        user: {
-            //image: "/images/user/user-18.jpg",
-            firstName: "Kaiya",
-            lastName: "George"
-            // role: "Project Manager",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
-    },
-
 ];
 
 export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 5;
-
-    const [isEditOpen, setIsEditOpen] = useState(false);
-    const [selectedActivity, setSelectedActivity] = useState<Order | null>(null);
 
     const [dateOfStart, setDateOfStart] = useState("");
     const [dateOfEnd, setDateOfEnd] = useState("");
@@ -84,16 +62,6 @@ export default function BasicTableOne() {
 
     const handleEndDate = (date: Date[]) => {
         setDateOfEnd(date[0].toLocaleDateString()); // Handle selected date and format it
-    };
-
-    const openEditModal = (activity: Order) => {
-        setSelectedActivity(activity);
-        setIsEditOpen(true);
-    };
-
-    const closeEditModal = () => {
-        setIsEditOpen(false);
-        setSelectedActivity(null);
     };
 
     const exportToExcel = () => {
@@ -114,26 +82,32 @@ export default function BasicTableOne() {
         XLSX.writeFile(wb, "table_data.xlsx");
     };
 
-    //Add to Teachers
-    const router = useRouter();
-
-    const addtoSchool = () => {
-        router.push("/addschool_ld"); // Navigate to the 'lead' page
-    };
-
     return (
         <div>
             <div className="mb-6">
                 <div className="grid grid-cols-3 gap-2">
                     {/* Label and Combo Box */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">School Name:</label>
-                        <input type="text" className="px-4 py-2 w-1/8 dark:bg-gray-900 text-gray-700 border rounded-lg" placeholder="Type a name" />
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Enrollment Filter:</label>
+                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">All</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Delivery:</label>
+                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm text-gray-400 w-1/2">
+                            <option value="">Option 1</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
                     </div>
 
                     <div className="flex items-center gap-2">
                         {/* Start Field */}
-                        <div className="flatpickr-wrapper flex flex-col w-1/3"> {/* Adjusted width */}
+                        <div className="flatpickr-wrapper flex flex-col w-1/4"> {/* Adjusted width */}
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Start:
                             </label>
@@ -156,7 +130,7 @@ export default function BasicTableOne() {
                         </div>
 
                         {/* End Field */}
-                        <div className="flatpickr-wrapper flex flex-col w-1/3"> {/* Adjusted width */}
+                        <div className="flatpickr-wrapper flex flex-col w-1/4"> {/* Adjusted width */}
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 End:
                             </label>
@@ -172,7 +146,7 @@ export default function BasicTableOne() {
                                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
                                    dark:bg-gray-800 dark:border-gray-700 dark:text-white"
                                 />
-                                <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
+                                <span className="absolute inset-y-0 right-3 flex items-center text-gray-400 dark:text-gray-400">
                                     <CalenderIcon />
                                 </span>
                             </div>
@@ -180,33 +154,29 @@ export default function BasicTableOne() {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-                        <select className="px-4 py-2 dark:bg-gray-900 text-gray-700 border rounded-lg text-sm text-gray-400 w-1/2">
-                            <option value="">--Select--</option>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Membership Type :</label>
+                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm text-gray-400 w-1/2">
+                            <option value="">Option 1</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
                     </div>
-                    
-                    <div></div>
-                    <div></div> 
 
-                    <div className="self-end">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
+                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm text-gray-400 w-1/2">
+                            <option value="">Option 1</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
+                    </div>
+
+                    <div className="self-end" style={{ marginTop: '15px' }}>
                         <button
-                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
+                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/3"
                         >Search
                         </button>
                     </div>
-                </div>
-            </div>
-
-            <div className="flex items-center mt-4">
-                <div className="flex gap-x-8" style={{ marginBottom: '10px' }}>
-                    <button onClick={addtoSchool}
-                        className="px-4 py-2 bg-blue-600 text-white rounded-lg"
-                    >
-                        Add School
-                    </button>
                 </div>
             </div>
 
@@ -221,31 +191,37 @@ export default function BasicTableOne() {
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Name
+                                        Attendance Date
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Website
+                                        First Name
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Email
+                                        Last Name
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Created by
+                                        Arrival Time
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Action
+                                        Departure Time
+                                    </TableCell>
+                                    <TableCell
+                                        isHeader
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                    >
+                                        Duration(Minutes)
                                     </TableCell>
                                 </TableRow>
                             </TableHeader>
@@ -266,19 +242,10 @@ export default function BasicTableOne() {
                                             {order.subject}
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            <div className="flex items-center justify-center gap-2">
-                                                <button className="text-gray-500 hover:text-error-500 dark:text-gray-400 dark:hover:text-gray-500" onClick={() => openEditModal(order)}>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                                                    </svg>
-                                                </button>
-                                                <button className="text-gray-500 hover:text-error-500 dark:text-gray-400 dark:hover:text-gray-500">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                                                    </svg>
-
-                                                </button>
-                                            </div>
+                                            {order.contactInfo}
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            {order.contactInfo}
                                         </TableCell>
                                     </TableRow>
                                 ))}
@@ -304,128 +271,22 @@ export default function BasicTableOne() {
                     ))}
                 </div>
 
+                <div className="flex justify-end">
+                    <button
+                        className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+                    >Detail View
+                    </button>
+                </div>
+
                 {/* Export to Excel button (Right aligned) */}
                 <div className="flex justify-end">
                     <button
                         onClick={exportToExcel}
                         className="px-4 py-2 bg-blue-600 text-white rounded-lg"
-                    >
-                        Export to Excel
+                    >Export to Excel
                     </button>
                 </div>
             </div>
-
-            <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[1000px] p-5 lg:p-10">
-                <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Ealing School</h2>
-                {selectedActivity && (
-                    <div>
-                        <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
-                            School Information
-                        </h4>
-
-                        <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
-                            <div className="col-span-1">
-                                <Label>Name*:</Label>
-                                <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-500 w-full">
-                                    <option value="">All</option>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                </select>
-                            </div>
-
-                            <div className="col-span-1">
-                                <Label>Principal:</Label>
-                                <Input type="text" placeholder="Hasan" />
-                            </div>
-
-                            <div className="col-span-1">
-                                <Label>Assistant:</Label>
-                                <Input type="text" placeholder="Ali" />
-                            </div>
-
-                            <div className="col-span-1">
-                                <Label>Phone:</Label>
-                                <Input type="text" placeholder="+09 363 398 46" />
-                            </div>
-
-                            <div className="col-span-1">
-                                <Label>Email:</Label>
-                                <Input type="email" placeholder="hasaneducationadvisor@gmail.com" />
-                            </div>
-
-                            <div className="col-span-1">
-                                <Label>Website:</Label>
-                                <Input type="text" placeholder="core.learnenglishmaths.com" />
-                            </div>
-
-                            <div className="col-span-1">
-                                <Label>Website PSTA:</Label>
-                                <Input type="text" placeholder="" />
-                            </div>
-
-                            <div className="col-span-1">
-                                <Label>District:</Label>
-                                <Input type="text" placeholder="" />
-                            </div>
-
-                            <div className="col-span-1">
-                                <Label>School Type:</Label>
-                                <Input type="text" placeholder="" />
-                            </div>
-                        </div>
-
-                        {/* Line Separator */}
-                        <hr className="my-6" />
-
-                        {/* Address Information */}
-
-                        <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
-                            Address Information
-                        </h4>
-
-                        <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
-                            <div className="col-span-1">
-                                <Label>Street Address 1:</Label>
-                                <Input type="text" placeholder="" />
-                            </div>
-
-                            <div className="col-span-1">
-                                <Label>Street Address 2:</Label>
-                                <Input type="text" placeholder="" />
-                            </div>
-
-                            <div className="col-span-1">
-                                <Label>City:</Label>
-                                <Input type="email" placeholder="England" />
-                            </div>
-
-                            <div className="col-span-1">
-                                <Label>County:</Label>
-                                <Input type="text" placeholder="" />
-                            </div>
-
-                            <div className="col-span-1">
-                                <Label>Postal Code:</Label>
-                                <Input type="text" placeholder="29407" />
-                            </div>
-
-                            <div className="col-span-1">
-                                <Label>Country:</Label>
-                                <Input type="email" placeholder="United Kingdom" />
-                            </div>
-                        </div>
-
-                        <div className="flex items-center justify-end w-full gap-3 mt-6">
-                            <Button size="sm" variant="outline">
-                                Cancel
-                            </Button>
-                            <Button size="sm">
-                                Save
-                            </Button>
-                        </div>
-                    </div>
-                )}
-            </Modal>
         </div>
     );
 }

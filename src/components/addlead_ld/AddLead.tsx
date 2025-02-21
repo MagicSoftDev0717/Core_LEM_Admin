@@ -79,7 +79,7 @@ export default function BasicTableOne() {
             <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-4">
                 <div className="col-span-1">
                     <Label>Situation</Label>
-                    <select className="dark:bg-gray-900 dark:text-gray-600 px-6 py-3 border rounded-lg text-xs w-full">
+                    <select className="dark:bg-gray-900 dark:text-gray-600 px-6 py-3 border rounded-lg text-sm w-full">
                         <option value="">Select the option</option>
                         <option value="1">Assessed</option>
                         <option value="2">Open</option>
@@ -124,7 +124,7 @@ export default function BasicTableOne() {
                 <div className="col-span-1">
                     <Label>Lead Status:</Label>
                     <select name="status" value={formData.status} onChange={handleChange} className="dark:bg-gray-900 dark:text-gray-600 px-6 py-3 border rounded-lg text-sm w-full">
-                        <option value="">Select the option</option>
+                        <option value="">--Select--</option>
                         <option value="1">Assessed</option>
                         <option value="2">Open</option>
                     </select>
@@ -143,7 +143,7 @@ export default function BasicTableOne() {
                 <div className="col-span-1">
                     <Label>Email:</Label>
                     <input type="checkbox" className="mr-2" placeholder="Team Manager" />
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Email Opt Out:</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Email Opt Out:</label>
                 </div>
             </div>
 
@@ -219,46 +219,46 @@ export default function BasicTableOne() {
             {/**Lead Interest */}
 
             <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
-                Lead Guardian Information
+                Lead Insterest
             </h4>
 
             <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-5">
 
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Regular Program</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Regular Program</label>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Home School</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Home School</label>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Exam Prep</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Exam Prep</label>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Summer Program</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Summer Program</label>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Assessment Only</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Assessment Only</label>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Enrichment</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Enrichment</label>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Private Lessons</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Private Lessons</label>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">@Home</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">@Home</label>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Other</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Other</label>
                 </div>
             </div>
 
@@ -275,133 +275,133 @@ export default function BasicTableOne() {
 
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2" placeholder="Team Manager" />
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Location Visibility</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Location Visibility</label>
                 </div>
                 <div className="col-span-1">
-                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-xs w-1/2">
-                        <option value="">All</option>
+                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-sm w-1/2">
+                        <option value="">--Select--</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Events (Non-School)</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Events (Non-School)</label>
                 </div>
                 <div className="col-span-1">
-                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-xs w-1/2">
-                        <option value="">All</option>
+                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-sm w-1/2">
+                        <option value="">--Select--</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Internet</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Internet</label>
                 </div>
                 <div className="col-span-1">
-                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-xs w-1/2">
-                        <option value="">All</option>
+                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-sm w-1/2">
+                        <option value="">--Select--</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">TV</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">TV</label>
                 </div>
                 <div className="col-span-1">
-                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-xs w-1/2">
-                        <option value="">All</option>
+                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-sm w-1/2">
+                        <option value="">--Select--</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Referral</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Referral</label>
                 </div>
                 <div className="col-span-1">
-                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-xs w-1/2">
-                        <option value="">All</option>
+                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-sm w-1/2">
+                        <option value="">--Select--</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Radio</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Radio</label>
                 </div>
                 <div className="col-span-1">
-                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-xs w-1/2">
-                        <option value="">All</option>
+                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-sm w-1/2">
+                        <option value="">--Select--</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">School Related</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">School Related</label>
                 </div>
                 <div className="col-span-1">
-                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-xs w-1/2">
-                        <option value="">All</option>
+                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-sm w-1/2">
+                        <option value="">--Select--</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Other</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Other</label>
                 </div>
                 <div className="col-span-1">
-                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-xs w-1/2">
-                        <option value="">All</option>
+                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-sm w-1/2">
+                        <option value="">--Select--</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Previously Attended</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Previously Attended</label>
                 </div>
                 <div className="col-span-1">
-                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-xs w-1/2">
-                        <option value="">All</option>
+                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-sm w-1/2">
+                        <option value="">--Select--</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Direct Mail</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Direct Mail</label>
                 </div>
                 <div className="col-span-1">
-                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-xs w-1/2">
-                        <option value="">All</option>
+                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-sm w-1/2">
+                        <option value="">--Select--</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Print (Non-School)</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Print (Non-School)</label>
                 </div>
                 <div className="col-span-1">
-                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-xs w-1/2">
-                        <option value="">All</option>
+                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-sm w-1/2">
+                        <option value="">--Select--</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
                 </div>
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2"/>
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Not Specified</label>
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Not Specified</label>
                 </div>
                 <div style={{ marginTop: '-10px' }}>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Name:</label>
-                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-xs w-1/2">
-                        <option value="">All</option>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-400">Promotional:</label>
+                    <select className="dark:bg-gray-900 dark:text-gray-600 px-2 py-1 border rounded-lg text-sm w-1/2">
+                        <option value="">--Select--</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>

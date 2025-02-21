@@ -16,8 +16,6 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-// import Badge from "../ui/badge/Badge";
-// import Image from "next/image";
 import { Modal } from "../ui/modal";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
@@ -100,8 +98,6 @@ export default function BasicTableOne() {
     setSelectedLead(null);
   };
 
-
-
   //Load the lead data from db
 
   // Fetch messages from the server with pagination
@@ -145,7 +141,7 @@ export default function BasicTableOne() {
             {/* Label and Combo Box */}
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Name:</label>
-              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs w-1/2">
+              <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
                 <option value="">All</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
@@ -154,8 +150,8 @@ export default function BasicTableOne() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Lead Status:</label>
-              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs w-1/2">
-                <option value="">Option 1</option>
+              <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                <option value="">--Select--</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
               </select>
@@ -163,8 +159,8 @@ export default function BasicTableOne() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Filter:</label>
-              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs w-1/2">
-                <option value="">Option 1</option>
+              <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                <option value="">--Select--</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
               </select>
@@ -172,8 +168,8 @@ export default function BasicTableOne() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs w-1/2">
-                <option value="">Option 1</option>
+              <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                <option value="">--Select--</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
               </select>
@@ -246,55 +242,55 @@ export default function BasicTableOne() {
                 <TableRow>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Centre
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Open
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Contacted
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Active
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Inactive
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Visited
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     On Hold
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Asmt.Pending
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Assessed
                   </TableCell>
@@ -365,67 +361,67 @@ export default function BasicTableOne() {
                 <TableRow>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     First Name
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Last Name
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Created Date
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Mobile Phone
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Email
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Lead Status
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Student Name
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     On Hold
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Gender
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Year
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Action
                   </TableCell>
