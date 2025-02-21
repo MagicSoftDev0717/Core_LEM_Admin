@@ -9,7 +9,6 @@ import {
     TableHeader,
     TableRow,
 } from "../ui/table";
-import * as XLSX from "xlsx";
 
 interface Order {
     id: number;
@@ -50,25 +49,6 @@ export default function BasicTableOne() {
     const filteredData = selectedLetter
         ? tableData.filter(order => order.user.firstName.startsWith(selectedLetter))
         : tableData;
-
-    const exportToExcel = () => {
-        const ws = XLSX.utils.json_to_sheet(
-            tableData.map((order) => ({
-                "First Name": order.user.firstName,
-                "Last Name": order.user.lastName,
-                "Contact Type": order.contactType,
-                Subject: order.subject,
-                "Contact Info": order.contactInfo,
-                Status: order.status,
-                Priority: order.priority,
-                "Due Date": order.dueDate,
-            }))
-        );
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, "Orders");
-        XLSX.writeFile(wb, "table_data.xlsx");
-    };
-
 
     const [isActive, setIsActive] = useState(false);
 
