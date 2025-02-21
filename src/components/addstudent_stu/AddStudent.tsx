@@ -34,10 +34,6 @@ export default function BasicTableOne() {
         setDateOfBirth(date[0].toLocaleDateString()); // Handle selected date and format it
     };
 
-    const handleEndDate = (date: Date[]) => {
-        setDateOfBirth(date[0].toLocaleDateString()); // Handle selected date and format it
-    };
-
     return (
         <div>
             <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
