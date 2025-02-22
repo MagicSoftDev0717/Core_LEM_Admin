@@ -179,7 +179,7 @@ export default function BasicTableOne() {
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Activity Type:</label>
               <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg dark:text-gray-500 text-sm  w-1/2">
-                <option value="">All</option>
+                <option value="">--Select--</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
               </select>
@@ -189,8 +189,7 @@ export default function BasicTableOne() {
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Status</label>
               <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg dark:text-gray-500 text-sm w-1/2" defaultValue="">
                 <option value="" disabled hidden >
-                  Select an option
-                </option>
+                --Select--</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
               </select>
@@ -200,8 +199,7 @@ export default function BasicTableOne() {
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Assigned To:</label>
               <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg dark:text-gray-500 text-sm w-1/2" defaultValue="">
                 <option value="" disabled hidden >
-                  Select an option
-                </option>
+                --Select--</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
               </select>
@@ -211,8 +209,7 @@ export default function BasicTableOne() {
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Activity Group:</label>
               <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg dark:text-gray-500 text-sm w-1/2" defaultValue="">
                 <option value="" disabled hidden >
-                  Select an option
-                </option>
+                --Select--</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
               </select>
@@ -222,8 +219,7 @@ export default function BasicTableOne() {
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Search Date Range by:</label>
               <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg dark:text-gray-500 text-sm w-1/2" defaultValue="">
                 <option value="" disabled hidden >
-                  Select an option
-                </option>
+                  --Select--</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
               </select>
@@ -282,8 +278,7 @@ export default function BasicTableOne() {
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
               <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg dark:text-gray-500 text-sm w-1/2" defaultValue="">
                 <option value="" disabled hidden >
-                  Select an option
-                </option>
+                --Select--</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
               </select>
@@ -441,7 +436,7 @@ export default function BasicTableOne() {
           {[...Array(totalPages)].map((_, index) => (
             <button
               key={index}
-              className={`w-8 h-8 rounded-full ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-200"
+              className={`w-8 h-8 rounded-full ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-300"
                 }`}
               onClick={() => setCurrentPage(index + 1)}
             >
