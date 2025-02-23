@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { Modal } from "../ui/modal";
 import Button from "../ui/button/Button";
 import {
     Table,
@@ -63,7 +62,7 @@ export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 5;
 
-   
+
     const exportToExcel = () => {
         const ws = XLSX.utils.json_to_sheet(
             tableData.map((order) => ({

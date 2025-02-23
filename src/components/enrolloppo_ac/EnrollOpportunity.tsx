@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 
 import {
     Table,
@@ -167,7 +166,7 @@ export default function BasicTableOne() {
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Today's Total
+                                        Total of Today
                                     </TableCell>
                                     <TableCell
                                         isHeader
