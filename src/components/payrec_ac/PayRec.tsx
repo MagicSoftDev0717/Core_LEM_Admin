@@ -2,6 +2,11 @@
 import React, { useState } from "react";
 import { Modal } from "../ui/modal";
 import Button from "../ui/button/Button";
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/themes/light.css";
+import {
+  CalenderIcon
+} from "../../icons/index";
 import {
     Table,
     TableBody,
@@ -62,6 +67,17 @@ const tableData: Order[] = [
 export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 5;
+    //Date
+    const [dateOfStart, setDateOfStart] = useState("");
+    const [dateOfEnd, setDateOfEnd] = useState("");
+
+    const handleStartDate = (date: Date[]) => {
+        setDateOfStart(date[0].toLocaleDateString()); // Handle selected date and format it
+    };
+
+    const handleEndDate = (date: Date[]) => {
+        setDateOfEnd(date[0].toLocaleDateString()); // Handle selected date and format it
+    };
 
     //Open the Detail Modal
     const [isEditOpen, setIsEditOpen] = useState(false);
@@ -98,8 +114,8 @@ export default function BasicTableOne() {
                     {/* Label and Combo Box */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Account Name:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
-                            <option value="">All</option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -107,8 +123,8 @@ export default function BasicTableOne() {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Discount:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -120,11 +136,7 @@ export default function BasicTableOne() {
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Student Name:
                             </label>
-                            <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-500 w-32">
-                                <option value="">Option 1</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                            </select>
+                            <input type="text" className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-32" placeholder="Type a name"/>
                         </div>
 
                         {/* End Field */}
@@ -133,7 +145,7 @@ export default function BasicTableOne() {
                                 Quick Dates:
                             </label>
                             <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-500 w-32">
-                                <option value="">Option 1</option>
+                                <option value="">--Select--</option>
                                 <option value="1">Option 1</option>
                                 <option value="2">Option 2</option>
                             </select>
@@ -141,36 +153,58 @@ export default function BasicTableOne() {
                     </div>
 
 
-                    <div className="flex items-center gap-0">
+                    <div className="flex items-center gap-2">
                         {/* Start Field */}
-                        <div className="flex flex-col">
+                        <div className="flatpickr-wrapper flex flex-col w-1/3"> {/* Adjusted width */}
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 From:
                             </label>
-                            <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-500 w-32">
-                                <option value="">Option 1</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                            </select>
+                            <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
+                                <Flatpickr
+                                    value={dateOfStart} // Set the value to the state
+                                    onChange={handleStartDate} // Handle the date change
+                                    options={{
+                                        dateFormat: "Y-m-d", // Set the date format
+                                    }}
+                                    placeholder="Start Date"
+                                    className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+                                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+                                   dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                />
+                                <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
+                                    <CalenderIcon />
+                                </span>
+                            </div>
                         </div>
 
                         {/* End Field */}
-                        <div className="flex flex-col">
+                        <div className="flatpickr-wrapper flex flex-col w-1/3"> {/* Adjusted width */}
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 To:
                             </label>
-                            <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-500 w-32">
-                                <option value="">Option 1</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                            </select>
+                            <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
+                                <Flatpickr
+                                    value={dateOfEnd} // Set the value to the state
+                                    onChange={handleEndDate} // Handle the date change
+                                    options={{
+                                        dateFormat: "Y-m-d", // Set the date format
+                                    }}
+                                    placeholder="End Date"
+                                    className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+                                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+                                   dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                />
+                                <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
+                                    <CalenderIcon />
+                                </span>
+                            </div>
                         </div>
                     </div>
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Credits:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -178,8 +212,8 @@ export default function BasicTableOne() {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Fees:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -187,8 +221,8 @@ export default function BasicTableOne() {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Pay Method:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -196,8 +230,8 @@ export default function BasicTableOne() {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Pay Status:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -205,8 +239,8 @@ export default function BasicTableOne() {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Membership Type:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -214,8 +248,8 @@ export default function BasicTableOne() {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Enrollment Status</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -223,8 +257,8 @@ export default function BasicTableOne() {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Delivery:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -232,8 +266,8 @@ export default function BasicTableOne() {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Account Status:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -241,16 +275,16 @@ export default function BasicTableOne() {
 
                     <div className="col-span-1">
                         <input type="radio" className="mr-2" placeholder="Team Manager" />
-                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Billing Date</label>
+                        <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Billing Date</label>
                     </div>
                     <div className="col-span-1">
                         <input type="radio" className="mr-2" placeholder="Team Manager" />
-                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Payment Date</label>
+                        <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Payment Date</label>
                     </div>
 
                     <div className="self-end" style={{ marginTop: '15px', marginLeft: '150px' }}>
                         <button
-                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/4"
+                            className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/4"
                         >Search
                         </button>
                     </div>
@@ -265,49 +299,49 @@ export default function BasicTableOne() {
                                 <TableRow>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Centre
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Total Expected
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Total Paid
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Total Paid During Period
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Total Due
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Total Students
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Total Invoices Select All
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Total Accounts
                                     </TableCell>
@@ -372,55 +406,55 @@ export default function BasicTableOne() {
                                 <TableRow>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Paid
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Account Name
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Account Status
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Billing Date
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Bill Payer Name
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Student Names
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Account Start Date
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Account End Date
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Invoice
                                     </TableCell>
@@ -499,7 +533,7 @@ export default function BasicTableOne() {
                 <div>
                     {/* Address Information */}
                     <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-4 lg:grid-cols-1">
-                        
+
                     </div>
 
                     <hr className="my-1" />

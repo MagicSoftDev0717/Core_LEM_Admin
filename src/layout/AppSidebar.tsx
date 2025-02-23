@@ -67,15 +67,18 @@ const navItems: NavItem[] = [
     name: "Accounts",
     subItems: [{ name: "Account Management", path: "/manage_ac", pro: false },
     { name: "Payment Reconciliation", path: "/payrec_ac", pro: false },
-    { name: "Membership Setup", path: "/assess_rp", pro: false },
-    { name: "Enrolment Opportunity Dashboard", path: "/asspro_rp", pro: false },
-    { name: "Enrollment Report", path: "/enroll_rp", pro: false }
+    { name: "Membership Setup", path: "/member_ac", pro: false },
+    { name: "Enrolment Opportunity Dashboard", path: "/enrolloppo_ac", pro: false },
     ],
   },
   {
     icon: "/images/Icon/Guardians.svg",
     name: "Guardians",
     path: "/guardians",
+    subItems: [{ name: "Guardian Management", path: "/guardians", pro: false },
+    { name: "Progress Report Manager", path: "/attendance_em", pro: false },
+    { name: "Email Temaplate", path: "/instruction_em", pro: false },
+    ],
   },
   {
     icon: "/images/Icon/Employees.svg",
