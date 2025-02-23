@@ -10,8 +10,6 @@ import {
     TableRow,
 } from "../ui/table";
 
-//import Label from "../form/Label";
-//import Button from "../ui/button/Button";
 import * as XLSX from "xlsx";
 
 interface Order {
@@ -65,15 +63,7 @@ export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 5;
 
-    //Add to Leads
-    const router = useRouter();
-
-    const handleDetails = () => {
-        router.push("/detail_ac"); // Navigate to the 'lead' page
-        // Handle save logic here
-        console.log("Saving changes...");
-
-    };
+   
     const exportToExcel = () => {
         const ws = XLSX.utils.json_to_sheet(
             tableData.map((order) => ({

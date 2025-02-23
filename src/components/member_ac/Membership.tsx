@@ -63,16 +63,7 @@ export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 5;
 
-    //Open the Detail Modal
-    const [isEditOpen, setIsEditOpen] = useState(false);
-    const handleRevenueComparison = () => {
-
-        setIsEditOpen(true);
-    };
-
-    const closeEditModal = () => {
-        setIsEditOpen(false);
-    };
+   
     const exportToExcel = () => {
         const ws = XLSX.utils.json_to_sheet(
             tableData.map((order) => ({
@@ -361,24 +352,7 @@ export default function BasicTableOne() {
                 </div>
             </div>
 
-            <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[500px] p-5 lg:p-10">
-                <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Revenue Comparison</h2>
-                <div>
-                    {/* Address Information */}
-                    <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-4 lg:grid-cols-1">
-
-                    </div>
-
-                    <hr className="my-1" />
-
-                    {/* Action Buttons */}
-                    <div className="flex justify-end space-x-3">
-                        <Button size="sm" onClick={closeEditModal} className="bg-gray-500 text-white">
-                            Close
-                        </Button>
-                    </div>
-                </div>
-            </Modal>
+           
         </div>
     );
 }
