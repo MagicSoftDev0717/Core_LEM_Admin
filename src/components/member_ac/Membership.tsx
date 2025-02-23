@@ -2,11 +2,6 @@
 import React, { useState } from "react";
 import { Modal } from "../ui/modal";
 import Button from "../ui/button/Button";
-import Flatpickr from "react-flatpickr";
-import "flatpickr/dist/themes/light.css";
-import {
-    CalenderIcon
-} from "../../icons/index";
 import {
     Table,
     TableBody,
@@ -67,17 +62,6 @@ const tableData: Order[] = [
 export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 5;
-    //Date
-    const [dateOfStart, setDateOfStart] = useState("");
-    const [dateOfEnd, setDateOfEnd] = useState("");
-
-    const handleStartDate = (date: Date[]) => {
-        setDateOfStart(date[0].toLocaleDateString()); // Handle selected date and format it
-    };
-
-    const handleEndDate = (date: Date[]) => {
-        setDateOfEnd(date[0].toLocaleDateString()); // Handle selected date and format it
-    };
 
     //Open the Detail Modal
     const [isEditOpen, setIsEditOpen] = useState(false);

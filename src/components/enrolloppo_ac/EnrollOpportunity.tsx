@@ -1,11 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import Flatpickr from "react-flatpickr";
-import "flatpickr/dist/themes/light.css";
-import {
-    CalenderIcon
-} from "../../icons/index";
+
 import {
     Table,
     TableBody,
@@ -68,17 +64,6 @@ const tableData: Order[] = [
 export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 5;
-
-    const [dateOfStart, setDateOfStart] = useState("");
-    const [dateOfEnd, setDateOfEnd] = useState("");
-
-    const handleStartDate = (date: Date[]) => {
-        setDateOfStart(date[0].toLocaleDateString()); // Handle selected date and format it
-    };
-
-    const handleEndDate = (date: Date[]) => {
-        setDateOfEnd(date[0].toLocaleDateString()); // Handle selected date and format it
-    };
 
     //Add to Leads
     const router = useRouter();
