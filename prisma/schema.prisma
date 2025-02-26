@@ -8,13 +8,31 @@ datasource db {
 }
 
 model Lead {
-  id        Int     @id @default(autoincrement())
+  id           Int     @id @default(autoincrement())
   fname      String
   lname      String
-  email     String  @unique
-  mobile   String
-  status      String
+  email      String  @unique
+  mobile     String?
+  homePhone   String?
+  otherPhone   String?
+  status      String?
+  emailOpt    Boolean?
+  address1    String?
+  address2    String?
+  city        String?
+  postalCode  String?
+  descrip     String?
+  customDescrip String?
+  regularPro  Boolean?
+  enrich      Boolean?
+  homeSchool  Boolean?
+  examPrep    Boolean?
+  home        Boolean?
+  summerPro   Boolean?
+  assessOnly  Boolean?
+  other       Boolean?
   createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 }
 
 

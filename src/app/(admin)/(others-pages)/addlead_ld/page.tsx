@@ -6,7 +6,7 @@ import React from "react";
 export const metadata: Metadata = {
   title: "LEM Admin | Add Lead",
   description:
-    "This is Ado Lead page of Admin",
+    "This is Add Lead page of Admin",
 };
 export default function page() {
   return (

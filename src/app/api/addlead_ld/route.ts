@@ -8,12 +8,12 @@ export async function GET(req: Request) {
       // Extract page number from query parameters (default to 1 if not provided)
       const url = new URL(req.url);
       const page = parseInt(url.searchParams.get("page") || "1");
-      const itemsPerPage = 10;
+      const itemsPerPage = parseInt(url.searchParams.get("items") || "5");
       const skip = (page - 1) * itemsPerPage;
   
       // Fetch messages with pagination and order by date descending
       const lead_data = await prisma.lead.findMany({
-        orderBy: { createdAt: "desc" },
+        orderBy: { updatedAt: "desc" },
         skip,
         take: itemsPerPage,
       });
@@ -38,14 +38,14 @@ export async function POST(req: Request) {
         //     return NextResponse.json({ message: "All fields are required" }, { status: 400 });
         // }
 
-        // Check if email already exists
-        // const existingLead = await prisma.lead.findUnique({
-        //     where: { email },
-        // });
+        //Check if email already exists
+        const existingLead = await prisma.lead.findUnique({
+            where: { email },
+        });
 
-        // if (existingLead) {
-        //     return NextResponse.json({ message: "Email already exists" }, { status: 400 });
-        // }
+        if (existingLead) {
+            return NextResponse.json({ message: "Email already exists" }, { status: 400 });
+        }
 
         // Save new lead in the database
         const newLead = await prisma.lead.create({

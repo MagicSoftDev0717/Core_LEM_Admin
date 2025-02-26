@@ -1,28 +1,65 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Button from "../ui/button/Button";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
 
+interface LeadDetails {
+    id: number | null;
+    fname: string | null;
+    lname: string | null;
+    createdAt: string | null;
+    updatedAt: string | null;
+    mobile: string | null;
+    email: string | null;
+    status: string | null;
+    homePhone: string | null;
+    otherPhone: string | null;
+    emailOpt: boolean;
+    address1: string | null;
+    address2: string | null;
+    city: string | null;
+    postalCode: string | null;
+    descrip: string | null;
+    customDescrip: string | null;
+    regularPro: boolean;
+    enrich: boolean;
+    homeSchool: boolean;
+    examPrep: boolean;
+    home: boolean;
+    summerPro: boolean;
+    assessOnly: boolean;
+    other: boolean;
+}
 
-export default function BasicTableOne() {
+export default function BasicTableOne({ id }: { id: string }) {
 
-    //Add to Leads
     const router = useRouter();
+    const [lead, setLead] = useState<LeadDetails | null>(null);
 
-    // const handleSave = () => {
-    //     router.push("/leads"); // Navigate to the 'lead' page
-    //     // Handle save logic here
-    //     console.log("Saving changes...");
+    useEffect(() => {
 
-    // };
-    // const handleCancel = () => {
-    //     router.push("/leads"); // Navigate to the 'lead' page
-    //     // Handle save logic here
-    //     console.log("Canceling...");
+        if (!id) return; // Prevent execution if id is not yet available
+        async function fetchLeads() {
 
-    // };
+            try {
+                const response = await fetch(`/api/details_ld/${id}`);
+                const data = await response.json();
+                if (data.lead_data !== undefined) {
+                    setLead(data.lead_data);
+                } else {
+                    console.error("API response is not an array:", data);
+                }
+            } catch (error) {
+                console.error("Error fetching leads:", error);
+            }
+        }
+        fetchLeads();
+
+    }, [id]);
+
+
     //Payment Method
     const handlePayMethod = () => {
         router.push("/paymethod_ld"); // Navigate to the 'lead' page
@@ -32,7 +69,7 @@ export default function BasicTableOne() {
     return (
         <div>
             <div className="bg-gray-200 dark:bg-gray-800 p-6 rounded-3xl w-full">
-                <div className="grid grid-cols-6 gap-x-1 gap-y-1 mt-6">
+                <div className="grid grid-cols-6 gap-x-1 gap-y-1">
                     <Button size="sm" variant="outline">Edit</Button>
                     <Button size="sm" variant="outline">Delete</Button>
                     <Button size="sm" variant="outline">Convert to Account</Button>
@@ -40,48 +77,20 @@ export default function BasicTableOne() {
                     <Button size="sm" variant="outline" onClick={handlePayMethod}>Payment Methods</Button>
                 </div>
             </div>
-
-            {/* <div className="bg-gray-200 dark:bg-gray-800 p-6 rounded-3xl w-full">
-
-                <h4 className="mb-2 text-base font-medium text-gray-800 dark:text-white/90">
-                    Account Status:
-                </h4>
-
-                <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-4 mt-6">
-                    <div className="col-span-1">
-                        <Label>Billing Day:</Label>
-                        <select className="px-4 py-2 bg-gray-900 text-white border rounded-lg text-xs w-full">
-                            <option value="">All</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
-                    </div>
-
-                    <div className="col-span-1">
-                        <Label>Active Payment Method:</Label>
-                        <a>Change Payment Method</a>
-                    </div>
-
-                    <div className="col-span-1">
-                        <Label>Discounts:</Label>
-                        <Label>Discounts</Label>
-                    </div>
-
-                    <div className="col-span-1">
-                        <Label>Change Monthly Billing Day</Label>
-                        <Label>Defer Upcoming Billing Day</Label>
-                    </div>
-                </div>
-            </div> */}
             <hr className="my-4" />
             <div className="bg-gray-200 dark:bg-gray-800 p-6 rounded-3xl w-full">
                 <div className="p-4 rounded-2xl bg-gray-300 dark:bg-gray-700">
+
                     <h4 className="mb-2 text-base font-medium text-gray-800 dark:text-white/90">
                         Lead Guardian Information
                     </h4>
-                    <h1 className="mb-2 text-4xl font-bold text-gray-800 dark:text-white/90">Mr.SS</h1>
+                    {
+                        lead !== null ?
+                            <h1 className="mb-2 text-4xl font-bold text-gray-800 dark:text-white/90">Mr.{lead!.fname + " " + lead!.lname}</h1>
+                            : <h1 className="mb-2 text-4xl font-bold text-gray-800 dark:text-white/90">Mr.</h1>
+                    }
                     <h5 className="mb-4 text-lg font-medium text-gray-800 dark:text-white/90">
-                        xerir80514@namewok.com
+                        {lead !== null ? lead.email : ""}
                     </h5>
                 </div>
 
@@ -93,21 +102,21 @@ export default function BasicTableOne() {
 
                     <div className="col-span-1">
                         <Label>First Name:</Label>
-                        <Input type="text" placeholder="Hanan" />
+                        <Input type="text" placeholder="Hanan" defaultValue={lead !== null ? lead.fname : ""} />
                     </div>
 
                     <div className="col-span-1">
                         <Label>Last Name:</Label>
-                        <Input type="text" placeholder="Ali" />
+                        <Input type="text" placeholder="Ali" defaultValue={lead !== null ? lead.lname : ""} />
                     </div>
 
                     <div className="col-span-1">
                         <Label>Lead Status:</Label>
-                        <Input type="text" placeholder="Team Manager" />
+                        <Input type="text" placeholder="" defaultValue={lead !== null ? lead.status : ""} />
                     </div>
                     <div className="col-span-1">
                         <Label>Your Referral Teacher:</Label>
-                        <Input type="text" placeholder="055 788 888" />
+                        <Input type="text" placeholder="" />
                     </div>
 
                     <div className="col-span-1">
@@ -117,7 +126,7 @@ export default function BasicTableOne() {
 
                     <div className="col-span-1">
                         <Label>Mobile Phone:</Label>
-                        <Input type="text" placeholder="Team Manager" />
+                        <Input type="text" placeholder=""  defaultValue={lead !== null ? lead.mobile : ""} />
                     </div>
 
                     <div className="col-span-1">
@@ -127,12 +136,12 @@ export default function BasicTableOne() {
 
                     <div className="col-span-1">
                         <Label>Your Referral Account:</Label>
-                        <Input type="text" placeholder="+011 999 9999" />
+                        <Input type="text" placeholder="" />
                     </div>
 
                     <div className="col-span-1">
                         <Label>Rating:</Label>
-                        <Input type="text" placeholder="Team Manager" />
+                        <Input type="text" placeholder="" />
                     </div>
 
                     <div className="col-span-1">
@@ -152,7 +161,7 @@ export default function BasicTableOne() {
 
                     <div className="col-span-1">
                         <Label>Email:</Label>
-                        <Input type="text" placeholder="hasaneducationadvisor@gmail.com" />
+                        <Input type="text" placeholder="hasaneducationadvisor@gmail.com"  defaultValue={lead !== null ? lead.fname : ""} />
                     </div>
 
                     <div className="col-span-1">

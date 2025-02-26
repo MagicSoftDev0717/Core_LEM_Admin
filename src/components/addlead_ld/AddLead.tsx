@@ -1,21 +1,12 @@
 "use client";
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "../ui/button/Button";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
+import Alert from "../ui/alert/Alert"
 
-// Define TypeScript interface for form data
-// interface LeadFormData {
-//     fname: string;
-//     lname: string;
-//     email: string;
-//     mobile: string;
-//     status: string;
-//   }
-  
 export default function BasicTableOne() {
-
 
     const [formData, setFormData] = useState({
         fname: "",
@@ -23,47 +14,53 @@ export default function BasicTableOne() {
         email: "",
         mobile: "",
         status: ""
-      });
+    });
 
     //Add to Leads
     const router = useRouter();
-    
-    // const handleSave = () => {
-
-        
-    //     router.push("/leads"); // Navigate to the 'lead' page
-    //     // Handle save logic here
-    //     console.log("Saving changes...");
-
-    // };
+    const [alert, setAlert] = useState<{ title: string; message: string; variant: "success" | "error" | "warning" | "info" } | null>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setFormData({
-          ...formData,
-          [e.target.name]: e.target.value,
+            ...formData,
+            [e.target.name]: e.target.value,
         });
-      };
-
+    };
+  
     const handleAddLead = async () => {
-        // try {
-        //   const response = await fetch("/api/addlead_ld", {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify(formData),
-        //   });
-        //   console.log("dddd: ", formData);
-        //   const data = await response.json();
-        //   if (data.success) {
-        //     alert("Lead saved successfully!");
-        //     router.push("/leads"); // Navigate to the 'lead' page
-        //   } else {
-        //     alert("Error saving lead.");
-        //   }
-        // } catch (error) {
-        //   console.error("Error:", error);
-        //   alert("An error occurred.");
-        // }
-      };
+        try {
+            const response = await fetch("/api/addlead_ld", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                setAlert({
+                    title: "Success!",
+                    message: "Lead saved successfully!",
+                    variant: "success",
+                });
+                setTimeout(() => router.push("/leads"), 2000); // Navigate after 3s
+            } else {
+                setAlert({
+                    title: "Failure!",
+                    message: "Error saving lead.",
+                    variant: "error",
+                });
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            setAlert({
+                title: "Failure!",
+                message: "An error occurred.",
+                variant: "error",
+            });
+        }
+    };
+
+
     const handleCancel = () => {
         router.push("/leads"); // Navigate to the 'lead' page
         // Handle save logic here
@@ -80,7 +77,7 @@ export default function BasicTableOne() {
                 <div className="col-span-1">
                     <Label>Situation</Label>
                     <select className="dark:bg-gray-900 dark:text-gray-600 px-6 py-3 border rounded-lg text-sm w-full">
-                        <option value="">Select the option</option>
+                        <option value="">--Select--</option>
                         <option value="1">Assessed</option>
                         <option value="2">Open</option>
                     </select>
@@ -98,7 +95,7 @@ export default function BasicTableOne() {
 
                 <div className="col-span-1">
                     <Label>Home Phone:</Label>
-                    <Input type="text" placeholder="+09 363 398 46" />
+                    <Input type="text" name="homePhone" placeholder="+09 363 398 46" />
                 </div>
 
                 <div className="col-span-1">
@@ -125,8 +122,8 @@ export default function BasicTableOne() {
                     <Label>Lead Status:</Label>
                     <select name="status" value={formData.status} onChange={handleChange} className="dark:bg-gray-900 dark:text-gray-600 px-6 py-3 border rounded-lg text-sm w-full">
                         <option value="">--Select--</option>
-                        <option value="1">Assessed</option>
-                        <option value="2">Open</option>
+                        <option value="Assessed">Assessed</option>
+                        <option value="Open">Open</option>
                     </select>
                 </div>
 
@@ -184,7 +181,7 @@ export default function BasicTableOne() {
 
                 <div className="col-span-1">
                     <Label>Country:</Label>
-                    <Input type="email" placeholder="United Kingdom" />
+                    <Input type="text" placeholder="United Kingdom" />
                 </div>
             </div>
 
@@ -225,39 +222,39 @@ export default function BasicTableOne() {
             <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-5">
 
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Regular Program</label>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Home School</label>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Exam Prep</label>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Summer Program</label>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Assessment Only</label>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Enrichment</label>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Private Lessons</label>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">@Home</label>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Other</label>
                 </div>
             </div>
@@ -285,7 +282,7 @@ export default function BasicTableOne() {
                     </select>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Events (Non-School)</label>
                 </div>
                 <div className="col-span-1">
@@ -296,7 +293,7 @@ export default function BasicTableOne() {
                     </select>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Internet</label>
                 </div>
                 <div className="col-span-1">
@@ -307,7 +304,7 @@ export default function BasicTableOne() {
                     </select>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">TV</label>
                 </div>
                 <div className="col-span-1">
@@ -318,7 +315,7 @@ export default function BasicTableOne() {
                     </select>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Referral</label>
                 </div>
                 <div className="col-span-1">
@@ -329,7 +326,7 @@ export default function BasicTableOne() {
                     </select>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Radio</label>
                 </div>
                 <div className="col-span-1">
@@ -340,7 +337,7 @@ export default function BasicTableOne() {
                     </select>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">School Related</label>
                 </div>
                 <div className="col-span-1">
@@ -351,7 +348,7 @@ export default function BasicTableOne() {
                     </select>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Other</label>
                 </div>
                 <div className="col-span-1">
@@ -362,7 +359,7 @@ export default function BasicTableOne() {
                     </select>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Previously Attended</label>
                 </div>
                 <div className="col-span-1">
@@ -373,7 +370,7 @@ export default function BasicTableOne() {
                     </select>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Direct Mail</label>
                 </div>
                 <div className="col-span-1">
@@ -384,7 +381,7 @@ export default function BasicTableOne() {
                     </select>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Print (Non-School)</label>
                 </div>
                 <div className="col-span-1">
@@ -395,7 +392,7 @@ export default function BasicTableOne() {
                     </select>
                 </div>
                 <div className="col-span-1">
-                    <input type="checkbox" className="mr-2"/>
+                    <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Not Specified</label>
                 </div>
                 <div style={{ marginTop: '-10px' }}>
@@ -418,6 +415,16 @@ export default function BasicTableOne() {
                 <Button size="sm" onClick={handleAddLead}>
                     Save
                 </Button>
+                {/* Show alert when triggered */}
+                {alert && (
+                    <Alert
+                        title={alert.title}
+                        message={alert.message}
+                        variant={alert.variant}
+                        duration={2000}
+                        onClose={() => setAlert(null)} // Clear alert after timeout
+                    />
+                )}
             </div>
 
 

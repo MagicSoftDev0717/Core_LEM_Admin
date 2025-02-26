@@ -8,11 +8,12 @@ export const metadata: Metadata = {
   description:
     "This is Lead Details page of Admin",
 };
-export default function page() {
+export default async function page({ params }: { params: { id: string } }) {
+  const { id } = await params;
   return (
     <div>
       <PageBreadcrumb pageTitle="Leads Details" />
-      { <Details /> }
+      { <Details id={id} /> }
     </div>
   );
 }

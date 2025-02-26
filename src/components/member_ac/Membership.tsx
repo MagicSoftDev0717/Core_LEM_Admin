@@ -249,7 +249,7 @@ export default function BasicTableOne() {
             </div>
 
             <div className="bg-gray-200 dark:bg-gray-800 p-2 rounded-3xl w-1/2">
-                <div className="grid grid-cols-4 gap-x-1 gap-y-1 mt-6">
+                <div className="grid grid-cols-4 gap-x-1 gap-y-1 mt-1">
                     <Button size="sm" variant="outline">Discounts</Button>
                     <Button size="sm" variant="outline">Add Discount</Button>
                 </div>

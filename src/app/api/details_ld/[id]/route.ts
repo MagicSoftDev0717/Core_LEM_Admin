@@ -1,0 +1,24 @@
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+
+export async function GET(req: Request, { params }: { params: { id: number } }) {
+  const id = params.id; // Convert id to number
+  try {
+    // Fetch messages with pagination and order by date descending
+    const lead_data = await prisma.lead.findUnique({
+      where: { id: Number(id) },
+    });
+
+    if (!lead_data) {
+      return NextResponse.json({ error: "Lead not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({lead_data: lead_data});
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+    return NextResponse.json({ error: "Failed to fetch leads" }, { status: 500 });
+  }
+}
