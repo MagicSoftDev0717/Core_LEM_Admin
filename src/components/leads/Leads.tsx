@@ -1,6 +1,6 @@
 
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Filter } from "lucide-react";
 import Flatpickr from "react-flatpickr";
@@ -22,7 +22,6 @@ import Input from "../form/input/InputField";
 import Button from "../ui/button/Button";
 import * as XLSX from "xlsx";
 import Alert from "../ui/alert/Alert"
-import { Decimal } from "@prisma/client/runtime/library";
 interface Lead {
   id: number;
   fname: string;
@@ -34,21 +33,21 @@ interface Lead {
   status: string;
   homePhone: string;
   otherPhone: string;
-  emailOpt: Boolean
+  emailOpt: boolean
   address1: string;
   address2: string;
   city: string;
   postalCode: string;
   descrip: string;
   customDescrip: string;
-  regularPro: Boolean
-  enrich: Boolean
-  homeSchool: Boolean
-  examPrep: Boolean
-  home: Boolean
-  summerPro: Boolean
-  assessOnly: Boolean
-  other: Boolean
+  regularPro: boolean
+  enrich: boolean
+  homeSchool: boolean
+  examPrep: boolean
+  home: boolean
+  summerPro: boolean
+  assessOnly: boolean
+  other: boolean
 }
 
 
@@ -69,7 +68,7 @@ export default function BasicTableOne() {
 
   const [leads, setLeads] = useState<Lead[]>([]);
   const [currentLeads, setCurrentLeads] = useState<Lead[]>([]);
-  const [updateLead, setUpdateLead] = useState<any>();
+  const [updateLead, setUpdateLead] = useState<Lead>();
   const [count, setCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -90,8 +89,8 @@ export default function BasicTableOne() {
         const data = await response.json();
 
         if (data.lead_data !== undefined) {
-          var totalPage = Math.ceil(data.totalLead / itemsPerPage);
-          var lastIndex = currentPage * itemsPerPage;
+          let totalPage = Math.ceil(data.totalLead / itemsPerPage);
+          let lastIndex = currentPage * itemsPerPage;
           if (count < totalPage)
             data.lead_data.map((lead: Lead) => leads.push(lead));
           setLeads(leads);
@@ -200,7 +199,7 @@ export default function BasicTableOne() {
   };
 
   useEffect(() => {
-    for(var i = 0; i < leads.length; i++) {
+    for(let i = 0; i < leads.length; i++) {
       leads[i] = leads[i].id === updateLead.id ? updateLead : leads[i];
     }
   }, [updateLead]);
@@ -669,7 +668,7 @@ export default function BasicTableOne() {
                 {/* Table Body */}
                 <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
                   {
-                    Array.isArray(currentLeads) && currentLeads.map((lead: any, index) => (
+                    Array.isArray(currentLeads) && currentLeads.map((lead: Lead, index) => (
                       <TableRow key={lead.id}>
                         <TableCell className="px-5 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{index + 1 + (currentPage - 1) * itemsPerPage}</TableCell>
                         <TableCell className="px-5 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{lead.fname}</TableCell>
