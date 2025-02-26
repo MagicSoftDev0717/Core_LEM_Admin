@@ -89,8 +89,8 @@ export default function BasicTableOne() {
         const data = await response.json();
 
         if (data.lead_data !== undefined) {
-          let totalPage = Math.ceil(data.totalLead / itemsPerPage);
-          let lastIndex = currentPage * itemsPerPage;
+          const totalPage = Math.ceil(data.totalLead / itemsPerPage);
+          const lastIndex = currentPage * itemsPerPage;
           if (count < totalPage)
             data.lead_data.map((lead: Lead) => leads.push(lead));
           setLeads(leads);
