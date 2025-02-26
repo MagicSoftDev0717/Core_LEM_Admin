@@ -69,15 +69,47 @@ export default function BasicTableOne() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [currentLeads, setCurrentLeads] = useState<Lead[]>([]);
   const [updateLead, setUpdateLead] = useState<Lead>();
-  const [count, setCount] = useState(0);
+  const [delupdateLead, setDelUpdateLead] = useState<Lead>();
+  //const [count, setCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [totalPages, setTotalPages] = useState(1);
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedLdSts, setSelectedLdSts] = useState("");
+
+
+
+
+  const [dateOfStart, setDateOfStart] = useState("");
+  const [dateOfEnd, setDateOfEnd] = useState("");
+
+  const handleStartDate = (date: Date[]) => {
+
+    const formattedStartDate = date[0].toISOString().split("T")[0]; // Extracts 'YYYY-MM-DD'
+    setDateOfStart(formattedStartDate); // Store formatted date
+
+  };
+
+  const handleEndDate = (date: Date[]) => {
+    const formattedEndDate = date[0].toISOString().split("T")[0]; // Extracts 'YYYY-MM-DD'
+    setDateOfEnd(formattedEndDate); // Store formatted date
+  };
+
+  const formatDate = (date: Date) => {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+    const year = date.getFullYear();
+    return `${year}-${month}-${day}`;
+  };
+
+
+
+  //Click the page button , set a page number
   const handlePageChange = (page: number) => {
 
     setCurrentPage(page);
-    setCount((prev) => prev + 1);
+    //setCount((prev) => prev + 1);
   };
 
 
@@ -85,16 +117,17 @@ export default function BasicTableOne() {
   useEffect(() => {
     async function fetchLeads() {
       try {
-        const response = await fetch(`/api/addlead_ld?page=${currentPage}&items=${itemsPerPage}`);
-        const data = await response.json();
+        const response = await fetch(`/api/addlead_ld?page=${currentPage}&items=${itemsPerPage}&searchQuery=${searchQuery}&selectedLdSts=${selectedLdSts}&dateOfStart=${dateOfStart}&dateOfEnd=${dateOfEnd}`);
 
+        const data = await response.json();
+        console.log("eeeeeeee: ", data);
         if (data.lead_data !== undefined) {
           const totalPage = Math.ceil(data.totalLead / itemsPerPage);
           const lastIndex = currentPage * itemsPerPage;
-          if (count < totalPage)
-            data.lead_data.map((lead: Lead) => leads.push(lead));
-          setLeads(leads);
-          setCurrentLeads(leads.slice(lastIndex - itemsPerPage, lastIndex));
+          // if (count < totalPage)
+          //   data.lead_data.map((lead: Lead) => leads.push(lead));
+          setLeads(data.lead_data);
+          setCurrentLeads(data.lead_data.slice(lastIndex - itemsPerPage, lastIndex));
           setFormData({
             fname: data.lead_data.fname,
             lname: data.lead_data.lname,
@@ -103,7 +136,7 @@ export default function BasicTableOne() {
             status: data.lead_data.status
           });
           setTotalPages(totalPage);
-          
+
           console.log(itemsPerPage, currentLeads.length, leads.length);
         } else {
           console.error("API response is not an array:", data);
@@ -116,13 +149,13 @@ export default function BasicTableOne() {
       }
     }
     fetchLeads();
-  }, [currentPage, count, itemsPerPage, updateLead]);
+  }, [currentPage, itemsPerPage, updateLead, delupdateLead, searchQuery, selectedLdSts, dateOfStart, dateOfEnd]);
 
   //Show by row display count
   const handleItemsPerPageChange = (event) => {
 
     const newItemsPerPage = Number(event.target.value);
-    setCount(0);
+    //setCount(0);
     setLeads([]);
     setItemsPerPage(newItemsPerPage);
     setCurrentPage(1); // Reset to first page when changing rows per page
@@ -134,33 +167,7 @@ export default function BasicTableOne() {
 
 
   //Date
-  const [dateOfStart, setDateOfStart] = useState("");
-  const [dateOfEnd, setDateOfEnd] = useState("");
 
-  const handleStartDate = (date: Date[]) => {
-    setDateOfStart(date[0].toLocaleDateString()); // Handle selected date and format it
-  };
-
-  const handleEndDate = (date: Date[]) => {
-    //setDateOfEnd(date[0].toLocaleDateString()); // Handle selected date and format it
-
-    if (date.length > 0) {
-      const d = date[0];
-      const month = (d.getMonth() + 1).toString().padStart(2, '0'); // Adding leading zero to month
-      const day = d.getDate().toString().padStart(2, '0'); // Adding leading zero to day
-      const year = d.getFullYear();
-
-      const selectedDate = `${month}/${day}/${year}`; // MM/DD/YYYY format
-      setDateOfEnd(selectedDate);
-    }
-  };
-
-  const formatDate = (date: Date) => {
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
-    const year = date.getFullYear();
-    return `${month}/${day}/${year}`;
-  };
 
   //Click the 'Add Lead' button and Add to Leads
 
@@ -198,11 +205,11 @@ export default function BasicTableOne() {
     }));
   };
 
-  useEffect(() => {
-    for(let i = 0; i < leads.length; i++) {
-      leads[i] = leads[i].id === updateLead.id ? updateLead : leads[i];
-    }
-  }, [updateLead]);
+  // useEffect(() => {
+  //   for(let i = 0; i < leads.length; i++) {
+  //     leads[i] = leads[i].id === updateLead.id ? updateLead : leads[i];
+  //   }
+  // }, [updateLead]);
 
   const saveEditedLead = async (id: number) => {
     try {
@@ -246,14 +253,15 @@ export default function BasicTableOne() {
 
       });
       if (response.ok) {
+        setDelUpdateLead(await response.json());
         setAlert({
           title: "Success!",
           message: "Lead deleted successfully!",
           variant: "success",
         });
-        setLeads((prevLeads) =>
-          prevLeads.filter((lead) => lead.id !== id)
-        );
+        // setLeads((prevLeads) =>
+        //   prevLeads.filter((lead) => lead.id !== id)
+        // );
       } else {
         setAlert({
           title: "Error!",
@@ -286,35 +294,37 @@ export default function BasicTableOne() {
     XLSX.writeFile(wb, "table_data.xlsx");
   };
 
-  ////////////////Multiple Search Function/////////////////
-  const [searchQuery, setSearchQuery] = useState("");
+  ////////////////Name Search Function/////////////////
+
+
   const [filteredLeads, setFilteredLeads] = useState<Lead[]>([]);
-  useEffect(() => {
-    if (searchQuery.trim() === "") {
-      setFilteredLeads(leads);
+  // useEffect(() => {
+  //   if (searchQuery.trim() === "") {
+  //     setFilteredLeads(leads);
 
-    } else {
-      const data: Lead[] = leads.filter(
-        (filteredLeads) =>
-          filteredLeads.fname.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          filteredLeads.lname.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setFilteredLeads(data);
-      setCurrentLeads(data.slice(0, itemsPerPage));
-    }
-  }, [itemsPerPage, searchQuery, leads]);
+  //   } else {
+  //     const data: Lead[] = leads.filter(
+  //       (filteredLeads) =>
+  //         filteredLeads.fname.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //         filteredLeads.lname.toLowerCase().includes(searchQuery.toLowerCase())
+  //     );
+  //     setFilteredLeads(data);
+  //     setCurrentLeads(data.slice(0, itemsPerPage));
+  //   }
+  // }, [itemsPerPage, searchQuery, leads]);
 
-  ////////////////////Select Option Search////////////////
-  const [selectedStatus, setSelectedStatus] = useState("");
-  useEffect(() => {
-    if (!selectedStatus) {
-      setFilteredLeads(leads); // Show all leads when no filter is applied
-    } else {
-      const data: Lead[] = leads.filter((filteredLeads) => filteredLeads.status === selectedStatus);
-      setFilteredLeads(data);
-      setCurrentLeads(data.slice(0, itemsPerPage))
-    }
-  }, [itemsPerPage, selectedStatus, leads]);
+  ////////////////////Select Status Option Search////////////////
+
+
+  // useEffect(() => {
+  //   if (!selectedStatus) {
+  //     setFilteredLeads(leads); // Show all leads when no filter is applied
+  //   } else {
+  //     const data: Lead[] = leads.filter((filteredLeads) => filteredLeads.status === selectedStatus);
+  //     setFilteredLeads(data);
+  //     setCurrentLeads(data.slice(0, itemsPerPage))
+  //   }
+  // }, [itemsPerPage, selectedStatus, leads]);
 
 
 
@@ -370,10 +380,10 @@ export default function BasicTableOne() {
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Lead Status:</label>
               <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2"
-                onChange={(e) => setSelectedStatus(e.target.value)}
-                value={selectedStatus}
+                onChange={(e) => setSelectedLdSts(e.target.value)}
+                value={selectedLdSts}
               >
-                <option value="">--Select--</option>
+                <option value="All">All</option>
                 <option value="Assessed">Assessed</option>
                 <option value="Open">Open</option>
               </select>

@@ -23,8 +23,8 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: numb
 
 
 // Handle DELETE request to remove a message
-export async function DELETE(req: Request, { params }: { params: { id: number } }) {
-  const { id } = params;
+export async function DELETE(req: Request, { params }: { params: Promise<{ id: number }> }) {
+  const { id } = await params;
 
   try {
     await prisma.lead.delete({
