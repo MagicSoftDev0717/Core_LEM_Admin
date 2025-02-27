@@ -3,10 +3,16 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+import { Prisma } from "@prisma/client";
+import { Lead } from "@prisma/client";
+
+let lead_data: Lead[] = []; // Array of Lead model objects
+
+
 
 export async function GET(req: Request) {
   try {
-    let lead_data: any[] = [];
+    //let lead_data: Lead[] = [];
     // Extract page number from query parameters (default to 1 if not provided)
     const url = new URL(req.url);
     const page = parseInt(url.searchParams.get("page") || "1");
@@ -18,8 +24,8 @@ export async function GET(req: Request) {
     //const skip = (page - 1) * itemsPerPage;
 
     // Fetch messages with pagination and order by date descending
-    let whereCondition: any = {}; // Initialize an empty filter object
-
+    //let whereCondition: any = {}; // Initialize an empty filter object
+    let whereCondition: Prisma.LeadWhereInput = {}; 
     // Apply filters based on searchName and selectedLdSts conditions
     if (searchName !== "") {
       whereCondition.OR = [
