@@ -137,7 +137,7 @@ export default function BasicTableOne() {
           });
           setTotalPages(totalPage);
 
-          console.log(itemsPerPage, currentLeads.length, leads.length);
+          // console.log(itemsPerPage, currentLeads.length, leads.length);
         } else {
           console.error("API response is not an array:", data);
           setLeads([]); // Ensure leads remains an array
@@ -263,7 +263,6 @@ export default function BasicTableOne() {
         //   prevLeads.filter((lead) => lead.id !== id)
         // );
       } else {
-        console.error("Error:", error);
         setAlert({
           title: "Error!",
           message: "Error remove lead.",
