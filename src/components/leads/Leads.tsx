@@ -263,6 +263,7 @@ export default function BasicTableOne() {
         //   prevLeads.filter((lead) => lead.id !== id)
         // );
       } else {
+        console.error("Error:", error);
         setAlert({
           title: "Error!",
           message: "Error remove lead.",
