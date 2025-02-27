@@ -126,7 +126,7 @@ export default function BasicTableOne({ id }: { id: number }) {
 
                     <div className="col-span-1">
                         <Label>Mobile Phone:</Label>
-                        <Input type="text" placeholder=""  defaultValue={lead !== null ? lead.mobile : ""} />
+                        <Input type="text" placeholder=""  defaultValue={lead?.mobile || ""} />
                     </div>
 
                     <div className="col-span-1">
@@ -161,7 +161,7 @@ export default function BasicTableOne({ id }: { id: number }) {
 
                     <div className="col-span-1">
                         <Label>Email:</Label>
-                        <Input type="text" placeholder="hasaneducationadvisor@gmail.com"  defaultValue={lead !== null ? lead.fname : ""} />
+                        <Input type="text" placeholder="hasaneducationadvisor@gmail.com"  defaultValue={lead?.email || ""} />
                     </div>
 
                     <div className="col-span-1">
