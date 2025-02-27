@@ -215,7 +215,7 @@ export default function BasicTableOne() {
                     <Label>Student Notes:</Label>
                     <Input type="text" placeholder="" />
                 </div>
-                <div></div>
+                
                 <div className="col-span-1">
                     <div className="col-span-1">
                         <input type="checkbox" className="mr-2" />
@@ -239,7 +239,8 @@ export default function BasicTableOne() {
                         <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Scholarship</label>
                     </div>
                 </div>
-
+                <div></div>  
+                <div></div>                   
                 <div className="flex items-center justify-end w-full gap-3 mt-6">
                     <Button size="sm" variant="outline" onClick={handleCancel}>
                         Cancel
