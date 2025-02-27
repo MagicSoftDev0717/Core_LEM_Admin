@@ -125,31 +125,37 @@ export default function BasicTableOne() {
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                                     >
-                                        Job Title
+                                        Virtual Center Name
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                                     >
-                                        Email
+                                        Description
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                                     >
-                                        Centre
+                                        ConexED Groupld
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                                     >
-                                        Posting Date
+                                        Defaulting Center(s)
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                                     >
-                                        Status
+                                       Created Date
+                                    </TableCell>
+                                    <TableCell
+                                        isHeader
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
+                                    >
+                                       Created By
                                     </TableCell>
                                 </TableRow>
                             </TableHeader>
@@ -170,14 +176,10 @@ export default function BasicTableOne() {
                                             {order.subject}
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            <button className="text-gray-500 hover:text-error-500 dark:text-gray-400 dark:hover:text-gray-500" data-tooltip-target="More...">
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-gray-600 dark:text-gray-300"
-                                                >
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 4h.01M4.5 12a7.5 7.5 0 1115 0 7.5 7.5 0 01-15 0z" />
-                                                </svg>
-                                            </button>
+                                            {order.subject}
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            {order.subject}
                                         </TableCell>
                                     </TableRow>
                                 ))}

@@ -88,18 +88,9 @@ export default function BasicTableOne() {
                 <div className="grid grid-cols-3 gap-2">
                     {/* Label and Combo Box */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Enrollment Filter:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Student:</label>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
                             <option value="">All</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Delivery:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm text-gray-400 w-1/2">
-                            <option value="">Option 1</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
@@ -155,7 +146,16 @@ export default function BasicTableOne() {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Membership Type :</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm text-gray-400 w-1/2">
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm text-gray-400 w-1/2">
+                            <option value="">Option 1</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Delivery:</label>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm text-gray-400 w-1/2">
                             <option value="">Option 1</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
@@ -164,7 +164,7 @@ export default function BasicTableOne() {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm text-gray-400 w-1/2">
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm text-gray-400 w-1/2">
                             <option value="">Option 1</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
@@ -173,7 +173,7 @@ export default function BasicTableOne() {
 
                     <div className="self-end" style={{ marginTop: '15px' }}>
                         <button
-                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/3"
+                            className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/3"
                         >Search
                         </button>
                     </div>

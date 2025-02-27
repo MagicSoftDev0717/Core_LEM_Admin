@@ -5,6 +5,11 @@ import { Modal } from "../ui/modal";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
 import Button from "../ui/button/Button";
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/themes/light.css";
+import {
+    CalenderIcon
+} from "../../icons/index";
 import {
     Table,
     TableBody,
@@ -94,6 +99,13 @@ export default function BasicTableOne() {
         XLSX.utils.book_append_sheet(wb, ws, "Orders");
         XLSX.writeFile(wb, "table_data.xlsx");
     };
+
+    const [dateOfOpen, setDateOfOpen] = useState("");
+
+    const handleOpenDate = (date: Date[]) => {
+        setDateOfOpen(date[0].toLocaleDateString()); // Handle selected date and format it
+    };
+
 
     return (
         <div>
@@ -214,17 +226,36 @@ export default function BasicTableOne() {
                     {/* Address Information */}
                     <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-4 lg:grid-cols-1">
                         <div className="col-span-1">
-                            <Label>Job Title:</Label>
+                            <Label>Job Title</Label>
                             <Input type="text" className="w-full" />
                         </div>
 
                         <div className="col-span-1">
-                            <Label>Open Date:</Label>
-                            <Input type="text" className="w-full" />
+                            <div className="flatpickr-wrapper flex flex-col w-full"> {/* Adjusted width */}
+                                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                    Open Date
+                                </label>
+                                <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
+                                    <Flatpickr
+                                        value={dateOfOpen} // Set the value to the state
+                                        onChange={handleOpenDate} // Handle the date change
+                                        options={{
+                                            dateFormat: "Y-m-d", // Set the date format
+                                        }}
+                                        placeholder="Open Date"
+                                        className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+                                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+                                   dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                    />
+                                    <span className="absolute inset-y-0 right-3 flex items-center text-gray-400 dark:text-gray-400">
+                                        <CalenderIcon />
+                                    </span>
+                                </div>
+                            </div>
                         </div>
 
                         <div className="col-span-1">
-                            <Label>Email:</Label>
+                            <Label>Email</Label>
                             <Input type="text" className="w-full" />
                         </div>
 

@@ -473,10 +473,8 @@ export default function BasicTableOne() {
               {/* Table Body */}
               <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
                 <TableRow >
-                  <TableCell className="px-5 py-4 sm:px-6 text-center">
-                    <span className="block font-medium text-center text-gray-800 text-theme-sm dark:text-white/90">
+                  <TableCell className="px-5 py-4 text-gray-500 sm:px-6 text-center dark:text-gray-400">              
                       UK Traning
-                    </span>
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                     12
@@ -842,12 +840,12 @@ export default function BasicTableOne() {
 
               <div className="col-span-1">
                 <Label>Description:</Label>
-                <Input type="email" placeholder="hasaneducationadvisor@gmail.com" />
+                <Input type="email" placeholder="" />
               </div>
 
               <div className="col-span-1">
                 <Label>Medical Informaion:</Label>
-                <Input type="text" placeholder="core.learnenglishmaths.com" />
+                <Input type="text" placeholder="" />
               </div>
 
               <div className="col-span-1">
@@ -864,7 +862,8 @@ export default function BasicTableOne() {
                 <Label>Student Notes:</Label>
                 <Input type="text" placeholder="" />
               </div>
-              <div></div>
+
+             
               <div className="col-span-1">
                 <div className="col-span-1">
                   <input type="checkbox" className="mr-2" />
