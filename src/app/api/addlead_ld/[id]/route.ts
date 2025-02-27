@@ -17,7 +17,7 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: numb
     });
     return NextResponse.json(updatedLead);
   } catch (error) {
-    return NextResponse.json({ error: "Failed to update Lead" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to update Lead", details: error }, { status: 500 });
   }
 }
 
