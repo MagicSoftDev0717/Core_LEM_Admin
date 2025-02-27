@@ -152,7 +152,7 @@ export default function BasicTableOne() {
   }, [currentPage, itemsPerPage, updateLead, delupdateLead, searchQuery, selectedLdSts, dateOfStart, dateOfEnd]);
 
   //Show by row display count
-  const handleItemsPerPageChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleItemsPerPageChange = (event: ChangeEvent<HTMLSelectElement>) => {
 
     const newItemsPerPage = Number(event.target.value);
     //setCount(0);
