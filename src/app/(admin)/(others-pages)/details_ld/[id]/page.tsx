@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "This is Lead Details page of Admin",
 };
-export default async function page({ params }: { params: { id: string } }) {
+export default async function page({ params }: { params: Promise<{ id: number }> }) {
   const { id } = await params;
   return (
     <div>
