@@ -25,7 +25,8 @@ export async function GET(req: Request) {
 
     // Fetch messages with pagination and order by date descending
     //let whereCondition: any = {}; // Initialize an empty filter object
-    let whereCondition: Prisma.LeadWhereInput = {}; 
+    let whereCondition: Prisma.LeadWhereInput;
+    whereCondition = {}; 
     // Apply filters based on searchName and selectedLdSts conditions
     if (searchName !== "") {
       whereCondition.OR = [
