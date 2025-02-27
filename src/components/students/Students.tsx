@@ -17,7 +17,7 @@ import {
   TableRow,
 } from "../ui/table";
 
-//import * as XLSX from "xlsx";
+import * as XLSX from "xlsx";
 import Button from "../ui/button/Button";
 import { Modal } from "../ui/modal";
 import Label from "../form/Label";
@@ -150,23 +150,22 @@ export default function BasicTableOne() {
   };
 
 
-  // const exportToExcel = () => {
-  //   const ws = XLSX.utils.json_to_sheet(
-  //     tableData.map((order) => ({
-  //       "First Name": order.user.firstName,
-  //       "Last Name": order.user.lastName,
-  //       "Contact Type": order.contactType,
-  //       Subject: order.subject,
-  //       "Contact Info": order.contactInfo,
-  //       Status: order.status,
-  //       Priority: order.priority,
-  //       "Due Date": order.dueDate,
-  //     }))
-  //   );
-  //   const wb = XLSX.utils.book_new();
-  //   XLSX.utils.book_append_sheet(wb, ws, "Orders");
-  //   XLSX.writeFile(wb, "table_data.xlsx");
-  // };
+  const exportToExcel = () => {
+    const ws = XLSX.utils.json_to_sheet(
+      students.map((order) => ({
+        "First Name": order.fname,
+        "Last Name": order.lname,
+        "Contact Type": order.gender,
+        Subject: order.year,
+        "Contact Info": order.school,
+        Status: order.schoolYear,
+        Priority: order.teacher
+      }))
+    );
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Orders");
+    XLSX.writeFile(wb, "table_data.xlsx");
+  };
 
   ///ItemsPerPage
 
