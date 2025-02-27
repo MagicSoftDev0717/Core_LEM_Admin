@@ -2,9 +2,11 @@ import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-let lead_data: any[] = [];
+
+
 export async function GET(req: Request) {
   try {
+    let lead_data: any[] = [];
     // Extract page number from query parameters (default to 1 if not provided)
     const url = new URL(req.url);
     const page = parseInt(url.searchParams.get("page") || "1");

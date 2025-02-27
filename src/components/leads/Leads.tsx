@@ -297,7 +297,7 @@ export default function BasicTableOne() {
   ////////////////Name Search Function/////////////////
 
 
-  const [filteredLeads, setFilteredLeads] = useState<Lead[]>([]);
+  //const [filteredLeads, setFilteredLeads] = useState<Lead[]>([]);
   // useEffect(() => {
   //   if (searchQuery.trim() === "") {
   //     setFilteredLeads(leads);
