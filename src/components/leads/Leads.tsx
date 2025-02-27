@@ -678,7 +678,8 @@ export default function BasicTableOne() {
                 {/* Table Body */}
                 <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
                   {
-                    Array.isArray(currentLeads) && currentLeads.map((lead: Lead, index) => (
+                    Array.isArray(currentLeads) && currentLeads.length > 0 ? (
+                      currentLeads.map((lead: Lead, index) => (
                       <TableRow key={lead.id}>
                         <TableCell className="px-5 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{index + 1 + (currentPage - 1) * itemsPerPage}</TableCell>
                         <TableCell className="px-5 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{lead.fname}</TableCell>
@@ -720,7 +721,15 @@ export default function BasicTableOne() {
                           </div>
                         </TableCell>
                       </TableRow>
-                    ))}
+                     ))
+                    ) : (
+                      // If no leads are found, display a "No results found" row
+                      <TableRow>
+                        <TableCell className="px-5 py-3 text-center text-gray-500 dark:text-gray-400">
+                          No results found
+                        </TableCell>
+                      </TableRow>
+                    )}
                 </TableBody>
               </Table>
             </div>
