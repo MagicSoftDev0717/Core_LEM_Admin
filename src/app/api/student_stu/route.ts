@@ -22,7 +22,7 @@ export async function GET(req: Request) {
 
     // Fetch messages with pagination and order by date descending
 
-    const whereCondition: Prisma.LeadWhereInput = {}; 
+    const whereCondition: Prisma.StudentWhereInput = {}; 
     // Apply filters based on searchName and selectedLdSts conditions
     if (searchName !== "") {
       whereCondition.OR = [
