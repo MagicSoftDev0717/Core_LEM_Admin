@@ -69,8 +69,8 @@ export default function BasicTableOne() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-    const [updateStu, setUpdateStu] = useState<Student>();
-    const [delupdateStu, setDelUpdateStu] = useState<Student>();
+  const [updateStu, setUpdateStu] = useState<Student>();
+  const [delupdateStu, setDelUpdateStu] = useState<Student>();
   //Pagination
   const getPageNumbers = (currentPage: number, totalPages: number) => {
     if (totalPages <= 5) {
@@ -125,7 +125,8 @@ export default function BasicTableOne() {
             gender: data.student_data.gender,
             year: data.student_data.year,
             schoolYear: data.student_data.schoolYear,
-            teacher: data.student_data.teacher 
+            teacher: data.student_data.teacher,
+            school: data.student_data.school,
           });
 
           setTotalPages(totalPage);
@@ -769,7 +770,7 @@ export default function BasicTableOne() {
               </div>
 
               <div className="col-span-1">
-                <Label>Lead Status:</Label>
+                <Label>Gender:</Label>
                 <select name="gender" defaultValue={selectedStu.gender} onChange={handleChange} className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
                   <option value="">--Select--</option>
                   <option value="Male">Male</option>
@@ -800,7 +801,18 @@ export default function BasicTableOne() {
               </div>
 
               <div className="col-span-1">
-                <Label>Lead Status:</Label>
+                <Label>Choose Scholl:</Label>
+                <select name="school" defaultValue={selectedStu.school} onChange={handleChange} className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
+                  <option value="">--Select--</option>
+                  <option value="">Option 1</option>
+                  <option value="">Option 2</option>
+                  <option value="">Option 3</option>
+                  <option value="">Option 4</option>
+                </select>
+              </div>
+
+              <div className="col-span-1">
+                <Label>School Year:</Label>
                 <select name="schoolYear" defaultValue={selectedStu.schoolYear} onChange={handleChange} className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
                   <option value="">--Select--</option>
                   <option value="21-22">21-22</option>
@@ -820,7 +832,7 @@ export default function BasicTableOne() {
               </div>
 
               <div className="col-span-1">
-                <Label>Account:</Label>
+                <Label>Virtual Center:</Label>
                 <select name="virCent" className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
                   <option value="">--Select--</option>
                   <option value="">Traning Online</option>

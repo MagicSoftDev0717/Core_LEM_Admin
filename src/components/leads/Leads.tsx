@@ -22,6 +22,7 @@ import Input from "../form/input/InputField";
 import Button from "../ui/button/Button";
 import * as XLSX from "xlsx";
 import Alert from "../ui/alert/Alert"
+
 interface Lead {
   id: number;
   fname: string;
