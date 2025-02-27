@@ -102,17 +102,17 @@ export default function BasicTableOne({ id }: { id: number }) {
 
                     <div className="col-span-1">
                         <Label>First Name:</Label>
-                        <Input type="text" placeholder="Hanan" defaultValue={lead !== undefined ? lead.fname : ""} />
+                        <Input type="text" placeholder="Hanan" defaultValue={lead?.fname || ""} />
                     </div>
 
                     <div className="col-span-1">
                         <Label>Last Name:</Label>
-                        <Input type="text" placeholder="Ali" defaultValue={lead !== undefined ? lead.lname : ""} />
+                        <Input type="text" placeholder="Ali" defaultValue={lead?.lname || ""} />
                     </div>
 
                     <div className="col-span-1">
                         <Label>Lead Status:</Label>
-                        <Input type="text" placeholder="" defaultValue={lead !== null ? lead.status : ""} />
+                        <Input type="text" placeholder="" defaultValue={lead?.status || ""} />
                     </div>
                     <div className="col-span-1">
                         <Label>Your Referral Teacher:</Label>
