@@ -70,7 +70,7 @@ export default function BasicTableOne() {
   const [currentLeads, setCurrentLeads] = useState<Lead[]>([]);
   const [updateLead, setUpdateLead] = useState<Lead>();
   const [delupdateLead, setDelUpdateLead] = useState<Lead>();
-
+  //const [count, setCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [totalPages, setTotalPages] = useState(1);
@@ -152,6 +152,7 @@ export default function BasicTableOne() {
   const handleItemsPerPageChange = (event: ChangeEvent<HTMLSelectElement>) => {
 
     const newItemsPerPage = Number(event.target.value);
+    //setCount(0);
     setLeads([]);
     setItemsPerPage(newItemsPerPage);
     setCurrentPage(1); // Reset to first page when changing rows per page
@@ -201,6 +202,11 @@ export default function BasicTableOne() {
     }));
   };
 
+  // useEffect(() => {
+  //   for(let i = 0; i < leads.length; i++) {
+  //     leads[i] = leads[i].id === updateLead.id ? updateLead : leads[i];
+  //   }
+  // }, [updateLead]);
 
   const saveEditedLead = async (id: number) => {
     try {
@@ -284,6 +290,39 @@ export default function BasicTableOne() {
     XLSX.utils.book_append_sheet(wb, ws, "Orders");
     XLSX.writeFile(wb, "table_data.xlsx");
   };
+
+  ////////////////Name Search Function/////////////////
+
+
+  //const [filteredLeads, setFilteredLeads] = useState<Lead[]>([]);
+  // useEffect(() => {
+  //   if (searchQuery.trim() === "") {
+  //     setFilteredLeads(leads);
+
+  //   } else {
+  //     const data: Lead[] = leads.filter(
+  //       (filteredLeads) =>
+  //         filteredLeads.fname.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //         filteredLeads.lname.toLowerCase().includes(searchQuery.toLowerCase())
+  //     );
+  //     setFilteredLeads(data);
+  //     setCurrentLeads(data.slice(0, itemsPerPage));
+  //   }
+  // }, [itemsPerPage, searchQuery, leads]);
+
+  ////////////////////Select Status Option Search////////////////
+
+
+  // useEffect(() => {
+  //   if (!selectedStatus) {
+  //     setFilteredLeads(leads); // Show all leads when no filter is applied
+  //   } else {
+  //     const data: Lead[] = leads.filter((filteredLeads) => filteredLeads.status === selectedStatus);
+  //     setFilteredLeads(data);
+  //     setCurrentLeads(data.slice(0, itemsPerPage))
+  //   }
+  // }, [itemsPerPage, selectedStatus, leads]);
+
 
 
   //Pagination

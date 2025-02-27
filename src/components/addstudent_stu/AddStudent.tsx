@@ -6,18 +6,66 @@ import Label from "../form/Label";
 import Input from "../form/input/InputField";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/light.css";
+import Alert from "../ui/alert/Alert"
 import {
     CalenderIcon
 } from "../../icons/index";
 export default function BasicTableOne() {
 
+    const [formData, setFormData] = useState({
+        fname: "",
+        lname: "",
+        gender: "",
+        school: "",
+        schoolYear: "",
+        year: "",
+        teacher: "",
+        birth: ""
+    });
+
     //Add to Leads
     const router = useRouter();
+    const [alert, setAlert] = useState<{ title: string; message: string; variant: "success" | "error" | "warning" | "info" } | null>(null);
 
-    const handleSave = () => {
-        router.push("/students"); // Navigate to the 'lead' page
-        // Handle save logic here
-        console.log("Saving changes...");
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleAddStudent = async () => {
+        try {
+            const response = await fetch("/api/student_stu", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                setAlert({
+                    title: "Success!",
+                    message: "A Student Added successfully!",
+                    variant: "success",
+                });
+                setTimeout(() => router.push("/students"), 2000); // Navigate after 3s
+            } else {
+                setAlert({
+                    title: "Failure!",
+                    message: "Error adding Student.",
+                    variant: "error",
+                });
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            setAlert({
+                title: "Failure!",
+                message: "An error occurred.",
+                variant: "error",
+            });
+        }
+
 
     };
     const handleCancel = () => {
@@ -29,9 +77,9 @@ export default function BasicTableOne() {
 
     const [dateOfBirth, setDateOfBirth] = useState("");
 
-
-    const handleStartDate = (date: Date[]) => {
-        setDateOfBirth(date[0].toLocaleDateString()); // Handle selected date and format it
+    const handleBirth = (date: Date[]) => {
+        const birthDate = date[0].toISOString().split("T")[0];
+        setDateOfBirth(birthDate); // Handle selected date and format it
     };
 
     return (
@@ -43,26 +91,30 @@ export default function BasicTableOne() {
             <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-4">
                 <div className="col-span-1">
                     <Label>First Name*:</Label>
-                    <Input type="text" placeholder="Hasan" />
+                    <Input type="text" name="fname" defaultValue={formData.fname} onChange={handleChange} placeholder="Hasan" />
                 </div>
 
                 <div className="col-span-1">
                     <Label>Last Name*:</Label>
-                    <Input type="text" placeholder="Hasan" />
+                    <Input type="text" name="lname" defaultValue={formData.lname} onChange={handleChange} placeholder="Ali" />
                 </div>
 
                 <div className="col-span-1">
                     <Label>Gender:</Label>
-                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
-                        <option value="">--Select--</option>
-                        <option value="1">Male</option>
-                        <option value="2">Female</option>
+                    <select name="gender"
+                        defaultValue={formData.gender} onChange={handleChange}
+                        className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
+                        <option value="">All</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
                     </select>
                 </div>
 
                 <div className="col-span-1">
                     <Label>Year:</Label>
-                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
+                    <select name="year"
+                        defaultValue={formData.year} onChange={handleChange}
+                        className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
                         <option value="">--Select--</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -74,35 +126,26 @@ export default function BasicTableOne() {
                 </div>
 
                 <div className="col-span-1">
-                    <Label>School Year:</Label>
-                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
-                        <option value="">--Select--</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                        <option value="4">Option 4</option>
-                    </select>
-                </div>
-
-                <div className="col-span-1">
                     <Label>Choose Teacher:</Label>
-                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
+                    <select name="teacher"
+                        defaultValue={formData.teacher} onChange={handleChange}
+                        className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
                         <option value="">--Select--</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                        <option value="4">Option 4</option>
                     </select>
                 </div>
 
                 <div className="col-span-1">
                     <Label>School Year:</Label>
-                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
+                    <select name="schoolYear"
+                        defaultValue={formData.schoolYear} onChange={handleChange}
+                        className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
                         <option value="">--Select--</option>
-                        <option value="1">21-22</option>
-                        <option value="2">22-23</option>
-                        <option value="3">23-24</option>
-                        <option value="4">24-25</option>
+                        <option value="21-22">21-22</option>
+                        <option value="22-23">22-23</option>
+                        <option value="23-24">23-24</option>
+                        <option value="24-25">24-25</option>
                     </select>
                 </div>
 
@@ -110,12 +153,12 @@ export default function BasicTableOne() {
                     {/* Start Field */}
                     <div className="flatpickr-wrapper flex flex-col w-full"> {/* Adjusted width */}
                         <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Start:
+                            Date of Birth:
                         </label>
                         <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
-                            <Flatpickr
+                            <Flatpickr name="birth"
                                 value={dateOfBirth} // Set the value to the state
-                                onChange={handleStartDate} // Handle the date change
+                                onChange={handleBirth} // Handle the date change
                                 options={{
                                     dateFormat: "Y-m-d", // Set the date format
                                 }}
@@ -134,11 +177,9 @@ export default function BasicTableOne() {
                 <div className="col-span-1">
                     <Label>Account:</Label>
                     <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
-                        <option value="">--Select--</option>
-                        <option value="1">21-22</option>
-                        <option value="2">22-23</option>
-                        <option value="3">23-24</option>
-                        <option value="4">24-25</option>
+                        <option value="All">--Select--</option>
+                        <option value="1">option 1</option>
+                        <option value="2">option 2</option>
                     </select>
                 </div>
 
@@ -146,10 +187,7 @@ export default function BasicTableOne() {
                     <Label>Virtual Center:</Label>
                     <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
                         <option value="">--Select--</option>
-                        <option value="1">21-22</option>
-                        <option value="2">22-23</option>
-                        <option value="3">23-24</option>
-                        <option value="4">24-25</option>
+                        <option value="1">Traning Online</option>
                     </select>
                 </div>
 
@@ -206,9 +244,18 @@ export default function BasicTableOne() {
                     <Button size="sm" variant="outline" onClick={handleCancel}>
                         Cancel
                     </Button>
-                    <Button size="sm" onClick={handleSave}>
+                    <Button size="sm" onClick={handleAddStudent}>
                         Save
                     </Button>
+                    {alert && (
+                        <Alert
+                            title={alert.title}
+                            message={alert.message}
+                            variant={alert.variant}
+                            duration={2000}
+                            onClose={() => setAlert(null)} // Clear alert after timeout
+                        />
+                    )}
                 </div>
             </div>
 
