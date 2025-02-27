@@ -1,6 +1,6 @@
 
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Filter } from "lucide-react";
 import Flatpickr from "react-flatpickr";
@@ -152,7 +152,7 @@ export default function BasicTableOne() {
   }, [currentPage, itemsPerPage, updateLead, delupdateLead, searchQuery, selectedLdSts, dateOfStart, dateOfEnd]);
 
   //Show by row display count
-  const handleItemsPerPageChange = (event) => {
+  const handleItemsPerPageChange = (event: ChangeEvent<HTMLInputElement>) => {
 
     const newItemsPerPage = Number(event.target.value);
     //setCount(0);
