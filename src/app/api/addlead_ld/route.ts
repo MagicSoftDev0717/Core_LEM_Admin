@@ -6,13 +6,13 @@ const prisma = new PrismaClient();
 import { Prisma } from "@prisma/client";
 import { Lead } from "@prisma/client";
 
-
+let lead_data: Lead[] = []; // Array of Lead model objects
 
 
 
 export async function GET(req: Request) {
   try {
-    var lead_data: Lead[] = []; // Array of Lead model objects
+    //let lead_data: Lead[] = [];
     // Extract page number from query parameters (default to 1 if not provided)
     const url = new URL(req.url);
     const page = parseInt(url.searchParams.get("page") || "1");
@@ -64,9 +64,6 @@ export async function GET(req: Request) {
 
 
 
-
-
-
     // if (searchName === "" && selectedLdSts === "All") {
     //   lead_data = await prisma.lead.findMany({
     //     orderBy: { updatedAt: "desc" },
@@ -103,6 +100,10 @@ export async function GET(req: Request) {
     //     where: whereCondition,
     //   });
     // }
+
+
+
+
 
     // Get the total count of messages for calculating the number of pages
     const totalLead = await prisma.lead.count({ where: whereCondition });
