@@ -51,7 +51,7 @@ export default function BasicTableOne() {
 
                     <div className="col-span-1">
                         <Label>First Name:</Label>
-                        <Input type="text" placeholder="Hanan" />
+                        <Input type="text" placeholder="Hasan" />
                     </div>
 
                     <div className="col-span-1">
@@ -66,7 +66,7 @@ export default function BasicTableOne() {
 
                     <div className="col-span-1">
                         <Label>Mobile Phone:</Label>
-                        <Input type="text" placeholder="Team Manager" />
+                        <Input type="text" placeholder="" />
                     </div>
 
                     <div className="col-span-1">
@@ -81,7 +81,7 @@ export default function BasicTableOne() {
 
                     <div className="col-span-1">
                         <Label>School:</Label>
-                        <Input type="text" placeholder="Team Manager" />
+                        <Input type="text" placeholder="" />
                     </div>
 
                     <div className="col-span-1">
@@ -105,7 +105,7 @@ export default function BasicTableOne() {
                     </div>
 
                     <div className="col-span-1">
-                        <input type="checkbox" className="mr-2" placeholder="Team Manager" />
+                        <input type="checkbox" className="mr-2" />
                         <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Email Opt Out:</label>
                     </div>
                 </div>
