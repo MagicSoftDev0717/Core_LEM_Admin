@@ -4,8 +4,8 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 
-export async function GET(req: Request, { params }: { params: Promise<{ id: number }> }) {
-  const { id }  = await params; // Convert id to number
+export async function GET(req: Request, { params }: { params: { id: string } }) {
+  const  id   =  params.id; // Convert id to number
   try {
     // Fetch messages with pagination and order by date descending
     const lead_data = await prisma.lead.findUnique({
