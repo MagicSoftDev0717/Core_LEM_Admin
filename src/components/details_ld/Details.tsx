@@ -33,7 +33,7 @@ interface LeadDetails {
     other: boolean;
 }
 
-export default function BasicTableOne({ id }: { id: string }) {
+export default function BasicTableOne({ id }: { id: number }) {
 
     const router = useRouter();
     const [lead, setLead] = useState<LeadDetails | null>(null);
