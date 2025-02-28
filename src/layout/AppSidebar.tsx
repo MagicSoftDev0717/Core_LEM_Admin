@@ -74,9 +74,9 @@ const navItems: NavItem[] = [
   {
     icon: "/images/Icon/Guardians.svg",
     name: "Guardians",
-    path: "/guardians",
+    // path: "/guardians",
     subItems: [{ name: "Guardian Management", path: "/guardians", pro: false },
-    { name: "Progress Report Manager", path: "/attendance_em", pro: false },
+    { name: "Progress Report Manager", path: "/prorepo_gu", pro: false },
     { name: "Email Temaplate", path: "/instruction_em", pro: false },
     ],
   },

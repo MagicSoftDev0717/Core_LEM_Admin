@@ -424,7 +424,7 @@ export default function BasicTableOne() {
         </div>
       )}
 
-      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
+      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4 mb-6">
         <div className="max-w-full overflow-x-auto">
           <div className="min-w-[1102px]">
             <Table>
@@ -524,9 +524,6 @@ export default function BasicTableOne() {
           </div>
         </div>
       </div>
-
-      {/* Line Separator */}
-      <hr className="my-6" />
 
       <div className="overflow-hidden bg-white dark:bg-white/[0.03] rounded-xl border border-gray-200 dark:border-white/[0.1]">
         <div className="flex flex-col gap-2 px-4 py-4 border border-b border-gray-200 dark:border-white/[0.05] rounded-t-xl sm:flex-row sm:items-center sm:justify-between">

@@ -247,14 +247,14 @@ export default function BasicTableOne() {
                     </div>
                 </div>
             </div>
-
-            <div className="bg-gray-200 dark:bg-gray-800 p-2 rounded-3xl w-1/2">
-                <div className="grid grid-cols-4 gap-x-1 gap-y-1 mt-1">
-                    <Button size="sm" variant="outline">Discounts</Button>
-                    <Button size="sm" variant="outline">Add Discount</Button>
+            <div className="mb-6">
+                <div className="bg-gray-200 dark:bg-gray-800 p-4 rounded-3xl w-1/3">
+                    <div className="grid grid-cols-3 items-center justify-center gap-x-1 gap-y-1">
+                        <Button size="sm" variant="outline">Discounts</Button>
+                        <Button size="sm" variant="outline">Add Discount</Button>
+                    </div>
                 </div>
             </div>
-
             <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
                 <div className="max-w-full overflow-x-auto">
                     <div className="min-w-[1102px]">
@@ -293,7 +293,7 @@ export default function BasicTableOne() {
                                 {tableData.map((order) => (
                                     <TableRow key={order.id}>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        {order.user.firstName}
+                                            {order.user.firstName}
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                             {order.user.lastName}
@@ -351,7 +351,7 @@ export default function BasicTableOne() {
                 </div>
             </div>
 
-           
+
         </div>
     );
 }

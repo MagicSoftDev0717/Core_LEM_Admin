@@ -5,7 +5,7 @@ import Button from "../ui/button/Button";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/light.css";
 import {
-  CalenderIcon
+    CalenderIcon
 } from "../../icons/index";
 import {
     Table,
@@ -136,7 +136,7 @@ export default function BasicTableOne() {
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Student Name:
                             </label>
-                            <input type="text" className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-32" placeholder="Type a name"/>
+                            <input type="text" className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-32" placeholder="Type a name" />
                         </div>
 
                         {/* End Field */}
@@ -290,112 +290,110 @@ export default function BasicTableOne() {
                     </div>
                 </div>
             </div>
-            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
-                <div className="max-w-full overflow-x-auto">
-                    <div className="min-w-[1102px]">
-                        <Table>
-                            {/* Table Header */}
-                            <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
-                                <TableRow>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Centre
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Total Expected
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Total Paid
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Total Paid During Period
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Total Due
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Total Students
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Total Invoices Select All
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Total Accounts
-                                    </TableCell>
-                                </TableRow>
-                            </TableHeader>
-                            {/* Table Body */}
-                            <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                                <TableRow>
-                                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        UK Training
-                                    </TableCell>
-                                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        $37,051.50
-                                    </TableCell>
-                                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        $0.00
-                                    </TableCell>
-                                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        $0.00
-                                    </TableCell>
-                                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        $37,051,50
-                                    </TableCell>
-                                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        82
-                                    </TableCell>
-                                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        1388
-                                    </TableCell>
-                                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        82
-                                    </TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
+            <div className="mb-6">
+                <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
+                    <div className="max-w-full overflow-x-auto">
+                        <div className="min-w-[1102px]">
+                            <Table>
+                                {/* Table Header */}
+                                <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
+                                    <TableRow>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            Centre
+                                        </TableCell>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            Total Expected
+                                        </TableCell>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            Total Paid
+                                        </TableCell>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            Total Paid During Period
+                                        </TableCell>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            Total Due
+                                        </TableCell>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            Total Students
+                                        </TableCell>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            Total Invoices Select All
+                                        </TableCell>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            Total Accounts
+                                        </TableCell>
+                                    </TableRow>
+                                </TableHeader>
+                                {/* Table Body */}
+                                <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
+                                    <TableRow>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            UK Training
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            $37,051.50
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            $0.00
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            $0.00
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            $37,051,50
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            82
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            1388
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            82
+                                        </TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                        </div>
                     </div>
                 </div>
             </div>
-            {/* Line Separator */}
-            <hr className="my-6" />
-
-            <div className="bg-gray-200 dark:bg-gray-800 p-6 rounded-3xl w-full">
-                <div className="grid grid-cols-8 gap-x-1 gap-y-1 mt-6">
-                    <Button size="sm" variant="outline">Select All</Button>
-                    <Button size="sm" variant="outline">Expand All</Button>
-                    <Button size="sm" variant="outline">Mark Paid</Button>
-                    <Button size="sm" variant="outline">Mark Failed</Button>
-                    <Button size="sm" variant="outline" onClick={handleRevenueComparison}>Revenue Comparison</Button>
-                    <Button size="sm" variant="outline">Expert Details</Button>
+            <div className="mb-6">
+                <div className="bg-gray-200 dark:bg-gray-800 p-6 rounded-3xl w-full">
+                    <div className="grid grid-cols-8 gap-x-1 gap-y-1">
+                        <Button size="sm" variant="outline">Select All</Button>
+                        <Button size="sm" variant="outline">Expand All</Button>
+                        <Button size="sm" variant="outline">Mark Paid</Button>
+                        <Button size="sm" variant="outline">Mark Failed</Button>
+                        <Button size="sm" variant="outline" onClick={handleRevenueComparison}>Revenue Comparison</Button>
+                        <Button size="sm" variant="outline">Expert Details</Button>
+                    </div>
                 </div>
             </div>
-
-            {/* Line Separator */}
-            <hr className="my-6" />
 
             <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
                 <div className="max-w-full overflow-x-auto">

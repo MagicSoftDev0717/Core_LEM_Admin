@@ -29,10 +29,10 @@ export default function BasicTableOne() {
                 Guardian Information
             </h4>
 
-            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-4">
                 <div className="col-span-1">
                     <Label>Situation</Label>
-                    <select className="px-4 py-2 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-1/2">
+                    <select className="px-4 py-2 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
                         <option value="">--Select--</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
@@ -71,14 +71,18 @@ export default function BasicTableOne() {
 
                 <div className="col-span-1">
                     <Label>Gender:</Label>
-                    <Input type="text" placeholder="" />
+                    <select className="px-4 py-2 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="Male">Male</option>
+                        <option value="Femail">Female</option>
+                    </select>
                 </div>
 
                 <div className="col-span-1">
                     <Label>Relation:</Label>
-                    <select className="px-4 py-2 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-1/2">
+                    <select className="px-4 py-2 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
                         <option value="">--Select--</option>
-                        <option value="1">Open</option>
+                        <option value="Open">Open</option>
                         <option value="2">Option 2</option>
                     </select>
                 </div>

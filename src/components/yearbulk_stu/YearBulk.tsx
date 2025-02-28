@@ -94,6 +94,30 @@ export default function BasicTableOne() {
 
     return (
         <div>
+               <div className="mb-6">
+                <div className="grid grid-cols-1 gap-2">
+                    {/* Label and Combo Box */}
+                    
+                    <div className="self-end">
+                        <label className="block font-semibold text-4x1 text-gray-700 dark:text-gray-300">Current Center(s): UK Training</label>
+                    </div>
+                    <div className="self-end">
+                        <label className="block font-semibold text-4x1 text-gray-700 dark:text-gray-300">Current Virtual Center(s):</label>
+                    </div>
+                    <div className="self-end">
+                        <label className="block font-semibold text-4x1 text-gray-700 dark:text-gray-300">Number of Students with a Year and School Year Not 2024-2025: 326</label>
+                    </div>
+            
+                    <div></div>
+                    <div className="self-end" style={{ marginTop: '15px' }}>
+                        <button
+                            className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/4"
+                        >Advance Students to Correct School Year
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <div className="mb-6">
                 <div className="grid grid-cols-3 gap-2">
                     {/* Label and Combo Box */}
@@ -114,9 +138,8 @@ export default function BasicTableOne() {
                         </select>
                     </div>
 
-
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Enfollment Filter:</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Enrollment Filter:</label>
                         <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
                             <option value="">--Select--</option>
                             <option value="1">Option 1</option>
@@ -193,9 +216,6 @@ export default function BasicTableOne() {
                 </div>
             </div>
 
-            {/* Line Separator */}
-            <hr className="my-6" />
-
             <div className="mb-6">
                 <div className="grid grid-cols-4 gap-2">
                     {/* Label and Combo Box */}
@@ -221,7 +241,7 @@ export default function BasicTableOne() {
                     <button
                         className="px-4 py-2 bg-blue-600 text-white rounded-lg"
                     >
-                        Add Student
+                        Select All
                     </button>
                 </div>
             </div>

@@ -406,109 +406,107 @@ export default function BasicTableOne() {
         </div>
       )}
 
-
-      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
-        <div className="max-w-full overflow-x-auto">
-          <div className="min-w-[1102px]">
-            <Table>
-              {/* Table Header */}
-              <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
-                <TableRow>
-                  <TableCell
-                    isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                  >
-                    Centre
-                  </TableCell>
-                  <TableCell
-                    isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                  >
-                    New
-                  </TableCell>
-                  <TableCell
-                    isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                  >
-                    Pre-enrolled
-                  </TableCell>
-                  <TableCell
-                    isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                  >
-                    Enrolled
-                  </TableCell>
-                  <TableCell
-                    isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                  >
-                    On Hold
-                  </TableCell>
-                  <TableCell
-                    isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                  >
-                    Inactive
-                  </TableCell>
-                  <TableCell
-                    isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                  >
-                    Total Result
-                  </TableCell>
-                  <TableCell
-                    isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                  >
-                    In-Centre
-                  </TableCell>
-                  <TableCell
-                    isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                  >
-                    Home
-                  </TableCell>
-                </TableRow>
-              </TableHeader>
-              {/* Table Body */}
-              <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                <TableRow >
-                  <TableCell className="px-5 py-4 text-gray-500 sm:px-6 text-center dark:text-gray-400">              
+      <div className="mb-6">
+        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
+          <div className="max-w-full overflow-x-auto">
+            <div className="min-w-[1102px]">
+              <Table>
+                {/* Table Header */}
+                <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
+                  <TableRow>
+                    <TableCell
+                      isHeader
+                      className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    >
+                      Centre
+                    </TableCell>
+                    <TableCell
+                      isHeader
+                      className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    >
+                      New
+                    </TableCell>
+                    <TableCell
+                      isHeader
+                      className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    >
+                      Pre-enrolled
+                    </TableCell>
+                    <TableCell
+                      isHeader
+                      className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    >
+                      Enrolled
+                    </TableCell>
+                    <TableCell
+                      isHeader
+                      className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    >
+                      On Hold
+                    </TableCell>
+                    <TableCell
+                      isHeader
+                      className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    >
+                      Inactive
+                    </TableCell>
+                    <TableCell
+                      isHeader
+                      className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    >
+                      Total Result
+                    </TableCell>
+                    <TableCell
+                      isHeader
+                      className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    >
+                      In-Centre
+                    </TableCell>
+                    <TableCell
+                      isHeader
+                      className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    >
+                      Home
+                    </TableCell>
+                  </TableRow>
+                </TableHeader>
+                {/* Table Body */}
+                <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
+                  <TableRow >
+                    <TableCell className="px-5 py-4 text-gray-500 sm:px-6 text-center dark:text-gray-400">
                       UK Traning
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                    12
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                    5
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                    23
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                    2
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                    1
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                    95
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                    -
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                    -
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      12
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      5
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      23
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      2
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      1
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      95
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      -
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                      -
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Line Separator */}
-      <hr className="my-6" />
 
       <div className="overflow-hidden bg-white dark:bg-white/[0.03] rounded-xl border border-gray-200 dark:border-white/[0.1]">
         <div className="flex flex-col gap-2 px-4 py-4 border border-b border-gray-200 dark:border-white/[0.05] rounded-t-xl sm:flex-row sm:items-center sm:justify-between">
@@ -863,7 +861,7 @@ export default function BasicTableOne() {
                 <Input type="text" placeholder="" />
               </div>
 
-             
+
               <div className="col-span-1">
                 <div className="col-span-1">
                   <input type="checkbox" className="mr-2" />
