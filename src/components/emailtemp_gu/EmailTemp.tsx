@@ -86,7 +86,7 @@ export default function BasicTableOne() {
     const router = useRouter();
 
     const addToTemplate = () => {
-        router.push("/addguardian_gu"); // Navigate to the 'addguardian' page
+        router.push("/addtempl_gu"); // Navigate to the 'addguardian' page
     };
 
     return (
@@ -139,31 +139,31 @@ export default function BasicTableOne() {
                                 <TableRow>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Template Name
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Subject
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Created Date
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Lead Template
                                     </TableCell>
                                     <TableCell
                                         isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Account Template
                                     </TableCell>
