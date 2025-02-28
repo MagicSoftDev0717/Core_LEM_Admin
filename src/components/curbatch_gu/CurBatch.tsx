@@ -14,8 +14,8 @@ import {
 export default function BasicTableOne() {
 
     const router = useRouter();
-    const handelCurBatchDetail = () => {
-        router.push("/curbatch_gu"); 
+    const goToBack = () => {
+        router.push("/prorepo_gu");
     };
 
     return (
@@ -25,7 +25,7 @@ export default function BasicTableOne() {
                     {/* Label and Combo Box */}
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centre:</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Students:</label>
                         <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
                             <option value="">--Select--</option>
                             <option value="1">UK Traning</option>
@@ -33,13 +33,18 @@ export default function BasicTableOne() {
                         </select>
                     </div>
 
-
-
                     <div className="self-end" style={{ marginTop: '15px' }}>
                         <button
                             className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/2"
                         >Search
                         </button>
+                    </div>
+                    <div></div>
+                    <div className="col-span-1">
+                        {/* <Label>Email:</Label> */}
+                        <input type="checkbox" className="mr-2" />
+                        <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Exclude All from Batch
+                        </label>
                     </div>
                 </div>
             </div>
@@ -55,37 +60,49 @@ export default function BasicTableOne() {
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Total Students
+                                        Student
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Total Guardians
+                                        Guardian
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Guardian Opt-outs
+                                        Account
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Blocked Email
+                                        Active Learning Plans
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Excluded Students
+                                        Last Mo. Attendance
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
                                     >
-                                        Total Emails
+                                        Last Mo. Skills Mastered
+                                    </TableCell>
+                                    <TableCell
+                                        isHeader
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                    >
+                                        Skills Currently Assigned
+                                    </TableCell>
+                                    <TableCell
+                                        isHeader
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                                    >
+                                        Total LP Skills Mastered
                                     </TableCell>
                                 </TableRow>
                             </TableHeader>
@@ -93,10 +110,16 @@ export default function BasicTableOne() {
                             <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
                                 <TableRow>
                                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        88
+                                        Student 01
                                     </TableCell>
                                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        45
+                                        Gua. 01
+                                    </TableCell>
+                                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                        ACC 01, 02
+                                    </TableCell>
+                                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                        01
                                     </TableCell>
                                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                         01
@@ -105,10 +128,10 @@ export default function BasicTableOne() {
                                         00
                                     </TableCell>
                                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        86
+                                        21
                                     </TableCell>
                                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        2
+                                        01
                                     </TableCell>
                                 </TableRow>
                             </TableBody>
@@ -116,58 +139,35 @@ export default function BasicTableOne() {
                     </div>
                 </div>
             </div>
-
-            <div className="mb-6">
-                <div className="grid grid-cols-5 gap-2">
-                    {/* Label and Combo Box */}
-                    <div className="self-end" style={{ marginTop: '15px' }}>
-                        <button onClick={handelCurBatchDetail}
-                            className="px-4 py-2 bg-blue-600 text-white rounded-lg w-full"
-                        >Current Batch Details
-                        </button>
-                    </div>
-                    <div className="self-end" style={{ marginTop: '15px' }}>
+            <div className="flex justify-between items-center mt-4">
+                {/* Pagination (Centered) */}
+                <div className="flex justify-center space-x-2 flex-grow">
+                    {/* {[...Array(totalPages)].map((_, index) => (
                         <button
-                            className="px-4 py-2 bg-blue-600 text-white rounded-lg w-full"
-                        >Submit Current Batch
+                            key={index}
+                            className={`w-8 h-8 rounded-full ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-200"
+                                }`}
+                            onClick={() => setCurrentPage(index + 1)}
+                        >
+                            {index + 1}
                         </button>
-                    </div>
-                    <div className="self-end" style={{ marginTop: '15px' }}>
-                        <button
-                            className="px-4 py-2 bg-blue-600 text-white rounded-lg w-full"
-                        >Batch Send History
-                        </button>
-                    </div>
-                    <div></div>
-                    <div></div>
+                    ))} */}
                 </div>
-            </div>
 
-            <div className="mb-6">
-                <div className="grid grid-cols-5 gap-2">
-                    <div>
-                        <label className="text-4x1 font-medium text-gray-700 dark:text-gray-400">Custom Settings</label>
-                    </div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div className="self-end" style={{ marginTop: '15px' }}>
-                        <button
-                            className="px-4 py-2 bg-blue-600 text-white rounded-lg w-full"
-                        >Change Email Format
-                        </button>
-                    </div>
-                    <div className="self-end" style={{ marginTop: '15px' }}>
-                        <button
-                            className="px-4 py-2 bg-blue-600 text-white rounded-lg w-full"
-                        >Change Time Frame
-                        </button>
-                    </div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                {/* Export to Excel button (Right aligned) */}
+                <div className="flex justify-end gap-2">
+                    <button
+                        className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+                    >
+                        Export to Excel
+                    </button>
+                    <button onClick={goToBack}
+                        className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+                    >
+                        Go Back
+                    </button>
                 </div>
+                
             </div>
         </div>
     );
