@@ -30,7 +30,7 @@ const navItems: NavItem[] = [
   {
     icon: "/images/Icon/Home.svg",
     name: "Home",
-    path: "/",
+    path: "/home",
     // subItems: [{ name: "Ecommerce", path: "/", pro: false }],
   },
   {
@@ -91,11 +91,11 @@ const navItems: NavItem[] = [
     { name: "Employee Timesheets", path: "/timesheet_em", pro: false }
     ],
   },
-  {
-    icon: "/images/Icon/Badge.svg",
-    name: "CRM-Enroll & Forms",
-    path: "/",
-  },
+  // {
+  //   icon: "/images/Icon/Badge.svg",
+  //   name: "CRM-Enroll & Forms",
+  //   path: "/",
+  // },
   {
     icon: "/images/Icon/Reports.svg",
     name: "Reports",
