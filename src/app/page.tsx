@@ -217,9 +217,9 @@ export default function Dashboard() {
               </div>
               <div style={{ marginTop: "50px", marginRight: "0", marginBottom: "0", marginLeft: "0" }}>
                 <div className="ImageWrapper" id="experience-navbar">
-                  <a href="#experience-0" className="" title="classe365"><video preload="metadata" className="lazy" src="/assets/images/experience/data02.mp4" height={0} width={0} autoPlay loop muted playsinline=""></video></a>
-                  <a href="#experience-1" className="" title="classe365"><video preload="metadata" className="lazy" src="/assets/images/experience/data01.mp4" height={0} width={0} autoPlay loop muted playsinline=""></video></a>
-                  <a href="#experience-2" className="" title="classe365"><video preload="metadata" className="lazy" src="/assets/images/experience/data03.mp4" height={0} width={0} autoPlay loop muted playsinline=""></video></a>
+                  <a href="#experience-0" className="" title="classe365"><video preload="metadata" className="lazy" src="/assets/images/experience/data02.mp4" height={0} width={0} autoPlay loop muted playsInine></video></a>
+                  <a href="#experience-1" className="" title="classe365"><video preload="metadata" className="lazy" src="/assets/images/experience/data01.mp4" height={0} width={0} autoPlay loop muted playsInine></video></a>
+                  <a href="#experience-2" className="" title="classe365"><video preload="metadata" className="lazy" src="/assets/images/experience/data03.mp4" height={0} width={0} autoPlay loop muted playsInine></video></a>
                 </div>
               </div>
             </div>
