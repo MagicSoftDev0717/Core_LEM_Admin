@@ -578,9 +578,9 @@ export default function Dashboard() {
                         <path d="M27.6563 17.5112H5.23331C2.67068 17.5112 0.535156 19.6468 0.535156 22.2094V35.2361C0.535156 37.7987 2.67068 39.9342 5.23331 39.9342L3.95199 42.7104C3.52489 43.6714 4.69943 44.6324 5.55364 43.9917L10.7857 39.9342H27.6563C30.2189 39.9342 32.3545 37.7987 32.3545 35.2361V22.2094C32.2477 19.6468 30.2189 17.5112 27.6563 17.5112Z" fill="#4DE7E7"></path></g>
                       <g id="Vector_2" filter="url(#filter1_i_2491_9200)">
                         <path d="M18.4716 24.6653H40.8946C43.4572 24.6653 45.5927 26.8008 45.5927 29.3634V42.4969C45.5927 45.0595 43.4572 47.1951 40.8946 47.1951L42.1759 49.9712C42.603 50.9322 41.4285 51.8932 40.5743 51.2526L35.3422 47.1951H18.4716C15.909 47.1951 13.7734 45.0595 13.7734 42.4969V29.3634C13.8802 26.8008 15.909 24.6653 18.4716 24.6653Z" fill="#621FE0"></path></g>
-                      <path id="Vector_3" d="M32.8876 3.73708L34.1689 6.2997C34.1689 6.40648 34.3825 6.62003 34.596 6.62003L37.3722 7.04714C37.9061 7.15391 38.0129 7.6878 37.6925 8.1149L35.6638 10.1436C35.557 10.2504 35.4502 10.464 35.4502 10.6775L35.9841 13.4537C36.0909 13.9876 35.557 14.3079 35.1299 14.0944L32.5673 12.8131C32.3537 12.7063 32.1402 12.7063 32.0334 12.8131L29.4708 14.0944C29.0437 14.3079 28.5098 13.9876 28.6166 13.4537L29.1504 10.6775C29.1504 10.464 29.1504 10.2504 28.9369 10.1436L26.9081 8.1149C26.5878 7.79457 26.8014 7.15391 27.2285 7.04714L30.0046 6.62003C30.2182 6.62003 30.325 6.51326 30.4318 6.2997L31.7131 3.73708C32.0334 3.30997 32.5673 3.30997 32.8876 3.73708Z" stroke="#1E2123" stroke-miterlimit="10"></path>
-                      <path id="Vector_4" d="M48.3681 0.854153L49.6494 3.41678C49.7562 3.63033 49.8629 3.73711 50.0765 3.73711L52.8527 4.16421C53.3866 4.27099 53.4933 4.80487 53.173 5.23198L51.1443 7.26072C51.0375 7.3675 50.9307 7.58105 50.9307 7.79461L51.4646 10.5708C51.5714 11.1047 51.0375 11.425 50.6104 11.2114L48.0477 9.82335C47.8342 9.71658 47.6206 9.71658 47.5139 9.82335L44.9512 11.1047C44.5241 11.3182 43.9902 10.9979 44.097 10.464L44.6309 7.68783C44.6309 7.47428 44.6309 7.26072 44.4174 7.15395L42.3886 5.1252C42.0683 4.80487 42.2818 4.16421 42.7089 4.05744L45.4851 3.63033C45.6987 3.63033 45.8054 3.52356 45.9122 3.31001L47.1935 0.747377C47.5139 0.427049 48.0477 0.427049 48.3681 0.854153Z" stroke="#1E2123" stroke-miterlimit="10"></path>
-                      <path id="Vector_5" d="M51.786 16.0165L53.0674 18.5791C53.1741 18.7927 53.2809 18.8995 53.4945 18.8995L56.2706 19.3266C56.8045 19.4333 56.9113 19.9672 56.591 20.3943L54.5622 22.4231C54.4554 22.4231 54.3487 22.6366 54.4554 22.8502L54.9893 25.6264C55.0961 26.1602 54.5622 26.4806 54.1351 26.267L51.5725 24.9857C51.3589 24.8789 51.1454 24.8789 51.0386 24.9857L48.476 26.267C48.0489 26.4806 47.515 26.1602 47.6218 25.6264L48.1556 22.8502C48.1556 22.6366 48.1557 22.4231 47.9421 22.3163L45.8066 20.2876C45.4862 19.9672 45.6998 19.3266 46.1269 19.2198L48.9031 18.7927C49.1166 18.7927 49.2234 18.6859 49.3302 18.4724L50.6115 15.9097C50.9318 15.5894 51.5725 15.5894 51.786 16.0165Z" stroke="#1E2123" stroke-miterlimit="10">
+                      <path id="Vector_3" d="M32.8876 3.73708L34.1689 6.2997C34.1689 6.40648 34.3825 6.62003 34.596 6.62003L37.3722 7.04714C37.9061 7.15391 38.0129 7.6878 37.6925 8.1149L35.6638 10.1436C35.557 10.2504 35.4502 10.464 35.4502 10.6775L35.9841 13.4537C36.0909 13.9876 35.557 14.3079 35.1299 14.0944L32.5673 12.8131C32.3537 12.7063 32.1402 12.7063 32.0334 12.8131L29.4708 14.0944C29.0437 14.3079 28.5098 13.9876 28.6166 13.4537L29.1504 10.6775C29.1504 10.464 29.1504 10.2504 28.9369 10.1436L26.9081 8.1149C26.5878 7.79457 26.8014 7.15391 27.2285 7.04714L30.0046 6.62003C30.2182 6.62003 30.325 6.51326 30.4318 6.2997L31.7131 3.73708C32.0334 3.30997 32.5673 3.30997 32.8876 3.73708Z" stroke="#1E2123" strokeMiterlimit="10"></path>
+                      <path id="Vector_4" d="M48.3681 0.854153L49.6494 3.41678C49.7562 3.63033 49.8629 3.73711 50.0765 3.73711L52.8527 4.16421C53.3866 4.27099 53.4933 4.80487 53.173 5.23198L51.1443 7.26072C51.0375 7.3675 50.9307 7.58105 50.9307 7.79461L51.4646 10.5708C51.5714 11.1047 51.0375 11.425 50.6104 11.2114L48.0477 9.82335C47.8342 9.71658 47.6206 9.71658 47.5139 9.82335L44.9512 11.1047C44.5241 11.3182 43.9902 10.9979 44.097 10.464L44.6309 7.68783C44.6309 7.47428 44.6309 7.26072 44.4174 7.15395L42.3886 5.1252C42.0683 4.80487 42.2818 4.16421 42.7089 4.05744L45.4851 3.63033C45.6987 3.63033 45.8054 3.52356 45.9122 3.31001L47.1935 0.747377C47.5139 0.427049 48.0477 0.427049 48.3681 0.854153Z" stroke="#1E2123" strokeMiterlimit="10"></path>
+                      <path id="Vector_5" d="M51.786 16.0165L53.0674 18.5791C53.1741 18.7927 53.2809 18.8995 53.4945 18.8995L56.2706 19.3266C56.8045 19.4333 56.9113 19.9672 56.591 20.3943L54.5622 22.4231C54.4554 22.4231 54.3487 22.6366 54.4554 22.8502L54.9893 25.6264C55.0961 26.1602 54.5622 26.4806 54.1351 26.267L51.5725 24.9857C51.3589 24.8789 51.1454 24.8789 51.0386 24.9857L48.476 26.267C48.0489 26.4806 47.515 26.1602 47.6218 25.6264L48.1556 22.8502C48.1556 22.6366 48.1557 22.4231 47.9421 22.3163L45.8066 20.2876C45.4862 19.9672 45.6998 19.3266 46.1269 19.2198L48.9031 18.7927C49.1166 18.7927 49.2234 18.6859 49.3302 18.4724L50.6115 15.9097C50.9318 15.5894 51.5725 15.5894 51.786 16.0165Z" stroke="#1E2123" strokeMiterlimit="10">
                       </path>
                     </g>
                     <defs>
@@ -640,24 +640,72 @@ export default function Dashboard() {
                     <div className="swiper-wrapper" style={{ transitionDuration: '0ms', transform: 'translate3d(1200.99px, 0px, 0px)', transitionDelay: '0ms' }}>
                       <div className="swiper-slide" data-swiper-slide-index="1" style={{ marginLeft: '30px' }}>
                         <div dir="ltr" className="discoverCardstyles__DiscoverCardWrapper-sc-zal9au-0 cqQYbO discover-card">
-                          <div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ"><h2>“</h2><h4>Good value for money</h4><p>Academic admin staff find the student information system is easy to use.</p></div><div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Alistair S.</h5><p>System Architect</p></div></div>
+                          <div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ"><h2>“</h2><h4>Good value for money</h4><p>Academic admin staff find the student information system is easy to use.</p></div>
+                          <div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Alistair S.</h5><p>System Architect</p></div></div>
                       </div>
-                      <div className="swiper-slide swiper-slide-prev" data-swiper-slide-index="2" style={{ marginLeft: '30px' }}><div dir="ltr" className="discoverCardstyles__DiscoverCardWrapper-sc-zal9au-0 cqQYbO discover-card"><div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ"><h2>“</h2><h4>Great software with an excellent answer from all the team</h4><p>Classe365 have all the modules that our school needs with a sample intuitive and nice design. All the software it&apos;s easy to use from our team and from our students.</p></div><div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Joaquim B.</h5><p>CEO</p></div></div>
+                      <div className="swiper-slide swiper-slide-prev" data-swiper-slide-index="2" style={{ marginLeft: '30px' }}>
+                        <div dir="ltr" className="discoverCardstyles__DiscoverCardWrapper-sc-zal9au-0 cqQYbO discover-card">
+                          <div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ"><h2>“</h2><h4>Great software with an excellent answer from all the team</h4><p>Classe365 have all the modules that our school needs with a sample intuitive and nice design. All the software it&apos;s easy to use from our team and from our students.</p></div>
+                          <div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Joaquim B.</h5><p>CEO</p></div></div>
                       </div>
-                      <div className="swiper-slide swiper-slide-active" data-swiper-slide-index="3" style={{ marginLeft: '30px' }}><div dir="ltr" className="discoverCardstyles__DiscoverCardWrapper-sc-zal9au-0 cqQYbO discover-card"><div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ"><h2>“</h2><h4>Classe365 Review</h4><p>The technical support team is very helpful especially [sensitive content hidden]. We encountered 2 issues recently on email notifications and duplicate student records and they were able to resolve both.</p></div><div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Melanie A.</h5><p>Academic Coordinator</p></div></div>
+                      <div className="swiper-slide swiper-slide-active" data-swiper-slide-index="3" style={{ marginLeft: '30px' }}>
+                        <div dir="ltr" className="discoverCardstyles__DiscoverCardWrapper-sc-zal9au-0 cqQYbO discover-card">
+                          <div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ"><h2>“</h2><h4>Classe365 Review</h4><p>The technical support team is very helpful especially [sensitive content hidden]. We encountered 2 issues recently on email notifications and duplicate student records and they were able to resolve both.</p></div>
+                          <div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Melanie A.</h5><p>Academic Coordinator</p></div></div>
                       </div>
-                      <div className="swiper-slide swiper-slide-next" data-swiper-slide-index="4" style={{ marginLeft: '30px' }}><div dir="ltr" className="discoverCardstyles__DiscoverCardWrapper-sc-zal9au-0 cqQYbO discover-card"><div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ"><h2>“</h2><h4>Excellent product, outstanding support</h4><p>Easy to use, superb support with technical issues/bugs, prompt resolution by development team.</p></div><div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Karin P.</h5><p>Partner</p></div></div></div>
-                      <div className="swiper-slide" data-swiper-slide-index="0" style={{ marginLeft: '30px' }}><div dir="ltr" className="discoverCardstyles__DiscoverCardWrapper-sc-zal9au-0 cqQYbO discover-card"><div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ"><h2>“</h2><h4>Review from an every day user</h4><p>Student administrative and academic management is streamlined and helps us save time and be more efficient.</p></div><div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Khaled B.</h5><p>Administrative Director</p>
+                      <div className="swiper-slide swiper-slide-next" data-swiper-slide-index="4" style={{ marginLeft: '30px' }}>
+                        <div dir="ltr" className="discoverCardstyles__DiscoverCardWrapper-sc-zal9au-0 cqQYbO discover-card">
+                          <div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ">
+                            <h2>“</h2><h4>Excellent product, outstanding support</h4><p>Easy to use, superb support with technical issues/bugs, prompt resolution by development team.</p>
+                          </div>
+                          <div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Karin P.</h5><p>Partner</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="swiper-slide" data-swiper-slide-index="0" style={{ marginLeft: '30px' }}><div dir="ltr" className="discoverCardstyles__DiscoverCardWrapper-sc-zal9au-0 cqQYbO discover-card">
+                        <div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ"><h2>“</h2><h4>Review from an every day user</h4><p>Student administrative and academic management is streamlined and helps us save time and be more efficient.</p></div>
+                        <div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Khaled B.</h5><p>Administrative Director</p>
+                        </div>
                       </div>
                       </div>
-                      </div>
+                    </div>
+                    <div className="swiper-pagination swiper-pagination-bullets swiper-pagination-horizontal">
+                      <span className="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
+                      <span className="swiper-pagination-bullet"></span>
+                      <span className="swiper-pagination-bullet"></span>
+                      <span className="swiper-pagination-bullet"></span>
+                      <span className="swiper-pagination-bullet"></span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div className="ResourcesWrapper">
+              <h2>
+                All the News and Resources You Need
+              </h2>
+              <div className="ResourcesGridWrapper">
+                <div className="resourcestyles__ResourceCardWrapper-sc-1ojqpyn-0 kbzKtZ">
+                  <div className="resourcestyles__ImageWrapper-sc-1ojqpyn-1 bjQaGo">
+                    <img alt="Simplify Institution Management" title="Simplify Institution Management by Classe365" loading="lazy" width="344" height="159" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/resources/1.webp" /></div>
+                  <span style={{ background: '#F25757' }}>PODCAST</span><h2>Discover How Classe365 Can Simplify Institution Management</h2></div>
 
+                <div className="resourcestyles__ResourceCardWrapper-sc-1ojqpyn-0 kbzKtZ">
+                  <div className="resourcestyles__ImageWrapper-sc-1ojqpyn-1 bjQaGo">
+                    <img alt="Eduactional Management blogs" title="Blogs of Educational Management" loading="lazy" width="344" height="159" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/resources/2.webp" /></div>
+                  <span style={{ background: '#4ED163' }}>BLOG POST</span>
+                  <h2>Explore the World of Education Management with Our Blog</h2>
+                </div>
+                <div className="resourcestyles__ResourceCardWrapper-sc-1ojqpyn-0 kbzKtZ">
+                  <div className="resourcestyles__ImageWrapper-sc-1ojqpyn-1 bjQaGo">
+                    <img alt="ROI Calculator" title="ROI Calcular for Education" loading="lazy" width="344" height="159" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/resources/3.webp" /></div>
+                  <span style={{ background: '#6772E5' }}>FEATURE</span><h2>Try Our ROI Calculator to See Classe365's Profit-Generating Potential!</h2>
+                </div>
+              </div>
+              <a title="Free Resources" className="SeeMore" href="/free-resources">
+                <span>See more resources</span><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg>
+              </a>
             </div>
           </div>
           <div className="FooterWrapper">
