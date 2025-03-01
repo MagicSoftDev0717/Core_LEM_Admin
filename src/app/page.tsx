@@ -149,8 +149,8 @@ export default function Dashboard() {
             </div>
             <div style={{ marginBottom: '30px', color: '#888', fontSize: '14px' }}>It's free for 14 days. No credit card required.</div>
             <div className="LandingVideoWrapper">
-              <img src="/_next/static/media/Hero-Image.177ae053.webp" alt="Hero Image" loading="lazy" width="2786" height="1567" decoding="async" data-nimg="1" className="hero-image desktop" style={{ color: 'transparent' }} />
-              <img src="/_next/static/media/Hero-Image-Mobile.9cedb43f.webp" alt="Hero Image" loading="lazy" width="425" height="239" decoding="async" data-nimg="1" className="hero-image mobile" style={{ color: 'transparent' }} />
+              <img src="/assets/_next/static/media/Hero-Image.177ae053.webp" alt="Hero Image" loading="lazy" width="2786" height="1567" decoding="async" data-nimg="1" className="hero-image desktop" style={{ color: 'transparent' }} />
+              <img src="//assets/_next/static/media/Hero-Image-Mobile.9cedb43f.webp" alt="Hero Image" loading="lazy" width="425" height="239" decoding="async" data-nimg="1" className="hero-image mobile" style={{ color: 'transparent' }} />
             </div>
             <div className="ExperienceSectionWrapper">
               <div className="TitleWrapper">
