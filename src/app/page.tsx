@@ -217,9 +217,34 @@ export default function Dashboard() {
               </div>
               <div style={{ marginTop: "50px", marginRight: "0", marginBottom: "0", marginLeft: "0" }}>
                 <div className="ImageWrapper" id="experience-navbar">
-                  <a href="#experience-0" className="" title="classe365"><video preload="metadata" className="lazy" src="/assets/images/experience/data02.mp4" height={0} width={0} autoPlay loop muted playsInine></video></a>
-                  <a href="#experience-1" className="" title="classe365"><video preload="metadata" className="lazy" src="/assets/images/experience/data01.mp4" height={0} width={0} autoPlay loop muted playsInine></video></a>
-                  <a href="#experience-2" className="" title="classe365"><video preload="metadata" className="lazy" src="/assets/images/experience/data03.mp4" height={0} width={0} autoPlay loop muted playsInine></video></a>
+                  <a href="#experience-0" className="" title="classe365"><video preload="metadata" className="lazy" src="/assets/images/experience/data02.mp4" height={0} width={0} autoPlay loop muted playsInline></video></a>
+                  <a href="#experience-1" className="" title="classe365"><video preload="metadata" className="lazy" src="/assets/images/experience/data01.mp4" height={0} width={0} autoPlay loop muted playsInline></video></a>
+                  <a href="#experience-2" className="" title="classe365"><video preload="metadata" className="lazy" src="/assets/images/experience/data03.mp4" height={0} width={0} autoPlay loop muted playsInline></video></a>
+                </div>
+                <div className="ExperienceContentWrapper">
+                  <div className="ExperienceItemWrapper" color="#6772E5" id="experience-0">
+                    <h3 style={{ color: '#6772E5' }} className="ma-experience">Marketing &amp; Admission</h3><img alt="row.title" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/shapes/CRM.webp" /><h2>Maximize Revenue &amp; Increase Enrolment by 33%</h2>
+                    <p>Simplify enrolment with our powerful student management software! Increase your reach quick and easy. Join us today and watch your enrolments soar!</p>
+                    <a href="https://setup.classe365.com" title="Try it Free" target="_blank">Try it Free
+                      <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg></a>
+                    <div className="lottie-wrapper"><video preload="metadata" className="lazy" src="/assets/images/experience/data02.mp4" poster="/assets/hero-img.webp" height={0} width={0} autoPlay loop muted playsInline></video></div>
+                  </div>
+                  <div className="ExperienceItemWrapper" color="#A389F4" id="experience-1">
+                    <h3 style={{ color: '#A389F4' }} className="slm-experience">Student Learning management</h3>
+                    <img alt="row.title" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/shapes/SIS.webp" />
+                    <h2>Learning management made simple with our education ERP system</h2><p>Break data silos and benefit from comprehensive organizational analytics. Unlock a wealth of insights in no time with our user-friendly student management system. Ready to take the first step? Join us today!</p>
+                    <a href="https://setup.classe365.com" title="Try it Free" target="_blank">Try it Free <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg></a>
+                    <div className="lottie-wrapper"><video preload="metadata" className="lazy" src="/assets/images/experience/data01.mp4" poster="/assets/hero-img.webp" height="0" width="0" autoPlay loop muted playsInline></video>
+                    </div>
+                  </div>
+                  <div className="ExperienceItemWrapper" color="#4ED163" id="experience-2">
+                    <h3 style={{ color: '#4ED163' }} className="ga-experience">Graduation &amp; Alumni</h3>
+                    <img alt="row.title" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/shapes/Alumni.webp" />
+                    <h2>Engaging Alumni Community made Easy</h2><p>Create a thriving community with our smart solutions! We offer fundraising, career placement and reselling opportunities. Join to start building a community!</p><a href="https://setup.classe365.com" title="Try it Free" target="_blank">Try it Free
+                      <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg></a>
+                    <div className="lottie-wrapper"><video preload="metadata" className="lazy" src="/assets/images/experience/data03.mp4" poster="/assets/hero-img.webp" height={0} width={0} autoPlay loop muted playsInline></video>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
