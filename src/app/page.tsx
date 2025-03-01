@@ -699,7 +699,7 @@ export default function Dashboard() {
                 <div className="resourcestyles__ResourceCardWrapper-sc-1ojqpyn-0 kbzKtZ">
                   <div className="resourcestyles__ImageWrapper-sc-1ojqpyn-1 bjQaGo">
                     <img alt="ROI Calculator" title="ROI Calcular for Education" loading="lazy" width="344" height="159" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/resources/3.webp" /></div>
-                  <span style={{ background: '#6772E5' }}>FEATURE</span><h2>Try Our ROI Calculator to See Classe365's Profit-Generating Potential!</h2>
+                  <span style={{ background: '#6772E5' }}>FEATURE</span><h2>Try Our ROI Calculator to See Classe365&apos;s Profit-Generating Potential!</h2>
                 </div>
               </div>
               <a title="Free Resources" className="SeeMore" href="/free-resources">
