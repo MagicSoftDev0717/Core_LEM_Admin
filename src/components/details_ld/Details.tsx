@@ -113,6 +113,14 @@ export default function BasicTableOne({ id }: { id: number }) {
                     <div className="col-span-1">
                         <Label>Lead Status:</Label>
                         <Input type="text" placeholder="" defaultValue={lead?.status || ""} />
+                        {/* <select name="status" value={formData.status} onChange={handleChange} className="dark:bg-gray-900 dark:text-gray-600 px-6 py-3 border rounded-lg text-sm w-full">
+                            <option value="">--Select--</option>
+                            <option value="Open">Open</option>
+                            <option value="Assessed">Assessed</option>
+                            <option value="Contacted">Contacted</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select> */}
                     </div>
                     <div className="col-span-1">
                         <Label>Your Referral Teacher:</Label>
@@ -126,7 +134,7 @@ export default function BasicTableOne({ id }: { id: number }) {
 
                     <div className="col-span-1">
                         <Label>Mobile Phone:</Label>
-                        <Input type="text" placeholder=""  defaultValue={lead?.mobile || ""} />
+                        <Input type="text" placeholder="" defaultValue={lead?.mobile || ""} />
                     </div>
 
                     <div className="col-span-1">
@@ -161,7 +169,7 @@ export default function BasicTableOne({ id }: { id: number }) {
 
                     <div className="col-span-1">
                         <Label>Email:</Label>
-                        <Input type="text" placeholder="hasaneducationadvisor@gmail.com"  defaultValue={lead?.email || ""} />
+                        <Input type="text" placeholder="hasaneducationadvisor@gmail.com" defaultValue={lead?.email || ""} />
                     </div>
 
                     <div className="col-span-1">

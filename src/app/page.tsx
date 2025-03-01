@@ -569,7 +569,7 @@ export default function Dashboard() {
                 </div>
               </div>
             </div>
-            <div className="DiscoverWrapper">
+            <div className="DiscoverWrapper" style={{ background: 'transparent' }}>
               <div className="DiscoverContainer">
                 <div>
                   <svg width="58" height="52" viewBox="0 0 58 52" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -627,12 +627,33 @@ export default function Dashboard() {
                       <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg></span>
                     <span className="next"><svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                      </path>
+                    </svg>
+                    </span>
                   </div>
                 </div>
               </div>
-              <div className="DiscoverSliderWrapper">
-
+              <div className="DiscoverSliderWrapper" >
+                <div>
+                  <div className="swiper swiper-initialized swiper-horizontal swiper-rtl mySwiper swiper-backface-hidden" dir="rtl">
+                    <div className="swiper-wrapper" style={{ transitionDuration: '0ms', transform: 'translate3d(1200.99px, 0px, 0px)', transitionDelay: '0ms' }}>
+                      <div className="swiper-slide" data-swiper-slide-index="1" style={{ marginLeft: '30px' }}>
+                        <div dir="ltr" className="discoverCardstyles__DiscoverCardWrapper-sc-zal9au-0 cqQYbO discover-card">
+                          <div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ"><h2>“</h2><h4>Good value for money</h4><p>Academic admin staff find the student information system is easy to use.</p></div><div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Alistair S.</h5><p>System Architect</p></div></div>
+                      </div>
+                      <div className="swiper-slide swiper-slide-prev" data-swiper-slide-index="2" style={{ marginLeft: '30px' }}><div dir="ltr" className="discoverCardstyles__DiscoverCardWrapper-sc-zal9au-0 cqQYbO discover-card"><div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ"><h2>“</h2><h4>Great software with an excellent answer from all the team</h4><p>Classe365 have all the modules that our school needs with a sample intuitive and nice design. All the software it's easy to use from our team and from our students.</p></div><div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Joaquim B.</h5><p>CEO</p></div></div>
+                      </div>
+                      <div className="swiper-slide swiper-slide-active" data-swiper-slide-index="3" style={{ marginLeft: '30px' }}><div dir="ltr" className="discoverCardstyles__DiscoverCardWrapper-sc-zal9au-0 cqQYbO discover-card"><div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ"><h2>“</h2><h4>Classe365 Review</h4><p>The technical support team is very helpful especially [sensitive content hidden]. We encountered 2 issues recently on email notifications and duplicate student records and they were able to resolve both.</p></div><div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Melanie A.</h5><p>Academic Coordinator</p></div></div>
+                      </div>
+                      <div className="swiper-slide swiper-slide-next" data-swiper-slide-index="4" style={{ marginLeft: '30px' }}><div dir="ltr" className="discoverCardstyles__DiscoverCardWrapper-sc-zal9au-0 cqQYbO discover-card"><div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ"><h2>“</h2><h4>Excellent product, outstanding support</h4><p>Easy to use, superb support with technical issues/bugs, prompt resolution by development team.</p></div><div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Karin P.</h5><p>Partner</p></div></div></div>
+                      <div className="swiper-slide" data-swiper-slide-index="0" style={{ marginLeft: '30px' }}><div dir="ltr" className="discoverCardstyles__DiscoverCardWrapper-sc-zal9au-0 cqQYbO discover-card"><div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ"><h2>“</h2><h4>Review from an every day user</h4><p>Student administrative and academic management is streamlined and helps us save time and be more efficient.</p></div><div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Khaled B.</h5><p>Administrative Director</p>
+                      </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="ResourcesWrapper">

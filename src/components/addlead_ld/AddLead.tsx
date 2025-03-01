@@ -26,7 +26,7 @@ export default function BasicTableOne() {
             [e.target.name]: e.target.value,
         });
     };
-  
+
     const handleAddLead = async () => {
         try {
             const response = await fetch("/api/addlead_ld", {
@@ -122,8 +122,11 @@ export default function BasicTableOne() {
                     <Label>Lead Status:</Label>
                     <select name="status" value={formData.status} onChange={handleChange} className="dark:bg-gray-900 dark:text-gray-600 px-6 py-3 border rounded-lg text-sm w-full">
                         <option value="">--Select--</option>
-                        <option value="Assessed">Assessed</option>
                         <option value="Open">Open</option>
+                        <option value="Assessed">Assessed</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
                     </select>
                 </div>
 
