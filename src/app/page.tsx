@@ -139,7 +139,7 @@ export default function Dashboard() {
               <img src="/assets/images/shapes/Add-ons.webp" alt="Add-ons" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" className="shape-4" style={{ color: 'transparent' }} ></img>
               <img src="/assets/images/shapes/LMS.webp" alt="LMS" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" className="shape-5" style={{ color: 'transparent' }}></img>
             </div>
-            <h1>Revolutionize Your Institution's
+            <h1>Revolutionize Your Institution&apos;
               <b>Learning Experience Today</b>
             </h1>
             <p>Unlock a seamless learner journey. From admission to alumni networking, and beyond - our complete education solution has you covered.</p>
@@ -147,7 +147,7 @@ export default function Dashboard() {
               <button className="ButtonWrapper shadow md"><span>Try For Free</span><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg></button>
               <button className="ButtonWrapper md transparent">Get Your Free Platform Tour</button>
             </div>
-            <div style={{ marginBottom: '30px', color: '#888', fontSize: '14px' }}>It's free for 14 days. No credit card required.</div>
+            <div style={{ marginBottom: '30px', color: '#888', fontSize: '14px' }}>It&apos;s free for 14 days. No credit card required.</div>
             <div className="LandingVideoWrapper">
               <img src="/assets/_next/static/media/Hero-Image.177ae053.webp" alt="Hero Image" loading="lazy" width="2786" height="1567" decoding="async" data-nimg="1" className="hero-image desktop" style={{ color: 'transparent' }} />
               <img src="//assets/_next/static/media/Hero-Image-Mobile.9cedb43f.webp" alt="Hero Image" loading="lazy" width="425" height="239" decoding="async" data-nimg="1" className="hero-image mobile" style={{ color: 'transparent' }} />
@@ -225,8 +225,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      <script src="//www.googleadservices.com/pagead/conversion_async.js" type="text/javascript"></script>
-
+     
     </body>
 
 
