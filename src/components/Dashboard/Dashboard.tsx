@@ -124,9 +124,9 @@ export default function BasicTableOne() {
                                 <img src="/assets/images/header-arrow-right.svg" alt="Product suite arrow right" fetchPriority="high" width="16" height="21" decoding="async" data-nimg="1" className="top-header-img arrow-right" style={{ color: 'transparent' }} />
                             </div>
                             <a title="Core-Lem" className="classe365-logo" href="https:/core-lem.com/" target="_blank">
-                                <img src="/assets/images/core-lem-logo.svg" alt="logo" fetchPriority="high" width={60} height={48} decoding="async" data-nimg="1" className="top-header-img" style={{ color: 'transparent' }} /></a>
+                                <img src="/assets/images/core-lem-logo.svg" alt="logo" fetchPriority="high" width={40} height={25} decoding="async" data-nimg="1" className="top-header-img" style={{ color: 'transparent' }} /></a>
                             <a title="LearnEnglishMaths" className="hiree365-logo" href="http://www.learnenglishmaths.com/" target="_blank">
-                                <img src="/assets/images/lem-logo.svg" alt="logo" loading="lazy" width="60" height="36" decoding="async" data-nimg="1" className="top-header-img" style={{ color: 'transparent' }} /></a>
+                                <img src="/assets/images/lem-logo.svg" alt="logo" loading="lazy" width="40" height={26} decoding="async" data-nimg="1" className="top-header-img" style={{ color: 'transparent' }} /></a>
                         </div>
                         <div className="right-container d-flex align-items-center gap-2"></div>
                     </div>
@@ -135,7 +135,7 @@ export default function BasicTableOne() {
                     <div className="HeaderWrapper">
                         <div className="HeaderNavWrapper">
                             <div className="AppLogoWrapper">
-                                <img src="/assets/images/core-lem-logo.svg" alt="Product suite arrow right" fetchPriority="high" decoding="async" data-nimg="1" className="top-header-img arrow-right" style={{ color: 'transparent' }} />
+                                <img src="/assets/images/core-lem-logo.svg" width={85} height={48} alt="Product suite arrow right" fetchPriority="high" decoding="async" data-nimg="1" className="top-header-img arrow-right" style={{ color: 'transparent' }} />
                             </div>
                             <div className="HeaderNavContainer">
                                 <div className="NavItemWrapper">
