@@ -12,11 +12,11 @@ export default function BasicTableOne() {
         router.push("/home"); // Navigate to the 'lead' page
     };
 
-    const videoData = [
-        { id: "experience-0", src: "/assets/images/experience/data02.mp4" },
-        { id: "experience-1", src: "/assets/images/experience/data01.mp4" },
-        { id: "experience-2", src: "/assets/images/experience/data03.mp4" },
-    ];
+    // const videoData = [
+    //     { id: "experience-0", src: "/assets/images/experience/data02.mp4" },
+    //     { id: "experience-1", src: "/assets/images/experience/data01.mp4" },
+    //     { id: "experience-2", src: "/assets/images/experience/data03.mp4" },
+    // ];
 
     const solutions = [
         { title: "Marketing", description: "Want to boost enrolment? Use our higher education CRM, e-commerce & agent modules! Benefit from one-click enrolment, student placements & more.", image: "1.webp" },
