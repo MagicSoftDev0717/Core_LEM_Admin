@@ -1,12 +1,40 @@
 "use client";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 
 import "./348c6be32cb97baa.css";
+// import "./aaa.css";
+
 export default function BasicTableOne() {
     const router = useRouter();
     const goToMainPage = () => {
         router.push("/home"); // Navigate to the 'lead' page
+    };
+
+    const videoData = [
+        { id: "experience-0", src: "/assets/images/experience/data02.mp4" },
+        { id: "experience-1", src: "/assets/images/experience/data01.mp4" },
+        { id: "experience-2", src: "/assets/images/experience/data03.mp4" },
+    ];
+
+    const solutions = [
+        { title: "Marketing", description: "Want to boost enrolment? Use our higher education CRM, e-commerce & agent modules! Benefit from one-click enrolment, student placements & more.", image: "1.webp" },
+        { title: "Registrars", description: "Managing admissions just got easy! Admit and monitor students using our admission CRM & task module.",  image: "2.webp" },
+        { title: "Administrators", description: "Seamlessly manage student data with our student database management system. Track progress, manage alumni, and build the learning journey.",  image: "3.webp" },
+        { title: "Teachers", description: "Use our Learning Management System & analytics module for immersive classroom experiences. Observe behavioural trends and improve student success.",  image: "4.webp" },
+        { title: "Business Leaders", description: "Looking for an easier way to manage financial transactions? Scholarships, donations and online payments managed like never before.",  image: "5.webp" },
+        { title: "CFOs", description: "Take control of your finances with Classe365. Our ROI calculators can also help you save up to 33%.",  image: "6.webp" },
+        { title: "IT Leaders", description: "Simplify your integrations with our open APIs! Sign into Google Workspace or Office365 for even more flexibility.",  image: "7.webp" }
+    ];
+
+
+    const [selectedImage, setSelectedImage] = useState<string>("/assets/images/solutions/1.webp");
+    const [activeIndex, setActiveIndex] = useState<number | null>(0); // Track active card index
+
+    const handleImageChange = (index: number, imageName: string) => {
+        setSelectedImage(`/assets/images/solutions/${imageName}`);
+        setActiveIndex(index);
     };
     return (
         <div id="__next">
@@ -115,13 +143,22 @@ export default function BasicTableOne() {
                                 <div className="NavLabel"><span>Solutions</span><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="11" width="11" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg></div>
                                 <div className=" SubMenuWrapper">
                                     <div className="SubMenuItemWrapper"><span>Teams</span><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="11" width="11" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path></svg>
-                                        <div className=" SubMenuWrapper sub-menu"><div className="SubMenuItemWrapper">Marketing Teams</div><div className="SubMenuItemWrapper">Registrars</div>
-                                            <div className="SubMenuItemWrapper">Administrators</div><div className="SubMenuItemWrapper">Teachers</div><div className="SubMenuItemWrapper">CFOs</div><div className="SubMenuItemWrapper">CTOs</div>
-                                            <div className="SubMenuItemWrapper">Business Leaders</div></div></div>
+                                        <div className=" SubMenuWrapper sub-menu"><div className="SubMenuItemWrapper">Marketing Teams</div>
+                                            <div className="SubMenuItemWrapper">Registrars</div>
+                                            <div className="SubMenuItemWrapper">Administrators</div>
+                                            <div className="SubMenuItemWrapper">Teachers</div>
+                                            <div className="SubMenuItemWrapper">CFOs</div><div className="SubMenuItemWrapper">CTOs</div>
+                                            <div className="SubMenuItemWrapper">Business Leaders</div>
+                                        </div>
+                                    </div>
                                     <div className="SubMenuItemWrapper"><span>Organizations</span><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="11" width="11" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path></svg>
-                                        <div className=" SubMenuWrapper sub-menu"><div className="SubMenuItemWrapper">Academies</div>
-                                            <div className="SubMenuItemWrapper">Schools</div><div className="SubMenuItemWrapper">Universities &amp; Higher Education</div><div className="SubMenuItemWrapper">Corporate Learning</div></div></div>
-                                    <div className="SubMenuItemWrapper"><span>Features</span><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="11" width="11" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path></svg>
+                                        <div className=" SubMenuWrapper sub-menu">
+                                            <div className="SubMenuItemWrapper">Academies</div>
+                                            <div className="SubMenuItemWrapper">Schools</div>
+                                            <div className="SubMenuItemWrapper">Universities &amp; Higher Education</div>
+                                            <div className="SubMenuItemWrapper">Corporate Learning</div></div></div>
+                                    <div className="SubMenuItemWrapper"><span>Features</span>
+                                        <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="11" width="11" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path></svg>
                                         <div className=" SubMenuWrapper sub-menu"><div className="SubMenuItemWrapper">Pre-Admission &amp; Enrolment</div>
                                             <div className="SubMenuItemWrapper">Customer Relationship Management</div><div className="SubMenuItemWrapper">Student Information System</div>
                                             <div className="SubMenuItemWrapper">Learning Management System</div><div className="SubMenuItemWrapper">Fees &amp; Invoicing</div><div className="SubMenuItemWrapper">Finance &amp; Accounting</div><div className="SubMenuItemWrapper">eCommerce Module</div>
@@ -139,7 +176,7 @@ export default function BasicTableOne() {
                     <div className="LandingSectionWrapper">
                         <div className="LandingShapeWrapper">
                             <img src="/assets/images/shapes/CRM.webp" alt="CRM" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" className="shape-1" style={{ color: 'transparent' }} />
-                            <img src="/assets/images/shapes/Schedules &amp; communication.webp" alt="Schedules &amp; communication" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" className="shape-2" style={{ color: 'transparent' }} ></img>
+                            <img src="/assets/images/shapes/Schedules_communication.webp" alt="Schedules_communication" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" className="shape-2" style={{ color: 'transparent' }} ></img>
                             <img src="/assets/images/shapes/SIS.webp" alt="SIS" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" className="shape-3" style={{ color: 'transparent' }} ></img>
                             <img src="/assets/images/shapes/Add-ons.webp" alt="Add-ons" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" className="shape-4" style={{ color: 'transparent' }} ></img>
                             <img src="/assets/images/shapes/LMS.webp" alt="LMS" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" className="shape-5" style={{ color: 'transparent' }}></img>
@@ -166,42 +203,46 @@ export default function BasicTableOne() {
                         </div>
                     </div>
                     <div className="ExperienceSectionWrapper">
-                        <div className="TitleWrapper">
-                            <h2>Transform Your Teaching with Award-Winning Classe365</h2>
+                        <div style={{ fontWeight: 100 }} className="TitleWrapper">
+                            <h2 style={{ fontWeight: 600, lineHeight: "1", fontSize: '2.5em' }}>
+                                Transform Your Teaching with Award-Winning Core-Lem
+                            </h2>
                         </div>
-                        <div className="trusted">
+
+                        <div className="trusted flex flex-col items-center justify-center text-center w-full">
                             <div className="trustedstyles__TrustedSectionWrapper-sc-vmda8z-0 cWKVvu">
-                                <p>Trusted by 6,000+ educational institutions in 130 countries</p>
-                                <div className="trustedstyles__SwiperWrapper-sc-vmda8z-2 heqpqN">
-                                    <div className="trustedstyles__SwiperContainer-sc-vmda8z-1 elmXKx">
-                                        <div className="swiper swiper-initialized swiper-horizontal mySwiper swiper-backface-hidden">
-                                            <div className="swiper-wrapper">
-                                                <div className="swiper-slide swiper-slide-active" style={{ width: '215.667px', marginRight: '30px' }} data-swiper-slide-index="0">
+                                <p className="text-lg font-medium">Trusted by 6,000+ educational institutions in 130 countries</p>
+                                <div className="trustedstyles__SwiperWrapper-sc-vmda8z-2 heqpqN w-full flex justify-center">
+                                    <div className="trustedstyles__SwiperContainer-sc-vmda8z-1 elmXKx flex justify-center">
+                                        <div className="swiper swiper-initialized swiper-horizontal mySwiper swiper-backface-hidden flex justify-center">
+                                            <div className="swiper-wrapper flex justify-center">
+                                                <div className="swiper-slide swiper-slide-active flex justify-center items-center" style={{ width: '215.667px', marginRight: '30px' }} data-swiper-slide-index="0">
                                                     <div>
                                                         <img src="/assets/images/trusted/1.webp" alt="Asian Institute of Management" title="Asian Institute of Management" fetchPriority="high" width="68" height="49" decoding="async" data-nimg="1" style={{ color: 'transparent' }} />
                                                     </div>
                                                 </div>
-                                                <div className="swiper-slide swiper-slide-next" style={{ width: '215.667px', marginRight: '30px' }} data-swiper-slide-index="1">
+                                                <div className="swiper-slide swiper-slide-next flex justify-center items-center" style={{ width: '215.667px', marginRight: '30px' }} data-swiper-slide-index="1">
                                                     <div>
                                                         <img alt="United States - Air Force Organization" title="United States - Air Force Organization" fetchPriority="high" width="53" height="53" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/trusted/2.webp" />
                                                     </div>
                                                 </div>
-                                                <div className="swiper-slide" style={{ width: '215.667px', marginRight: '30px' }} data-swiper-slide-index="2">
+                                                <div className="swiper-slide flex justify-center items-center" style={{ width: '215.667px', marginRight: '30px' }} data-swiper-slide-index="2">
                                                     <div>
                                                         <img alt="Hoston Ballet Academy" title="Hoston Ballet Academy" fetchPriority="high" width="80" height="60" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/trusted/3.webp" />
                                                     </div>
                                                 </div>
-                                                <div className="swiper-slide" style={{ width: '215.667px', marginRight: '30px' }} data-swiper-slide-index="3">
+                                                <div className="swiper-slide flex justify-center items-center" style={{ width: '215.667px', marginRight: '30px' }} data-swiper-slide-index="3">
                                                     <div>
                                                         <img alt="Board of Jewish Education" title="Board of Jewish Education" fetchPriority="high" width="98" height="29" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/trusted/5.webp" />
                                                     </div>
                                                 </div>
-                                                <div className="swiper-slide" data-swiper-slide-index="4" style={{ width: '215.667px', marginRight: '30px' }}>
+                                                <div className="swiper-slide flex justify-center items-center" data-swiper-slide-index="4" style={{ width: '215.667px', marginRight: '30px' }}>
                                                     <div>
-                                                        <img alt="PWC" title="PricewaterhouseCoopers LLP" fetchPriority="high" width="130" height="50" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/trusted/6.webp" /></div>
+                                                        <img alt="PWC" title="PricewaterhouseCoopers LLP" fetchPriority="high" width="130" height="50" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/trusted/6.webp" />
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div className="swiper-pagination swiper-pagination-bullets swiper-pagination-horizontal">
+                                            <div className="swiper-pagination swiper-pagination-bullets swiper-pagination-horizontal swiper-pagination-lock flex justify-center mt-4">
                                                 <span className="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
                                                 <span className="swiper-pagination-bullet"></span>
                                                 <span className="swiper-pagination-bullet"></span>
@@ -220,19 +261,25 @@ export default function BasicTableOne() {
                                 <a href="#experience-2" className="" title="classe365"><video preload="metadata" className="lazy" src="/assets/images/experience/data03.mp4" height={0} width={0} autoPlay loop muted playsInline></video></a>
                             </div>
                             <div className="ExperienceContentWrapper">
-                                <div className="ExperienceItemWrapper" color="#6772E5" id="experience-0">
-                                    <h3 style={{ color: '#6772E5' }} className="ma-experience">Marketing &amp; Admission</h3><img alt="row.title" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/shapes/CRM.webp" /><h2>Maximize Revenue &amp; Increase Enrolment by 33%</h2>
+                                <div className="ExperienceItemWrapper" style={{ color: "#6772E5" }} id="experience-0">
+                                    <h3 style={{ color: '#6772E5' }} className="ma-experience">
+                                        Marketing &amp; Admission</h3>
+                                    <img alt="row.title" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/shapes/CRM.webp" />
+                                    <h2>Maximize Revenue &amp; Increase Enrolment by 33%</h2>
                                     <p>Simplify enrolment with our powerful student management software! Increase your reach quick and easy. Join us today and watch your enrolments soar!</p>
                                     <a href="https://setup.classe365.com" title="Try it Free" target="_blank">Try it Free
                                         <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg></a>
-                                    <div className="lottie-wrapper"><video preload="metadata" className="lazy" src="/assets/images/experience/data02.mp4" poster="/assets/hero-img.webp" height={0} width={0} autoPlay loop muted playsInline></video></div>
+                                    <div className="lottie-wrapper">
+                                        <video preload="metadata" className="lazy" src="/assets/images/experience/data02.mp4" poster="/assets/images/hero-img.webp" height={0} width={0} autoPlay loop muted playsInline>
+                                        </video>
+                                    </div>
                                 </div>
                                 <div className="ExperienceItemWrapper" color="#A389F4" id="experience-1">
                                     <h3 style={{ color: '#A389F4' }} className="slm-experience">Student Learning management</h3>
                                     <img alt="row.title" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/shapes/SIS.webp" />
                                     <h2>Learning management made simple with our education ERP system</h2><p>Break data silos and benefit from comprehensive organizational analytics. Unlock a wealth of insights in no time with our user-friendly student management system. Ready to take the first step? Join us today!</p>
                                     <a href="https://setup.classe365.com" title="Try it Free" target="_blank">Try it Free <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg></a>
-                                    <div className="lottie-wrapper"><video preload="metadata" className="lazy" src="/assets/images/experience/data01.mp4" poster="/assets/hero-img.webp" height="0" width="0" autoPlay loop muted playsInline></video>
+                                    <div className="lottie-wrapper"><video preload="metadata" className="lazy" src="/assets/images/experience/data01.mp4" poster="/assets/images/hero-img.webp" height="0" width="0" autoPlay loop muted playsInline></video>
                                     </div>
                                 </div>
                                 <div className="ExperienceItemWrapper" color="#4ED163" id="experience-2">
@@ -240,74 +287,44 @@ export default function BasicTableOne() {
                                     <img alt="row.title" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/shapes/Alumni.webp" />
                                     <h2>Engaging Alumni Community made Easy</h2><p>Create a thriving community with our smart solutions! We offer fundraising, career placement and reselling opportunities. Join to start building a community!</p><a href="https://setup.classe365.com" title="Try it Free" target="_blank">Try it Free
                                         <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg></a>
-                                    <div className="lottie-wrapper"><video preload="metadata" className="lazy" src="/assets/images/experience/data03.mp4" poster="/assets/hero-img.webp" height={0} width={0} autoPlay loop muted playsInline></video>
+                                    <div className="lottie-wrapper"><video preload="metadata" className="lazy" src="/assets/images/experience/data03.mp4" poster="/assets/images/hero-img.webp" height={0} width={0} autoPlay loop muted playsInline></video>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="SolutionsWrapper">
-                        <div className="SolutionTitleWrapper">
+                        <div className="SolutionTitleWrapper" style={{ fontWeight: 600, lineHeight: "1" }}>
                             <h5>Great solutions for everyone</h5>
                             <h2>Smart Solutions For Learning Management Teams</h2>
                         </div>
                         <div className="SolutionContentWrapper" id="image-wrapper1">
                             <div className="SolutionImageGroup">
-                                <div className="SolutionImageWrapper">
+                                <div className="SolutionImageGroup">
                                     <div>
-                                        <img src="/assets/images/solutions/3.webp" alt="" title="" loading="lazy" width="814" height="622" decoding="async" data-nimg="1" style={{ color: 'transparent' }} />
+                                        <img id="image-wrapper1" src={selectedImage} alt="Solution" loading="lazy" width="814" height="622" decoding="async" data-nimg="1" style={{ color: 'transparent' }} />
+                                        {/* <img src="/assets/images/solutions/3.webp" alt="" title="" loading="lazy" width="814" height="622" decoding="async" data-nimg="1" style={{ color: 'transparent' }} /> */}
                                     </div>
                                 </div>
                             </div>
                             <div className="SolutionContainer">
                                 <div className="list">
-                                    <div className="active SolutionCardWrapper">
-                                        <h3>Marketing</h3>
-                                        <div><span>Want to boost enrolment? Use our higher education CRM, e-commerce &amp; agent modules! Benefit from one-click enrolment, student placements &amp; more.</span><a href="https://setup.classe365.com" title="Start Free 14-days trial" target="_blank">Start Free 14-days trial
-                                            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg></a>
+                                    {solutions.map((solution, index) => (
+                                        <div key={index} className={`SolutionCardWrapper ${activeIndex === index ? "active" : ""}`} onClick={() => handleImageChange(index, solution.image)}>
+                                            <h3>{solution.title}</h3>
+                                            <div>
+                                                <span>{solution.description}</span>
+                                                <a href="https://setup.classe365.com" title="Start Free 14-days trial" target="_blank" rel="noopener noreferrer">
+                                                    Start Free 14-days trial
+                                                    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className=" SolutionCardWrapper">
-                                        <h3>Registrars</h3>
-                                        <div>
-                                            <span>Managing admissions just got easy! Admit and monitor students using our admission CRM &amp; task module.</span><a href="https://setup.classe365.com" title="Start Free 14-days trial" target="_blank">Start Free 14-days trial
-                                                <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg></a>
-                                        </div></div>
-
-                                    <div className=" SolutionCardWrapper">
-                                        <h3>Administrators</h3>
-                                        <div><span>Seamlessly manage student data with our student database management system. Track progress, manage alumni, and build the learning journey.</span><a href="https://setup.classe365.com" title="Start Free 14-days trial" target="_blank">Start Free 14-days trial
-                                            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg></a>
-                                        </div>
-                                    </div>
-                                    <div className="SolutionCardWrapper">
-                                        <h3>Teachers</h3>
-                                        <div>
-                                            <span>Use our Learning Management System &amp; analytics module for immersive classroom experiences. Observe behavioural trends and improve student success.</span>
-                                            <a href="https://setup.classe365.com" title="Start Free 14-days trial" target="_blank" rel="noopener noreferrer">Start Free 14-days trial
-                                                <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className=" SolutionCardWrapper">
-                                        <h3>Business Leaders</h3>
-                                        <div>
-                                            <span>Looking for an easier way to manage financial transactions? Scholarships, donations and online payments managed like never before.</span>
-                                            <a href="https://setup.classe365.com" title="Start Free 14-days trial" target="_blank">Start Free 14-days trial
-                                                <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className=" SolutionCardWrapper">
-                                        <h3>CFOs</h3>
-                                        <div>
-                                            <span>Take control of your finances with Classe365. Our ROI calculators can also help you save up to 33%.</span>
-                                            <a href="https://setup.classe365.com" title="Start Free 14-days trial" target="_blank">Start Free 14-days trial
-                                                <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className=" SolutionCardWrapper">
+                                    ))}
+                                    
+                                    {/* <div className=" SolutionCardWrapper">
                                         <h3>IT Leaders</h3>
                                         <div>
                                             <span>Simplify your integrations with our open APIs! Sign into Google Workspace or Office365 for even more flexibility.</span>
@@ -315,7 +332,7 @@ export default function BasicTableOne() {
                                                 <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg>
                                             </a>
                                         </div>
-                                    </div>
+                                    </div>  */}
                                 </div>
                             </div>
 
@@ -414,7 +431,7 @@ export default function BasicTableOne() {
                                         <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
                                             <img alt="Australia's Fastest Growing Companies" title="Australia's Fastest Growing Companies" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/2-old.webp" />
                                             <div>
-                                                <h5>Statista Australia’s Fastest Growing Company</h5><p>Listed 2 years in a row</p>
+                                                <h5>Statista Australia&apos;s Fastest Growing Company</h5><p>Listed 2 years in a row</p>
                                             </div>
                                         </div>
                                     </div>
@@ -571,7 +588,7 @@ export default function BasicTableOne() {
                         <div className="DiscoverContainer">
                             <div>
                                 <svg width="58" height="52" viewBox="0 0 58 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g id="Frame" clip-path="url(#clip0_2491_9200)">
+                                    <g id="Frame" clipPath="url(#clip0_2491_9200)">
                                         <g id="Vector" filter="url(#filter0_i_2491_9200)">
                                             <path d="M27.6563 17.5112H5.23331C2.67068 17.5112 0.535156 19.6468 0.535156 22.2094V35.2361C0.535156 37.7987 2.67068 39.9342 5.23331 39.9342L3.95199 42.7104C3.52489 43.6714 4.69943 44.6324 5.55364 43.9917L10.7857 39.9342H27.6563C30.2189 39.9342 32.3545 37.7987 32.3545 35.2361V22.2094C32.2477 19.6468 30.2189 17.5112 27.6563 17.5112Z" fill="#4DE7E7"></path></g>
                                         <g id="Vector_2" filter="url(#filter1_i_2491_9200)">
@@ -582,8 +599,8 @@ export default function BasicTableOne() {
                                         </path>
                                     </g>
                                     <defs>
-                                        <filter id="filter0_i_2491_9200" x="0.535156" y="17.5112" width="31.8193" height="29.6879" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                            <feFlood flood-opacity="0" result="BackgroundImageFix">
+                                        <filter id="filter0_i_2491_9200" x="0.535156" y="17.5112" width="31.8193" height="29.6879" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                                            <feFlood floodOpacity="0" result="BackgroundImageFix">
                                             </feFlood>
                                             <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
                                             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha">
@@ -599,8 +616,8 @@ export default function BasicTableOne() {
                                             <feBlend mode="normal" in2="shape" result="effect1_innerShadow_2491_9200">
                                             </feBlend>
                                         </filter>
-                                        <filter id="filter1_i_2491_9200" x="13.7734" y="24.6653" width="31.8193" height="29.7947" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                            <feFlood flood-opacity="0" result="BackgroundImageFix">
+                                        <filter id="filter1_i_2491_9200" x="13.7734" y="24.6653" width="31.8193" height="29.7947" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                                            <feFlood floodOpacity="0" result="BackgroundImageFix">
                                             </feFlood>
                                             <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape">
                                             </feBlend>
@@ -717,7 +734,7 @@ export default function BasicTableOne() {
                             <div className="bookstyles__BookButtoWrapper-sc-k85x0-3 dtwvFQ">
                                 <button className="ButtonWrapper whiteBtn">
                                     <span>Try For Free</span>
-                                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+                                    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
                                     </svg>
                                 </button>
                             </div>
@@ -780,10 +797,10 @@ export default function BasicTableOne() {
                                             <a title="Privacy Policy" target="_blank" href="/classe365-privacy-policy">Privacy Policy</a>
                                         </div>
                                         <div>
-                                            <a title="Instagram" target="_blank" href="https://www.instagram.com/classe3six5/" className="social-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg></a>
-                                            <a title="Facebook" target="_blank" href="https://www.facebook.com/classe365" className="social-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 320 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg></a>
-                                            <a title="LinkedIn" target="_blank" href="https://www.linkedin.com/company/classe365/" className="social-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg></a>
-                                            <a title="Twitter" target="_blank" href="https://twitter.com/classe365" className="social-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg></a>
+                                            <a title="Instagram" target="_blank" href="https://www.instagram.com/classe3six5/" className="social-link"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg></a>
+                                            <a title="Facebook" target="_blank" href="https://www.facebook.com/classe365" className="social-link"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 320 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg></a>
+                                            <a title="LinkedIn" target="_blank" href="https://www.linkedin.com/company/classe365/" className="social-link"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg></a>
+                                            <a title="Twitter" target="_blank" href="https://twitter.com/classe365" className="social-link"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg></a>
                                         </div>
                                     </div>
                                 </div>
