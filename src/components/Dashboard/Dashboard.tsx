@@ -477,19 +477,13 @@ export default function BasicTableOne() {
                                         // <div className=" InstitutionItemWrapper">
                                         //     <div>Universities and Colleges</div>
                                         //     <p>A smart CRM for universities and colleges to manage the entire student life cycle! With Classe365, managing students, faculty, and courses is super easy!</p></div>
-                                        // <div className=" InstitutionItemWrapper">
-                                        //     <div>Academies</div>
-                                        //     <p>Managing multiple academies is a breeze with Classe365&apos;s student information system! Why wait? Take  advantage of our flexibility and functionality.</p></div>
-                                        // <div className=" InstitutionItemWrapper">
-                                        //     <div>Corporate Learning</div>
-                                        //     <p>Did you know that corporations can use Classe365 to make learning management a whole lot easier? Organize, track, and report with ease!</p>
-                                        // </div>
+
                                     ))}
                                 </div>
                             </div>
                         </div>
-                        <div className="InstitutionImageWrapper" style={{backgroundRepeat: 'no-repeat', backgroundImage: `url(${selectedInsImage})`}}>
-                            <img src={selectedInsImage} alt="School Management System" title="School Management System Software" fetchPriority="high" width="0" height="930" decoding="async" data-nimg="1" className="instImage" style={{ color: 'transparent' }}  />
+                        <div className="InstitutionImageWrapper" style={{ backgroundRepeat: 'no-repeat', backgroundImage: `url(${selectedInsImage})` }}>
+                            <img src={selectedInsImage} alt="School Management System" title="School Management System Software" fetchPriority="high" width="0" height="930" decoding="async" data-nimg="1" className="instImage" style={{ color: 'transparent' }} />
                         </div>
                     </div>
                     <div className="InsititutionSwiper">
@@ -588,8 +582,8 @@ export default function BasicTableOne() {
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                <h2>
-                                    Discover Why Our Customers Love Classe365 - In Their Own Words
+                                <h2 style={{ lineHeight: '1' }}>
+                                    Discover Why Our Customers Love Core-LEM - In Their Own Words
                                 </h2>
                                 <p>Hear what all the buzz is about! Check out what our customers have to say about Classe365 - awarded the best SIS solution by EdTech Awards for 3 consecutive years</p>
                                 <div className="CustomNavigator">
@@ -607,11 +601,14 @@ export default function BasicTableOne() {
                         <div className="DiscoverSliderWrapper" >
                             <div>
                                 <div className="swiper swiper-initialized swiper-horizontal swiper-rtl mySwiper swiper-backface-hidden" dir="rtl">
-                                    <div className="swiper-wrapper" style={{ transitionDuration: '0ms', transform: 'translate3d(1200.99px, 0px, 0px)', transitionDelay: '0ms' }}>
+                                    <div className="swiper-wrapper" style={{ transitionDuration: '0ms', transform: 'translate3d(1200px, 0px, 0px)', transitionDelay: '0ms' }}>
                                         <div className="swiper-slide" data-swiper-slide-index="1" style={{ marginLeft: '30px' }}>
                                             <div dir="ltr" className="discoverCardstyles__DiscoverCardWrapper-sc-zal9au-0 cqQYbO discover-card">
-                                                <div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ"><h2>“</h2><h4>Good value for money</h4><p>Academic admin staff find the student information system is easy to use.</p></div>
-                                                <div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Alistair S.</h5><p>System Architect</p></div></div>
+                                                <div className="discoverCardstyles__DiscoverContent-sc-zal9au-1 iMriTJ"><h2>“</h2><h4>Good value for money</h4>
+                                                    <p>Academic admin staff find the student information system is easy to use.</p>
+                                                </div>
+                                                <div className="discoverCardstyles__DiscoverOwner-sc-zal9au-2 mDyRD"><h4>source - Capterra</h4><h5>Alistair S.</h5><p>System Architect</p></div>
+                                            </div>
                                         </div>
                                         <div className="swiper-slide swiper-slide-prev" data-swiper-slide-index="2" style={{ marginLeft: '30px' }}>
                                             <div dir="ltr" className="discoverCardstyles__DiscoverCardWrapper-sc-zal9au-0 cqQYbO discover-card">
@@ -744,8 +741,44 @@ export default function BasicTableOne() {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="navigationstyles__NavigationListWrapper-sc-1isemhl-4 hWWiId">
+                                    <div className="navigationstyles__NavigationListContent-sc-1isemhl-5 jZElrE">
+                                        <h2>RESOURCES</h2><a target="_blank" title="Help Docs" href="http://docs.classe365.com/en/">Help Docs</a>
+                                        <a target="_blank" title="Video Tutorials" href="http://docs.classe365.com/en/articles/649470-video-tutorials-of-classe365">Video Tutorials</a>
+                                        <a target="_blank" title="API Docs" href="http://docs.classe365.com/en/collections/47611-api-documentation">API Docs</a><a target="_blank" title="Demo &amp; Webinars" href="/request-demo">Demo &amp; Webinars</a>
+                                        <a target="_blank" title="Cloud Security" href="http://docs.classe365.com/en/articles/457792-classe365-cloud-security-compliance#">Cloud Security</a>
+                                        <a target="_blank" title="Product Updates" href="https://updates.classe365.com/en">Product Updates</a>
+                                    </div>
+                                </div>
+                                <div className="navigationstyles__NavigationListWrapper-sc-1isemhl-4 hWWiId">
+                                    <div className="navigationstyles__NavigationListContent-sc-1isemhl-5 jZElrE"><h2>COMPARE
+                                        <br />
+                                        <span>(Higher Ed Software)</span></h2><a title="Ellucian" href="/compare/alternate-to-ellucian">Vs Ellucian</a>
+                                        <a title="Oracle Peoplesoft Campus" href="/compare/alternate-to-oracle-peoplesoft-campus">Vs Oracle Peoplesoft Campus</a>
+                                        <a title="Jenzabar" href="/compare/alternate-to-jenzabar">Vs Jenzabar</a><a title="Workday" href="/compare/alternate-to-workday">Vs Workday</a></div>
+                                    <div className="navigationstyles__NavigationListContent-sc-1isemhl-5 jZElrE"><h2>COMPARE<br />
+                                        <span>(K12 Software)</span></h2>
+                                        <a title="Powerschool" href="/compare/alternate-to-powerschool">Vs Powerschool</a><a title="Gradelink" href="/compare/alternate-to-gradelink">Vs Gradelink</a>
+                                        <a title="Redikar" href="/compare/alternate-to-rediker">Vs Redikar</a><a title="Alma" href="/compare/alternate-to-alma">Vs Alma</a>
+                                    </div>
+                                </div>
+                                <div className="navigationstyles__NavigationListWrapper-sc-1isemhl-4 hWWiId">
+                                    <div className="navigationstyles__NavigationListContent-sc-1isemhl-5 jZElrE">
+                                        <h2>GET IN TOUCH</h2>
+                                        <a target="_blank" title="Contact Sales" href="mailto:sales@classe365.com">Contact Sales</a><a target="_blank" title="Contact Support" href="mailto:support@classe365.com">Contact Support</a><a target="_blank" title="Contact Partnership" href="mailto:sales@classe365.com">Contact Partnership</a><a target="_blank" title="Contact Media" href="mailto:pr@classe365.com">Contact Media</a></div>
+                                    <div className="navigationstyles__NavigationListContent-sc-1isemhl-5 jZElrE"><h2>Download App</h2>
+                                        <div className="navigationstyles__DownloadButtonWrapper-sc-1isemhl-6 dbdxzd">
+                                            <a target="_blank" title="App Store Link" href="https://apps.apple.com/us/app/classe365/id1040422036">
+                                                <img alt="App store" loading="lazy" width="112" height="32" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/footer/app_store.webp" />
+                                            </a>
+                                            <a target="_blank" title="Play Store Link" href="https://play.google.com/store/apps/details?id=com.classe365">
+                                                <img alt="Google Play" loading="lazy" width="112" height="34" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/footer/googleplay.webp" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className="navigationstyles__CopyrightWrapper-sc-1isemhl-7 iJlRSS">
-                                    <p>Copyright © Core-lem | All Rights Reserved.</p>
+                                    <p>Copyright © Core-Lem | All Rights Reserved.</p>
                                     <div className="navigationstyles__SocialsNavWrapper-sc-1isemhl-8 jFYXcj">
                                         <div>
                                             <a title="Terms &amp; Conditions" target="_blank" href="/terms-and-conditions">Terms &amp; Conditions</a>
