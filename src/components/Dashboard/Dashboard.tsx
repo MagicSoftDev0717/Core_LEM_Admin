@@ -1,7 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/free-mode";
+import styles from './FeatureSlider.module.css'; // Import the CSS module
 
 import "./348c6be32cb97baa.css";
 // import "./aaa.css";
@@ -20,12 +24,12 @@ export default function BasicTableOne() {
 
     const solutions = [
         { title: "Marketing", description: "Want to boost enrolment? Use our higher education CRM, e-commerce & agent modules! Benefit from one-click enrolment, student placements & more.", image: "1.webp" },
-        { title: "Registrars", description: "Managing admissions just got easy! Admit and monitor students using our admission CRM & task module.",  image: "2.webp" },
-        { title: "Administrators", description: "Seamlessly manage student data with our student database management system. Track progress, manage alumni, and build the learning journey.",  image: "3.webp" },
-        { title: "Teachers", description: "Use our Learning Management System & analytics module for immersive classroom experiences. Observe behavioural trends and improve student success.",  image: "4.webp" },
-        { title: "Business Leaders", description: "Looking for an easier way to manage financial transactions? Scholarships, donations and online payments managed like never before.",  image: "5.webp" },
-        { title: "CFOs", description: "Take control of your finances with Classe365. Our ROI calculators can also help you save up to 33%.",  image: "6.webp" },
-        { title: "IT Leaders", description: "Simplify your integrations with our open APIs! Sign into Google Workspace or Office365 for even more flexibility.",  image: "7.webp" }
+        { title: "Registrars", description: "Managing admissions just got easy! Admit and monitor students using our admission CRM & task module.", image: "2.webp" },
+        { title: "Administrators", description: "Seamlessly manage student data with our student database management system. Track progress, manage alumni, and build the learning journey.", image: "3.webp" },
+        { title: "Teachers", description: "Use our Learning Management System & analytics module for immersive classroom experiences. Observe behavioural trends and improve student success.", image: "4.webp" },
+        { title: "Business Leaders", description: "Looking for an easier way to manage financial transactions? Scholarships, donations and online payments managed like never before.", image: "5.webp" },
+        { title: "CFOs", description: "Take control of your finances with Classe365. Our ROI calculators can also help you save up to 33%.", image: "6.webp" },
+        { title: "IT Leaders", description: "Simplify your integrations with our open APIs! Sign into Google Workspace or Office365 for even more flexibility.", image: "7.webp" }
     ];
 
 
@@ -36,6 +40,79 @@ export default function BasicTableOne() {
         setSelectedImage(`/assets/images/solutions/${imageName}`);
         setActiveIndex(index);
     };
+
+
+    // Feature Data
+    const features = [
+        {
+            title: "The Edtech Awards: Cool Tool Winner",
+            subtitle: "Student Information System",
+            image: "/assets/images/features/1-old.webp",
+            alt: "EdTech Winner Award For Student Information system by EdTech Digest",
+        },
+        {
+            title: "Statista Australia’s Fastest Growing Company",
+            subtitle: "Listed 2 years in a row",
+            image: "/assets/images/features/2-old.webp",
+            alt: "Australia's Fastest Growing Companies",
+        },
+        {
+            title: "FT Top 500 fastest growing company",
+            subtitle: "Listed 2 years in a row.",
+            image: "/assets/images/features/3-old.webp",
+            alt: "FT Top 500 fastest growing company",
+        },
+        {
+            title: "Category Leaders: GetApp",
+            subtitle: "School Administration Software",
+            image: "/assets/images/features/4-old.webp",
+            alt: "Get App's Corporate Leader 2020 For School Administration Software",
+        },
+        {
+            title: "Enrolment & Admission Solution: Winner",
+            subtitle: "Edtech Awards 2021 by Edtech Digest",
+            image: "/assets/images/features/5-old.webp",
+            alt: "Enrollment & Admission Solution Award",
+        },
+        {
+            title: "Most Popular: Top 20",
+            subtitle: "School Administration",
+            image: "/assets/images/features/6-old.webp",
+            alt: "School Administration",
+        },
+        {
+            title: "Student Information System: Winner",
+            subtitle: "Edtech Awards 2023 by Edtech Digest",
+            image: "/assets/images/features/1.webp",
+            alt: "EdTech Award of Cool Tool",
+        },
+        {
+            title: "SaaS Awards 2023",
+            subtitle: "Finalist in LMS category",
+            image: "/assets/images/features/2.webp",
+            alt: "The Saas Awards",
+        },
+        {
+            title: "FT Top 500 - 2022",
+            subtitle: "Financial Times Top 500 High Growth Companies",
+            image: "/assets/images/features/3.webp",
+            alt: "FT Top 500 fastest growing company - Listed 2 years in a row",
+        },
+        {
+            title: "Student Information System: Winner",
+            subtitle: "Edtech Awards 2022 by Edtech Digest",
+            image: "/assets/images/features/4.webp",
+            alt: "Student Information System Winner of EdTech",
+        },
+        {
+            title: "LMS, SIS & Performance Tracking",
+            subtitle: "The Educator 2022 Service Provider Awards",
+            image: "/assets/images/features/5.webp",
+            alt: "Education ERP System Service Provider Award",
+        },
+    ];
+
+
     return (
         <div id="__next">
             <div className="AppLayoutWrapper">
@@ -323,7 +400,7 @@ export default function BasicTableOne() {
                                             </div>
                                         </div>
                                     ))}
-                                    
+
                                     {/* <div className=" SolutionCardWrapper">
                                         <h3>IT Leaders</h3>
                                         <div>
@@ -345,177 +422,32 @@ export default function BasicTableOne() {
                                     <img src="/assets/images/clap.webp" alt="hand-clap" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" style={{ color: 'transparent' }} /></h2><p>Most awarded EdTech company of 2021/22, including being part of Top 65 fastest growing companies of 2021 in APAC</p>
                             </div>
                         </div>
-                        <div className="FeaturesContentWrapper">
-                            <div className="swiper swiper-initialized swiper-horizontal mySwiper swiper-backface-hidden">
-                                <div className="swiper-wrapper" style={{ transitionDuration: '0ms', transform: 'translate3d(-1048px, 0px, 0px)', transitionDelay: '0ms' }}>
-                                    <div className="swiper-slide swiper-slide-next swiper-slide-prev" data-swiper-slide-index="1" style={{ width: '1024px', marginRight: '24px' }}>
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="EdTech Winner Award For Sudent Information system by EdTech Digest" title="Student Information System Winner" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/1-old.webp" />
+                        <div className={styles["feature-slider"]}>
+                            <Swiper
+                                spaceBetween={20}
+                                slidesPerView={3}
+                                freeMode={true}
+                                modules={[FreeMode]}
+                                className="mySwiper"
+                            >
+                                {features.map((feature, index) => (
+                                    <SwiperSlide key={index}>
+                                        <div className={styles["feature-card"]}>
+                                            <img src={feature.image} alt={feature.alt} width={250} height={150} />
                                             <div>
-                                                <h5>The Edtech Awards: Cool Tool Winner</h5><p>Student Information System</p>
+                                                <h5>{feature.title}</h5>
+                                                <p>{feature.subtitle}</p>
                                             </div>
                                         </div>
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="Australia's Fastest Growing Companies" title="Australia's Fastest Growing Companies" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/2-old.webp" />
-                                            <div>
-                                                <h5>Statista Australia’s Fastest Growing Company</h5><p>Listed 2 years in a row</p>
-                                            </div>
-                                        </div>
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="FT Top 500 fastest growing company" title="FT Top 500 fastest growing company" loading="lazy" width={0} height={0} decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/3-old.webp" />
-                                            <div>
-                                                <h5>FT Top 500 fastest growing company</h5><p>Listed 2 years in a row.</p></div>
-                                        </div><div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="Get App's Corporate Leader 2020 For School Administration Software" title="Get App's Corporate Leader 2020 For School Administration Software" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/4-old.webp" />
-                                            <div>
-                                                <h5>Category Leaders : GetApp</h5><p>School Administration Software</p>
-                                            </div>
-                                        </div>
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS"><img alt="Enrollment &amp; Admission Solution Award" title="Winner Award by EdTech Digest of Enrollment &amp; Admission" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/5-old.webp" />
-                                            <div>
-                                                <h5>Enrolment &amp; Admission Solution: Winner</h5>
-                                                <p>Edtech Awards 2021 by Edtech Digest</p>
-                                            </div>
-                                        </div>
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS"><img alt="School Administration" title="School Administration of Classe365" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/6-old.webp" />
-                                            <div><h5>Most Popular: Top 20</h5><p>School Administration</p></div></div>
-                                    </div>
-                                    <div className="swiper-slide swiper-slide-active" style={{ width: '1024px', marginRight: '24px' }} data-swiper-slide-index="0">
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="EdTech Award of Cool Tool" title="Cool Tool Winner Award by EdTech Digest" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/1.webp" />
-                                            <div>
-                                                <h5>Student Information System: Winner</h5><p>Edtech Awards 2023 by Edtech Digest</p>
-                                            </div>
-                                        </div>
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="The Saas Awards" title="The Saas Awards of 2023" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/2.webp" />
-                                            <div><h5>SaaS Awards 2023</h5><p>Finalist in.LMS category</p>
-                                            </div>
-                                        </div>
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="FT Top 500 fastest growing company - Listed 2 years in a row" title="FT Top 500 fastest growing company - Listed 2 years in a row" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/3.webp" />
-                                            <div
-                                            ><h5>FT Top 500 - 2022</h5><p>Financial Times Top 500 High Growth Companies</p></div></div>
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="Student Information System Winner of EdTech" title="Winner of student information system by EdTech Digest" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/4.webp" />
-                                            <div>
-                                                <h5>Student Information System: Winner</h5><p>Edtech Awards 2022 by Edtech Digest</p>
-                                            </div>
-                                        </div>
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="Education ERP System Service Provider Award" title="Award of Education ERP System Service Provider" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/5.webp" />
-                                            <div>
-                                                <h5>LMS, SIS &amp; Performance Tracking</h5><p>The Educator 2022 Service Provider Awards</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
-                                    <span className="swiper-pagination-bullet"></span>
-                                    <span className="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="FeaturesSwiper">
-                            <div className="swiper swiper-initialized swiper-horizontal swiper-free-mode mySwiper">
-                                <div className="swiper-wrapper" style={{ transitionDuration: '0ms', transitionDelay: '0ms' }}>
-                                    <div className="swiper-slide swiper-slide-active" data-swiper-slide-index="0">
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="EdTech Winner Award For Sudent Information system by EdTech Digest" title="Student Information System Winner" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/1-old.webp" />
-                                            <div>
-                                                <h5>The Edtech Awards: Cool Tool Winner</h5><p>Student Information System</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide swiper-slide-next" data-swiper-slide-index="1">
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="Australia's Fastest Growing Companies" title="Australia's Fastest Growing Companies" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/2-old.webp" />
-                                            <div>
-                                                <h5>Statista Australia&apos;s Fastest Growing Company</h5><p>Listed 2 years in a row</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide" data-swiper-slide-index="2">
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="FT Top 500 fastest growing company" title="FT Top 500 fastest growing company" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/3-old.webp" />
-                                            <div>
-                                                <h5>FT Top 500 fastest growing company</h5><p>Listed 2 years in a row.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide" data-swiper-slide-index="3">
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="Get App's Corporate Leader 2020 For School Administration Software" title="Get App's Corporate Leader 2020 For School Administration Software" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/4-old.webp" />
-                                            <div><h5>Category Leaders : GetApp</h5><p>School Administration Software</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide" data-swiper-slide-index="4">
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="Enrollment &amp; Admission Solution Award" title="Winner Award by EdTech Digest of Enrollment &amp; Admission" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/5-old.webp" />
-                                            <div>
-                                                <h5>Enrolment &amp; Admission Solution: Winner</h5>
-                                                <p>Edtech Awards 2021 by Edtech Digest</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide" data-swiper-slide-index="5">
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="School Administration" title="School Administration of Classe365" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/6-old.webp" />
-                                            <div><h5>Most Popular: Top 20</h5><p>School Administration</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide" data-swiper-slide-index="6">
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="EdTech Award of Cool Tool" title="Cool Tool Winner Award by EdTech Digest" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/1.webp" />
-                                            <div>
-                                                <h5>Student Information System: Winner</h5>
-                                                <p>Edtech Awards 2023 by Edtech Digest</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide" data-swiper-slide-index="7">
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="The Saas Awards" title="The Saas Awards of 2023" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/2.webp" />
-                                            <div>
-                                                <h5>SaaS Awards 2023</h5><p>Finalist in.LMS category</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide" data-swiper-slide-index="8">
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="FT Top 500 fastest growing company - Listed 2 years in a row" title="FT Top 500 fastest growing company - Listed 2 years in a row" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/3.webp" />
-                                            <div>
-                                                <h5>FT Top 500 - 2022</h5><p>Financial Times Top 500 High Growth Companies</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide" data-swiper-slide-index="9">
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="Student Information System Winner of EdTech" title="Winner of student information system by EdTech Digest" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/4.webp" />
-                                            <div>
-                                                <h5>Student Information System: Winner</h5>
-                                                <p>Edtech Awards 2022 by Edtech Digest</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide" data-swiper-slide-index="10">
-                                        <div className="featureCardstyles__FeatureCardWrapper-sc-1pwic5p-0 iyRDGS">
-                                            <img alt="Education ERP System Service Provider Award" title="Award of Education ERP System Service Provider" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/features/5.webp" />
-                                            <div>
-                                                <h5>LMS, SIS &amp; Performance Tracking</h5>
-                                                <p>The Educator 2022 Service Provider Awards</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
                         </div>
                     </div>
                     <div className="InstitutionsWrapper">
                         <div className="InstitutionContainer">
-                            <div><h6>For all Institutions</h6><h2>All-in-one learning management solution for institutions</h2>
+                            <div>
+                                <h6>For all Institutions</h6><h2>All-in-one learning management solution for institutions</h2>
                                 <div className="InstitutionListWrapper">
                                     <div className="active InstitutionItemWrapper">
                                         <div>Schools</div>
