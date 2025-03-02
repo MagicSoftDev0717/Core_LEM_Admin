@@ -22,6 +22,7 @@ export default function BasicTableOne() {
     //     { id: "experience-2", src: "/assets/images/experience/data03.mp4" },
     // ];
 
+    //Solutions
     const solutions = [
         { title: "Marketing", description: "Want to boost enrolment? Use our higher education CRM, e-commerce & agent modules! Benefit from one-click enrolment, student placements & more.", image: "1.webp" },
         { title: "Registrars", description: "Managing admissions just got easy! Admit and monitor students using our admission CRM & task module.", image: "2.webp" },
@@ -112,6 +113,24 @@ export default function BasicTableOne() {
         },
     ];
 
+
+    //institution
+    const institution = [
+        { title: "Schools", descrip: "Boost enrolment, streamline your operations, and improve learning with our school management system.", image: "1.webp" },
+        { title: "Universities and Colleges", descrip: "A smart CRM for universities and colleges to manage the entire student life cycle! With Classe365, managing students, faculty, and courses is super easy!", image: "2.webp" },
+        { title: "Academies", descrip: "Managing multiple academies is a breeze with Classe365’s student information system! Why wait? Take advantage of our flexibility and functionality.", image: "3.webp" },
+        { title: "Corporate Learning", descrip: "Did you know that corporations can use Classe365 to make learning management a whole lot easier? Organize, track, and report with ease!", image: "4.webp" },
+
+    ];
+
+
+    const [selectedInsImage, setSelectedInsImage] = useState<string>("/assets/images/institution/1.webp");
+    const [activeInsIndex, setActiveInsIndex] = useState<number | null>(0); // Track active card index
+
+    const handleInsImageChange = (index: number, imageName: string) => {
+        setSelectedInsImage(`/assets/images/institution/${imageName}`);
+        setActiveInsIndex(index);
+    };
 
     return (
         <div id="__next">
@@ -447,26 +466,30 @@ export default function BasicTableOne() {
                     <div className="InstitutionsWrapper">
                         <div className="InstitutionContainer">
                             <div>
-                                <h6>For all Institutions</h6><h2>All-in-one learning management solution for institutions</h2>
+                                <h6>For all Institutions</h6>
+                                <h2 style={{ lineHeight: "1" }}>All-in-one learning management solution for institutions</h2>
                                 <div className="InstitutionListWrapper">
-                                    <div className="active InstitutionItemWrapper">
-                                        <div>Schools</div>
-                                        <p>Boost enrolment, streamline your operations, and improve learning with our school management system.</p></div>
-                                    <div className=" InstitutionItemWrapper">
-                                        <div>Universities and Colleges</div>
-                                        <p>A smart CRM for universities and colleges to manage the entire student life cycle! With Classe365, managing students, faculty, and courses is super easy!</p></div>
-                                    <div className=" InstitutionItemWrapper">
-                                        <div>Academies</div>
-                                        <p>Managing multiple academies is a breeze with Classe365’s student information system! Why wait? Take  advantage of our flexibility and functionality.</p></div>
-                                    <div className=" InstitutionItemWrapper">
-                                        <div>Corporate Learning</div>
-                                        <p>Did you know that corporations can use Classe365 to make learning management a whole lot easier? Organize, track, and report with ease!</p>
-                                    </div>
+                                    {institution.map((institution, index) => (
+                                        <div key={index} className={`InstitutionItemWrapper ${activeInsIndex === index ? "active" : ""}`} onClick={() => handleInsImageChange(index, institution.image)}>
+                                            <div>{institution.title}</div>
+                                            <p>{institution.descrip}</p>
+                                        </div>
+                                        // <div className=" InstitutionItemWrapper">
+                                        //     <div>Universities and Colleges</div>
+                                        //     <p>A smart CRM for universities and colleges to manage the entire student life cycle! With Classe365, managing students, faculty, and courses is super easy!</p></div>
+                                        // <div className=" InstitutionItemWrapper">
+                                        //     <div>Academies</div>
+                                        //     <p>Managing multiple academies is a breeze with Classe365&apos;s student information system! Why wait? Take  advantage of our flexibility and functionality.</p></div>
+                                        // <div className=" InstitutionItemWrapper">
+                                        //     <div>Corporate Learning</div>
+                                        //     <p>Did you know that corporations can use Classe365 to make learning management a whole lot easier? Organize, track, and report with ease!</p>
+                                        // </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
-                        <div className="InstitutionImageWrapper" style={{ backgroundImage: "url('/assets/images/institution/1.webp')", backgroundRepeat: "no-repeat" }}>
-                            <img alt="School Management System" title="School Management System Software" fetchPriority="high" width="0" height="930" decoding="async" data-nimg="1" className="instImage" style={{ color: 'transparent' }} src="/assets/images/institution/1.webp" />
+                        <div className="InstitutionImageWrapper" style={{backgroundRepeat: 'no-repeat', backgroundImage: `url(${selectedInsImage})`}}>
+                            <img src={selectedInsImage} alt="School Management System" title="School Management System Software" fetchPriority="high" width="0" height="930" decoding="async" data-nimg="1" className="instImage" style={{ color: 'transparent' }}  />
                         </div>
                     </div>
                     <div className="InsititutionSwiper">
