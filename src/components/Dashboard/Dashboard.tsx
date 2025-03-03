@@ -24,7 +24,7 @@ export default function BasicTableOne() {
 
     const [isOpen, setIsOpen] = useState(false);
 
-
+   
     //Solutions
     const solutions = [
         { title: "Marketing", description: "Want to boost enrolment? Use our higher education CRM, e-commerce & agent modules! Benefit from one-click enrolment, student placements & more.", image: "1.webp" },
@@ -880,7 +880,7 @@ export default function BasicTableOne() {
                 </div>
                 <div className="FooterWrapper">
                     <div className="bookstyles__BookSectionWrapper-sc-k85x0-0 edjGCS">
-                        <div className="bookstyles__BookSectionContainer-sc-k85x0-1 bnlrQu">
+                        <div className="bookstyles__BookSectionContainer-sc-k85x0-1 bnlrQu" style={{lineHeight: '1'}}>
                             <h2>
                                 Start with
                             </h2>
@@ -892,6 +892,7 @@ export default function BasicTableOne() {
                                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
                                     </svg>
                                 </button>
+                                <button className="ButtonWrapper transparentWhiteBtn">Get a Free Platform Tour</button>
                             </div>
                         </div>
                         <div className="bookstyles__BookImageWrapper-sc-k85x0-2 jshYDK">
