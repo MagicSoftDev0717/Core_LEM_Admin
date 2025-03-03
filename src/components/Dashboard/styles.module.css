@@ -1,0 +1,21 @@
+.NavItemWrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.MegaMenuWrapper {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 1020px; /* Adjust width as needed */
+    width: 100%;
+    z-index: 1000;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.open {
+    display: block;
+}

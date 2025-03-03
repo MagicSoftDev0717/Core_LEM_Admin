@@ -1831,7 +1831,7 @@ h1,h2,h3,h4,h5,h6,p {
 
 .ExperienceItemWrapper h2 {
     color: #1e2123;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
     margin-top: 20px;
     margin-bottom: 24px
@@ -6440,21 +6440,3 @@ button.swiper-pagination-bullet {
     border-radius: 9999px;
 }
 
-.ButtonWrapper.whiteBtn {
-    background: #f1f6fa;
-    border-color: #f1f6fa;
-    color: #6772e5;
-}
-
-.ButtonWrapper {
-    background: transparent;
-    color: #f1f6fa;
-    border: 1px solid #f1f6fa;
-}
-
-/* Additional class for specific button type */
-.transparentWhiteBtn {
-    background: transparent;
-    color: #f1f6fa;
-    border-color: #f1f6fa;
-}

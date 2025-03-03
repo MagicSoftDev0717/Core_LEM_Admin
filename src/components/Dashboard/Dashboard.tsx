@@ -6,7 +6,7 @@ import { FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import styles from './FeatureSlider.module.css'; // Import the CSS module
-
+import styles_hd from "./styles.module.css";
 import "./348c6be32cb97baa.css";
 // import "./aaa.css";
 
@@ -15,6 +15,12 @@ export default function BasicTableOne() {
     const goToMainPage = () => {
         router.push("/home"); // Navigate to the 'lead' page
     };
+
+    const goToSignInPage = () => {
+        router.push("/signin"); // Navigate to the 'lead' page
+    };
+
+    const [isOpen, setIsOpen] = useState(false);
 
     // const videoData = [
     //     { id: "experience-0", src: "/assets/images/experience/data02.mp4" },
@@ -157,30 +163,192 @@ export default function BasicTableOne() {
                                 <img src="/assets/images/core-lem-logo.svg" width={85} height={48} alt="Product suite arrow right" fetchPriority="high" decoding="async" data-nimg="1" className="top-header-img arrow-right" style={{ color: 'transparent' }} />
                             </div>
                             <div className="HeaderNavContainer">
-                                <div className="NavItemWrapper">
+                                <div className="NavItemWrapper" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
                                     <div className="NavLabel">
                                         <span>Solutions</span>
                                         <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="11" width="11" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>
                                     </div>
-                                    <div className=" SubMenuWrapper">
-                                        <div className="SubMenuItemWrapper">
-                                            <span>Teams</span>
-                                            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="11" width="11" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path></svg>
-                                            <div className=" SubMenuWrapper sub-menu">
-                                                <div className="SubMenuItemWrapper">Marketing Teams</div>
-                                                <div className="SubMenuItemWrapper">Registrars</div>
-                                                <div className="SubMenuItemWrapper">Administrators</div>
-                                                <div className="SubMenuItemWrapper">Teachers</div>
-                                                <div className="SubMenuItemWrapper">CFOs</div>
-                                                <div className="SubMenuItemWrapper">CTOs</div>
-                                                <div className="SubMenuItemWrapper">Business Leaders</div>
+                                    <div className={`${styles_hd.MegaMenuWrapper} ${isOpen ? styles_hd.open : ""}`}>
+                                        <div className="SolutionsMegaMenuWrapper">
+                                            <div className="SolutionsMegaMenuGridItem">
+                                                <h1>Teams</h1>
+                                                <div className=" MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper">
+                                                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clipPath="url(#clip0_4581_62)"><path fillRule="evenodd" clipRule="evenodd" d="M16.5329 0.825813C16.6529 0.581115 16.9212 0.454052 17.1941 0.515229C17.46 0.578761 17.6471 0.815229 17.6471 1.08817V6.44229C18.9882 6.71523 20 7.90347 20 9.32347C20 10.7435 18.9882 11.9329 17.6471 12.2058V17.5588C17.6471 17.8317 17.46 18.0693 17.1941 18.1317C17.1497 18.1419 17.1044 18.1471 17.0588 18.147C16.8388 18.147 16.6341 18.0246 16.5329 17.8223C14.3671 13.4917 10.0435 13.4411 10 13.4411H5.88235V19.3235H6.79647C6.67294 18.3846 6.61412 16.7505 7.45765 15.6705C8.00353 14.9717 8.80824 14.6176 9.85294 14.6176V15.7941C9.18117 15.7941 8.70117 15.9905 8.38589 16.3929C7.66942 17.3082 7.91647 19.1411 8.07058 19.7705C8.11413 19.9458 8.07413 20.1317 7.96353 20.2741C7.85176 20.4164 7.68 20.4999 7.5 20.4999H5.29411C4.96942 20.4999 4.70589 20.2376 4.70589 19.9117V13.4411H4.11766C2.49529 13.4411 1.17647 12.1223 1.17647 10.4999V9.91171H0.58824C0.263531 9.9117 0 9.64933 0 9.32346C0 8.99875 0.263531 8.73522 0.588229 8.73522H1.17647V8.14699C1.17647 6.5258 2.49529 5.2058 4.11765 5.2058H9.99882C10.1753 5.20464 14.3788 5.13287 16.5329 0.825813ZM16.4706 3.10111C14.4424 5.62581 11.76 6.20699 10.5882 6.34111V12.307C11.76 12.4411 14.4424 13.0211 16.4706 15.547V3.10111ZM9.41177 6.38229H4.11765C3.14471 6.38229 2.35294 7.17406 2.35294 8.14699V10.4999C2.35294 11.4729 3.14471 12.2646 4.11765 12.2646H9.41177V6.38229ZM17.6471 7.66817V10.9799C18.3306 10.7364 18.8235 10.0893 18.8235 9.32347C18.8235 8.55758 18.3306 7.9117 17.6471 7.66817Z" fill="#3B3F42"></path></g>
+                                                            <defs>
+                                                                <clipPath id="clip0_4581_62"><rect width="20" height="20" fill="white" transform="translate(0 0.5)"></rect></clipPath></defs></svg>
+                                                    </div>
+                                                    <div className="item-container"><h3>Marketing Teams</h3><p>CRM software to boost your marketing</p></div></div>
+                                                <div className=" MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper">
+                                                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.3333 8.00005H14.8333C15.7668 8.00005 16.2335 8.00005 16.59 8.18171C16.9036 8.34149 17.1586 8.59646 17.3183 8.91008C17.5 9.26658 17.5 9.73333 17.5 10.6667V15.3334C17.5 16.2668 17.5 16.7335 17.3183 17.09C17.1586 17.4037 16.9036 17.6586 16.59 17.8184C16.2335 18.0001 15.7668 18.0001 14.8333 18.0001H5.1775C4.24408 18.0001 3.77742 18.0001 3.42083 17.8184C3.10725 17.6586 2.85233 17.4037 2.6925 17.09C2.51083 16.7335 2.51083 16.2668 2.51083 15.3334V10.5001M15 13.0001H14.9917M11.6667 13H11.6583M10.4009 11.2455L9.30525 11.0289C8.714 10.9121 8.41842 10.8537 8.14275 10.7461C7.89808 10.6506 7.66558 10.5265 7.45 10.3763C7.20717 10.2072 6.99417 9.99417 6.568 9.568L2.27767 5.27768C1.70492 4.70497 1.70492 3.77642 2.27767 3.2037C2.85033 2.63099 3.77892 2.63099 4.35158 3.20371L8.71533 7.5674C9.11458 7.9667 9.31425 8.16636 9.4755 8.39267C9.61867 8.5936 9.73908 8.80978 9.8345 9.03725C9.942 9.2935 10.0066 9.56842 10.1358 10.1181L10.4009 11.2455Z" stroke="#3B3F42" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+                                                    </div>
+                                                    <div className="item-container"><h3>Registrars</h3><p>From admissions to finance</p>
+                                                    </div>
+                                                </div>
+                                                <div className=" MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper"><svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.3334 11.5C14.3334 13.341 12.841 14.8333 11 14.8333C9.15902 14.8333 7.66669 13.341 7.66669 11.5C7.66669 9.65896 9.15902 8.16663 11 8.16663C12.841 8.16663 14.3334 9.65896 14.3334 11.5Z" stroke="#3B3F42" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path><path d="M12.0051 1.56672C11.7764 1.5 11.5177 1.5 11 1.5C10.4823 1.5 10.2236 1.5 9.99489 1.56672C9.66022 1.66438 9.36456 1.86453 9.14956 2.13901C9.00267 2.32653 8.90656 2.56684 8.71435 3.04747C8.43799 3.73836 7.67103 4.09412 6.96508 3.85889L6.33088 3.64757C5.881 3.49761 5.65606 3.42262 5.43551 3.40978C5.11154 3.3909 4.78911 3.46702 4.50779 3.62878C4.31628 3.7389 4.14862 3.90657 3.8133 4.24189C3.45691 4.59828 3.27871 4.77647 3.16551 4.97988C2.99919 5.27871 2.92883 5.62149 2.96399 5.96168C2.98791 6.19322 3.0815 6.42721 3.26869 6.89518C3.56183 7.62803 3.27982 8.46531 2.60302 8.87148L2.29468 9.05652C1.82257 9.33978 1.58651 9.48144 1.41504 9.67644C1.26331 9.849 1.1489 10.0511 1.07899 10.27C1 10.5173 1 10.7953 1 11.3514C1 12.0099 1 12.339 1.10513 12.6209C1.19803 12.8699 1.34913 13.093 1.54582 13.2718C1.76842 13.474 2.07106 13.5951 2.67629 13.8372C3.29482 14.0846 3.61329 14.7712 3.40262 15.4032L3.16357 16.1204C2.99799 16.6171 2.91519 16.8656 2.90767 17.1096C2.89861 17.403 2.96721 17.6936 3.10652 17.9519C3.22239 18.1669 3.40753 18.352 3.77778 18.7222C4.14803 19.0924 4.33317 19.2776 4.54806 19.3934C4.80644 19.5328 5.09703 19.6014 5.39044 19.5923C5.63447 19.5848 5.88284 19.502 6.3796 19.3364L6.96513 19.1412C7.67103 18.906 8.438 19.2617 8.71435 19.9526C8.90656 20.4331 9.00267 20.6734 9.14956 20.861C9.36456 21.1354 9.66022 21.3357 9.99489 21.4333C10.2236 21.5 10.4823 21.5 11 21.5C11.5177 21.5 11.7764 21.5 12.0051 21.4333C12.3398 21.3357 12.6354 21.1354 12.8504 20.861C12.9973 20.6734 13.0934 20.4331 13.2857 19.9526C13.562 19.2617 14.329 18.906 15.0348 19.1414L15.6199 19.3366C16.1167 19.5021 16.3651 19.5849 16.6091 19.5924C16.9026 19.6014 17.1931 19.5329 17.4514 19.3936C17.6663 19.2777 17.8516 19.0926 18.2218 18.7223C18.592 18.3521 18.7771 18.1669 18.893 17.952C19.0323 17.6937 19.1009 17.403 19.0919 17.1097C19.0843 16.8657 19.0016 16.6172 18.836 16.1204L18.5971 15.4038C18.3863 14.7716 18.7049 14.0847 19.3237 13.8372C19.9289 13.5951 20.2316 13.474 20.4542 13.2718C20.6509 13.093 20.802 12.8699 20.8949 12.6209C21 12.339 21 12.0099 21 11.3514C21 10.7953 21 10.5173 20.921 10.27C20.8511 10.0511 20.7367 9.849 20.585 9.67644C20.4134 9.48144 20.1774 9.33978 19.7053 9.05652L19.3966 8.87129C18.7198 8.46519 18.4377 7.62793 18.7309 6.89509C18.918 6.42714 19.0117 6.19314 19.0356 5.96159C19.0707 5.6214 19.0003 5.27863 18.834 4.97979C18.7208 4.77639 18.5427 4.59819 18.1862 4.2418C17.8509 3.90649 17.6832 3.73882 17.4918 3.6287C17.2104 3.46693 16.888 3.39082 16.564 3.40969C16.3434 3.42254 16.1186 3.49752 15.6687 3.64748L15.0349 3.85874C14.329 4.09404 13.562 3.73833 13.2857 3.04747C13.0934 2.56684 12.9973 2.32653 12.8504 2.13901C12.6354 1.86453 12.3398 1.66438 12.0051 1.56672Z" stroke="#3B3F42" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                                                    </svg>
+                                                    </div>
+                                                    <div className="item-container">
+                                                        <h3>Administrators</h3>
+                                                        <p>Effective student performance tracking</p>
+                                                    </div>
+                                                </div>
+                                                <div className=" MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper"><svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clipPath="url(#clip0_4581_55)"><path d="M10.6224 1.12242V0.5H9.37758V1.12242H0.663757V2.67844H1.59739V12.4289C1.59739 13.4033 2.38723 14.1931 3.36161 14.1931H16.6384C17.6128 14.1931 18.4026 13.4033 18.4026 12.4289V2.67844H19.3363V1.12242H10.6224ZM16.6384 12.9483H3.36161C3.07532 12.9483 2.84223 12.7152 2.84223 12.4289V2.67844H17.1578V12.4289C17.1578 12.7152 16.9247 12.9483 16.6384 12.9483Z" fill="#3B3F42"></path><path d="M9.37757 14.8156L6.81433 20.4173H8.05917L9.37757 17.5362V20.4173H10.6224V17.5623L11.9414 20.473L13.1856 20.5L10.6224 14.8156H9.37757Z" fill="#3B3F42"></path></g><defs><clipPath id="clip0_4581_55"><rect width="20" height="20" fill="white" transform="translate(0 0.5)"></rect></clipPath></defs></svg>
+                                                    </div>
+                                                    <div className="item-container">
+                                                        <h3>Teachers</h3>
+                                                        <p>Make learning fun and interactive</p></div>
+                                                </div>
+                                                <div className=" MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper"><svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 16.5V17V17.5" stroke="#3B3F42" strokeWidth="1.53125" strokeLinecap="round"></path><path d="M11 5.5V6V6.5" stroke="#3B3F42" strokeWidth="1.53125" strokeLinecap="round"></path><path d="M14 9C14 7.61929 12.6569 6.5 11 6.5C9.3431 6.5 8 7.61929 8 9C8 10.3807 9.3431 11.5 11 11.5C12.6569 11.5 14 12.6193 14 14C14 15.3807 12.6569 16.5 11 16.5C9.3431 16.5 8 15.3807 8 14" stroke="#3B3F42" strokeWidth="1.53125" strokeLinecap="round"></path><path d="M6 2.83782C7.47087 1.98697 9.1786 1.5 11 1.5C16.5228 1.5 21 5.97715 21 11.5C21 17.0228 16.5228 21.5 11 21.5C5.47715 21.5 1 17.0228 1 11.5C1 9.6786 1.48697 7.97087 2.33782 6.5" stroke="#3B3F42" strokeWidth="1.53125" strokeLinecap="round"></path></svg></div>
+                                                    <div className="item-container">
+                                                        <h3>CFOs</h3>
+                                                        <p>Online financial management</p>
+                                                    </div>
+                                                </div>
+                                                <div className=" MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper">
+                                                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.25 0.5C13.6297 0.5 13.9435 0.782154 13.9932 1.14823L14 1.25L14.0005 3.57512C15.4697 3.87357 16.6269 5.03092 16.925 6.50018L19.25 6.5C19.6642 6.5 20 6.83579 20 7.25C20 7.6297 19.7178 7.94349 19.3518 7.99315L19.25 8H17V9.75H19.25C19.6297 9.75 19.9435 10.0322 19.9932 10.3982L20 10.5C20 10.8797 19.7178 11.1935 19.3518 11.2432L19.25 11.25H17V13H19.25C19.6297 13 19.9435 13.2822 19.9932 13.6482L20 13.75C20 14.1297 19.7178 14.4435 19.3518 14.4932L19.25 14.5L16.9248 14.5008C16.6263 15.9696 15.4694 17.1265 14.0005 17.4249L14 19.75C14 20.1642 13.6642 20.5 13.25 20.5C12.8703 20.5 12.5565 20.2178 12.5068 19.8518L12.5 19.75V17.499H10.749L10.75 19.75C10.75 20.1297 10.4678 20.4435 10.1018 20.4932L10 20.5C9.6203 20.5 9.30651 20.2178 9.25685 19.8518L9.25 19.75L9.249 17.499H7.5V19.75C7.5 20.1297 7.21785 20.4435 6.85177 20.4932L6.75 20.5C6.3703 20.5 6.05651 20.2178 6.00685 19.8518L6 19.75L6.00046 17.4251C4.53088 17.127 3.37329 15.9695 3.07501 14.5L0.75 14.5C0.335786 14.5 0 14.1642 0 13.75C0 13.3703 0.282154 13.0565 0.648229 13.0068L0.75 13L3 12.999V11.249L0.75 11.25C0.370304 11.25 0.0565091 10.9678 0.00684667 10.6018L0 10.5C0 10.1203 0.282154 9.80651 0.648229 9.75685L0.75 9.75L3 9.749V7.999L0.75 8C0.370304 8 0.0565091 7.71785 0.00684667 7.35177L0 7.25C0 6.8703 0.282154 6.55651 0.648229 6.50685L0.75 6.5L3.07521 6.49904C3.37381 5.03 4.53121 3.87297 6.00046 3.57492L6 1.25C6 0.835786 6.33579 0.5 6.75 0.5C7.1297 0.5 7.44349 0.782154 7.49315 1.14823L7.5 1.25V3.499H9.249L9.25 1.25C9.25 0.870304 9.53215 0.556509 9.89823 0.506847L10 0.5C10.3797 0.5 10.6935 0.782154 10.7432 1.14823L10.75 1.25L10.749 3.499H12.5V1.25C12.5 0.904822 12.7332 0.614107 13.0506 0.526791L13.1482 0.506847L13.25 0.5ZM13.25 5H6.75C5.50736 5 4.5 6.00736 4.5 7.25V13.75C4.5 14.9926 5.50736 16 6.75 16H13.25C14.4926 16 15.5 14.9926 15.5 13.75V7.25C15.5 6.00736 14.4926 5 13.25 5ZM10.0049 7.50493C11.6618 7.50493 13.0049 8.84807 13.0049 10.5049C13.0049 12.1618 11.6618 13.5049 10.0049 13.5049C8.34807 13.5049 7.00493 12.1618 7.00493 10.5049C7.00493 8.84807 8.34807 7.50493 10.0049 7.50493ZM10.0049 9.00493C9.1765 9.00493 8.50493 9.6765 8.50493 10.5049C8.50493 11.3334 9.1765 12.0049 10.0049 12.0049C10.8334 12.0049 11.5049 11.3334 11.5049 10.5049C11.5049 9.6765 10.8334 9.00493 10.0049 9.00493Z" fill="#3B3F42"></path>
+                                                        </svg></div><div className="item-container"><h3>CTOs</h3><p>CTO-focused platform</p>
+                                                    </div>
+                                                </div>
+                                                <div className=" MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper">
+                                                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M17.2222 18.2813H2.77778C1.85889 18.2813 1.11111 17.5335 1.11111 16.6146V10.5035H6.66667V12.7257H13.3333V10.5035H18.8889V16.6146C18.8889 17.5335 18.1411 18.2813 17.2222 18.2813ZM7.77778 11.6146H12.2222V9.3924H7.77778V11.6146ZM2.77778 6.05907H17.2222C18.1411 6.05907 18.8889 6.80684 18.8889 7.72574V9.3924H13.3333V8.28129H6.66667V9.3924H1.11111V7.72574C1.11111 6.80684 1.85889 6.05907 2.77778 6.05907ZM7.77778 3.28129C7.77778 2.97462 8.02667 2.72574 8.33333 2.72574H11.6667C11.9733 2.72574 12.2222 2.97462 12.2222 3.28129V4.94796H7.77778V3.28129ZM17.2222 4.94796H13.3333V3.28129C13.3333 2.36241 12.5856 1.61462 11.6667 1.61462H8.33333C7.41445 1.61462 6.66667 2.36241 6.66667 3.28129V4.94796H2.77778C1.24667 4.94796 0 6.19462 0 7.72574V16.6146C0 18.1457 1.24667 19.3924 2.77778 19.3924H17.2222C18.7533 19.3924 20 18.1457 20 16.6146V7.72574C20 6.19462 18.7533 4.94796 17.2222 4.94796Z" fill="#3B3F42"></path></svg>
+                                                    </div>
+                                                    <div className="item-container">
+                                                        <h3>Business Leaders</h3><p>Performance-optimizing tech</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className=" SubMenuItemWrapper">
-
-                                        </div>
-                                        <div className=" SubMenuItemWrapper">
-
+                                            <div className="SolutionsMegaMenuGridItem">
+                                                <h1>Organizations</h1>
+                                                <div className=" MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#clip0_4710_1303)"><path d="M7.74001 10.8891C5.80917 11.2608 4.85251 13.4108 4.43751 14.7508C4.39837 14.8757 4.38921 15.008 4.41076 15.1371C4.43231 15.2663 4.48397 15.3885 4.56155 15.4939C4.63914 15.5993 4.74046 15.685 4.85732 15.7439C4.97418 15.8029 5.10328 15.8335 5.23417 15.8333H8.33334C8.68093 15.8333 9.02472 15.7609 9.34275 15.6206C9.66077 15.4803 9.94605 15.2753 10.1804 15.0185C10.4147 14.7618 10.5929 14.459 10.7036 14.1295C10.8143 13.8 10.8551 13.4511 10.8233 13.1049C10.779 12.7513 10.6622 12.4105 10.4801 12.1041C10.2981 11.7977 10.0547 11.5322 9.76523 11.3241C9.47579 11.1161 9.14651 10.9701 8.79802 10.8953C8.44953 10.8204 8.08934 10.8183 7.74001 10.8891Z" fill="#3B3F42"></path><path d="M19.1667 7.4825C18.9457 7.4825 18.7337 7.5703 18.5774 7.72658C18.4211 7.88286 18.3333 8.09482 18.3333 8.31583V12.5H15C14.337 12.5 13.7011 12.7634 13.2322 13.2322C12.7634 13.7011 12.5 14.337 12.5 15V18.3333H4.16667C3.50363 18.3333 2.86774 18.0699 2.3989 17.6011C1.93006 17.1323 1.66667 16.4964 1.66667 15.8333V4.16667C1.66667 3.50363 1.93006 2.86774 2.3989 2.3989C2.86774 1.93006 3.50363 1.66667 4.16667 1.66667H13.3683C13.5893 1.66667 13.8013 1.57887 13.9576 1.42259C14.1139 1.26631 14.2017 1.05435 14.2017 0.833333C14.2017 0.61232 14.1139 0.400358 13.9576 0.244078C13.8013 0.0877974 13.5893 0 13.3683 0L4.16667 0C3.062 0.00132321 2.00296 0.440735 1.22185 1.22185C0.440735 2.00296 0.00132321 3.062 0 4.16667L0 15.8333C0.00132321 16.938 0.440735 17.997 1.22185 18.7782C2.00296 19.5593 3.062 19.9987 4.16667 20H13.6192C14.1665 20.0015 14.7086 19.8945 15.2143 19.6851C15.72 19.4757 16.179 19.168 16.565 18.78L18.78 16.565C19.168 16.179 19.4757 15.72 19.6851 15.2143C19.8945 14.7086 20.0015 14.1665 20 13.6192V8.31583C20 8.09482 19.9122 7.88286 19.7559 7.72658C19.5996 7.5703 19.3877 7.4825 19.1667 7.4825ZM15.3867 17.6017C15.0506 17.934 14.6278 18.165 14.1667 18.2683V15C14.1667 14.779 14.2545 14.567 14.4107 14.4107C14.567 14.2545 14.779 14.1667 15 14.1667H18.2708C18.1675 14.6278 17.9365 15.0506 17.6042 15.3867L15.3867 17.6017Z" fill="#3B3F42"></path><path d="M12.1383 11.8083C11.9735 11.8083 11.8125 11.7594 11.6755 11.6678C11.5384 11.5763 11.4317 11.4461 11.3686 11.2939C11.3055 11.1416 11.289 10.9741 11.3212 10.8125C11.3533 10.6508 11.4327 10.5024 11.5492 10.3858L18.0933 3.84167C18.1665 3.76868 18.2245 3.68197 18.2641 3.58652C18.3037 3.49107 18.3241 3.38875 18.3241 3.28542C18.3241 3.18208 18.3037 3.07976 18.2641 2.98431C18.2245 2.88886 18.1665 2.80216 18.0933 2.72917C18.0189 2.65182 17.9288 2.59133 17.8291 2.5518C17.7293 2.51226 17.6222 2.4946 17.515 2.5C17.4079 2.50233 17.3024 2.52678 17.2052 2.57181C17.1079 2.61684 17.0211 2.68147 16.95 2.76167L10.6167 9.7675C10.4685 9.93149 10.2612 10.0299 10.0405 10.0411C9.81972 10.0522 9.60358 9.97527 9.43959 9.82708C9.2756 9.67889 9.17719 9.47163 9.16601 9.25088C9.15484 9.03014 9.23181 8.81399 9.38 8.65L15.7133 1.65C15.9354 1.40206 16.2056 1.20182 16.5074 1.06143C16.8093 0.921049 17.1364 0.843447 17.4692 0.833335C17.8024 0.826193 18.1337 0.886102 18.4434 1.0095C18.753 1.1329 19.0347 1.31727 19.2717 1.55167C19.731 2.01207 19.989 2.63588 19.989 3.28625C19.989 3.93662 19.731 4.56044 19.2717 5.02083L12.7275 11.565C12.6503 11.6425 12.5584 11.7039 12.4573 11.7457C12.3562 11.7874 12.2478 11.8087 12.1383 11.8083Z" fill="#3B3F42"></path></g><defs><clipPath id="clip0_4710_1303"><rect width="20" height="20" fill="white"></rect></clipPath></defs>
+                                                    </svg>
+                                                    </div>
+                                                    <div className="item-container"><h3>Academies</h3><p>Robust solution for student management</p>
+                                                    </div>
+                                                </div>
+                                                <div className=" MegaMenuItemWrapper"><div className="icon-wrapper"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#clip0_4710_1307)"><path d="M16.6667 0H4.16667C2.79167 0 1.66667 1.125 1.66667 2.5V17.5C1.66667 18.875 2.79167 20 4.16667 20H18.3333V1.66667C18.3333 0.75 17.5833 0 16.6667 0ZM16.6667 15H6.66667V1.66667H16.6667V15ZM4.16667 1.66667H5.00001V15H4.16667C3.87501 15 3.59167 15.05 3.33334 15.1417V2.5C3.33334 2.04167 3.70834 1.66667 4.16667 1.66667ZM4.16667 18.3333C3.70834 18.3333 3.33334 17.9583 3.33334 17.5C3.33334 17.0417 3.70834 16.6667 4.16667 16.6667H16.6667V18.3333H4.16667ZM9.57501 12.5167L10.1667 10.85H13.1583L13.75 12.5167H15.5167L12.8333 5C12.65 4.5 12.1917 4.175 11.6583 4.175C11.125 4.175 10.6667 4.5 10.4833 5.00833L7.8 12.525H9.56667L9.57501 12.5167ZM11.6667 6.65833L12.5667 9.18333H10.7667L11.6667 6.65833Z" fill="#3B3F42"></path></g><defs><clipPath id="clip0_4710_1307"><rect width="20" height="20" fill="white"></rect></clipPath></defs></svg>
+                                                </div><div className="item-container"><h3>Schools</h3><p>Cutting-edge school management software</p>
+                                                    </div></div><div className=" MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#clip0_4710_1301)"><path d="M20 7.84995C20.0004 7.57844 19.9289 7.31165 19.7928 7.07673C19.6567 6.8418 19.4608 6.64711 19.225 6.51245L10.8 1.51245C10.5572 1.37079 10.2811 1.29614 9.99999 1.29614C9.71888 1.29614 9.44281 1.37079 9.19999 1.51245L0.762495 6.51245C0.529335 6.6508 0.336185 6.84744 0.20203 7.08304C0.0678742 7.31864 -0.00267029 7.58509 -0.00267029 7.8562C-0.00267029 8.12732 0.0678742 8.39377 0.20203 8.62937C0.336185 8.86497 0.529335 9.06161 0.762495 9.19995L3.16249 10.6V14.1125C3.16394 14.387 3.23599 14.6565 3.37172 14.8951C3.50744 15.1337 3.70228 15.3334 3.93749 15.475L9.24999 18.5375C9.48719 18.6688 9.75387 18.7377 10.025 18.7377C10.2961 18.7377 10.5628 18.6688 10.8 18.5375L16.1125 15.475C16.3477 15.3334 16.5425 15.1337 16.6783 14.8951C16.814 14.6565 16.886 14.387 16.8875 14.1125V10.5625L18.4375 9.64995V13.05H20V7.84995ZM15.3375 14.1L9.99999 17.175L4.72499 14.1125V11.525L9.19999 14.1875C9.44363 14.3267 9.71939 14.3999 9.99999 14.3999C10.2806 14.3999 10.5564 14.3267 10.8 14.1875L15.325 11.4875L15.3375 14.1ZM9.99999 12.8375L1.5625 7.83745L9.99999 2.82495L18.4375 7.82495L9.99999 12.8375Z" fill="#3B3F42"></path></g><defs><clipPath id="clip0_4710_1301"><rect width="20" height="20" fill="white"></rect></clipPath></defs></svg>
+                                                    </div>
+                                                    <div className="item-container">
+                                                        <h3>Universities &amp; Higher Education</h3><p>Powerful education management system</p>
+                                                    </div>
+                                                </div>
+                                                <div className=" MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper">
+                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#clip0_4710_1299)"><path d="M5.83333 11.6667C7.675 11.6667 9.16667 10.175 9.16667 8.33333C9.16667 6.49167 7.675 5 5.83333 5C3.99167 5 2.5 6.49167 2.5 8.33333C2.5 10.175 3.99167 11.6667 5.83333 11.6667ZM5.83333 6.66667C6.75 6.66667 7.5 7.41667 7.5 8.33333C7.5 9.25 6.75 10 5.83333 10C4.91667 10 4.16667 9.25 4.16667 8.33333C4.16667 7.41667 4.91667 6.66667 5.83333 6.66667ZM11.6667 19.1667C11.6667 19.625 11.2917 20 10.8333 20C10.375 20 10 19.625 10 19.1667C10 16.8667 8.13333 15 5.83333 15C3.53333 15 1.66667 16.8667 1.66667 19.1667C1.66667 19.625 1.29167 20 0.833333 20C0.375 20 0 19.625 0 19.1667C0 15.95 2.61667 13.3333 5.83333 13.3333C9.05 13.3333 11.6667 15.95 11.6667 19.1667ZM20 4.16667V10.8333C20 13.1333 18.1333 15 15.8333 15H12.5C12.0417 15 11.6667 14.625 11.6667 14.1667C11.6667 13.7083 12.0417 13.3333 12.5 13.3333H15.8333C17.2083 13.3333 18.3333 12.2083 18.3333 10.8333V4.16667C18.3333 2.79167 17.2083 1.66667 15.8333 1.66667H7.88333C6.99167 1.66667 6.16667 2.15 5.71667 2.91667C5.48333 3.31667 4.975 3.45 4.575 3.225C4.175 2.99167 4.04167 2.48333 4.275 2.08333C5.025 0.8 6.40833 0 7.88333 0H15.8333C18.1333 0 20 1.86667 20 4.16667ZM11.3917 9.1L13.825 6.66667H12.5C12.0417 6.66667 11.6667 6.29167 11.6667 5.83333C11.6667 5.375 12.0417 5 12.5 5H15C15.9167 5 16.6667 5.75 16.6667 6.66667V9.16667C16.6667 9.625 16.2917 10 15.8333 10C15.375 10 15 9.625 15 9.16667V7.84167L12.5667 10.275C12.1833 10.6583 11.6667 10.8667 11.1417 10.8667C10.9583 10.8667 10.775 10.8417 10.5917 10.7917C10.15 10.6667 9.89167 10.2083 10.0167 9.76667C10.1417 9.325 10.6 9.06667 11.05 9.19167C11.15 9.21667 11.2833 9.20833 11.3917 9.1Z" fill="#3B3F42"></path></g><defs><clipPath id="clip0_4710_1299"><rect width="20" height="20" fill="white"></rect></clipPath></defs>
+                                                        </svg>
+                                                    </div>
+                                                    <div className="item-container">
+                                                        <h3>Corporate Learning</h3>
+                                                        <p>Simplify employee training</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="SolutionsMegaMenuGridItem"><h1>Features</h1>
+                                                <div className="no-desc MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper">
+                                                        <img alt="image" loading="lazy" width="20" height="20" decoding="async" data-nimg="1" src="/assets/images/shapes/Preadmission.webp" style={{ color: 'transparent' }} />
+                                                    </div>
+                                                    <div className="item-container">
+                                                        <h3>Pre-Admission &amp; Enrolment</h3>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                                <div className="no-desc MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper">
+                                                        <img alt="image" loading="lazy" width="20" height="20" decoding="async" data-nimg="1" src="/assets/images/shapes/CRM.webp" style={{ color: 'transparent' }} />
+                                                    </div><div className="item-container">
+                                                        <h3>Customer Relationship Management</h3><p></p>
+                                                    </div>
+                                                </div>
+                                                <div className="no-desc MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper">
+                                                        <img alt="image" loading="lazy" width="20" height="20" decoding="async" data-nimg="1" src="/assets/images/shapes/SIS.webp" style={{ color: 'transparent' }} />
+                                                    </div>
+                                                    <div className="item-container">
+                                                        <h3>Student Information System</h3>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                                <div className="no-desc MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper">
+                                                        <img alt="image" loading="lazy" width="20" height="20" decoding="async" data-nimg="1" src="/assets/images/shapes/LMS.webp" style={{ color: 'transparent' }} />
+                                                    </div>
+                                                    <div className="item-container">
+                                                        <h3>Learning Management System</h3>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                                <div className="no-desc MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper">
+                                                        <img alt="image" loading="lazy" width="20" height="20" decoding="async" data-nimg="1" src="/assets/images/shapes/Fees_invoicing.webp" style={{ color: 'transparent' }} />
+                                                    </div>
+                                                    <div className="item-container">
+                                                        <h3>Fees &amp; Invoicing</h3><p></p>
+                                                    </div>
+                                                </div>
+                                                <div className="no-desc MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper">
+                                                        <img alt="image" loading="lazy" width="20" height="20" decoding="async" data-nimg="1" src="/assets/images/shapes/Finance.webp" style={{ color: 'transparent' }} />
+                                                    </div>
+                                                    <div className="item-container">
+                                                        <h3>Finance &amp; Accounting</h3>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                                <div className="no-desc MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper">
+                                                        <img alt="image" loading="lazy" width="20" height="20" decoding="async" data-nimg="1" src="/assets/images/shapes/E-commerce.webp" style={{ color: 'transparent' }} />
+                                                    </div>
+                                                    <div className="item-container">
+                                                        <h3>eCommerce Module</h3>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                                <div className="no-desc MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper">
+                                                        <img alt="image" loading="lazy" width="20" height="20" decoding="async" data-nimg="1" src="/assets/images/shapes/Fundraising.webp" style={{ color: 'transparent' }} />
+                                                    </div>
+                                                    <div className="item-container">
+                                                        <h3>Fund Raising</h3>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                                <div className="no-desc MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper">
+                                                        <img alt="image" loading="lazy" width="20" height="20" decoding="async" data-nimg="1" src="/assets/images/shapes/DegreeAudit.webp" style={{ color: 'transparent' }} />
+                                                    </div><div className="item-container">
+                                                        <h3>Degree Audit</h3>
+                                                        <p></p>
+                                                    </div></div><div className="no-desc MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper">
+                                                        <img alt="image" loading="lazy" width="20" height="20" decoding="async" data-nimg="1" src="/assets/images/shapes/Alumni.webp" style={{ color: 'transparent' }} />
+                                                    </div>
+                                                    <div className="item-container">
+                                                        <h3>Alumni</h3><p></p>
+                                                    </div>
+                                                </div>
+                                                <div className="no-desc MegaMenuItemWrapper">
+                                                    <div className="icon-wrapper">
+                                                        <img alt="image" loading="lazy" width="20" height="20" decoding="async" data-nimg="1" src="/assets/images/shapes/White label.webp" style={{ color: 'transparent' }} />
+                                                    </div>
+                                                    <div className="item-container">
+                                                        <h3>White Label Module</h3>
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -211,7 +379,11 @@ export default function BasicTableOne() {
                             </div>
                         </div>
                         <div className="NavItemWrapper">
-                            <div className="NavLabel"><span>Log in</span></div>
+                            <div className="NavLabel">
+                                <button className="ButtonWrapper sm" onClick={goToSignInPage}>
+                                    <span>Log in</span>
+                                </button>
+                            </div>
                             <div className=" SubMenuWrapper"></div>
                         </div>
                         <button className="ButtonWrapper sm" onClick={goToMainPage}>
@@ -352,9 +524,18 @@ export default function BasicTableOne() {
                         </div>
                         <div style={{ marginTop: "50px", marginRight: "0", marginBottom: "0", marginLeft: "0" }}>
                             <div className="ImageWrapper" id="experience-navbar">
-                                <a href="#experience-0" className="" title="classe365"><video preload="metadata" className="lazy" src="/assets/images/experience/data02.mp4" height={0} width={0} autoPlay loop muted playsInline></video></a>
-                                <a href="#experience-1" className="" title="classe365"><video preload="metadata" className="lazy" src="/assets/images/experience/data01.mp4" height={0} width={0} autoPlay loop muted playsInline></video></a>
-                                <a href="#experience-2" className="" title="classe365"><video preload="metadata" className="lazy" src="/assets/images/experience/data03.mp4" height={0} width={0} autoPlay loop muted playsInline></video></a>
+                                <a href="#experience-0" className="" title="classe365">
+                                    <video preload="metadata" className="lazy" src="/assets/images/experience/data02.mp4" height={640} width={400} autoPlay loop muted playsInline>
+                                    </video>
+                                </a>
+                                <a href="#experience-1" className="" title="classe365">
+                                    <video preload="metadata" className="lazy" src="/assets/images/experience/data01.mp4" height={640} width={400} autoPlay loop muted playsInline>
+                                    </video>
+                                </a>
+                                <a href="#experience-2" className="" title="classe365">
+                                    <video preload="metadata" className="lazy" src="/assets/images/experience/data03.mp4" height={640} width={400} autoPlay loop muted playsInline>
+                                    </video>
+                                </a>
                             </div>
                             <div className="ExperienceContentWrapper">
                                 <div className="ExperienceItemWrapper" style={{ color: "#6772E5" }} id="experience-0">
