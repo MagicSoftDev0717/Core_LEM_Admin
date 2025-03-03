@@ -547,15 +547,15 @@ export default function BasicTableOne() {
                         </div>
                         <div style={{ marginTop: "50px", marginRight: "0", marginBottom: "0", marginLeft: "0" }}>
                             <div className="ImageWrapper" id="experience-navbar">
-                                <a href="#experience-0" className={scrollPosition.scrollY < 2300 && scrollPosition.scrollY < 3100 ? "active" : ""} title="classe365">
+                                <a href="#experience-0" className={scrollPosition.scrollY > 1300 &&scrollPosition.scrollY < 2099  ? "active" : ""} title="classe365">
                                     <video preload="metadata" className="lazy" src="/assets/images/experience/data02.mp4" height={640} width={400} autoPlay loop muted playsInline>
                                     </video>
                                 </a>
-                                <a href="#experience-1" className={scrollPosition.scrollY > 2399 && scrollPosition.scrollY < 3100 ? "active" : ""} title="classe365">
+                                <a href="#experience-1" className={scrollPosition.scrollY > 2100 && scrollPosition.scrollY < 3099? "active" : ""} title="classe365">
                                     <video preload="metadata" className="lazy" src="/assets/images/experience/data01.mp4" height={640} width={400} autoPlay loop muted playsInline>
                                     </video>
                                 </a>
-                                <a href="#experience-2" className={scrollPosition.scrollY > 3099 && scrollPosition.scrollY < 4100 ? "active" : ""} title="classe365">
+                                <a href="#experience-2" className={scrollPosition.scrollY > 3100 ? "active" : ""} title="classe365">
                                     <video preload="metadata" className="lazy" src="/assets/images/experience/data03.mp4" height={640} width={400} autoPlay loop muted playsInline>
                                     </video>
                                 </a>
