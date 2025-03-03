@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Next.js SignIn Page | TailAdmin - Next.js Dashboard Template",
-  description: "This is Next.js Signin Page TailAdmin Dashboard Template",
+  title: "SignIn | Core-Lem Admin",
+  description: "This is Signin Page Core-Lem Admin Dashboard",
 };
 
 export default function SignIn() {

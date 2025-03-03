@@ -6262,6 +6262,67 @@ button.swiper-pagination-bullet {
 }
 
 
+.cqQYbO {
+    max-width: 402px;
+    width: 100%;
+    padding: 60px 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.iMriTJ p {
+    color: rgb(59, 63, 66);
+    font-size: 18px;
+    margin-top: 24px;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+.iMriTJ h2 {
+    color: rgb(0, 0, 0);
+    font-size: 96px;
+    font-weight: 400;
+    line-height: 50px;
+}
+
+.iMriTJ h4 {
+    color: rgb(59, 63, 66);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+    margin-top: -20px;
+}
+
+.iMriTJ p {
+    color: rgb(59, 63, 66);
+    font-size: 18px;
+    margin-top: 24px;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+.mDyRD {
+    margin-top: 40px;
+}
+
+.mDyRD h4 {
+    padding-bottom: 20px;
+}
+
+.mDyRD h5 {
+    color: rgb(85, 85, 85);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.mDyRD p {
+    color: rgb(85, 85, 85);
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+}
+
 .edjGCS {
     background-color: rgb(103, 114, 229);
     color: rgb(255, 255, 255);
