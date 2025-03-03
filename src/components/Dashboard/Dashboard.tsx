@@ -1,8 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/free-mode";
 import styles from './FeatureSlider.module.css'; // Import the CSS module
