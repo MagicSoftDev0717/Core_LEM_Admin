@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
@@ -137,6 +137,29 @@ export default function BasicTableOne() {
         setSelectedInsImage(`/assets/images/institution/${imageName}`);
         setActiveInsIndex(index);
     };
+
+    const [scrollPosition, setScrollPosition] = useState({
+      scrollX: 0,
+      scrollY: 0,
+    });
+  
+    useEffect(() => {
+      const handleScroll = () => {
+        setScrollPosition({
+          scrollX: window.scrollX,
+          scrollY: window.scrollY,
+        });
+      };
+  
+      window.addEventListener('scroll', handleScroll);
+  
+      // Initial scroll position on mount
+      handleScroll();
+  
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, []); // Empty dependency array ensures this runs only once on mount
 
     return (
         <div id="__next">
@@ -524,15 +547,15 @@ export default function BasicTableOne() {
                         </div>
                         <div style={{ marginTop: "50px", marginRight: "0", marginBottom: "0", marginLeft: "0" }}>
                             <div className="ImageWrapper" id="experience-navbar">
-                                <a href="#experience-0" className="" title="classe365">
+                                <a href="#experience-0" className={scrollPosition.scrollY < 2300 && scrollPosition.scrollY < 3100 ? "active" : ""} title="classe365">
                                     <video preload="metadata" className="lazy" src="/assets/images/experience/data02.mp4" height={640} width={400} autoPlay loop muted playsInline>
                                     </video>
                                 </a>
-                                <a href="#experience-1" className="" title="classe365">
+                                <a href="#experience-1" className={scrollPosition.scrollY > 2399 && scrollPosition.scrollY < 3100 ? "active" : ""} title="classe365">
                                     <video preload="metadata" className="lazy" src="/assets/images/experience/data01.mp4" height={640} width={400} autoPlay loop muted playsInline>
                                     </video>
                                 </a>
-                                <a href="#experience-2" className="" title="classe365">
+                                <a href="#experience-2" className={scrollPosition.scrollY > 3099 && scrollPosition.scrollY < 4100 ? "active" : ""} title="classe365">
                                     <video preload="metadata" className="lazy" src="/assets/images/experience/data03.mp4" height={640} width={400} autoPlay loop muted playsInline>
                                     </video>
                                 </a>
@@ -556,7 +579,9 @@ export default function BasicTableOne() {
                                     <img alt="row.title" loading="lazy" width="48" height="48" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src="/assets/images/shapes/SIS.webp" />
                                     <h2>Learning management made simple with our education ERP system</h2><p>Break data silos and benefit from comprehensive organizational analytics. Unlock a wealth of insights in no time with our user-friendly student management system. Ready to take the first step? Join us today!</p>
                                     <a href="https://setup.classe365.com" title="Try it Free" target="_blank">Try it Free <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg></a>
-                                    <div className="lottie-wrapper"><video preload="metadata" className="lazy" src="/assets/images/experience/data01.mp4" poster="/assets/images/hero-img.webp" height="0" width="0" autoPlay loop muted playsInline></video>
+                                    <div className="lottie-wrapper">
+                                        <video preload="metadata" className="lazy" src="/assets/images/experience/data01.mp4" poster="/assets/images/hero-img.webp" height="0" width="0" autoPlay loop muted playsInline>
+                                        </video>
                                     </div>
                                 </div>
                                 <div className="ExperienceItemWrapper" color="#4ED163" id="experience-2">
