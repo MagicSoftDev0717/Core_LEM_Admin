@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+// import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 
@@ -24,11 +24,6 @@ export default function BasicTableOne() {
 
     const [isOpen, setIsOpen] = useState(false);
 
-    // const videoData = [
-    //     { id: "experience-0", src: "/assets/images/experience/data02.mp4" },
-    //     { id: "experience-1", src: "/assets/images/experience/data01.mp4" },
-    //     { id: "experience-2", src: "/assets/images/experience/data03.mp4" },
-    // ];
 
     //Solutions
     const solutions = [
