@@ -29,8 +29,8 @@ type NavItem = {
 const navItems: NavItem[] = [
   {
     icon: "/images/Icon/Home.svg",
-    name: "Home",
-    path: "/home",
+    name: "Dashboard",
+    path: "/dashboard",
     // subItems: [{ name: "Ecommerce", path: "/", pro: false }],
   },
   {
