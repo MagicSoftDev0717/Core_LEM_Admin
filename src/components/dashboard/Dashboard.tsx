@@ -33,7 +33,7 @@ export default function Dashboard() {
         else if (option === "4") days = 60; // Last 2 Months
         else if (option === "5") days = 90; // Last 3 Months
 
-        let data = [];
+        const data = [];
         for (let i = days; i >= 0; i--) {
             data.push({
                 date: dayjs().subtract(i, "day").format("MMM D"), // Format: 'Mar 2'
