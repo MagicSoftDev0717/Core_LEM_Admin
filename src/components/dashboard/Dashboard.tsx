@@ -11,7 +11,7 @@ import React from "react";
 // import DemographicCard from "@/components/ecommerce/DemographicCard";
 
 import Button from "@/components/ui/button/Button";
-import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
 import { Users, User, Calendar, CreditCard } from "lucide-react";
 //import { FaCalendarAlt } from 'react-icons/fa';  // Import the calendar icon
 import Image from "next/image";
