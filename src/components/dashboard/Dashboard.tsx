@@ -1,34 +1,87 @@
 
 "use client";
 import React from "react";
-//import UserMetaCard from "@/components/user-profile/UserMetaCard";
-
-// import { EcommerceMetrics } from "@/components/ecommerce/EcommerceMetrics";
-// import MonthlyTarget from "@/components/ecommerce/MonthlyTarget";
-// import MonthlySalesChart from "@/components/ecommerce/MonthlySalesChart";
-// import StatisticsChart from "@/components/ecommerce/StatisticsChart";
-// import RecentOrders from "@/components/ecommerce/RecentOrders";
-// import DemographicCard from "@/components/ecommerce/DemographicCard";
-
+import { useState, useEffect } from "react";
 import Button from "@/components/ui/button/Button";
-// import { useTheme } from "next-themes";
-import { Users, User, Calendar, CreditCard } from "lucide-react";
+import Calen_Eve from "@/components/Dashboard/Calen_Eve";
+
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import dayjs from "dayjs";
+import { Users, User, Calendar, CreditCard,  } from "lucide-react";
 //import { FaCalendarAlt } from 'react-icons/fa';  // Import the calendar icon
+
 import Image from "next/image";
+
+
 export default function Dashboard() {
 
-    //const { theme } = useTheme();
+    const data = [
+        { name: "Completed", value: 17, color: "#4CAF50" }, // Green
+        { name: "In Progress", value: 69, color: "#FF9800" }, // Orange
+        { name: "Upcoming", value: 9, color: "#2196F3" }, // Blue
+        { name: "Withdrawn", value: 5, color: "#F44336" }, // Red
+    ];
 
 
+    const [selectedOpt, setSelectedOpt] = useState("1"); // Default: 'Today'
+    const [chartData, setChartData] = useState<{ date: string; value: number }[]>([]);
+
+    const generateChartData = (option: string) => {
+        let days = 1;
+        if (option === "2") days = 7; // Last 7 Days
+        else if (option === "3") days = 30; // Last Month
+        else if (option === "4") days = 60; // Last 2 Months
+        else if (option === "5") days = 90; // Last 3 Months
+
+        let data = [];
+        for (let i = days; i >= 0; i--) {
+            data.push({
+                date: dayjs().subtract(i, "day").format("MMM D"), // Format: 'Mar 2'
+                value: Math.floor(Math.random() * 10), // Random value between 0-10
+            });
+        }
+        setChartData(data);
+    };
+
+    // Handle select change
+    const displayToReports = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedOpt(event.target.value);
+    };
+
+    // Update chart when option changes
+    useEffect(() => {
+        generateChartData(selectedOpt);
+    }, [selectedOpt]);
+
+
+
+    const [activeTab, setActiveTab] = useState(0);
+
+    const notice_tabs = ["School", "Admin", "Teachers", "Students", "Parents"];
+    // const tabContents = [
+    //   "Content for School",
+    //   "Content for Admin",
+    //   "Content for Tab 3",
+    //   "Content for Tab 4",
+    //   "Content for Tab 5",
+    // ];
+    const event_tabs = ["Events", "Class Schedule"];
+    const [activeEveTab, setActiveEveTab] = useState(0);
+
+    const birth_tabs = ["Today's", "Upcoming"];
+    const [activeBirthTab, setActiveBirthTab] = useState(0);
+
+    const skill_tabs = ["Students", "Teachers", "Alumni"];
+    const [activeSkillTab, setActiveSkillTab] = useState(0);
     return (
-        <div style={{fontFamily: 'Arial'}}>
-            <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6 mb-2">
+        <div style={{ fontFamily: 'Arial' }}>
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6 mb-4">
                 <div className="space-y-6">
                     {/* type tilebar code */}
                 </div>
             </div>
 
-            <div className="grid grid-cols-12 gap-4 md:gap-6">
+            <div className="grid grid-cols-12 gap-4 md:gap-2">
 
                 <div className="col-span-12 xl:col-span-4">
                     <div className="p-6 flex flex-col md:flex-row items-center justify-between bg-white dark:bg-gray-800 shadow-lg rounded-2xl min-h-72">
@@ -154,20 +207,21 @@ export default function Dashboard() {
                     {/* <RecentOrders /> */}
                 </div>
             </div>
-            <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-2">
+
+
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
                 <div className="flex items-center space-x-4"> {/* Use flexbox for horizontal alignment */}
                     {/* Display the text */}
                     <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Academics & LMS Data Overview</h2>
 
                     {/* Combo box (Select dropdown) */}
                     <select className="p-2 border border-gray-300 rounded-lg bg-white dark:bg-gray-800 dark:text-gray-300">
-                        <option value="">Default Academic Sesstion</option>
+                        <option value="">Default Academic Session</option>
                     </select>
                 </div>
             </div>
 
-            <div className="grid grid-cols-12 gap-4 md:gap-6">
-
+            <div className="grid grid-cols-12 gap-4 md:gap-6 mb-4">
                 <div className="col-span-12 space-y-6 xl:col-span-6">
                     <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
                         <div className="grid grid-cols-3 gap-2">
@@ -180,7 +234,7 @@ export default function Dashboard() {
                                     </div>
 
                                     {/* Right side: Number and Text */}
-                                    <div className="flex flex-col items-middle justify-left h-20 w-2 space-y-1">
+                                    <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
                                         <span className="text-2xl font-semibold dark:text-gray-300">1</span>
                                         {/* Text on bottom */}
@@ -198,7 +252,7 @@ export default function Dashboard() {
                                     </div>
 
                                     {/* Right side: Number and Text */}
-                                    <div className="flex flex-col items-middle justify-left h-20 w-2 space-y-1">
+                                    <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
                                         <span className="text-2xl font-semibold dark:text-gray-300">1</span>
                                         {/* Text on bottom */}
@@ -215,7 +269,7 @@ export default function Dashboard() {
                                     </div>
 
                                     {/* Right side: Number and Text */}
-                                    <div className="flex flex-col items-middle justify-left h-20 w-2 space-y-1">
+                                    <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
                                         <span className="text-2xl font-semibold dark:text-gray-300">1</span>
                                         {/* Text on bottom */}
@@ -231,7 +285,7 @@ export default function Dashboard() {
                                     </div>
 
                                     {/* Right side: Number and Text */}
-                                    <div className="flex flex-col items-middle justify-left h-20 w-2 space-y-1">
+                                    <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
                                         <span className="text-2xl font-semibold dark:text-gray-300">1</span>
                                         {/* Text on bottom */}
@@ -247,7 +301,7 @@ export default function Dashboard() {
                                     </div>
 
                                     {/* Right side: Number and Text */}
-                                    <div className="flex flex-col items-middle justify-left h-20 w-2 space-y-1">
+                                    <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
                                         <span className="text-2xl font-semibold dark:text-gray-300">1</span>
                                         {/* Text on bottom */}
@@ -263,7 +317,7 @@ export default function Dashboard() {
                                     </div>
 
                                     {/* Right side: Number and Text */}
-                                    <div className="flex flex-col items-middle justify-left h-20 w-2 space-y-1">
+                                    <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
                                         <span className="text-2xl font-semibold dark:text-gray-300">1</span>
                                         {/* Text on bottom */}
@@ -279,7 +333,7 @@ export default function Dashboard() {
                                     </div>
 
                                     {/* Right side: Number and Text */}
-                                    <div className="flex flex-col items-middle justify-left h-20 w-2 space-y-1">
+                                    <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
                                         <span className="text-2xl font-semibold dark:text-gray-300">1</span>
                                         {/* Text on bottom */}
@@ -295,11 +349,11 @@ export default function Dashboard() {
                                     </div>
 
                                     {/* Right side: Number and Text */}
-                                    <div className="flex flex-col items-middle justify-left h-20 w-2 space-y-1">
+                                    <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
                                         <span className="text-2xl font-semibold dark:text-gray-300">1</span>
                                         {/* Text on bottom */}
-                                        <span className="text-gray-600 text-sm dark:text-gray-400">Live Lectures</span>
+                                        <span className="text-gray-600 text-sm dark:text-gray-400">Live Lecture</span>
                                     </div>
                                 </div>
                             </div><div className="flex flex-col items-center justify-center space-y-2">
@@ -310,7 +364,7 @@ export default function Dashboard() {
                                     </div>
 
                                     {/* Right side: Number and Text */}
-                                    <div className="flex flex-col items-middle justify-left h-20 w-2 space-y-1">
+                                    <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
                                         <span className="text-2xl font-semibold dark:text-gray-300">1</span>
                                         {/* Text on bottom */}
@@ -324,13 +378,402 @@ export default function Dashboard() {
 
                 <div className="col-span-12 space-y-6 xl:col-span-6">
                     <div className="grid grid-cols-1 gap-2">
-                        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md min-h-96 flex items-center justify-between">
-                            
+                        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md flex items-center">
+                            <ResponsiveContainer width="75%" height={255}>
+                                <PieChart>
+                                    <Pie
+                                        data={data}
+                                        cx="50%"
+                                        cy="50%"
+                                        innerRadius={50}
+                                        outerRadius={80}
+                                        fill="#8884d8"
+                                        dataKey="value"
+                                        label
+                                    >
+                                        {data.map((entry, index) => (
+                                            <Cell key={`cell-${index}`} fill={entry.color} />
+                                        ))}
+                                    </Pie>
+                                    <Tooltip />
+                                </PieChart>
+                            </ResponsiveContainer>
+
+
+                            {/* Legend */}
+                            <div className="flex flex-col space-y-2">
+                                {data.map((entry, index) => (
+                                    <div key={index} className="flex items-center space-x-2">
+                                        {/* Color Box */}
+                                        <div
+                                            className="w-4 h-4 rounded-full"
+                                            style={{ backgroundColor: entry.color }}
+                                        ></div>
+                                        {/* Label */}
+                                        <span className="text-sm font-medium dark:text-gray-300">{entry.name}</span>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
+                <div className="flex items-center space-x-4"> {/* Use flexbox for horizontal alignment */}
+                    {/* Display the text */}
+                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Reports Overview</h2>
+
+                    {/* Combo box (Select dropdown) */}
+                    <select onChange={displayToReports}
+                        className="p-2 border border-gray-300 rounded-lg bg-white dark:bg-gray-800 dark:text-gray-300">
+                        <option value="1">Today</option>
+                        <option value="2">Last 7 Days</option>
+                        <option value="3">Last Month</option>
+                        <option value="4">Last 2 Months</option>
+                        <option value="5">Last 3 Months</option>
+                        <option value="">Custom</option>
+                    </select>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-12 gap-4 md:gap-6 mb-4">
+                <div className="col-span-12 space-y-6 xl:col-span-4">
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
+                        {/* Title Row (1:5 ratio) */}
+                        <div className="grid grid-rows-8 gap-2 min-h-72">
+                            <div className="flex items-center justify-center text-medium font-semibold dark:text-gray-300">
+                                {selectedOpt === "1" ? "Today's Students" : "New Students"}
+                            </div>
+
+                            {/* Chart Row (5/6 of space) */}
+                            <div className="row-span-7">
+                                <ResponsiveContainer width="100%" height={250}>
+                                    <LineChart data={chartData}>
+                                        <XAxis dataKey="date" />
+                                        <YAxis domain={[0, 10]} />
+                                        <Tooltip />
+
+                                        {/* Y-Axis Grid Line */}
+                                        <CartesianGrid strokeDasharray="1 1" vertical={false} horizontal={true} />
+                                        <Line type="monotone" dataKey="value" stroke="#4F46E5" strokeWidth={2} dot={{ r: 4 }} />
+                                    </LineChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-span-12 space-y-6 xl:col-span-4">
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
+                        {/* Title Row (1:5 ratio) */}
+                        <div className="grid grid-rows-8 gap-2 min-h-72">
+                            <div className="flex items-center justify-center text-medium font-semibold dark:text-gray-300">
+                                {selectedOpt === "1" ? "Today's Attendance" : "Attendance"}
+                            </div>
+
+                            {/* Chart Row (5/6 of space) */}
+                            <div className="row-span-7">
+                                <ResponsiveContainer width="100%" height={250}>
+                                    <LineChart data={chartData}>
+                                        <XAxis dataKey="date" />
+                                        <YAxis domain={[0, 10]} />
+                                        <Tooltip />
+
+                                        {/* Y-Axis Grid Line */}
+                                        <CartesianGrid strokeDasharray="1 1" vertical={false} horizontal={true} />
+                                        <Line type="monotone" dataKey="value" stroke="#4F46E5" strokeWidth={2} dot={{ r: 4 }} />
+                                    </LineChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-span-12 space-y-6 xl:col-span-4">
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
+                        {/* Title Row (1:5 ratio) */}
+                        <div className="grid grid-rows-8 gap-2 min-h-72">
+                            <div className="flex items-center justify-center text-medium font-semibold dark:text-gray-300">
+                                {selectedOpt === "1" ? "Today's CRM Submission" : "CRM Submisston"}
+                            </div>
+
+                            {/* Chart Row (5/6 of space) */}
+                            <div className="row-span-7">
+                                <ResponsiveContainer width="100%" height={250}>
+                                    <LineChart data={chartData}>
+                                        <XAxis dataKey="date" />
+                                        <YAxis domain={[0, 10]} />
+                                        <Tooltip />
+
+                                        {/* Y-Axis Grid Line */}
+                                        <CartesianGrid strokeDasharray="1 1" vertical={false} horizontal={true} />
+                                        <Line type="monotone" dataKey="value" stroke="#4F46E5" strokeWidth={2} dot={{ r: 4 }} />
+                                    </LineChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-span-12 space-y-6 xl:col-span-4">
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
+                        {/* Title Row (1:5 ratio) */}
+                        <div className="grid grid-rows-8 gap-2 min-h-72">
+                            <div className="flex items-center justify-center text-medium font-semibold dark:text-gray-300">
+                                {selectedOpt === "1" ? "Today's Fees & CRM Payments" : "Fees & CRM Payments"}
+                            </div>
+
+                            {/* Chart Row (5/6 of space) */}
+                            <div className="row-span-7">
+                                <ResponsiveContainer width="100%" height={250}>
+                                    <LineChart data={chartData}>
+                                        <XAxis dataKey="date" />
+                                        <YAxis domain={[0, 10]} />
+                                        <Tooltip />
+
+                                        {/* Y-Axis Grid Line */}
+                                        <CartesianGrid strokeDasharray="1 1" vertical={false} horizontal={true} />
+                                        <Line type="monotone" dataKey="value" stroke="#4F46E5" strokeWidth={2} dot={{ r: 4 }} />
+                                    </LineChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-span-12 space-y-6 xl:col-span-4">
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
+                        {/* Title Row (1:5 ratio) */}
+                        <div className="grid grid-rows-8 gap-2 min-h-72">
+                            <div className="flex items-center justify-center text-medium font-semibold dark:text-gray-300">
+                                {selectedOpt === "1" ? "Today's E-Commerce Payments" : "E-Commerce Payments"}
+                            </div>
+
+                            {/* Chart Row (5/6 of space) */}
+                            <div className="row-span-7">
+                                <ResponsiveContainer width="100%" height={250}>
+                                    <LineChart data={chartData}>
+                                        <XAxis dataKey="date" />
+                                        <YAxis domain={[0, 10]} />
+                                        <Tooltip />
+
+                                        {/* Y-Axis Grid Line */}
+                                        <CartesianGrid strokeDasharray="1 1" vertical={false} horizontal={true} />
+                                        <Line type="monotone" dataKey="value" stroke="#4F46E5" strokeWidth={2} dot={{ r: 4 }} />
+                                    </LineChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-span-12 space-y-6 xl:col-span-4">
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
+                        {/* Title Row (1:5 ratio) */}
+                        <div className="grid grid-rows-8 gap-2 min-h-72">
+                            <div className="flex items-center justify-center text-medium font-semibold dark:text-gray-300">
+                                {selectedOpt === "1" ? "Today's Fundraising" : "Fundraising"}
+                            </div>
+
+                            {/* Chart Row (5/6 of space) */}
+                            <div className="row-span-7">
+                                <ResponsiveContainer width="100%" height={250}>
+                                    <LineChart data={chartData}>
+                                        <XAxis dataKey="date" />
+                                        <YAxis domain={[0, 10]} />
+                                        <Tooltip />
+
+                                        {/* Y-Axis Grid Line */}
+                                        <CartesianGrid strokeDasharray="1 1" vertical={false} horizontal={true} />
+                                        <Line type="monotone" dataKey="value" stroke="#4F46E5" strokeWidth={2} dot={{ r: 4 }} />
+                                    </LineChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-12 gap-4 md:gap-6 mb-4">
+
+                <div className="col-span-12 space-y-6 xl:col-span-6">
+                    <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
+                        <div className="flex items-center space-x-4">
+                            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Notice Board</h2>
+                        </div>
+                    </div>
+
+                    <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
+                        <div className="grid grid-rows-6 gap-2 min-h-72">
+                            {/* Tabs Row (1/6 height) */}
+                            <div className="flex items-center border-b border-gray-300 dark:border-gray-700 pb-2">
+                                {notice_tabs.map((tab, index) => (
+                                    <button
+                                        key={index}
+                                        className={`px-4 py-2 text-sm font-medium ${activeTab === index
+                                            ? "text-blue-600 border-b-2 border-blue-600"
+                                            : "text-gray-500 hover:text-gray-700 dark:text-gray-400"
+                                            }`}
+                                        onClick={() => setActiveTab(index)}
+                                    >
+                                        {tab}
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Content Row (5/6 height) */}
+                            <div className="row-span-5 flex items-center justify-center p-4">
+                                <p className="text-gray-700 dark:text-gray-300"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className="col-span-12 space-y-6 xl:col-span-6">
+
+                    <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
+                        <div className="flex items-center space-x-4">
+                            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Birthdays</h2>
+                        </div>
+                    </div>
+
+                    <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
+                        <div className="grid grid-rows-6 gap-1 min-h-72">
+                            {/* Tabs Row (1/6 height) */}
+                            <div className="flex items-center border-b border-gray-300 dark:border-gray-700">
+                                {birth_tabs.map((tab, index) => (
+                                    <button
+                                        key={index}
+                                        className={`px-4 py-2 text-sm font-medium ${activeBirthTab === index
+                                            ? "text-blue-600 border-b-2 border-blue-600"
+                                            : "text-gray-500 hover:text-gray-700 dark:text-gray-400"
+                                            }`}
+                                        onClick={() => setActiveBirthTab(index)}
+                                    >
+                                        {tab}
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Content Row (5/6 height) */}
+                            <div className="row-span-5 flex items-center justify-center p-4">
+                            <p className="text-gray-700 dark:text-gray-300"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
+                <div className="flex items-center space-x-4"> {/* Use flexbox for horizontal alignment */}
+                    {/* Display the text */}
+                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Latest Payment Transactions</h2>
+                </div>
+            </div>
+
+
+            <div className="grid grid-cols-12 gap-4 md:gap-6 mb-4">
+                <div className="col-span-12 space-y-6 xl:col-span-12">
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md min-h-72">
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
+                <div className="flex items-center space-x-4"> {/* Use flexbox for horizontal alignment */}
+                    {/* Display the text */}
+                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Latest Form Submissions</h2>
+                </div>
+            </div>
+
+
+            <div className="grid grid-cols-12 gap-4 md:gap-6 mb-4">
+                <div className="col-span-12 space-y-6 xl:col-span-12">
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md min-h-72">
+
+                    </div>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-12 gap-4 md:gap-6 mb-4">
+
+                <div className="col-span-12 space-y-6 xl:col-span-12">
+                    <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
+                        <div className="flex items-center space-x-4">
+                            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Directory & Skill Based Search</h2>
+                        </div>
+                    </div>
+
+                    <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
+                        <div className="grid grid-rows-1">
+                            {/* Tabs Row (1/6 height) */}
+                            <div className="flex items-center border-b border-gray-300 dark:border-gray-700 pb-2">
+                                {event_tabs.map((tab, index) => (
+                                    <button
+                                        key={index}
+                                        className={`px-4 py-2 text-sm font-medium ${activeEveTab === index
+                                            ? "text-blue-600 border-b-2 border-blue-600"
+                                            : "text-gray-500 hover:text-gray-700 dark:text-gray-400"
+                                            }`}
+                                        onClick={() => setActiveEveTab(index)}
+                                    >
+                                        {tab}
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Content Row (5/6 height) */}
+                            {/* <div className="row-span-5 flex items-center justify-center p-4">
+                                
+                            </div> */}
+                        </div>
+                    </div>
+                    <Calen_Eve />
+                </div>
+            </div>
+
+            <div className="grid grid-cols-12 gap-4 md:gap-6 mb-4">
+
+                <div className="col-span-12 space-y-6 xl:col-span-12">
+                    <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
+                        <div className="flex items-center space-x-4">
+                            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Directory & Skill Based Search</h2>
+                        </div>
+                    </div>
+
+                    <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
+                        <div className="grid grid-rows-6 gap-2 min-h-72">
+                            {/* Tabs Row (1/6 height) */}
+                            <div className="flex items-center border-b border-gray-300 dark:border-gray-700 pb-2">
+                                {skill_tabs.map((tab, index) => (
+                                    <button
+                                        key={index}
+                                        className={`px-4 py-2 text-sm font-medium ${activeSkillTab === index
+                                            ? "text-blue-600 border-b-2 border-blue-600"
+                                            : "text-gray-500 hover:text-gray-700 dark:text-gray-400"
+                                            }`}
+                                        onClick={() => setActiveSkillTab(index)}
+                                    >
+                                        {tab}
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Content Row (5/6 height) */}
+                            <div className="row-span-5 flex items-center justify-center p-4">
+                                <p className="text-gray-700 dark:text-gray-300"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div >
 
     );
 }
