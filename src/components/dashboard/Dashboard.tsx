@@ -7,7 +7,7 @@ import Calen_Eve from "@/components/dashboard/Calen_Eve";
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import dayjs from "dayjs";
-import { Users, User, Calendar, CreditCard,  } from "lucide-react";
+import { Users, User, Calendar, CreditCard, } from "lucide-react";
 //import { FaCalendarAlt } from 'react-icons/fa';  // Import the calendar icon
 
 import Image from "next/image";
@@ -77,7 +77,7 @@ export default function Dashboard() {
         <div style={{ fontFamily: 'Arial' }}>
             <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6 mb-4">
                 <div className="space-y-6">
-                    {/* type tilebar code */}
+
                 </div>
             </div>
 
@@ -131,7 +131,14 @@ export default function Dashboard() {
                                 </div>
                             </div>
                             <div className="w-1/6 flex justify-center">
-                                <Button className="px-4 py-2"> <Users className="w-5 h-5" /></Button>
+                                {/* <Users className="w-5 h-5" /> */}
+                                <Image
+                                    src="/assets/users.svg"
+                                    alt="students"
+                                    width={70}
+                                    height={70}
+                                    className="object-cover"
+                                />
                             </div>
                         </div>
                         <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md min-h-32 flex items-center justify-between">
@@ -149,7 +156,13 @@ export default function Dashboard() {
                                 </div>
                             </div>
                             <div className="w-1/6 flex justify-center">
-                                <Button className="px-4 py-2"> <User className="w-5 h-5" /></Button>
+                                <Image
+                                    src="/assets/user.svg"
+                                    alt="students"
+                                    width={64}
+                                    height={64}
+                                    className="object-cover"
+                                />
                             </div>
                         </div>
                         <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md min-h-32 flex items-center justify-between">
@@ -211,7 +224,13 @@ export default function Dashboard() {
 
             <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
                 <div className="flex items-center space-x-4"> {/* Use flexbox for horizontal alignment */}
-                    {/* Display the text */}
+                    <Image
+                        src="/assets/acade.svg"
+                        alt="star"
+                        width={32}
+                        height={32}
+                        className="object-cover"
+                    />
                     <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Academics & LMS Data Overview</h2>
 
                     {/* Combo box (Select dropdown) */}
@@ -421,7 +440,13 @@ export default function Dashboard() {
 
             <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
                 <div className="flex items-center space-x-4"> {/* Use flexbox for horizontal alignment */}
-                    {/* Display the text */}
+                    <Image
+                        src="/assets/report.svg"
+                        alt="star"
+                        width={32}
+                        height={32}
+                        className="object-cover"
+                    />
                     <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Reports Overview</h2>
 
                     {/* Combo box (Select dropdown) */}
@@ -600,6 +625,13 @@ export default function Dashboard() {
                 <div className="col-span-12 space-y-6 xl:col-span-6">
                     <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
                         <div className="flex items-center space-x-4">
+                            <Image
+                                src="/assets/notice.svg"
+                                alt="notice"
+                                width={32}
+                                height={32}
+                                className="object-cover"
+                            />
                             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Notice Board</h2>
                         </div>
                     </div>
@@ -635,6 +667,13 @@ export default function Dashboard() {
 
                     <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
                         <div className="flex items-center space-x-4">
+                            <Image
+                                src="/assets/birth.svg"
+                                alt="students"
+                                width={32}
+                                height={32}
+                                className="object-cover"
+                            />
                             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Birthdays</h2>
                         </div>
                     </div>
@@ -659,7 +698,7 @@ export default function Dashboard() {
 
                             {/* Content Row (5/6 height) */}
                             <div className="row-span-5 flex items-center justify-center p-4">
-                            <p className="text-gray-700 dark:text-gray-300"></p>
+                                <p className="text-gray-700 dark:text-gray-300"></p>
                             </div>
                         </div>
                     </div>
@@ -705,7 +744,14 @@ export default function Dashboard() {
                 <div className="col-span-12 space-y-6 xl:col-span-12">
                     <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
                         <div className="flex items-center space-x-4">
-                            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Directory & Skill Based Search</h2>
+                            <Image
+                                src="/assets/events.svg"
+                                alt="students"
+                                width={32}
+                                height={32}
+                                className="object-cover"
+                            />
+                            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Events and Class Schedule</h2>
                         </div>
                     </div>
 
@@ -742,6 +788,13 @@ export default function Dashboard() {
                 <div className="col-span-12 space-y-6 xl:col-span-12">
                     <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
                         <div className="flex items-center space-x-4">
+                            <Image
+                                src="/assets/star.svg"
+                                alt="star"
+                                width={32}
+                                height={32}
+                                className="object-cover"
+                            />
                             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Directory & Skill Based Search</h2>
                         </div>
                     </div>
