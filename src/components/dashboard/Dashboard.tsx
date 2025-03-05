@@ -17,7 +17,7 @@ export default function Dashboard() {
 
     const data = [
         { name: "Completed", value: 17, color: "#4CAF50" }, // Green
-        { name: "In Progress", value: 69, color: "#FF9800" }, // Orange
+        { name: "In Progress", value: 69, color: "#1B4DF1" }, // Orange
         { name: "Upcoming", value: 9, color: "#2196F3" }, // Blue
         { name: "Withdrawn", value: 5, color: "#F44336" }, // Red
     ];
@@ -74,7 +74,7 @@ export default function Dashboard() {
     const skill_tabs = ["Students", "Teachers", "Alumni"];
     const [activeSkillTab, setActiveSkillTab] = useState(0);
     return (
-        <div style={{ fontFamily: 'Arial' }}>
+        <div>
             <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6 mb-4">
                 <div className="space-y-6">
 
