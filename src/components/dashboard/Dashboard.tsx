@@ -23,7 +23,7 @@ export default function Dashboard() {
     ];
 
 
-    const [selectedOpt, setSelectedOpt] = useState("1"); // Default: 'Today'
+    const [selectedOpt, setSelectedOpt] = useState("2"); // Default: 'Today'
     const [chartData, setChartData] = useState<{ date: string; value: number }[]>([]);
 
     const generateChartData = (option: string) => {
@@ -255,7 +255,7 @@ export default function Dashboard() {
                                     {/* Right side: Number and Text */}
                                     <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
-                                        <span className="text-2xl font-semibold dark:text-gray-300">1</span>
+                                        <span className="text-2xl font-semibold dark:text-gray-300">77</span>
                                         {/* Text on bottom */}
                                         <span className="text-gray-600 text-sm dark:text-gray-400">Class</span>
                                     </div>
@@ -273,7 +273,7 @@ export default function Dashboard() {
                                     {/* Right side: Number and Text */}
                                     <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
-                                        <span className="text-2xl font-semibold dark:text-gray-300">1</span>
+                                        <span className="text-2xl font-semibold dark:text-gray-300">0</span>
                                         {/* Text on bottom */}
                                         <span className="text-gray-600 text-sm dark:text-gray-400">Section</span>
                                     </div>
@@ -290,7 +290,7 @@ export default function Dashboard() {
                                     {/* Right side: Number and Text */}
                                     <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
-                                        <span className="text-2xl font-semibold dark:text-gray-300">1</span>
+                                        <span className="text-2xl font-semibold dark:text-gray-300">30</span>
                                         {/* Text on bottom */}
                                         <span className="text-gray-600 text-sm dark:text-gray-400">Subject</span>
                                     </div>
@@ -306,7 +306,7 @@ export default function Dashboard() {
                                     {/* Right side: Number and Text */}
                                     <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
-                                        <span className="text-2xl font-semibold dark:text-gray-300">1</span>
+                                        <span className="text-2xl font-semibold dark:text-gray-300">20</span>
                                         {/* Text on bottom */}
                                         <span className="text-gray-600 text-sm dark:text-gray-400">Flip Class</span>
                                     </div>
@@ -322,7 +322,7 @@ export default function Dashboard() {
                                     {/* Right side: Number and Text */}
                                     <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
-                                        <span className="text-2xl font-semibold dark:text-gray-300">1</span>
+                                        <span className="text-2xl font-semibold dark:text-gray-300">18</span>
                                         {/* Text on bottom */}
                                         <span className="text-gray-600 text-sm dark:text-gray-400">Discussion</span>
                                     </div>
@@ -338,7 +338,7 @@ export default function Dashboard() {
                                     {/* Right side: Number and Text */}
                                     <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
-                                        <span className="text-2xl font-semibold dark:text-gray-300">1</span>
+                                        <span className="text-2xl font-semibold dark:text-gray-300">34</span>
                                         {/* Text on bottom */}
                                         <span className="text-gray-600 text-sm dark:text-gray-400">Assessment</span>
                                     </div>
@@ -354,7 +354,7 @@ export default function Dashboard() {
                                     {/* Right side: Number and Text */}
                                     <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
-                                        <span className="text-2xl font-semibold dark:text-gray-300">1</span>
+                                        <span className="text-2xl font-semibold dark:text-gray-300">9</span>
                                         {/* Text on bottom */}
                                         <span className="text-gray-600 text-sm dark:text-gray-400">Quizzes</span>
                                     </div>
@@ -370,7 +370,7 @@ export default function Dashboard() {
                                     {/* Right side: Number and Text */}
                                     <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
-                                        <span className="text-2xl font-semibold dark:text-gray-300">1</span>
+                                        <span className="text-2xl font-semibold dark:text-gray-300">46</span>
                                         {/* Text on bottom */}
                                         <span className="text-gray-600 text-sm dark:text-gray-400">Live Lecture</span>
                                     </div>
@@ -385,7 +385,7 @@ export default function Dashboard() {
                                     {/* Right side: Number and Text */}
                                     <div className="flex flex-col items-middle justify-left h-20 w-20 space-y-1">
                                         {/* Number on top */}
-                                        <span className="text-2xl font-semibold dark:text-gray-300">1</span>
+                                        <span className="text-2xl font-semibold dark:text-gray-300">93</span>
                                         {/* Text on bottom */}
                                         <span className="text-gray-600 text-sm dark:text-gray-400">Resources</span>
                                     </div>
@@ -451,6 +451,7 @@ export default function Dashboard() {
 
                     {/* Combo box (Select dropdown) */}
                     <select onChange={displayToReports}
+                        value={selectedOpt} 
                         className="p-2 border border-gray-300 rounded-lg bg-white dark:bg-gray-800 dark:text-gray-300">
                         <option value="1">Today</option>
                         <option value="2">Last 7 Days</option>
