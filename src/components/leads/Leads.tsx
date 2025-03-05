@@ -51,6 +51,15 @@ interface Lead {
   other: boolean
 }
 
+interface Student {
+  id: number;      // Assuming 'id' is a number
+  fname: string;
+  lname: string;
+  year: string;
+  schoolYear: string;
+
+}
+
 
 export default function BasicTableOne() {
 
@@ -279,7 +288,7 @@ export default function BasicTableOne() {
   };
 
 
-  const [students, setStudents] = useState([]);
+  const [students, setStudents] = useState<Student[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const viewToOwnChild = async (id: number) => {
