@@ -86,7 +86,7 @@ export default function Dashboard() {
                 <div className="col-span-12 xl:col-span-4">
                     <div className="p-6 flex flex-col md:flex-row items-center justify-between bg-white dark:bg-gray-800 shadow-lg rounded-2xl min-h-72">
                         <div className="w-full md:w-1/2 text-center md:text-center">
-                            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Hey, Hasan</h2>
+                            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-10">Hey, Hasan</h2>
                             <Button className="mt-2">
                                 View Profile
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
@@ -95,7 +95,7 @@ export default function Dashboard() {
                             </Button>
                         </div>
                         <div className="w-full md:w-1/2 flex flex-col items-center">
-                            <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-300 dark:border-gray-700">
+                            <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-300 dark:border-gray-700 mb-2">
                                 <Image
                                     src="/images/user/owner.jpg"
                                     alt="Avatar"
@@ -628,8 +628,8 @@ export default function Dashboard() {
                             <Image
                                 src="/assets/notice.svg"
                                 alt="notice"
-                                width={32}
-                                height={32}
+                                width={30}
+                                height={30}
                                 className="object-cover"
                             />
                             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Notice Board</h2>
@@ -679,9 +679,9 @@ export default function Dashboard() {
                     </div>
 
                     <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
-                        <div className="grid grid-rows-6 gap-1 min-h-72">
+                        <div className="grid grid-rows-6 gap-2 min-h-72">
                             {/* Tabs Row (1/6 height) */}
-                            <div className="flex items-center border-b border-gray-300 dark:border-gray-700">
+                            <div className="flex items-center border-b border-gray-300 dark:border-gray-700 pb-2">
                                 {birth_tabs.map((tab, index) => (
                                     <button
                                         key={index}
