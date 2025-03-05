@@ -1,7 +1,7 @@
 
 "use client";
 import React, { useState, useEffect, ChangeEvent } from "react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { Filter } from "lucide-react";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/light.css";
@@ -145,10 +145,10 @@ export default function BasicTableOne() {
 
 
   //Add to Leads
-  const router = useRouter();
-  const addToStudent = () => {
-    router.push("/addstudent_stu"); // Navigate to the 'lead' page
-  };
+  // const router = useRouter();
+  // const addToStudent = () => {
+  //   router.push("/addstudent_stu"); // Navigate to the 'lead' page
+  // };
 
 
   const exportToExcel = () => {
