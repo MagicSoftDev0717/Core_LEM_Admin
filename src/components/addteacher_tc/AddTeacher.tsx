@@ -29,10 +29,10 @@ export default function BasicTableOne() {
                 Teacher Information
             </h4>
 
-            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-4">
                 <div className="col-span-1">
                     <Label>Situation</Label>
-                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-1/2">
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
                         <option value="">All</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
@@ -52,12 +52,6 @@ export default function BasicTableOne() {
                 <div className="col-span-1">
                     <Label>Email:</Label>
                     <Input type="text" placeholder="hasaneducationadvisor@gmail.com" />
-                </div>
-
-                <div className="col-span-1">
-                    <Label>Email:</Label>
-                    <input type="checkbox" className="mr-2" placeholder="Team Manager" />
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Email Opt Out:</label>
                 </div>
 
                 <div className="col-span-1">
@@ -99,6 +93,13 @@ export default function BasicTableOne() {
                     <Label>Website:</Label>
                     <Input type="text" placeholder="" />
                 </div>
+
+                <div className="col-span-1">
+                    <Label>Email:</Label>
+                    <input type="checkbox" className="mr-2" placeholder="Team Manager" />
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Email Opt Out:</label>
+                </div>
+
             </div>
 
             {/* Line Separator */}

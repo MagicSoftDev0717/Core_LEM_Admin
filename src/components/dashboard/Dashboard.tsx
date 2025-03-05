@@ -180,7 +180,7 @@ export default function Dashboard() {
                                 <Button className="px-4 py-2"> <Calendar className="w-5 h-5" /></Button>
                             </div>
                         </div>
-                        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md min-h-32 flex items-center justify-between">
+                        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md min-h-32 flex items-center ">
                             <div className="w-5/6">
                                 <div className="text-lg font-semibold text-gray-900 dark:text-white pb-2">New Submissions</div>
                                 <div className="pt-2 text-gray-600 dark:text-gray-400 grid grid-cols-3 text-center">
