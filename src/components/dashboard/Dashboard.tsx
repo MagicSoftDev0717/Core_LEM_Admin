@@ -112,7 +112,7 @@ export default function Dashboard() {
 
                 <div className="col-span-12 space-y-6 xl:col-span-8">
                     <div className="grid grid-cols-2 gap-2">
-                        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md min-h-30 flex items-center justify-between">
+                        <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md min-h-30 flex items-center justify-between">
                             <div className="w-5/6">
                                 <div className="text-lg font-semibold text-gray-900 dark:text-white pb-2">Students</div>
                                 <div className="pt-2 text-gray-600 dark:text-gray-400 grid grid-cols-3 text-center">
@@ -190,11 +190,11 @@ export default function Dashboard() {
                                     </div>
                                     <div>
                                         <p className="text-xl font-bold text-gray-900 dark:text-white">20</p>
-                                        <p className="text-sm">Students Preadmission</p>
+                                        <p className="text-sm">Preadmission</p>
                                     </div>
                                     <div>
                                         <p className="text-xl font-bold text-gray-900 dark:text-white">30</p>
-                                        <p className="text-sm">Teachers Registration</p>
+                                        <p className="text-sm">Registration</p>
                                     </div>
                                     <div></div>
                                 </div>

@@ -154,7 +154,7 @@ export default function BasicTableOne() {
 
             <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
                 <div className="col-span-1">
-                    <textarea rows = {6} cols = {80} className="dark:bg-gray-900 text-gray-600border rounded-lg" placeholder="Type your message here..."/>
+                    <textarea rows = {6} cols = {80} className="dark:bg-gray-900 text-gray-600border rounded-lg" placeholder="Type your description here..."/>
                 </div>
             </div>
 
