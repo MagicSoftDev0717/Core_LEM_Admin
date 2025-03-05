@@ -8,11 +8,12 @@ export const metadata: Metadata = {
   description:
     "This is Add Student page of Admin",
 };
-export default function page() {
+export default async function page({ params }: { params: Promise<{ id: number }> }) {
+  const { id } = await params;
   return (
     <div>
       <PageBreadcrumb pageTitle="Add Student" />
-      { <AddStudent /> }
+      { <AddStudent id={id} /> }
     </div>
   );
 }

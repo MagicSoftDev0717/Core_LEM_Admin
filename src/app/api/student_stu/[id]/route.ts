@@ -34,3 +34,20 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: n
     return NextResponse.json({ error: "Failed to delete Student", details: error }, { status: 500 });
   }
 }
+
+
+export async function GET(req: Request, { params }: { params: Promise<{ id: number }> }) {
+  const { id } = await params;
+  try {
+   
+    const students = await prisma.student.findMany({
+      where: { parent_id: Number(id) },
+    });
+
+  
+    return NextResponse.json(students);
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+    return NextResponse.json({ error: "Failed to fetch leads" }, { status: 500 });
+  }
+}

@@ -511,14 +511,14 @@ export default function BasicTableOne() {
       <div className="overflow-hidden bg-white dark:bg-white/[0.03] rounded-xl border border-gray-200 dark:border-white/[0.1]">
         <div className="flex flex-col gap-2 px-4 py-4 border border-b border-gray-200 dark:border-white/[0.05] rounded-t-xl sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex justify-start">
+            {/* <div className="flex justify-start">
               <button
                 onClick={addToStudent}
                 className="px-2 py-1 bg-blue-600 text-white rounded-lg"
               >
                 Add Student
               </button>
-            </div>
+            </div> */}
             <div className="relative z-20 bg-transparent">
               <div className="flex items-center gap-3">
                 <span className="text-gray-500 dark:text-gray-400"> Show </span>

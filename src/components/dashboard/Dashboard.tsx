@@ -756,7 +756,7 @@ export default function Dashboard() {
                         </div>
                     </div>
 
-                    <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2 mb-4">
+                    <div className="rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.03] lg:p-2">
                         <div className="grid grid-rows-1">
                             {/* Tabs Row (1/6 height) */}
                             <div className="flex items-center border-b border-gray-300 dark:border-gray-700 pb-2">

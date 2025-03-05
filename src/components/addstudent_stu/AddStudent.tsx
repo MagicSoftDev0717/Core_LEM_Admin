@@ -10,7 +10,7 @@ import Alert from "../ui/alert/Alert"
 import {
     CalenderIcon
 } from "../../icons/index";
-export default function BasicTableOne() {
+export default function BasicTableOne({ id }: { id: number }) {
 
     const [formData, setFormData] = useState({
         fname: "",
@@ -20,7 +20,8 @@ export default function BasicTableOne() {
         schoolYear: "",
         year: "",
         teacher: "",
-        birth: ""
+        birth: "",
+        parent_id: Number(id)
     });
 
     //Add to Leads
@@ -202,7 +203,7 @@ export default function BasicTableOne() {
                 </div>
 
                 <div className="col-span-1">
-                    <Label>Notes from Center Director::</Label>
+                    <Label>Notes from Center Director:</Label>
                     <Input type="text" placeholder="" />
                 </div>
 

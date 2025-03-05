@@ -271,6 +271,32 @@ export default function BasicTableOne() {
     }
   };
 
+
+  ////////////Add New Child & View own child ////////
+
+  const addToChild = async (id: number) => {
+    router.push(`/addstudent_stu/${id}`);
+  };
+
+
+  const [students, setStudents] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const viewToOwnChild = async (id: number) => {
+    try {
+      const response = await fetch(`/api/student_stu/${id}`);
+      const data = await response.json();
+      console.log(data);
+      setStudents(data);
+      setIsModalOpen(true);
+    } catch (error) {
+      console.error("Error fetching students:", error);
+    }
+  };
+
+
+
+  /////////////////////
   /////Expert to Excel
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(
@@ -602,12 +628,12 @@ export default function BasicTableOne() {
                     >
                       Lead Status
                     </TableCell>
-                    <TableCell
+                    {/* <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
                       Student Name
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
@@ -625,6 +651,12 @@ export default function BasicTableOne() {
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
                       Year
+                    </TableCell>
+                    <TableCell
+                      isHeader
+                      className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    >
+                      Child
                     </TableCell>
                     <TableCell
                       isHeader
@@ -650,7 +682,23 @@ export default function BasicTableOne() {
                           <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{lead.mobile}</TableCell>
                           <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{lead.email}</TableCell>
                           <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{lead.status}</TableCell>
-                          <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{lead.status}</TableCell>
+                          <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                            <div className="flex items-center justify-center gap-2">
+                              <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={() => addToChild(lead.id)}>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+
+                              </button>
+                              <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={() => viewToOwnChild(lead.id)}>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Zm3.75 11.625a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                                </svg>
+
+                              </button>
+
+                            </div>
+                          </TableCell>
                           <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                             <div className="flex items-center justify-center gap-2">
                               <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={() => handleEditLead(lead)}>
@@ -1130,6 +1178,96 @@ export default function BasicTableOne() {
           </div>
         )}
       </Modal>
+
+
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow-lg w-1/3">
+            {/* Title */}
+            <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-200">
+              My Love Children
+            </h2>
+
+            {/* Student Table */}
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse border border-gray-300 dark:border-gray-700">
+                {/* Table Header */}
+                <thead className="bg-gray-200 dark:bg-gray-700">
+                  <tr>
+                    <th className=" dark:border-gray-600 px-3 py-2 text-left text-gray-900 dark:text-gray-200 text-center">
+                      #
+                    </th>
+                    <th className="dark:border-gray-600 px-3 py-2 text-left text-gray-900 dark:text-gray-200 text-center">
+                      First Name
+                    </th>
+                    <th className="dark:border-gray-600 px-3 py-2 text-left text-gray-900 dark:text-gray-200 text-center">
+                      Last Name
+                    </th>
+                    <th className="dark:border-gray-600 px-3 py-2 text-left text-gray-900 dark:text-gray-200 text-center">
+                     Year
+                    </th>
+                    <th className="dark:border-gray-600 px-3 py-2 text-left text-gray-900 dark:text-gray-200 text-center">
+                      School Year
+                    </th>
+                    <th className="dark:border-gray-600 px-3 py-2 text-left text-gray-900 dark:text-gray-200 text-center">
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+
+                {/* Table Body */}
+                <tbody>
+                  {students.length > 0 ? (
+                    students.map((student, index) => (
+                      <tr key={student.id} className="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <td className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
+                          {index + 1}
+                        </td>
+                        <td className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
+                          {student.fname}
+                        </td>
+                        <td className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
+                          {student.lname}
+                        </td>
+                        <td className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
+                          {student.year}
+                        </td>
+                        <td className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
+                          {student.schoolYear}
+                        </td>
+                        <td className="dark:border-gray-600 px-3 py-2 text-center">
+                          <button className="text-blue-600 dark:text-blue-400 hover:underline">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-6">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 4h.01M4.5 12a7.5 7.5 0 1115 0 7.5 7.5 0 01-15 0z" />
+                            </svg>
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="4" className="text-center py-3 text-gray-600 dark:text-gray-300">
+                        No students found
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Close Button */}
+            <button
+              className="mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded w-full"
+              onClick={() => setIsModalOpen(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+
+      )}
     </div>
   );
 }
