@@ -1257,7 +1257,7 @@ export default function BasicTableOne() {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="4" className="text-center py-3 text-gray-600 dark:text-gray-300">
+                      <td colSpan={4} className="text-center py-3 text-gray-600 dark:text-gray-300">
                         No students found
                       </td>
                     </tr>
