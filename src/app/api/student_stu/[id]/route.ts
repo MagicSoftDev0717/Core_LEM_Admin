@@ -2,6 +2,47 @@ import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
+import { Student } from "@prisma/client";
+
+let student_data: Student[] = []; // Array of Lead model objects
+
+export async function GET(req: Request, { params }: { params: Promise<{ id: number }> }) {
+  const { id } = await params;
+  const url = new URL(req.url);
+  const page = Number(url.searchParams.get("page")) || null;
+  const itemsPerPage = Number(url.searchParams.get("items")) || null;
+  try {
+    if (page && itemsPerPage ) {
+
+      student_data = await prisma.student.findMany({
+        take: page * itemsPerPage,
+        where: { id: Number(id) },
+      });
+      const totalStu = await prisma.student.count({ where: { id: Number(id) } });
+
+      return NextResponse.json({ student_data, totalStu });
+    }
+    else {
+      const students = await prisma.student.findMany({
+        where: { parent_id: Number(id) },
+        select: {
+          id: true,         // Include the student's ID
+          fname: true,      // Include first name
+          lname: true,      // Include last name
+          year: true,        // Include year
+          schoolYear: true
+        },
+      });
+
+      return NextResponse.json(students);
+    }
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+    return NextResponse.json({ error: "Failed to fetch leads" }, { status: 500 });
+  }
+}
+
+
 export async function PUT(req: Request, { params }: { params: Promise<{ id: number }> }) {
   const { id } = await params;
   const body = await req.json();
@@ -9,10 +50,12 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: numb
   try {
     const updatedStu = await prisma.student.update({
       where: { id: Number(id) },
-      data: { fname: body.fname, lname: body.lname, 
-              gender: body.gender, year: body.year, 
-              schoolYear: body.schoolYear, school: body.school,
-              teacher: body.teacher },
+      data: {
+        fname: body.fname, lname: body.lname,
+        gender: body.gender, year: body.year,
+        schoolYear: body.schoolYear, school: body.school,
+        teacher: body.teacher
+      },
     });
     return NextResponse.json(updatedStu);
   } catch (error) {
@@ -35,21 +78,5 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: n
   }
 }
 
-
-export async function GET(req: Request, { params }: { params: Promise<{ id: number }> }) {
-  const { id } = await params;
-  try {
-   
-    const students = await prisma.student.findMany({
-      where: { parent_id: Number(id) },
-    });
-
-  
-    return NextResponse.json(students);
-  } catch (error) {
-    console.error("Error fetching messages:", error);
-    return NextResponse.json({ error: "Failed to fetch leads" }, { status: 500 });
-  }
-}
 
 

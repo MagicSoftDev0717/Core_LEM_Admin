@@ -295,6 +295,7 @@ export default function BasicTableOne() {
     try {
       const response = await fetch(`/api/student_stu/${id}`);
       const data = await response.json();
+      console.log(data);
       setStudents(data);
       setIsModalOpen(true);
     } catch (error) {

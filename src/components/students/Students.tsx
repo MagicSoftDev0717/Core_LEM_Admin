@@ -115,7 +115,7 @@ export default function BasicTableOne({ id }: { id: number }) {
         let data;
         if (id > 0) {
           // Fetch student details by ID
-          response = await fetch(`/api/student_par/${id}?page=${currentPage}&items=${itemsPerPage}`);
+          response = await fetch(`/api/student_stu/${id}?page=${currentPage}&items=${itemsPerPage}`);
           data = await response.json();
           console.log("ffffff: ");
         }
