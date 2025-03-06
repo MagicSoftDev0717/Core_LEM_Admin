@@ -50,7 +50,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                     message: "A Student Added successfully!",
                     variant: "success",
                 });
-                setTimeout(() => router.push("/students"), 2000); // Navigate after 3s
+                setTimeout(() => router.push("/leads"), 2000); // Navigate after 3s
             } else {
                 setAlert({
                     title: "Failure!",
@@ -217,7 +217,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                     <Input type="text" placeholder="" />
                 </div>
                 
-                <div className="col-span-1">
+                <div className="col-span-1 mt-4">
                     <div className="col-span-1">
                         <input type="checkbox" className="mr-2" />
                         <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Consent to Media Release</label>
@@ -229,7 +229,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                     </div>
                 </div>
 
-                <div className="col-span-1">
+                <div className="col-span-1 mt-4">
                     <div className="col-span-1">
                         <input type="checkbox" className="mr-2" />
                         <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Consent to Leave Unescorted</label>

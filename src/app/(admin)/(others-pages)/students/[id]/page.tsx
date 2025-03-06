@@ -12,7 +12,7 @@ export default async function page({ params }: { params: Promise<{ id: number }>
   const { id } = await params;
   return (
     <div>
-      <PageBreadcrumb pageTitle="Students Management" />
+      <PageBreadcrumb pageTitle="Individual Students Management" />
       { <Students id = {id}/> }
     </div>
   );

@@ -56,9 +56,7 @@ export async function GET(req: Request) {
       where: whereCondition,
     });
 
-
-
-    // Get the total count of messages for calculating the number of pages
+    // Get the total count of students for calculating the number of pages
     const totalStu = await prisma.student.count({ where: whereCondition });
 
     return NextResponse.json({ student_data, totalStu });

@@ -601,7 +601,7 @@ export default function BasicTableOne() {
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      No
+                      #
                     </TableCell>
                     <TableCell
                       isHeader
@@ -1198,7 +1198,7 @@ export default function BasicTableOne() {
           <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow-lg w-1/3">
             {/* Title */}
             <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-200">
-              My Love Children
+              Children
             </h2>
 
             {/* Student Table */}

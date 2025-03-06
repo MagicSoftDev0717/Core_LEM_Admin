@@ -9,10 +9,11 @@ export const metadata: Metadata = {
     "This is Students page of Admin",
 };
 export default function page() {
+
   return (
     <div>
       <PageBreadcrumb pageTitle="Students Management" />
-      { <Students /> }
+      { <Students id={-1}/> }
     </div>
   );
 }

@@ -113,14 +113,11 @@ export default function BasicTableOne({ id }: { id: number }) {
       try {
         let response; // Declare response variable at the top
         let data;
-        if (id) {
+        if (id > 0) {
           // Fetch student details by ID
-          response = await fetch(`/api/student_par/${id}`);
+          response = await fetch(`/api/student_par/${id}?page=${currentPage}&items=${itemsPerPage}`);
           data = await response.json();
           console.log("ffffff: ");
-            // .then((response) => response.json())
-            // .then((data) => setStudents(data))
-            // .catch((error) => console.error(error));
         }
         else {
            response = await fetch(`/api/student_stu?page=${currentPage}&items=${itemsPerPage}&searchQuery=${searchQuery}&dateOfStart=${dateOfStart}&dateOfEnd=${dateOfEnd}`);
@@ -560,7 +557,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      No
+                      #
                     </TableCell>
                     <TableCell
                       isHeader
