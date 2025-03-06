@@ -49,7 +49,7 @@ interface Student {
 }
 
 
-export default function BasicTableOne() {
+export default function BasicTableOne({ id }: { id: number }) {
 
   const [formData, setFormData] = useState({
     fname: "",
@@ -109,10 +109,26 @@ export default function BasicTableOne() {
 
   useEffect(() => {
     async function fetchLeads() {
+      
       try {
-        const response = await fetch(`/api/student_stu?page=${currentPage}&items=${itemsPerPage}&searchQuery=${searchQuery}&dateOfStart=${dateOfStart}&dateOfEnd=${dateOfEnd}`);
-
-        const data = await response.json();
+        let response; // Declare response variable at the top
+        let data;
+        if (id) {
+          // Fetch student details by ID
+          response = await fetch(`/api/student_par/${id}`);
+          data = await response.json();
+          console.log("ffffff: ");
+            // .then((response) => response.json())
+            // .then((data) => setStudents(data))
+            // .catch((error) => console.error(error));
+        }
+        else {
+           response = await fetch(`/api/student_stu?page=${currentPage}&items=${itemsPerPage}&searchQuery=${searchQuery}&dateOfStart=${dateOfStart}&dateOfEnd=${dateOfEnd}`);
+           data = await response.json();
+           console.log("dddddd: ");
+        }
+       
+         console.log(data);
         if (data.student_data !== undefined) {
           const totalPage = Math.ceil(data.totalStu / itemsPerPage);
           const lastIndex = currentPage * itemsPerPage;
@@ -132,7 +148,7 @@ export default function BasicTableOne() {
           setTotalPages(totalPage);
 
         } else {
-          console.error("API response is not an array:", data);
+          console.log("API response is not an array:", data);
           setStudents([]); // Ensure leads remains an array
           setCurStudents([]);
         }

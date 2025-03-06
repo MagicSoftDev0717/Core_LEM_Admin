@@ -13,6 +13,7 @@ export async function GET(req: Request) {
   try {
     // Extract page number from query parameters (default to 1 if not provided)
     const url = new URL(req.url);
+    const stu_id = url.searchParams.get("stu_id") || "undefined";
     const page = parseInt(url.searchParams.get("page") || "1");
     const itemsPerPage = parseInt(url.searchParams.get("items") || "5");
     const searchName = url.searchParams.get("searchQuery") || "";
@@ -24,6 +25,9 @@ export async function GET(req: Request) {
 
     const whereCondition: Prisma.StudentWhereInput = {}; 
 
+    if (stu_id !== "undefined") {
+      whereCondition.id = stu_id;
+    }
     // Apply filters based on searchName and selectedLdSts conditions
     if (searchName !== "") {
       whereCondition.OR = [

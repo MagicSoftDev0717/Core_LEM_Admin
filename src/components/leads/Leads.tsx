@@ -295,7 +295,6 @@ export default function BasicTableOne() {
     try {
       const response = await fetch(`/api/student_stu/${id}`);
       const data = await response.json();
-      console.log(data);
       setStudents(data);
       setIsModalOpen(true);
     } catch (error) {
@@ -303,7 +302,10 @@ export default function BasicTableOne() {
     }
   };
 
+  const viewToDetailChild = async (id: number) => {
+    router.push(`/students/${id}`);
 
+  };
 
   /////////////////////
   /////Expert to Excel
@@ -1205,22 +1207,22 @@ export default function BasicTableOne() {
                 {/* Table Header */}
                 <thead className="bg-gray-200 dark:bg-gray-700">
                   <tr>
-                    <th className=" dark:border-gray-600 px-3 py-2 text-left text-gray-900 dark:text-gray-200 text-center">
+                    <th className=" dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
                       #
                     </th>
-                    <th className="dark:border-gray-600 px-3 py-2 text-left text-gray-900 dark:text-gray-200 text-center">
+                    <th className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
                       First Name
                     </th>
-                    <th className="dark:border-gray-600 px-3 py-2 text-left text-gray-900 dark:text-gray-200 text-center">
+                    <th className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
                       Last Name
                     </th>
-                    <th className="dark:border-gray-600 px-3 py-2 text-left text-gray-900 dark:text-gray-200 text-center">
-                     Year
+                    <th className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
+                      Year
                     </th>
-                    <th className="dark:border-gray-600 px-3 py-2 text-left text-gray-900 dark:text-gray-200 text-center">
+                    <th className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
                       School Year
                     </th>
-                    <th className="dark:border-gray-600 px-3 py-2 text-left text-gray-900 dark:text-gray-200 text-center">
+                    <th className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
                       Action
                     </th>
                   </tr>
@@ -1230,7 +1232,7 @@ export default function BasicTableOne() {
                 <tbody>
                   {students.length > 0 ? (
                     students.map((student, index) => (
-                      <tr key={student.id} className="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700">
+                      <tr key={student.id} className="bg-white dark:bg-gray-800">
                         <td className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
                           {index + 1}
                         </td>
@@ -1247,7 +1249,7 @@ export default function BasicTableOne() {
                           {student.schoolYear}
                         </td>
                         <td className="dark:border-gray-600 px-3 py-2 text-center">
-                          <button className="text-blue-600 dark:text-blue-400 hover:underline">
+                          <button className="text-blue-600 dark:text-gray-400 dark:hover:text-blue-500" onClick={() => viewToDetailChild(student.id)}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-6">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 4h.01M4.5 12a7.5 7.5 0 1115 0 7.5 7.5 0 01-15 0z" />
                             </svg>
@@ -1267,12 +1269,14 @@ export default function BasicTableOne() {
             </div>
 
             {/* Close Button */}
-            <button
-              className="mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded w-full"
-              onClick={() => setIsModalOpen(false)}
-            >
-              Close
-            </button>
+            <div className="flex justify-center">
+              <button
+                className="w-1/6 mt-4 mx-auto bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+                onClick={() => setIsModalOpen(false)}
+              >Close
+              </button>
+            </div>
+
           </div>
         </div>
 
