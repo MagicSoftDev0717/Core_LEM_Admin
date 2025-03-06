@@ -1,7 +1,11 @@
 
 "use client";
 import React, { useState } from "react";
-// import { Filter } from "lucide-react";
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/themes/light.css";
+import {
+  CalenderIcon
+} from "../../icons/index";
 import {
   Table,
   TableBody,
@@ -48,7 +52,21 @@ const tableData: Order[] = [
 export default function BasicTableOne() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5;
-  // const [isFilterOpen, setIsFilterOpen] = useState(false); // State to control filter dropdown visibility
+  
+  const [dateOfStart, setDateOfStart] = useState("");
+  const [dateOfEnd, setDateOfEnd] = useState("");
+
+  const handleStartDate = (date: Date[]) => {
+
+    const formattedStartDate = date[0].toISOString().split("T")[0]; // Extracts 'YYYY-MM-DD'
+    setDateOfStart(formattedStartDate); // Store formatted date
+
+  };
+
+  const handleEndDate = (date: Date[]) => {
+    const formattedEndDate = date[0].toISOString().split("T")[0]; // Extracts 'YYYY-MM-DD'
+    setDateOfEnd(formattedEndDate); // Store formatted date
+  };
 
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(
@@ -70,138 +88,97 @@ export default function BasicTableOne() {
 
   return (
     <div>
-        <div className="mb-6">
-          <div className="flex grid grid-cols-3 gap-3">
-             {/* Label and Combo Box */}
-             <div className="flex items-center gap-0">
-              {/* Start Field */}
-              <div className="flex flex-col">
-                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Start:
-                </label>
-                <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-500 w-32">
-                  <option value="">Option 1</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                </select>
-              </div>
+      <div className="mb-6">
+        <div className="flex grid grid-cols-3 gap-3">
 
-              {/* End Field */}
-              <div className="flex flex-col">
-                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  End:
-                </label>
-                <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-500 w-32">
-                  <option value="">Option 1</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                </select>
+          <div className="flex items-center gap-2">
+            {/* Start Field */}
+            <div className="flatpickr-wrapper flex flex-col w-1/4"> {/* Adjusted width */}
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Start:
+              </label>
+              <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
+                <Flatpickr
+                  value={dateOfStart} // Set the value to the state
+                  onChange={handleStartDate} // Handle the date change
+                  options={{
+                    dateFormat: "Y-m-d", // Set the date format
+                  }}
+                  placeholder="Start Date"
+                  className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+               dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                />
+                <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
+                  <CalenderIcon />
+                </span>
               </div>
             </div>
 
-             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
-                <option value="">All</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Lead Sources:</label>
-              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
-                <option value="">Option 1</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Lead SubSources:</label>
-              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
-                <option value="">Option 1</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-              </select>
-            </div>
-
-            <div className="self-end" style={{marginTop: '15px'}}>
-              <button
-                className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
-              >Search
-              </button>
-            </div>
-
-            <div>
-            <input type="checkbox" className="mr-2" />
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Show Lead Subsources</label>
+            {/* End Field */}
+            <div className="flatpickr-wrapper flex flex-col w-1/4"> {/* Adjusted width */}
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                End:
+              </label>
+              <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
+                <Flatpickr
+                  value={dateOfEnd} // Set the value to the state
+                  onChange={handleEndDate} // Handle the date change
+                  options={{
+                    dateFormat: "Y-m-d", // Set the date format
+                  }}
+                  placeholder="End Date"
+                  className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+               dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                />
+                <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
+                  <CalenderIcon />
+                </span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
-        <div className="max-w-full overflow-x-auto">
-          <div className="min-w-[1102px]">
-            <Table>
-              {/* Table Header */}
-              <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
-                <TableRow>
-                  <TableCell
-                    isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
-                  >
-                    Leads
-                  </TableCell>
-                  <TableCell
-                    isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
-                  >
-                    Conversions
-                  </TableCell>
-                  <TableCell
-                    isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
-                  >
-                    Period Conversion Rate
-                  </TableCell>
-                  <TableCell
-                    isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
-                  >
-                    Lead Tranche Conversion Rate
-                  </TableCell>
-                </TableRow>
-              </TableHeader>
-              {/* Table Body */}
-              <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                  <TableRow>
-                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      Totals
-                    </TableCell>
-                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      8
-                    </TableCell>
-                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      8
-                    </TableCell>
-                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      5
-                    </TableCell>
-                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      6
-                    </TableCell>
-                    <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                      75.00%
-                    </TableCell>
-                  </TableRow>
-              </TableBody>
-            </Table>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
+            <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-500 w-1/2">
+              <option value="">All</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Lead Sources:</label>
+            <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-500 w-1/2">
+              <option value="">Option 1</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Lead SubSources:</label>
+            <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-500 w-1/2">
+              <option value="">Option 1</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+            </select>
+          </div>
+
+          <div className="self-end" style={{ marginTop: '15px' }}>
+            <button
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/2"
+            >Search
+            </button>
+          </div>
+
+          <div>
+            <input type="checkbox" className="mr-2" />
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Show Lead Subsources</label>
           </div>
         </div>
       </div>
-       {/* Line Separator */}
-       <hr className="my-6" />
 
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
         <div className="max-w-full overflow-x-auto">
@@ -212,61 +189,124 @@ export default function BasicTableOne() {
                 <TableRow>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                  >
+                    Leads
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                  >
+                    Conversions
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                  >
+                    Period Conversion Rate
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                  >
+                    Lead Tranche Conversion Rate
+                  </TableCell>
+                </TableRow>
+              </TableHeader>
+              {/* Table Body */}
+              <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
+                <TableRow>
+                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                    Totals
+                  </TableCell>
+                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                    8
+                  </TableCell>
+                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                    8
+                  </TableCell>
+                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                    5
+                  </TableCell>
+                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                    6
+                  </TableCell>
+                  <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                    75.00%
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </div>
+        </div>
+      </div>
+      {/* Line Separator */}
+      <hr className="my-6" />
+
+      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
+        <div className="max-w-full overflow-x-auto">
+          <div className="min-w-[1102px]">
+            <Table>
+              {/* Table Header */}
+              <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
+                <TableRow>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     First Name
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Last Name
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Account Name
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Converted
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Lead Converted Date
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Lead Created Date
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Lead Sourde/(S)
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Lead Sub Sources
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Direct Mail
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Print(Non-School)
                   </TableCell>
@@ -315,9 +355,8 @@ export default function BasicTableOne() {
           {[...Array(totalPages)].map((_, index) => (
             <button
               key={index}
-              className={`w-8 h-8 rounded-full ${
-                currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-200"
-              }`}
+              className={`w-8 h-8 rounded-full ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
               onClick={() => setCurrentPage(index + 1)}
             >
               {index + 1}

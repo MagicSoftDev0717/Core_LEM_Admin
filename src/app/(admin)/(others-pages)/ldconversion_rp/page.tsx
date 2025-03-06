@@ -1,4 +1,4 @@
-import Reports from "@/components/leadtrack_rp/Reports";
+import Reports from "@/components/ldconversion_rp/Reports";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import { Metadata } from "next";
 import React from "react";
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <div>
-      <PageBreadcrumb pageTitle="Lead Roster Reports" />
+      <PageBreadcrumb pageTitle="Lead Conversion Reports" />
       { <Reports /> }
     </div>
   );
