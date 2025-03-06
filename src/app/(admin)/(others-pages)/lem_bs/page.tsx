@@ -1,4 +1,4 @@
-import Mathnasium from "@/components/mathnasium_bs/Mathnasium";
+import Mathnasium from "@/components/lem_bs/Mathnasium";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import { Metadata } from "next";
 import React from "react";

@@ -124,7 +124,7 @@ const navItems: NavItem[] = [
     { name: "Assessments for Printing", path: "/assessprint_bs", pro: false },
     { name: "Business Documents", path: "/doc_bs", pro: false },
     { name: "Job Board Manager", path: "/jobboard_bs", pro: false },
-    { name: "LEM Job Board", path: "/mathnasium_bs", pro: false },
+    { name: "LEM Job Board", path: "/lem_bs", pro: false },
     { name: "Virtual Center Manager", path: "/vircen_bs", pro: false },
     { name: "Centre Settings", path: "/censet_bs", pro: false },
     ]
