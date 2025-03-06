@@ -92,13 +92,13 @@ export default function BasicTableOne() {
                     <Input type="text" placeholder="hasaneducationadvisor@gmail.com" />
                 </div>
 
-                <div className="col-span-1">
+                <div className="col-span-1 mt-8">
                     {/* <Label>Email:</Label> */}
                     <input type="checkbox" className="mr-2"/>
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Email Opt Out:</label>
                 </div>
 
-                <div className="col-span-1">
+                <div className="col-span-1 mt-8">
                     {/* <Label>Email:</Label> */}
                     <input type="checkbox" className="mr-2"/>
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Blocked Emails:</label>

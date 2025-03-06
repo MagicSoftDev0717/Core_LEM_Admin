@@ -8,8 +8,11 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-// import Badge from "../ui/badge/Badge";
-//import Image from "next/image";
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/themes/light.css";
+import {
+  CalenderIcon
+} from "../../icons/index";
 import * as XLSX from "xlsx";
 
 interface Order {
@@ -42,26 +45,38 @@ const tableData: Order[] = [
     priority: "Normal",
     dueDate: "26/11/23",
   },
-    {
+  {
     id: 2,
     user: {
       //image: "/images/user/user-18.jpg",
       firstName: "Kaiya",
       lastName: "George"
-     // role: "Project Manager",
+      // role: "Project Manager",
     },
     contactType: "Student",
     subject: "Math",
     contactInfo: "01234567890",
     status: "Started",
     priority: "Normal",
-     dueDate: "26/11/23"
+    dueDate: "26/11/23"
   },
 ];
 
 export default function BasicTableOne() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5;
+
+  const [dateOfStart, setDateOfStart] = useState("");
+  const [dateOfEnd, setDateOfEnd] = useState("");
+
+  const handleStartDate = (date: Date[]) => {
+    setDateOfStart(date[0].toLocaleDateString()); // Handle selected date and format it
+  };
+
+  const handleEndDate = (date: Date[]) => {
+    setDateOfEnd(date[0].toLocaleDateString()); // Handle selected date and format it
+  };
+
 
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(
@@ -83,44 +98,92 @@ export default function BasicTableOne() {
 
   return (
     <div>
-        <div className="mb-6">
-          <div className="grid grid-cols-4 gap-2">
-             {/* Label and Combo Box */}
-             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Employee Name:</label>
-              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs w-1/2">
-                <option value="">All</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-              </select>
+      <div className="mb-6">
+        <div className="grid grid-cols-3 gap-2">
+          {/* Label and Combo Box */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Employee Name:</label>
+            <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+              <option value="">All</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Title Filter:</label>
+            <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+              <option value="">Option 1</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
+            <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+              <option value="">Option 1</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+            </select>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {/* Start Field */}
+            <div className="flatpickr-wrapper flex flex-col w-1/4"> {/* Adjusted width */}
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Start:
+              </label>
+              <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
+                <Flatpickr
+                  value={dateOfStart} // Set the value to the state
+                  onChange={handleStartDate} // Handle the date change
+                  options={{
+                    dateFormat: "Y-m-d", // Set the date format
+                  }}
+                  placeholder="Start Date"
+                  className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+               dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                />
+                <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
+                  <CalenderIcon />
+                </span>
+              </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Title Filter:</label>
-              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs w-1/2">
-                <option value="">Option 1</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-              <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs w-1/2">
-                <option value="">Option 1</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-              </select>
-            </div>
-
-            <div className="self-end" style={{marginTop: '15px'}}>
-              <button
-                className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
-              >Search
-              </button>
+            {/* End Field */}
+            <div className="flatpickr-wrapper flex flex-col w-1/4"> {/* Adjusted width */}
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                End:
+              </label>
+              <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
+                <Flatpickr
+                  value={dateOfEnd} // Set the value to the state
+                  onChange={handleEndDate} // Handle the date change
+                  options={{
+                    dateFormat: "Y-m-d", // Set the date format
+                  }}
+                  placeholder="End Date"
+                  className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+               dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                />
+                <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
+                  <CalenderIcon />
+                </span>
+              </div>
             </div>
           </div>
+
+          <div className="self-end" style={{ marginTop: '15px' }}>
+            <button
+              className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
+            >Search
+            </button>
+          </div>
         </div>
+      </div>
 
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
         <div className="max-w-full overflow-x-auto">
@@ -131,37 +194,37 @@ export default function BasicTableOne() {
                 <TableRow>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Action
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Date
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Time In
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Time Out
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Duration(Minutes)
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Duration(Hours)
                   </TableCell>
@@ -204,9 +267,8 @@ export default function BasicTableOne() {
           {[...Array(totalPages)].map((_, index) => (
             <button
               key={index}
-              className={`w-8 h-8 rounded-full ${
-                currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-200"
-              }`}
+              className={`w-8 h-8 rounded-full ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
               onClick={() => setCurrentPage(index + 1)}
             >
               {index + 1}

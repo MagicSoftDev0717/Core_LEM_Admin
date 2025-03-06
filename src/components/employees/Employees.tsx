@@ -99,7 +99,7 @@ export default function BasicTableOne() {
              {/* Label and Combo Box */}
              <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Employee Name:</label>
-              <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+              <select className="px-4 py-2 border rounded-lg  dark:bg-gray-900 dark:text-gray-400 text-sm w-1/2">
                 <option value="">All</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
@@ -108,7 +108,7 @@ export default function BasicTableOne() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Employee Status:</label>
-              <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+              <select className="px-4 py-2 border rounded-lg dark:bg-gray-900 dark:text-gray-400 text-sm w-1/2">
                 <option value="">Option 1</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
@@ -117,7 +117,7 @@ export default function BasicTableOne() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-              <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
+              <select className="px-4 py-2 border rounded-lg dark:bg-gray-900 dark:text-gray-400 text-sm w-1/2">
                 <option value="">Option 1</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
@@ -126,7 +126,7 @@ export default function BasicTableOne() {
 
             <div className="self-end" style={{marginTop: '15px'}}>
               <button
-                className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/2"
               >Search
               </button>
             </div>

@@ -57,12 +57,12 @@ export default function BasicTableOne() {
                 <div className="grid grid-cols-4 gap-2">
                     {/* Label and Combo Box */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Employee Name:</label>
-                        <input type="text" className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm w-1/2" placeholder="Type a name" />
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Student Name:</label>
+                        <input type="text" className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm w-1/2" placeholder="Type a name" />
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centre Name:</label>
-                        <input type="text" className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm w-1/2" placeholder="Type a name" />
+                        <input type="text" className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm w-1/2" placeholder="Type a name" />
                     </div>
 
                     <div className="self-end" style={{ marginTop: '15px' }}>

@@ -161,49 +161,43 @@ export default function BasicTableOne() {
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        First Name
+                                        Learning Plan
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Last Name
+                                        Questions
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Created Date
+                                        LP Order
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Lead/Account
+                                        Initial Sort Order
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Mobile Phone
+                                        Global Sort Order
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Email
+                                        Topic/Sub-Topic
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Mailing City
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Mailing Country
+                                        Checkup Origination
                                     </TableCell>
                                 </TableRow>
                             </TableHeader>
@@ -231,9 +225,6 @@ export default function BasicTableOne() {
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                             {order.status}
-                                        </TableCell>
-                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.priority}
                                         </TableCell>
                                     </TableRow>
                                 ))}

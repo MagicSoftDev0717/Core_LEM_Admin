@@ -1,6 +1,10 @@
 "use client";
 import React, { useState } from "react";
-
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/themes/light.css";
+import {
+    CalenderIcon
+} from "../../icons/index";
 import {
     Table,
     TableBody,
@@ -49,6 +53,17 @@ export default function BasicTableOne() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 5;
 
+    const [dateOfStart, setDateOfStart] = useState("");
+    const [dateOfEnd, setDateOfEnd] = useState("");
+
+    const handleStartDate = (date: Date[]) => {
+        setDateOfStart(date[0].toLocaleDateString()); // Handle selected date and format it
+    };
+
+    const handleEndDate = (date: Date[]) => {
+        setDateOfEnd(date[0].toLocaleDateString()); // Handle selected date and format it
+    };
+
     const exportToExcel = () => {
         const ws = XLSX.utils.json_to_sheet(
             tableData.map((order) => ({
@@ -73,8 +88,8 @@ export default function BasicTableOne() {
                 <div className="grid grid-cols-3 gap-2">
                     {/* Label and Combo Box */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Pre/Post:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs dark:text-gray-500 w-1/2">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Report Mode (Status During Date Range):</label>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-xs dark:text-gray-500 w-1/2">
                             <option value="">All</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
@@ -82,67 +97,65 @@ export default function BasicTableOne() {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Grouped or Ungrouped:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs text-gray-500 w-1/2">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Membership Types:</label>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-xs text-gray-500 w-1/2">
                             <option value="">Option 1</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
                     </div>
 
-                    <div className="flex items-center gap-0">
+                    <div className="flex items-center gap-2">
                         {/* Start Field */}
-                        <div className="flex flex-col">
+                        <div className="flatpickr-wrapper flex flex-col w-1/3"> {/* Adjusted width */}
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Start:
                             </label>
-                            <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-xs text-gray-500 w-24">
-                                <option value="">Option 1</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                            </select>
+                            <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
+                                <Flatpickr
+                                    value={dateOfStart} // Set the value to the state
+                                    onChange={handleStartDate} // Handle the date change
+                                    options={{
+                                        dateFormat: "Y-m-d", // Set the date format
+                                    }}
+                                    placeholder="Start Date"
+                                    className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+                                               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+                                               dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                />
+                                <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
+                                    <CalenderIcon />
+                                </span>
+                            </div>
                         </div>
 
                         {/* End Field */}
-                        <div className="flex flex-col">
+                        <div className="flatpickr-wrapper flex flex-col w-1/3"> {/* Adjusted width */}
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 End:
                             </label>
-                            <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-xs text-gray-500 w-24">
-                                <option value="">Option 1</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                            </select>
+                            <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
+                                <Flatpickr
+                                    value={dateOfEnd} // Set the value to the state
+                                    onChange={handleEndDate} // Handle the date change
+                                    options={{
+                                        dateFormat: "Y-m-d", // Set the date format
+                                    }}
+                                    placeholder="End Date"
+                                    className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+                              focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+                              dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                />
+                                <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
+                                    <CalenderIcon />
+                                </span>
+                            </div>
                         </div>
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Enrollment Status(Clear):</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Assesment Type:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Assessment Level:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Delivery</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs text-gray-500 w-1/2">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Delivery :</label>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-xs text-gray-500 w-1/2">
                             <option value="">Option 1</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
@@ -150,25 +163,15 @@ export default function BasicTableOne() {
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs text-gray-500 w-1/2">
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-xs text-gray-500 w-1/2">
                             <option value="">Option 1</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                         </select>
                     </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Students Without Add-on:</label>
-                        <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-xs text-gray-500 w-1/2">
-                            <option value="">Option 1</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
-                    </div>
-                    <div></div>
-                    <div></div>
-                    <div className="self-end" style={{ marginTop: '15px', marginLeft: '160px' }}>
+                    <div className="self-end" style={{ marginTop: '15px' }}>
                         <button
-                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/3"
+                            className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/3"
                         >Search
                         </button>
                     </div>
@@ -200,10 +203,10 @@ export default function BasicTableOne() {
                             <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
                                 <TableRow>
                                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        50.00%
+                                        20.1 months
                                     </TableCell>
                                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        22.67
+                                        38.6 months
                                     </TableCell>
                                 </TableRow>
                             </TableBody>

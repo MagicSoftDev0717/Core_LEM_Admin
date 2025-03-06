@@ -63,7 +63,7 @@ export default function BasicTableOne() {
                 <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-4 mt-6">
                     <div className="col-span-1">
                         <Label>Billing Day:</Label>
-                        <select className="px-4 py-2 bg-gray-900 text-white border rounded-lg text-xs w-full">
+                        <select className="px-4 py-2 bg-gray-900 text-white border rounded-lg text-sm w-1/2">
                             <option value="">All</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
@@ -71,17 +71,17 @@ export default function BasicTableOne() {
                     </div>
 
                     <div className="col-span-1">
-                        <Label>Active Payment Method:</Label>
-                        <a>Change Payment Method</a>
+                        <Label className="text-lg">Active Payment Method:</Label>
+                        <Label>Change Payment Method</Label>
                     </div>
 
                     <div className="col-span-1">
-                        <Label>Discounts:</Label>
-                        <Label>Discounts</Label>
+                        <Label className="text-lg">Discounts:</Label>
+                        <Label>Adjust Discounts</Label>
                     </div>
 
                     <div className="col-span-1">
-                        <Label>Change Monthly Billing Day</Label>
+                        <Label className="text-lg">Change Monthly Billing Day</Label>
                         <Label>Defer Upcoming Billing Day</Label>
                     </div>
                 </div>
@@ -269,141 +269,141 @@ export default function BasicTableOne() {
                 Lead Information
             </h4>
 
-            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-4">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-5">
 
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2" placeholder="Team Manager" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Location Visibility</label>
                 </div>
-                <div className="col-span-1">
+                {/* <div className="col-span-1">
                     <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
                         <option value="">All</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
-                </div>
+                </div> */}
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Events (Non-School)</label>
                 </div>
-                <div className="col-span-1">
+                {/* <div className="col-span-1">
                     <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
                         <option value="">All</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
-                </div>
+                </div> */}
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Internet</label>
                 </div>
-                <div className="col-span-1">
+                {/* <div className="col-span-1">
                     <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
                         <option value="">All</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
-                </div>
+                </div> */}
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">TV</label>
                 </div>
-                <div className="col-span-1">
+                {/* <div className="col-span-1">
                     <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
                         <option value="">All</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
-                </div>
+                </div> */}
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Referral</label>
                 </div>
-                <div className="col-span-1">
+                {/* <div className="col-span-1">
                     <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
                         <option value="">All</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
-                </div>
+                </div> */}
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Radio</label>
                 </div>
-                <div className="col-span-1">
+                {/* <div className="col-span-1">
                     <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
                         <option value="">All</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
-                </div>
+                </div> */}
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">School Related</label>
                 </div>
-                <div className="col-span-1">
+                {/* <div className="col-span-1">
                     <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
                         <option value="">All</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
-                </div>
+                </div> */}
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Other</label>
                 </div>
-                <div className="col-span-1">
+                {/* <div className="col-span-1">
                     <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
                         <option value="">All</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
-                </div>
+                </div> */}
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Previously Attended</label>
                 </div>
-                <div className="col-span-1">
+                {/* <div className="col-span-1">
                     <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
                         <option value="">All</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
-                </div>
+                </div> */}
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Direct Mail</label>
                 </div>
-                <div className="col-span-1">
+                {/* <div className="col-span-1">
                     <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
                         <option value="">All</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
-                </div>
+                </div> */}
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Print (Non-School)</label>
                 </div>
-                <div className="col-span-1">
+                {/* <div className="col-span-1">
                     <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
                         <option value="">All</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
-                </div>
+                </div> */}
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Not Specified</label>
                 </div>
-                <div style={{ marginTop: '-10px' }}>
+                {/* <div style={{ marginTop: '-10px' }}>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Name:</label>
                     <select className="px-2 py-1 border rounded-lg text-xs w-1/2">
                         <option value="">All</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                     </select>
-                </div>
+                </div> */}
             </div>
 
             {/* Line Separator */}

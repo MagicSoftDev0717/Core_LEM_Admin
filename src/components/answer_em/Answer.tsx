@@ -68,13 +68,13 @@ export default function BasicTableOne() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Employee Key Type:</label>
-            <input type="text" className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm w-1/2" placeholder="days" />
+            <input type="text" className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm w-1/2" placeholder="days" />
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Answer Key Type</label>
-            <select className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm dark:text-gray-500 w-1/2">
-              <option value="">--Select One--:</option>
+            <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-500 w-1/2">
+              <option value="">--Select One--</option>
               <option value="1">Option 1</option>
               <option value="2">Option 2</option>
             </select>
@@ -82,7 +82,7 @@ export default function BasicTableOne() {
 
           <div className="self-end" style={{ marginTop: '15px' }}>
             <button
-              className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/2"
             >Search
             </button>
           </div>

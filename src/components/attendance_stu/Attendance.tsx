@@ -105,12 +105,6 @@ export default function BasicTableOne() {
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Last Name
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
                                         Student Name
                                     </TableCell>
                                     <TableCell
@@ -142,9 +136,6 @@ export default function BasicTableOne() {
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                             {order.user.lastName}
-                                        </TableCell>
-                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.contactType}
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                             {order.subject}

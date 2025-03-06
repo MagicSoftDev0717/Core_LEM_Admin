@@ -109,7 +109,7 @@ export default function BasicTableOne({ id }: { id: number }) {
 
   useEffect(() => {
     async function fetchLeads() {
-      
+
       try {
         let response; // Declare response variable at the top
         let data;
@@ -120,12 +120,11 @@ export default function BasicTableOne({ id }: { id: number }) {
           console.log("ffffff: ");
         }
         else {
-           response = await fetch(`/api/student_stu?page=${currentPage}&items=${itemsPerPage}&searchQuery=${searchQuery}&dateOfStart=${dateOfStart}&dateOfEnd=${dateOfEnd}`);
-           data = await response.json();
-           console.log("dddddd: ");
+          response = await fetch(`/api/student_stu?page=${currentPage}&items=${itemsPerPage}&searchQuery=${searchQuery}&dateOfStart=${dateOfStart}&dateOfEnd=${dateOfEnd}`);
+          data = await response.json();
+          console.log("dddddd: ");
         }
-       
-         console.log(data);
+
         if (data.student_data !== undefined) {
           const totalPage = Math.ceil(data.totalStu / itemsPerPage);
           const lastIndex = currentPage * itemsPerPage;
@@ -156,6 +155,12 @@ export default function BasicTableOne({ id }: { id: number }) {
     fetchLeads();
   }, [currentPage, itemsPerPage, updateStu, delupdateStu, searchQuery, dateOfStart, dateOfEnd]);
 
+
+  const [dateOfBirth, setDateOfBirth] = useState("");
+
+  const handleDateofBirth = (date: Date[]) => {
+    setDateOfBirth(date[0].toLocaleDateString()); // Handle selected date and format it
+  };
 
   //Add to Leads
   // const router = useRouter();
@@ -810,7 +815,7 @@ export default function BasicTableOne({ id }: { id: number }) {
               </div>
 
               <div className="col-span-1">
-                <Label>Choose Scholl:</Label>
+                <Label>Choose School:</Label>
                 <select name="school" defaultValue={selectedStu.school} onChange={handleChange} className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
                   <option value="">--Select--</option>
                   <option value="">Option 1</option>
@@ -829,6 +834,31 @@ export default function BasicTableOne({ id }: { id: number }) {
                   <option value="23-24">23-24</option>
                   <option value="24-25">24-25</option>
                 </select>
+              </div>
+
+              <div className="flex items-center gap-2">
+                {/* Start Field */}
+                <div className="flatpickr-wrapper flex flex-col w-full"> {/* Adjusted width */}
+                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Date of Birth:
+                  </label>
+                  <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
+                    <Flatpickr
+                      value={dateOfBirth} // Set the value to the state
+                      onChange={handleDateofBirth} // Handle the date change
+                      options={{
+                        dateFormat: "Y-m-d", // Set the date format
+                      }}
+                      placeholder="Start Date"
+                      className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+                                               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+                                               dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                    />
+                    <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
+                      <CalenderIcon />
+                    </span>
+                  </div>
+                </div>
               </div>
 
               <div className="col-span-1">

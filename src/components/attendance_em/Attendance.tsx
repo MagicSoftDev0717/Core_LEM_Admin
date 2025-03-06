@@ -10,7 +10,6 @@ import {
     TableHeader,
     TableRow,
 } from "../ui/table";
-import * as XLSX from "xlsx";
 
 interface Order {
     id: number;
@@ -52,24 +51,6 @@ export default function BasicTableOne() {
         ? tableData.filter(order => order.user.firstName.startsWith(selectedLetter))
         : tableData;
 
-    const exportToExcel = () => {
-        const ws = XLSX.utils.json_to_sheet(
-            tableData.map((order) => ({
-                "First Name": order.user.firstName,
-                "Last Name": order.user.lastName,
-                "Contact Type": order.contactType,
-                Subject: order.subject,
-                "Contact Info": order.contactInfo,
-                Status: order.status,
-                Priority: order.priority,
-                "Due Date": order.dueDate,
-            }))
-        );
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, "Orders");
-        XLSX.writeFile(wb, "table_data.xlsx");
-    };
-
 
     const [isActive, setIsActive] = useState(false);
 
@@ -84,11 +65,11 @@ export default function BasicTableOne() {
                     {/* Label and Combo Box */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Employee Name:</label>
-                        <input type="text" className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm w-1/2" placeholder="Type a name" />
+                        <input type="text" className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm w-1/2" placeholder="Type a name" />
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centre Name:</label>
-                        <input type="text" className="dark:bg-gray-900 px-2 py-1 border rounded-lg text-sm w-1/2" placeholder="Type a name" />
+                        <input type="text" className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm w-1/2" placeholder="Type a name" />
                     </div>
 
                     <div className="self-end" style={{ marginTop: '15px' }}>
@@ -184,7 +165,7 @@ export default function BasicTableOne() {
                                             {order.subject}
                                         </TableCell>
                                         <TableCell className="px- py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {<Button onClick={exportToExcel}
+                                            {<Button
                                                 className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/3"
                                             >Check
                                             </Button>}

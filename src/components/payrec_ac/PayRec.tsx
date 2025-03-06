@@ -390,7 +390,7 @@ export default function BasicTableOne() {
                         <Button size="sm" variant="outline">Mark Paid</Button>
                         <Button size="sm" variant="outline">Mark Failed</Button>
                         <Button size="sm" variant="outline" onClick={handleRevenueComparison}>Revenue Comparison</Button>
-                        <Button size="sm" variant="outline">Expert Details</Button>
+                        <Button size="sm" variant="outline">Export Details</Button>
                     </div>
                 </div>
             </div>
