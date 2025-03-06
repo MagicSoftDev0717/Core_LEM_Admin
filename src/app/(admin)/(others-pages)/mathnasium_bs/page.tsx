@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <div>
-      <PageBreadcrumb pageTitle="Mathnasium Job Board" />
+      <PageBreadcrumb pageTitle="LEM Job Board" />
       { <Mathnasium /> }
     </div>
   );
