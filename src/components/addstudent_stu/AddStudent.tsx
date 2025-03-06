@@ -132,8 +132,8 @@ export default function BasicTableOne({ id }: { id: number }) {
                         defaultValue={formData.teacher} onChange={handleChange}
                         className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
                         <option value="">--Select--</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
+                        <option value="YoungMilly">Young, Milly</option>
+                        <option value="SmithSara">Smith, Sara</option>
                     </select>
                 </div>
 
@@ -216,7 +216,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                     <Label>Student Notes:</Label>
                     <Input type="text" placeholder="" />
                 </div>
-                
+
                 <div className="col-span-1 mt-4">
                     <div className="col-span-1">
                         <input type="checkbox" className="mr-2" />
@@ -240,8 +240,8 @@ export default function BasicTableOne({ id }: { id: number }) {
                         <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Scholarship</label>
                     </div>
                 </div>
-                <div></div>  
-                <div></div>                   
+                <div></div>
+                <div></div>
                 <div className="flex items-center justify-end w-full gap-3 mt-6">
                     <Button size="sm" variant="outline" onClick={handleCancel}>
                         Cancel

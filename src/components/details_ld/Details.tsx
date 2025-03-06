@@ -296,7 +296,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                 Lead Guardian Information
             </h4>
 
-            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-4">
 
                 <div className="col-span-1">
                     <input type="checkbox" className="mr-2" />

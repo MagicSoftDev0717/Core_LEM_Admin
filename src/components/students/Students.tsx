@@ -605,7 +605,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Last Attenance
+                      Last Attendance
                     </TableCell>
                     <TableCell
                       isHeader
@@ -804,8 +804,8 @@ export default function BasicTableOne({ id }: { id: number }) {
                 <Label>Choose Teacher:</Label>
                 <select name="teacher" defaultValue={selectedStu.teacher} onChange={handleChange} className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
                   <option value="">--Select--</option>
-                  <option value="youngmilly">Young, Milly</option>
-                  <option value="smithsara">Smith, Sara</option>
+                  <option value="YoungMilly">Young, Milly</option>
+                  <option value="SmithSara">Smith, Sara</option>
                 </select>
               </div>
 
@@ -875,7 +875,7 @@ export default function BasicTableOne({ id }: { id: number }) {
               </div>
 
 
-              <div className="col-span-1">
+              <div className="col-span-1 mt-4">
                 <div className="col-span-1">
                   <input type="checkbox" className="mr-2" />
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Consent to Media Release</label>
@@ -887,7 +887,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                 </div>
               </div>
 
-              <div className="col-span-1">
+              <div className="col-span-1 mt-4">
                 <div className="col-span-1">
                   <input type="checkbox" className="mr-2" />
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Consent to Leave Unescorted</label>
