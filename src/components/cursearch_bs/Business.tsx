@@ -136,37 +136,37 @@ export default function BasicTableOne() {
                 <TableRow>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Title
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Description
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Barcode
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Type
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Tag(s)
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Level(s)
                   </TableCell>
