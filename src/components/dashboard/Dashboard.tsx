@@ -249,7 +249,7 @@ export default function Dashboard() {
                                 <div className="flex items-center space-x-2"> {/* Reduced space between the icon and text */}
                                     {/* Left side: Icon */}
                                     <div className="flex items-center justif-bottom h-20 w-20">
-                                        <img src="/assets/academic/class.svg" alt="SVG Icon" className="h-full w-full object-contain" />
+                                        <Image src="/assets/academic/class.svg" width={0} height={0} alt="SVG Icon" className="h-full w-full object-contain" />
                                     </div>
 
                                     {/* Right side: Number and Text */}
@@ -267,7 +267,7 @@ export default function Dashboard() {
                                 <div className="flex items-center space-x-2"> {/* Reduced space between the icon and text */}
                                     {/* Left side: Icon */}
                                     <div className="flex items-center justif-bottom h-20 w-20">
-                                        <img src="/assets/academic/section.svg" alt="SVG Icon" className="h-full w-full object-contain" />
+                                        <Image src="/assets/academic/section.svg" width={0} height={0} alt="SVG Icon" className="h-full w-full object-contain" />
                                     </div>
 
                                     {/* Right side: Number and Text */}
@@ -284,7 +284,7 @@ export default function Dashboard() {
                                 <div className="flex items-center space-x-2"> {/* Reduced space between the icon and text */}
                                     {/* Left side: Icon */}
                                     <div className="flex items-center justif-bottom h-20 w-20">
-                                        <img src="/assets/academic/subject.svg" alt="SVG Icon" className="h-full w-full object-contain" />
+                                        <Image src="/assets/academic/subject.svg" width={0} height={0} alt="SVG Icon" className="h-full w-full object-contain" />
                                     </div>
 
                                     {/* Right side: Number and Text */}
@@ -300,7 +300,7 @@ export default function Dashboard() {
                                 <div className="flex items-center space-x-2"> {/* Reduced space between the icon and text */}
                                     {/* Left side: Icon */}
                                     <div className="flex items-center justif-bottom h-20 w-20">
-                                        <img src="/assets/academic/flip.svg" alt="SVG Icon" className="h-full w-full object-contain" />
+                                        <Image src="/assets/academic/flip.svg" width={0} height={0} alt="SVG Icon" className="h-full w-full object-contain" />
                                     </div>
 
                                     {/* Right side: Number and Text */}
@@ -316,7 +316,7 @@ export default function Dashboard() {
                                 <div className="flex items-center space-x-2"> {/* Reduced space between the icon and text */}
                                     {/* Left side: Icon */}
                                     <div className="flex items-center justif-bottom h-20 w-20">
-                                        <img src="/assets/academic/discuss.svg" alt="SVG Icon" className="h-full w-full object-contain" />
+                                        <Image src="/assets/academic/discuss.svg" width={0} height={0} alt="SVG Icon" className="h-full w-full object-contain" />
                                     </div>
 
                                     {/* Right side: Number and Text */}
@@ -332,7 +332,7 @@ export default function Dashboard() {
                                 <div className="flex items-center space-x-2"> {/* Reduced space between the icon and text */}
                                     {/* Left side: Icon */}
                                     <div className="flex items-center justif-bottom h-20 w-20">
-                                        <img src="/assets/academic/assess.svg" alt="SVG Icon" className="h-full w-full object-contain" />
+                                        <Image src="/assets/academic/assess.svg" width={0} height={0} alt="SVG Icon" className="h-full w-full object-contain" />
                                     </div>
 
                                     {/* Right side: Number and Text */}
@@ -348,7 +348,7 @@ export default function Dashboard() {
                                 <div className="flex items-center space-x-2"> {/* Reduced space between the icon and text */}
                                     {/* Left side: Icon */}
                                     <div className="flex items-center justif-bottom h-20 w-20">
-                                        <img src="/assets/academic/quiz.svg" alt="SVG Icon" className="h-full w-full object-contain" />
+                                        <Image src="/assets/academic/quiz.svg" width={0} height={0} alt="SVG Icon" className="h-full w-full object-contain" />
                                     </div>
 
                                     {/* Right side: Number and Text */}
@@ -364,7 +364,7 @@ export default function Dashboard() {
                                 <div className="flex items-center space-x-2"> {/* Reduced space between the icon and text */}
                                     {/* Left side: Icon */}
                                     <div className="flex items-center justif-bottom h-20 w-20">
-                                        <img src="/assets/academic/live.svg" alt="SVG Icon" className="h-full w-full object-contain" />
+                                        <Image src="/assets/academic/live.svg" width={0} height={0} alt="SVG Icon" className="h-full w-full object-contain" />
                                     </div>
 
                                     {/* Right side: Number and Text */}
@@ -379,7 +379,7 @@ export default function Dashboard() {
                                 <div className="flex items-center space-x-2"> {/* Reduced space between the icon and text */}
                                     {/* Left side: Icon */}
                                     <div className="flex items-center justif-bottom h-20 w-20">
-                                        <img src="/assets/academic/resource.svg" alt="SVG Icon" className="h-full w-full object-contain" />
+                                        <Image src="/assets/academic/resource.svg" width={0} height={0} alt="SVG Icon" className="h-full w-full object-contain" />
                                     </div>
 
                                     {/* Right side: Number and Text */}
