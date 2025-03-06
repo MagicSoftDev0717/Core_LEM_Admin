@@ -4,9 +4,9 @@ import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "LEM Admin | Mathnasium Board- Business",
+  title: "LEM Admin | LEM Board- Business",
   description:
-    "This is Mathnasium Board page of Admin",
+    "This is LEM Board page of Admin",
 };
 export default function page() {
   return (

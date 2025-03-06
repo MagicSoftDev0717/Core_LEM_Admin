@@ -176,7 +176,7 @@ export default function BasicTableOne() {
                                         Assessment Reminder
                                     </TableCell>
                                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                        Reminder: Mathnasium Assessment Confirmation
+                                        Reminder: LEM Assessment Confirmation
                                     </TableCell>
                                     <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                         04/02/2024

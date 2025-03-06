@@ -6,7 +6,7 @@ import React from "react";
 export const metadata: Metadata = {
   title: "LEM Admin | Centre Setting - Business",
   description:
-    "This is Mathnasium Board page of Admin",
+    "This is LEM Board page of Admin",
 };
 export default function page() {
   return (
