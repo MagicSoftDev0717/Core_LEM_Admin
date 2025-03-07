@@ -26,13 +26,13 @@ export default function BasicTableOne() {
     return (
         <div>
             <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
-                Teacher Information
+                Community Contract Information
             </h4>
 
-            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-4">
                 <div className="col-span-1">
                     <Label>Situation</Label>
-                    <select className="px-6 py-3 bg-gray-900 text-gray-600 border rounded-lg text-xs w-full">
+                    <select className="px-6 py-3 bg-white dark:bg-gray-900 text-gray-600 border rounded-lg text-sm w-full">
                         <option value="">All</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
@@ -143,7 +143,7 @@ export default function BasicTableOne() {
 
             <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
                 <div className="col-span-1">
-                    <textarea rows = {6} cols = {80} className="bg-gray-900 text-gray-600border rounded-lg" placeholder="Type your message here..."/>
+                    <textarea rows = {6} cols = {80} className="bg-white dark:bg-gray-900 text-gray-600 border rounded-lg" placeholder="Type your message here..."/>
                 </div>
             </div>
 

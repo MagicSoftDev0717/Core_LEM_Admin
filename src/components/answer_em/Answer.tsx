@@ -67,8 +67,8 @@ export default function BasicTableOne() {
           {/* Label and Combo Box */}
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Employee Key Type:</label>
-            <input type="text" className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm w-1/2" placeholder="days" />
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Employee Key Id:</label>
+            <input type="text" className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm w-1/2" placeholder="Search" />
           </div>
 
           <div>
@@ -98,15 +98,15 @@ export default function BasicTableOne() {
                 <TableRow>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
-                    First Name
+                    File Name
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400"
+                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
-                    Last Name
+                    Description
                   </TableCell>
                 </TableRow>
               </TableHeader>
