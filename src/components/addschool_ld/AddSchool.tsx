@@ -26,10 +26,10 @@ export default function BasicTableOne() {
     return (
         <div>
             <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
-                Teacher Information
+                School Information
             </h4>
 
-            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-4">
                 <div className="col-span-1">
                     <Label>Name*:</Label>
                     <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
@@ -41,12 +41,12 @@ export default function BasicTableOne() {
 
                 <div className="col-span-1">
                     <Label>Principal:</Label>
-                    <Input type="text" placeholder="Hasan" />
+                    <Input type="text" placeholder="" />
                 </div>
 
                 <div className="col-span-1">
                     <Label>Assistant:</Label>
-                    <Input type="text" placeholder="Ali" />
+                    <Input type="text" placeholder="" />
                 </div>
 
                 <div className="col-span-1">
@@ -89,7 +89,7 @@ export default function BasicTableOne() {
                 Address Information
             </h4>
 
-            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-4">
                 <div className="col-span-1">
                     <Label>Street Address 1:</Label>
                     <Input type="text" placeholder="" />

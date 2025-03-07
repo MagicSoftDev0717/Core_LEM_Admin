@@ -197,7 +197,7 @@ export default function BasicTableOne() {
 
                     <div className="self-end">
                         <button
-                            className="px-2 py-1 bg-blue-600 text-white rounded-lg w-1/2"
+                            className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/2"
                         >Search
                         </button>
                     </div>
