@@ -104,8 +104,8 @@ export default function Dashboard() {
                                     className="object-cover"
                                 />
                             </div>
-                            <p className="mt-2 text-gray-900 dark:text-white font-medium">Hasan Ali</p>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">March 3, 2025</p>
+                            <p className="mt-2 text-gray-900 dark:text-white font-medium"></p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">March 3, 2023</p>
                         </div>
                     </div>
                 </div>
