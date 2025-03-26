@@ -124,13 +124,13 @@ export async function POST(req: Request) {
     // }
 
     //Check if email already exists
-    const existingLead = await prisma.lead.findUnique({
-      where: { email },
-    });
+    // const existingLead = await prisma.lead.findUnique({
+    //   where: { email },
+    // });
 
-    if (existingLead) {
-      return NextResponse.json({ message: "Email already exists" }, { status: 400 });
-    }
+    // if (existingLead) {
+    //   return NextResponse.json({ message: "Email already exists" }, { status: 400 });
+    // }
 
     // Save new lead in the database
     const newLead = await prisma.lead.create({

@@ -144,7 +144,7 @@ export default function BasicTableOne() {
 
           // console.log(itemsPerPage, currentLeads.length, leads.length);
         } else {
-          console.error("API response is not an array:", data);
+          // console.error("API response is not an array:", data);
           setLeads([]); // Ensure leads remains an array
           setCurrentLeads([]);
           // currentLeads = [];
