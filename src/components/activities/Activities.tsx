@@ -56,6 +56,16 @@ const tableData: Order[] = [
     priority: "soon",
     dueDate: "26/11/23",
   },
+  {
+    id: 3,
+    taskType: "Call",
+    stuConcern: "xxx",
+    parConcern: "mmm",
+    priPhone: "01234567890",
+    status: "Started",
+    priority: "urgent",
+    dueDate: "26/11/23",
+  },
 
 ];
 
@@ -393,11 +403,11 @@ export default function BasicTableOne() {
                       </TableCell>
                       <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm">
                         {order.priority === "urgent" ? (
-                          <span className="bg-error-500 text-error-500">{order.priority}</span>
+                          <span className="bg-error-500 border border-gray-600 dark:border-gray-300 text-error-500">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         ) : order.priority === "soon" ? (
-                          <span className="bg-warning-500 text-warning-500">{order.priority}&nbsp;&nbsp;</span>
+                          <span className="bg-warning-500 border border-gray-600 dark:border-gray-300 text-warning-500">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         ) : order.priority === "later" ? (
-                          <span className="bg-success-500 text-success-500">{order.priority}&nbsp;&nbsp;</span>
+                          <span className="bg-success-500 border border-gray-600 dark:border-gray-300 text-success-500">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         ) : (
                           <span>{order.priority}</span> // Default case (optional)
                         )}
