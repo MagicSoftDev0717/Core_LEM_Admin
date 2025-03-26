@@ -27,12 +27,12 @@ interface Order {
         firstName: string;
         lastName: string;
     };
-    contactType: string;
-    subject: string;
-    contactInfo: string;
-    priority: string;
-    status: string;
-    dueDate: string;
+    joinDate: string;
+    Status: string;
+    timeWorked: string;
+    Description: string;
+    mobilePnone: number;
+    Email: string;
 }
 
 const tableData: Order[] = [
@@ -43,12 +43,12 @@ const tableData: Order[] = [
             firstName: "Lindsey",
             lastName: "Curtis"
         },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23",
+        joinDate: "13/05/2023",
+        Status: "Active",
+        timeWorked: "01234567890",
+        Description: "Working as a Mechanical Engineer for 4 years. ",
+        mobilePnone: 447981234,
+        Email: "test@gmail.com",
     },
     {
         id: 2,
@@ -58,12 +58,12 @@ const tableData: Order[] = [
             lastName: "George"
             // role: "Project Manager",
         },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
+        joinDate: "13/05/2023",
+        Status: "Active",
+        timeWorked: "01234567890",
+        Description: "‘Studying Medicine at Nottingham University, in 3rd year.",
+        mobilePnone: 442684237,
+        Email: "test@gmail.com",
     },
 
 ];
@@ -101,12 +101,12 @@ export default function BasicTableOne() {
             tableData.map((order) => ({
                 "First Name": order.user.firstName,
                 "Last Name": order.user.lastName,
-                "Contact Type": order.contactType,
-                Subject: order.subject,
-                "Contact Info": order.contactInfo,
-                Status: order.status,
-                Priority: order.priority,
-                "Due Date": order.dueDate,
+                "Join Date": order.joinDate,
+                Status: order.Status,
+                "Time Worked": order.timeWorked,
+                Description: order.Description,
+                "Mobile Phone": order.mobilePnone,
+                "Email": order.Email,
             }))
         );
         const wb = XLSX.utils.book_new();
@@ -126,11 +126,23 @@ export default function BasicTableOne() {
     };
     return (
         <div>
+
+            <div className="mb-6">
+                <div className="grid grid-cols-3 gap-2">
+                    {/* Label and Combo Box */}
+                    <div className="flex flex-row">
+                        <label className="block text-2xl font-medium text-gray-700 dark:text-gray-300">Total Active Mentors:&nbsp;</label>
+                        <label className="block text-2xl font-medium text-green-600 dark:text-green-300">2</label>
+                    </div>
+                </div>
+
+            </div>
+
             <div className="mb-6">
                 <div className="grid grid-cols-3 gap-2">
                     {/* Label and Combo Box */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Teacher Name:</label>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Mentor Name:</label>
                         <input type="text" className="px-4 py-2 w-1/8 dark:bg-gray-900 text-gray-700 border rounded-lg dark:text-gray-400" placeholder="Type a name" />
                     </div>
 
@@ -186,8 +198,8 @@ export default function BasicTableOne() {
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
                         <select className="px-4 py-2 dark:bg-gray-900 text-gray-700 border rounded-lg text-sm dark:text-gray-400 w-1/2">
                             <option value="">--Select--</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
+                            <option value="1">All</option>
+                            <option value="2">LEM Norbury</option>
                         </select>
                     </div>
                     <div></div>
@@ -206,7 +218,7 @@ export default function BasicTableOne() {
                     <button onClick={addtoTeacher}
                         className="px-4 py-2 bg-blue-600 text-white rounded-lg"
                     >
-                        Add Teacher
+                        Add Mentor
                     </button>
                 </div>
             </div>
@@ -234,13 +246,19 @@ export default function BasicTableOne() {
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        School
+                                        Join Date
                                     </TableCell>
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Department
+                                        Status
+                                    </TableCell>
+                                    <TableCell
+                                        isHeader
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                    >
+                                        Time worked<br />(since CORE)
                                     </TableCell>
                                     <TableCell
                                         isHeader
@@ -252,7 +270,7 @@ export default function BasicTableOne() {
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Mobile Phone
+                                        Mobile number
                                     </TableCell>
                                     <TableCell
                                         isHeader
@@ -279,19 +297,22 @@ export default function BasicTableOne() {
                                             {order.user.lastName}
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.contactType}
+                                            {order.joinDate}
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.subject}
+                                            {order.Status}
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.contactInfo}
+                                            {order.timeWorked}
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.contactInfo}
+                                            {order.Description}
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.status}
+                                            {order.mobilePnone}
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            {order.Email}
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                             <div className="flex items-center justify-center gap-2">
@@ -349,11 +370,11 @@ export default function BasicTableOne() {
             </div>
 
             <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[1000px] p-5 lg:p-10">
-                <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Edit Teacher</h2>
+                <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Edit Mentor</h2>
                 {selectedActivity && (
                     <div>
                         <h4 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">
-                            Teacher Information
+                            Mentor Information
                         </h4>
 
                         <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-5">
@@ -363,6 +384,15 @@ export default function BasicTableOne() {
                                     <option value="">All</option>
                                     <option value="1">Option 1</option>
                                     <option value="2">Option 2</option>
+                                </select>
+                            </div>
+                            <div className="col-span-1">
+                                <Label>Status</Label>
+                                <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:tex-gray-400 w-full">
+                                    <option value="">--Select--</option>
+                                    <option value="1">Active</option>
+                                    <option value="2">Inactive</option>
+                                    <option value="2">Frozen</option>
                                 </select>
                             </div>
 

@@ -66,8 +66,6 @@ export default function BasicTableOne() {
   const router = useRouter();
   const [alert, setAlert] = useState<{ title: string; message: string; variant: "success" | "error" | "warning" | "info" } | null>(null);
 
-
-
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
@@ -1190,8 +1188,6 @@ export default function BasicTableOne() {
           </div>
         )}
       </Modal>
-
-
 
       {/* Modal */}
       {isModalOpen && (

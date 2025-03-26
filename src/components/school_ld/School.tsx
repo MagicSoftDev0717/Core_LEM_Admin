@@ -1,6 +1,7 @@
 
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/light.css";
@@ -22,48 +23,44 @@ import * as XLSX from "xlsx";
 
 interface Order {
     id: number;
-    user: {
-        //image: string;
-        firstName: string;
-        lastName: string;
-    };
-    contactType: string;
-    subject: string;
-    contactInfo: string;
-    priority: string;
+    name: string;
+    level: string;
+    type: string;
+    enrolled: string;
+    site: string;
+    email: string;
     status: string;
-    dueDate: string;
+    number: number;
+    Area: string;
+    postcode: number;
 }
 
 const tableData: Order[] = [
     {
         id: 1,
-        user: {
-            //image: "/images/user/user-17.jpg",
-            firstName: "Lindsey",
-            lastName: "Curtis"
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23",
+        name: "St Boris",
+        level: "Secondary",
+        type: "Faith",
+        enrolled: "Secondary",
+        site: "www.stboris.com",
+        email: "hello@stboris.com",
+        status: "",
+        number: 0,
+        Area: "",
+        postcode: 34983
     },
     {
         id: 2,
-        user: {
-            //image: "/images/user/user-18.jpg",
-            firstName: "Kaiya",
-            lastName: "George"
-            // role: "Project Manager",
-        },
-        contactType: "Student",
-        subject: "Math",
-        contactInfo: "01234567890",
-        status: "Started",
-        priority: "Normal",
-        dueDate: "26/11/23"
+        name: "St Nicholas",
+        level: "Secondary",
+        type: "Faith",
+        enrolled: "Secondary",
+        site: "www.nicholas.com",
+        email: "hello@Nicholas.com",
+        status: "",
+        number: 0,
+        Area: "",
+        postcode: 23452
     },
 
 ];
@@ -99,14 +96,15 @@ export default function BasicTableOne() {
     const exportToExcel = () => {
         const ws = XLSX.utils.json_to_sheet(
             tableData.map((order) => ({
-                "First Name": order.user.firstName,
-                "Last Name": order.user.lastName,
-                "Contact Type": order.contactType,
-                Subject: order.subject,
-                "Contact Info": order.contactInfo,
-                Status: order.status,
-                Priority: order.priority,
-                "Due Date": order.dueDate,
+                name: order.name,
+                level: order.level,
+                enrolled: order.enrolled,
+                type: order.type,
+                site: order.site,
+                email: order.email,
+                number: order.number,
+                area: order.Area,
+                postcode: order.postcode,
             }))
         );
         const wb = XLSX.utils.book_new();
@@ -124,6 +122,28 @@ export default function BasicTableOne() {
     const detailToSchool = () => {
         router.push("/detaschool_ld"); // Navigate to the 'lead' page
     };
+    /////////////Table Sort/////////
+    const [sortDirection, setSortDirection] = useState("asc");
+    const [sortedData, setSortedData] = useState<Order[]>([...tableData]);
+
+    const toggleSortDirection = () => {
+        const newDirection = sortDirection === "asc" ? "desc" : "asc";
+        setSortDirection(newDirection);
+
+        // Sorting logic based on first name
+        const sorted = [...tableData].sort((a, b) => {
+            const nameA = a.name.toLowerCase();
+            const nameB = b.name.toLowerCase();
+            return newDirection === "asc" ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+        });
+
+        setSortedData(sorted);
+    };
+    useEffect(() => {
+        setSortedData(tableData); // Ensures table updates when data changes
+    }, [tableData]);
+
+    const [schoolLevel, setSchoolLevel] = useState<string>("");
 
     return (
         <div>
@@ -191,9 +211,9 @@ export default function BasicTableOne() {
                             <option value="2">Option 2</option>
                         </select>
                     </div>
-                    
+
                     <div></div>
-                    <div></div> 
+                    <div></div>
 
                     <div className="self-end">
                         <button
@@ -229,6 +249,57 @@ export default function BasicTableOne() {
                                     <TableCell
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+
+                                    >
+                                        <div className="flex items-center justify-center gap-4" onClick={toggleSortDirection}>
+                                            <div className="flex items-center justify-center text-center">
+                                                <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Level</p>
+                                            </div>
+
+                                            <button className="flex flex-col">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="5" fill="none"
+                                                    className={`transition-transform ${sortDirection === "asc" ? "text-brand-500" : "text-gray-300 dark:text-gray-700"
+                                                        }`}>
+                                                    <path fill="currentColor" d="M4.41.585a.5.5 0 0 0-.82 0L1.05 4.213A.5.5 0 0 0 1.46 5h5.08a.5.5 0 0 0 .41-.787z"></path>
+                                                </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="5" fill="none" className={`transition-transform ${sortDirection === "desc" ? "text-brand-500" : "text-gray-300 dark:text-gray-700"
+                                                    }`}>
+                                                    <path fill="currentColor" d="M4.41 4.415a.5.5 0 0 1-.82 0L1.05.787A.5.5 0 0 1 1.46 0h5.08a.5.5 0 0 1 .41.787z"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell
+                                        isHeader
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                    >
+                                        <div className="flex items-center justify-center gap-4" onClick={toggleSortDirection}>
+                                            <div className="flex items-center justify-center text-center">
+                                                <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Type</p>
+                                            </div>
+
+                                            <button className="flex flex-col">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="5" fill="none"
+                                                    className={`transition-transform ${sortDirection === "asc" ? "text-brand-500" : "text-gray-300 dark:text-gray-700"
+                                                        }`}>
+                                                    <path fill="currentColor" d="M4.41.585a.5.5 0 0 0-.82 0L1.05 4.213A.5.5 0 0 0 1.46 5h5.08a.5.5 0 0 0 .41-.787z"></path>
+                                                </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="5" fill="none" className={`transition-transform ${sortDirection === "desc" ? "text-brand-500" : "text-gray-300 dark:text-gray-700"
+                                                    }`}>
+                                                    <path fill="currentColor" d="M4.41 4.415a.5.5 0 0 1-.82 0L1.05.787A.5.5 0 0 1 1.46 0h5.08a.5.5 0 0 1 .41.787z"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell
+                                        isHeader
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                    >
+                                        Enrolled
+                                    </TableCell>
+                                    <TableCell
+                                        isHeader
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
                                         Website
                                     </TableCell>
@@ -242,7 +313,19 @@ export default function BasicTableOne() {
                                         isHeader
                                         className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                                     >
-                                        Created by
+                                        Number
+                                    </TableCell>
+                                    <TableCell
+                                        isHeader
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                    >
+                                        Area
+                                    </TableCell>
+                                    <TableCell
+                                        isHeader
+                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                    >
+                                        Postcode
                                     </TableCell>
                                     <TableCell
                                         isHeader
@@ -254,32 +337,47 @@ export default function BasicTableOne() {
                             </TableHeader>
                             {/* Table Body */}
                             <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                                {tableData.map((order) => (
+                                {sortedData.map((order) => (
                                     <TableRow key={order.id}>
-                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.user.firstName}
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400 cursor-pointer" >
+                                            <span onClick={detailToSchool}>{order.name}</span>
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.user.lastName}
+                                            {order.level}
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.contactType}
+                                            {order.type}
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.subject}
+                                            {order.enrolled}
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            {order.site}
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            {order.email}
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            {order.number}
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            {order.Area}
+                                        </TableCell>
+                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                            {order.postcode}
                                         </TableCell>
                                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                             <div className="flex items-center justify-center gap-2">
                                                 <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={() => openEditModal(order)}>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6" >
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                                                     </svg>
                                                 </button>
-                                                <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={detailToSchool}>
+                                                {/* <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" >
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-6">
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 4h.01M4.5 12a7.5 7.5 0 1115 0 7.5 7.5 0 01-15 0z" />
                                                     </svg>
-                                                </button>
+                                                </button> */}
                                                 <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
@@ -331,7 +429,7 @@ export default function BasicTableOne() {
                             School Information
                         </h4>
 
-                        <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
+                        <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-4">
                             <div className="col-span-1">
                                 <Label>Name*:</Label>
                                 <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-500 w-full">
@@ -349,6 +447,11 @@ export default function BasicTableOne() {
                             <div className="col-span-1">
                                 <Label>Assistant:</Label>
                                 <Input type="text" placeholder="Ali" />
+                            </div>
+
+                            <div className="col-span-1">
+                                <Label>Receptionist:</Label>
+                                <Input type="text" placeholder="Hasan" />
                             </div>
 
                             <div className="col-span-1">
@@ -377,8 +480,29 @@ export default function BasicTableOne() {
                             </div>
 
                             <div className="col-span-1">
+                                <Label>School Level:</Label>
+                                <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-500 w-full"
+                                    value={schoolLevel}
+                                    onChange={(e) => setSchoolLevel(e.target.value)}>
+                                    <option value="">--Select--</option>
+                                    <option value="primary">Primary</option>
+                                    <option value="secondary">Secondary</option>
+                                </select>
+                            </div>
+                            <div className="col-span-1">
                                 <Label>School Type:</Label>
-                                <Input type="text" placeholder="" />
+                                <select
+                                    className={`px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-500 w-full
+                                    ${schoolLevel !== "secondary" ? "opacity-50 cursor-not-allowed" : ""}`}
+                                    disabled={schoolLevel !== "secondary"}>
+                                    <option value="academy">Academy</option>
+                                    <option value="comprehensive">Comprehensive</option>
+                                    <option value="faith">Faith</option>
+                                    <option value="grammar">Grammar</option>
+                                    <option value="prep">Prep</option>
+                                    <option value="private">Private</option>
+                                    <option value="state">State</option>
+                                </select>
                             </div>
                         </div>
 
@@ -420,6 +544,20 @@ export default function BasicTableOne() {
                             <div className="col-span-1">
                                 <Label>Country:</Label>
                                 <Input type="email" placeholder="United Kingdom" />
+                            </div>
+                        </div>
+
+                        <hr className="my-6" />
+
+                        {/* Description Information */}
+
+                        <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
+                            Description Information
+                        </h4>
+
+                        <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
+                            <div className="col-span-1">
+                                <textarea rows={6} cols={80} className="dark:bg-gray-900 text-gray-600 border rounded-lg" placeholder="Type your description here..." />
                             </div>
                         </div>
 

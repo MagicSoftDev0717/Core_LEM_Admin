@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <div>
-      <PageBreadcrumb pageTitle="Add Teachers" />
+      <PageBreadcrumb pageTitle="Add Mentors" />
       { <AddTeacher /> }
     </div>
   );
