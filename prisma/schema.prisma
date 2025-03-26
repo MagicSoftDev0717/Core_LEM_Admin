@@ -9,6 +9,63 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+
+model Lead {
+  id           Int     @id @default(autoincrement())
+  fname      String
+  lname      String
+  email      String  @unique
+  mobile     String?
+  homePhone   String?
+  otherPhone   String?
+  status      String?
+  emailOpt    Boolean?
+  address1    String?
+  address2    String?
+  city        String?
+  postalCode  String?
+  descrip     String?
+  customDescrip String?
+  regularPro  Boolean?
+  enrich      Boolean?
+  homeSchool  Boolean?
+  examPrep    Boolean?
+  home        Boolean?
+  summerPro   Boolean?
+  assessOnly  Boolean?
+  other       Boolean?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model Student {
+  id           Int     @id @default(autoincrement())
+  parent_id    Int
+  fname      String
+  lname      String
+  year       String?
+  schoolYear String?
+  school     String?
+  teacher    String?
+  gender     String?
+  birth      String?
+  account    String?
+  virCen     String?
+  descript   String?
+  medicInfo  String?
+  cenDir     String?
+  subMat     String?
+  stuNote    String?
+  mediaRele  Boolean?
+  leaveUnder Boolean?
+  contactTeach  Boolean?
+  scholarShip   Boolean?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  
 }
