@@ -27,6 +27,8 @@ interface Lead {
   id: number;
   fname: string;
   lname: string;
+  gender: string;
+  year: number;
   createdAt: string;
   updatedAt: string;
   mobile: string;
@@ -69,6 +71,8 @@ export default function BasicTableOne() {
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
+    gender: "",
+    year: "",
     email: "",
     mobile: "",
     status: ""
@@ -85,8 +89,8 @@ export default function BasicTableOne() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLdSts, setSelectedLdSts] = useState("");
-
-
+  const [selectedGen, setSelectedGen] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
 
 
   const [dateOfStart, setDateOfStart] = useState("");
@@ -123,19 +127,19 @@ export default function BasicTableOne() {
   useEffect(() => {
     async function fetchLeads() {
       try {
-        const response = await fetch(`/api/addlead_ld?page=${currentPage}&items=${itemsPerPage}&searchQuery=${searchQuery}&selectedLdSts=${selectedLdSts}&dateOfStart=${dateOfStart}&dateOfEnd=${dateOfEnd}`);
+        const response = await fetch(`/api/addlead_ld?page=${currentPage}&items=${itemsPerPage}&searchQuery=${searchQuery}&selectedLdSts=${selectedLdSts}&selectedGen=${selectedGen}&selectedYear=${selectedYear}&dateOfStart=${dateOfStart}&dateOfEnd=${dateOfEnd}`);
 
         const data = await response.json();
         if (data.lead_data !== undefined) {
           const totalPage = Math.ceil(data.totalLead / itemsPerPage);
           const lastIndex = currentPage * itemsPerPage;
-          // if (count < totalPage)
-          //   data.lead_data.map((lead: Lead) => leads.push(lead));
           setLeads(data.lead_data);
           setCurrentLeads(data.lead_data.slice(lastIndex - itemsPerPage, lastIndex));
           setFormData({
             fname: data.lead_data.fname,
             lname: data.lead_data.lname,
+            gender: data.lead_data.gender,
+            year: data.lead_data.year,
             email: data.lead_data.email,
             mobile: data.lead_data.mobile,
             status: data.lead_data.status
@@ -147,14 +151,14 @@ export default function BasicTableOne() {
           // console.error("API response is not an array:", data);
           setLeads([]); // Ensure leads remains an array
           setCurrentLeads([]);
-          // currentLeads = [];
+        
         }
       } catch (error) {
         console.error("Error fetching leads:", error);
       }
     }
     fetchLeads();
-  }, [currentPage, itemsPerPage, updateLead, delupdateLead, searchQuery, selectedLdSts, dateOfStart, dateOfEnd]);
+  }, [currentPage, itemsPerPage, updateLead, delupdateLead, searchQuery, selectedLdSts, selectedGen, selectedYear, dateOfStart, dateOfEnd]);
 
   //Show by row display count
   const handleItemsPerPageChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -342,6 +346,11 @@ export default function BasicTableOne() {
 
   const pageNumbers = getPageNumbers(currentPage, totalPages);
 
+  /////////////////////
+ 
+
+
+
   return (
     <div>
       {/* Button Container */}
@@ -381,11 +390,9 @@ export default function BasicTableOne() {
                 className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2" />
             </div>
 
-            <div>
+            {/* <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Lead Status:</label>
               <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2"
-                onChange={(e) => setSelectedLdSts(e.target.value)}
-                value={selectedLdSts}
               >
                 <option value="All">All</option>
                 <option value="Open">Open</option>
@@ -394,7 +401,7 @@ export default function BasicTableOne() {
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
               </select>
-            </div>
+            </div> */}
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Filter:</label>
@@ -685,7 +692,20 @@ export default function BasicTableOne() {
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Lead Status
+                      <div className="flex flex-row items-center justify-center gap-1">
+                        <Label className="flex ">Lead Status</Label>
+                        <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-1/6"
+                        onChange={(e) => setSelectedLdSts(e.target.value)}
+                        value={selectedLdSts}
+                        >
+                          <option value="all">All</option>
+                          <option value="open">Open</option>
+                          <option value="assessed">Assessed</option>
+                          <option value="contacted">Contacted</option>
+                          <option value="active">Active</option>
+                          <option value="inactive">Inactive</option>
+                        </select>
+                      </div>
                     </TableCell>
                     {/* <TableCell
                       isHeader
@@ -693,23 +713,51 @@ export default function BasicTableOne() {
                     >
                       Student Name
                     </TableCell> */}
-                    <TableCell
+                    {/* <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
                       On Hold
+                    </TableCell> */}
+                    <TableCell
+                      isHeader
+                      className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    >
+                      <div className="flex flex-row items-center justify-center gap-1">
+                        <Label className="flex ">Gender</Label>
+                        <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-1/6"
+                        value={selectedGen}
+                        onChange={(e) => setSelectedGen(e.target.value)}
+                        >
+                          <option value="all" >All</option>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                        </select>
+                      </div>
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Gender
-                    </TableCell>
-                    <TableCell
-                      isHeader
-                      className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                    >
-                      Year
+                      <div className="flex flex-row items-center justify-center gap-1">
+                        <Label className="flex ">Year</Label>
+                        <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-1/6"
+                        value={selectedYear}
+                        onChange={(e) => setSelectedYear(e.target.value)}
+                        >
+                          <option value="all" >All</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                        </select>
+                      </div>
                     </TableCell>
                     <TableCell
                       isHeader
@@ -738,9 +786,9 @@ export default function BasicTableOne() {
                           <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{lead.mobile}</TableCell>
                           <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{lead.email}</TableCell>
                           <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{lead.status}</TableCell>
-                          <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{lead.mobile}</TableCell>
-                          <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{lead.email}</TableCell>
-                          <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{lead.status}</TableCell>
+                          {/* <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{lead.mobile}</TableCell> */}
+                          <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{lead.gender}</TableCell>
+                          <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">{lead.year}</TableCell>
                           <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                             <div className="flex items-center justify-center gap-2">
                               <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={() => addToChild(lead.id)}>

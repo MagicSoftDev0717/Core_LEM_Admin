@@ -16,7 +16,9 @@ export async function GET(req: Request) {
     const page = parseInt(url.searchParams.get("page") || "1");
     const itemsPerPage = parseInt(url.searchParams.get("items") || "5");
     const searchName = url.searchParams.get("searchQuery") || "";
-    const selectedLdSts = url.searchParams.get("selectedLdSts") || "All";
+    const selectedLdSts = url.searchParams.get("selectedLdSts") || "all";
+    const selectedGen = url.searchParams.get("selectedGen") || "all";
+    const selectedYear = url.searchParams.get("selectedYear") || "all";
     const dateOfStart = url.searchParams.get("dateOfStart") || "";
     const dateOfEnd= url.searchParams.get("dateOfEnd") || "";
     //const skip = (page - 1) * itemsPerPage;
@@ -32,9 +34,18 @@ export async function GET(req: Request) {
       ];
     }
 
-    if (selectedLdSts !== "All") {
+    if (selectedLdSts !== "all") {
       whereCondition.status = selectedLdSts;
     }
+
+    if (selectedGen !== "all") {
+      whereCondition.gender = selectedGen;
+    }
+
+    if (selectedYear !== "all") {
+      whereCondition.year = Number(selectedYear);
+    }
+
 
     if (dateOfStart !== "") {
       const startDate = new Date(dateOfStart); // Convert input to Date object
@@ -61,48 +72,6 @@ export async function GET(req: Request) {
     });
 
 
-
-    // if (searchName === "" && selectedLdSts === "All") {
-    //   lead_data = await prisma.lead.findMany({
-    //     orderBy: { updatedAt: "desc" },
-    //     // skip,
-    //     take: page * itemsPerPage,
-    //   });
-    // }
-    // else if (searchName !== "" && selectedLdSts === "All") {
-    //   lead_data = await prisma.lead.findMany({
-    //     orderBy: { updatedAt: "desc" },
-    //     // skip,
-    //     take: page * itemsPerPage,
-    //     where: {
-    //       OR: [
-    //         { fname: { contains: searchName } },
-    //         { lname: { contains: searchName } }
-    //       ],
-    //     },
-    //   });
-    // }
-    // else if (searchName === "" && selectedLdSts !== "All") {
-    //   lead_data = await prisma.lead.findMany({
-    //     orderBy: { updatedAt: "desc" },
-    //     // skip,
-    //     take: page * itemsPerPage,
-    //     where: { status: selectedLdSts },
-    //   });
-    // }
-    // else if (searchName !== "" && selectedLdSts !== "All") {
-    //   lead_data = await prisma.lead.findMany({
-    //     orderBy: { updatedAt: "desc" },
-    //     // skip,
-    //     take: page * itemsPerPage,
-    //     where: whereCondition,
-    //   });
-    // }
-
-
-
-
-
     // Get the total count of messages for calculating the number of pages
     const totalLead = await prisma.lead.count({ where: whereCondition });
 
@@ -116,7 +85,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { fname, lname, email, mobile, status } = body;
+    const { fname, lname, gender, year, email, mobile, status } = body;
 
     // Validate input
     // if (!name || !email || !mobile || !lead) {
@@ -134,7 +103,7 @@ export async function POST(req: Request) {
 
     // Save new lead in the database
     const newLead = await prisma.lead.create({
-      data: { fname, lname, email, mobile, status },
+      data: { fname, lname, gender, year: year ? parseInt(year, 10) : null, email, mobile, status },
     });
 
     return NextResponse.json({ success: true, lead: newLead }, { status: 201 });

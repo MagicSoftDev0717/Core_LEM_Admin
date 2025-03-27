@@ -85,6 +85,8 @@ model Lead {
   id            Int      @id @default(autoincrement())
   fname         String
   lname         String
+  gender        String?  
+  year          Int?
   email         String   @unique
   mobile        String?
   homePhone     String?

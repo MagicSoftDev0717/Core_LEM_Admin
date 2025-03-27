@@ -11,6 +11,8 @@ export default function BasicTableOne() {
     const [formData, setFormData] = useState({
         fname: "",
         lname: "",
+        gender: "",
+        year: "",
         email: "",
         mobile: "",
         status: ""
@@ -73,7 +75,7 @@ export default function BasicTableOne() {
                 Lead Guardian Information
             </h4>
 
-            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-4">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-5">
                 <div className="col-span-1">
                     <Label>Situation</Label>
                     <select className="dark:bg-gray-900 dark:text-gray-600 px-6 py-3 border rounded-lg text-sm w-full">
@@ -91,6 +93,32 @@ export default function BasicTableOne() {
                 <div className="col-span-1">
                     <Label>Last Name*:</Label>
                     <Input type="tex" name="lname" defaultValue={formData.lname} onChange={handleChange} placeholder="Ali" />
+                </div>
+
+                <div className="col-span-1">
+                    <Label>Gender:</Label>
+                    <select name="gender" value={formData.gender} onChange={handleChange} className="dark:bg-gray-900 dark:text-gray-600 px-6 py-3 border rounded-lg text-sm w-full">
+                        <option value="">--Select--</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div className="col-span-1">
+                    <Label>Year:</Label>
+                    <select name="year" value={formData.year} onChange={handleChange} className="dark:bg-gray-900 dark:text-gray-600 px-6 py-3 border rounded-lg text-sm w-full">
+                        <option value="">--Select--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
                 </div>
 
                 <div className="col-span-1">
