@@ -6,17 +6,9 @@ import { EyeCloseIcon, EyeIcon } from "@/icons";
 import Link from "next/link";
 import React, { useState } from "react";
 
-import { redirect } from "next/navigation";
-import { signUp } from "@/lib/actions";
-import { auth } from "@/lib/auth";
-
 export default function SignUpForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-
-  const session = await auth();
-  if (session) redirect("/");
-
   return (
     <div className="flex flex-col flex-1 p-6 rounded-2xl sm:rounded-none sm:border-0 sm:p-8">
       <div className="w-full max-w-md pt-5 mx-auto sm:py-10">
@@ -105,14 +97,7 @@ export default function SignUpForm() {
               </span>
             </div>
           </div>
-          <form action={async (formData) => {
-            "use server";
-            const res = await signUp(formData);
-            if (res.success) {
-              redirect("/sign-in");
-            }
-          }}
-          >
+          <form>
             <div className="space-y-5">
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 {/* <!-- First Name --> */}

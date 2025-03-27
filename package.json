@@ -10,6 +10,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.8.0",
     "@fullcalendar/core": "^6.1.15",
     "@fullcalendar/daygrid": "^6.1.15",
     "@fullcalendar/interaction": "^6.1.15",
@@ -37,6 +38,7 @@
     "react-dom": "^18.3.1",
     "react-dropzone": "^14.3.5",
     "react-flatpickr": "^3.10.13",
+    "react-icons": "^5.5.0",
     "recharts": "^2.15.1",
     "swiper": "^11.2.4",
     "tailwind-merge": "^2.6.0",

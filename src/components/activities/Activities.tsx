@@ -1,6 +1,6 @@
 
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Filter } from "lucide-react";
 import Flatpickr from "react-flatpickr";
@@ -15,7 +15,7 @@ import Label from "../form/Label";
 import Button from "../ui/button/Button";
 import Input from "../form/input/InputField";
 import { useModal } from "@/hooks/useModal";
-
+import { ImSortAlphaAsc, ImSortAlphaDesc } from "react-icons/im";
 import {
   Table,
   TableBody,
@@ -27,6 +27,7 @@ import {
 interface Order {
   id: number;
   taskType: string;
+  note: string;
   stuConcern: string;
   parConcern: string;
   priPhone: string;
@@ -39,32 +40,35 @@ const tableData: Order[] = [
   {
     id: 1,
     taskType: "Call",
+    note: "",
     stuConcern: "zzzzzz",
-    parConcern: "ooo",
+    parConcern: "yyyyy",
     priPhone: "01234567890",
     status: "Started",
-    priority: "later",
-    dueDate: "26/11/23",
+    priority: "Low",
+    dueDate: "30/10/23",
   },
   {
     id: 2,
     taskType: "Call",
+    note: "",
     stuConcern: "xxx",
     parConcern: "mmm",
     priPhone: "01234567890",
-    status: "Started",
-    priority: "soon",
-    dueDate: "26/11/23",
+    status: "Completed",
+    priority: "Medium",
+    dueDate: "13/12/23",
   },
   {
     id: 3,
     taskType: "Call",
+    note: "",
     stuConcern: "xxx",
     parConcern: "mmm",
     priPhone: "01234567890",
-    status: "Started",
-    priority: "urgent",
-    dueDate: "26/11/23",
+    status: "NoStarted",
+    priority: "High",
+    dueDate: "09/03/25",
   },
 
 ];
@@ -142,6 +146,51 @@ export default function BasicTableOne() {
   const pageNumbers = getPageNumbers(currentPage, totalPages);
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+  };
+  //////////////////Table Sort/////////////
+  const [selectedTask, setSelectedTask] = useState<string>("");
+  const [selectedStatus, setSelectedStatus] = useState<string>("");
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
+  const [sortDateDirect, setSortDateDirect] = useState<"asc" | "desc">("asc");
+  const [sortedData, setSortedData] = useState<Order[]>([]);
+  const priorityOrder = ["Low", "Medium", "High", "Urgent"];
+  let filteredData = tableData; // Start with full data
+
+  useEffect(() => {
+    // Filter data based on selected task type
+    
+    // Filter by selectedTask
+    if (selectedTask && selectedTask !== "all") {
+      filteredData = filteredData.filter((task) => task.taskType.toLowerCase() === selectedTask.toLowerCase());
+    }
+
+    // Filter by selectedStatus
+    if (selectedStatus && selectedStatus !== "all") {
+      filteredData = filteredData.filter((task) => task.status.toLowerCase() === selectedStatus.toLowerCase());
+    }
+    // Sort by priority
+    filteredData = [...filteredData].sort((a, b) => {
+      const indexA = priorityOrder.indexOf(a.priority);
+      const indexB = priorityOrder.indexOf(b.priority);
+      return sortDirection === "asc" ? indexA - indexB : indexB - indexA;
+    });
+
+    // Sort by due date
+    filteredData = [...filteredData].sort((a, b) => {
+      const dateA = new Date(a.dueDate.split("/").reverse().join("/"));
+      const dateB = new Date(b.dueDate.split("/").reverse().join("/"));
+      return sortDateDirect === "asc" ? dateA.getTime() - dateB.getTime() : dateB.getTime() - dateA.getTime();
+    });
+
+    setSortedData(filteredData);
+  }, [selectedTask, selectedStatus, sortDirection, sortDateDirect]);
+
+  const toggleSortDirection = () => {
+    setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+  };
+
+  const toggleSortDateDirect = () => {
+    setSortDateDirect(sortDateDirect === "asc" ? "desc" : "asc");
   };
 
 
@@ -334,9 +383,32 @@ export default function BasicTableOne() {
                   <TableRow>
                     <TableCell
                       isHeader
+                      className="px-1 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
+                    >
+                      <div className="flex flex-row items-center justify-center gap-1">
+                        <Label className="flex ">Task Type</Label>
+                        <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-1/6"
+                          value={selectedTask}
+                          onChange={(e) => setSelectedTask(e.target.value)}
+                        >
+                          <option value="all" >All</option>
+                          <option value="call">Call</option>
+                          <option value="text">Text</option>
+                          <option value="email">Email</option>
+                          <option value="print">Print</option>
+                          <option value="order">Order</option>
+                          <option value="mark">Mark</option>
+                          <option value="finance">Finance</option>
+                          <option value="infoupdate">Info update</option>
+                          <option value="other">Other</option>
+                        </select>
+                      </div>
+                    </TableCell>
+                    <TableCell
+                      isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                     >
-                      Task Type
+                      Notes
                     </TableCell>
                     <TableCell
                       isHeader
@@ -360,19 +432,46 @@ export default function BasicTableOne() {
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                     >
-                      Status
+                      <div className="flex flex-row items-center justify-center gap-1">
+                        <Label className="flex ">Status</Label>
+                        <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-1/6"
+                          value={selectedStatus}
+                          onChange={(e) => setSelectedStatus(e.target.value)}
+                        >
+                          <option value="all">All</option>
+                          <option value="nostarted">No Start</option>
+                          <option value="completed">Completed</option>
+                          <option value="started">Started</option>
+                        </select>
+                      </div>
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                     >
-                      Priority
+                      <div className="flex items-center justify-center gap-4">
+                        <div className="flex items-center justify-center text-center">
+                          <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Priority</p>
+                        </div>
+
+                        <button onClick={toggleSortDirection} className="flex flex-col">
+                          {sortDirection === "asc" ? <ImSortAlphaAsc /> : <ImSortAlphaDesc />}
+                        </button>
+                      </div>
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-300"
                     >
-                      Due Date
+                      <div className="flex items-center justify-center gap-4">
+                        <div className="flex items-center justify-center text-center">
+                          <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Due Date</p>
+                        </div>
+
+                        <button onClick={toggleSortDateDirect} className="flex flex-col">
+                          {sortDirection === "asc" ? <ImSortAlphaAsc /> : <ImSortAlphaDesc />}
+                        </button>
+                      </div>
                     </TableCell>
                     <TableCell
                       isHeader
@@ -384,34 +483,38 @@ export default function BasicTableOne() {
                 </TableHeader>
                 {/* Table Body */}
                 <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                  {tableData.map((order) => (
+                  {sortedData.map((order) => (
                     <TableRow key={order.id}>
                       <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                         {order.taskType}
                       </TableCell>
                       <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                        {order.note}
+                      </TableCell>
+                      <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                         <Link href="/students">{order.stuConcern}</Link>
                       </TableCell>
                       <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400 cursor-pointer">
-                      <Link href="/leads">{order.parConcern}</Link>
+                        <Link href={`/details_ld_a/${encodeURIComponent(order.parConcern)}`}>{order.parConcern}</Link>
                       </TableCell>
                       <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400 cursor-pointer">
                         {order.priPhone}
                       </TableCell>
-                      <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                        {order.status}
-                      </TableCell>
                       <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm">
-                        {order.priority === "urgent" ? (
+                        {order.status === "NoStarted" ? (
                           <span className="bg-error-500 border border-gray-600 dark:border-gray-300 text-error-500">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        ) : order.priority === "soon" ? (
+                        ) : order.status === "Completed" ? (
                           <span className="bg-warning-500 border border-gray-600 dark:border-gray-300 text-warning-500">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        ) : order.priority === "later" ? (
+                        ) : order.status === "Started" ? (
                           <span className="bg-success-500 border border-gray-600 dark:border-gray-300 text-success-500">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         ) : (
-                          <span>{order.priority}</span> // Default case (optional)
+                          <span>{order.status}</span> // Default case (optional)
                         )}
                       </TableCell>
+                      <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                        {order.priority}
+                      </TableCell>
+
                       <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                         {order.dueDate}
                       </TableCell>
@@ -515,33 +618,6 @@ export default function BasicTableOne() {
           </div>
         </div>
       </div>
-
-      {/* Pagination and Export to Excel button aligned */}
-      {/* <div className="flex justify-between items-center mt-4">
-     
-        <div className="flex justify-center space-x-2 flex-grow">
-          {[...Array(totalPages)].map((_, index) => (
-            <button
-              key={index}
-              className={`w-8 h-8 rounded-full ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-300"
-                }`}
-              onClick={() => setCurrentPage(index + 1)}
-            >
-              {index + 1}
-            </button>
-          ))}
-        </div>
-
-       
-        <div className="flex justify-end">
-          <button
-            onClick={exportToExcel}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg"
-          >
-            Export to Excel
-          </button>
-        </div>
-      </div> */}
 
       <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[600px] p-5 lg:p-10">
         <h2 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">Edit Activity</h2>
