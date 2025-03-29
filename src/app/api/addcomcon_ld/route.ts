@@ -3,8 +3,8 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-import { Prisma } from "@prisma/client";
-import { Comcon } from "@prisma/client";
+// import { Prisma } from "@prisma/client";
+// import { Comcon } from "@prisma/client";
 
 // let comcon_data: Comcon[] = []; // Array of Lead model objects
 

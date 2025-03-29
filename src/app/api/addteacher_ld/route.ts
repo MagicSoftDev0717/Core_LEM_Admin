@@ -3,10 +3,10 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-import { Prisma } from "@prisma/client";
+// import { Prisma } from "@prisma/client";
 import { Teacher } from "@prisma/client";
 
-let teacher_data: Teacher[] = []; // Array of Lead model objects
+// let teacher_data: Teacher[] = []; // Array of Lead model objects
 
 
 export async function POST(req: Request) {
