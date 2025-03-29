@@ -40,7 +40,6 @@ export default function BasicTableOne() {
                 Subject: order.role,
                 "Contact Info": order.mobile,
                 Status: order.email,
-                Priority: order.priority,
             }))
         );
         const wb = XLSX.utils.book_new();
