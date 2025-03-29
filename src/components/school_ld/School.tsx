@@ -89,22 +89,22 @@ export default function BasicTableOne() {
     };
 
     const exportToExcel = () => {
-        // const ws = XLSX.utils.json_to_sheet(
-        //     tableData.map((order) => ({
-        //         name: order.name,
-        //         level: order.level,
-        //         enrolled: order.enrolled,
-        //         type: order.type,
-        //         site: order.site,
-        //         email: order.email,
-        //         number: order.number,
-        //         area: order.Area,
-        //         postcode: order.postcode,
-        //     }))
-        // );
-        // const wb = XLSX.utils.book_new();
-        // XLSX.utils.book_append_sheet(wb, ws, "Orders");
-        // XLSX.writeFile(wb, "table_data.xlsx");
+        const ws = XLSX.utils.json_to_sheet(
+            schools.map((order) => ({
+                name: order.sname,
+                level: order.level,
+                enrolled: order.type,
+                type: order.enroll,
+                site: order.site,
+                email: order.email,
+                number: order.mobile,
+                area: order.area,
+                postcode: order.postalCode,
+            }))
+        );
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Orders");
+        XLSX.writeFile(wb, "table_data.xlsx");
     };
 
     //Add to Teachers
@@ -453,7 +453,7 @@ export default function BasicTableOne() {
                                 {/* Table Body */}
                                 <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
                                     {Array.isArray(currentSchools) && currentSchools.length > 0 ? (
-                                        currentSchools.map((school: School, index) => (
+                                        currentSchools.map((school: School) => (
                                             <TableRow key={school.id}>
                                                 <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400 cursor-pointer" >
                                                     {school.sname}

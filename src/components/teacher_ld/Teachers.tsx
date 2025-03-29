@@ -142,21 +142,19 @@ export default function BasicTableOne() {
     }, [currentPage, itemsPerPage, updateTeacher, selectedSts, totalActive]);
 
     const exportToExcel = () => {
-        // const ws = XLSX.utils.json_to_sheet(
-        //     tableData.map((order) => ({
-        //         "First Name": order.user.firstName,
-        //         "Last Name": order.user.lastName,
-        //         "Join Date": order.joinDate,
-        //         Status: order.Status,
-        //         "Time Worked": order.timeWorked,
-        //         Description: order.Description,
-        //         "Mobile Phone": order.mobilePnone,
-        //         "Email": order.Email,
-        //     }))
-        // );
-        // const wb = XLSX.utils.book_new();
-        // XLSX.utils.book_append_sheet(wb, ws, "Orders");
-        // XLSX.writeFile(wb, "table_data.xlsx");
+        const ws = XLSX.utils.json_to_sheet(
+            teachers.map((order) => ({
+                "First Name": order.fname,
+                "Last Name": order.lname,
+                "Join Date": order.gender,
+                Status: order.email,
+                "Time Worked": order.status,
+                Description: order.mobile,
+            }))
+        );
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Orders");
+        XLSX.writeFile(wb, "table_data.xlsx");
     };
 
     //Add to Teachers
@@ -426,7 +424,7 @@ export default function BasicTableOne() {
                                 {/* Table Body */}
                                 <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
                                     {Array.isArray(currentTeachers) && currentTeachers.length > 0 ? (
-                                        currentTeachers.map((teacher: Teacher, index) => (
+                                        currentTeachers.map((teacher: Teacher) => (
                                             <TableRow key={teacher.id}>
                                                 <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                                     {teacher.fname}

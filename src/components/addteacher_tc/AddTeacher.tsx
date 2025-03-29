@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Button from "../ui/button/Button";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
+import Alert from "../ui/alert/Alert"
 // import TextArea from "@/components/form/input/TextArea";
 
 export default function BasicTableOne() {
@@ -359,6 +360,15 @@ export default function BasicTableOne() {
                 <Button size="sm" onClick={handleAddTeacher}>
                     Save
                 </Button>
+                {alert && (
+                    <Alert
+                        title={alert.title}
+                        message={alert.message}
+                        variant={alert.variant}
+                        duration={2000}
+                        onClose={() => setAlert(null)} // Clear alert after timeout
+                    />
+                )}
             </div>
         </div>
     );

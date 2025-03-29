@@ -178,20 +178,18 @@ export default function BasicTableOne({ id }: { id: number }) {
 
 
   const exportToExcel = () => {
-    // const ws = XLSX.utils.json_to_sheet(
-    //   students.map((order) => ({
-    //     "First Name": order.fname,
-    //     "Last Name": order.lname,
-    //     "Contact Type": order.gender,
-    //     Subject: order.year,
-    //     "Contact Info": order.school,
-    //     Status: order.schoolYear,
-    //     Priority: order.teacher
-    //   }))
-    // );
-    // const wb = XLSX.utils.book_new();
-    // XLSX.utils.book_append_sheet(wb, ws, "Orders");
-    // XLSX.writeFile(wb, "table_data.xlsx");
+    const ws = XLSX.utils.json_to_sheet(
+      students.map((order) => ({
+        "First Name": order.fname,
+        "Last Name": order.lname,
+        "Contact Type": order.gender,
+        Subject: order.birth,
+        "Contact Info": order.pguardian,
+      }))
+    );
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Orders");
+    XLSX.writeFile(wb, "table_data.xlsx");
   };
 
   ///ItemsPerPage
@@ -787,7 +785,7 @@ export default function BasicTableOne({ id }: { id: number }) {
         </div>
       </div>
 
-      {/* <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[1000px] p-5 lg:p-10">
+      <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[1000px] p-5 lg:p-10">
         <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Edit Student</h2>
 
         {selectedStu && (
@@ -817,7 +815,7 @@ export default function BasicTableOne({ id }: { id: number }) {
 
               <div className="col-span-1">
                 <Label>Year:</Label>
-                <select name="year" defaultValue={selectedStu.year} onChange={handleChange} className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
+                <select name="year" defaultValue={selectedStu. birth} onChange={handleChange} className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
                   <option value="">--Select--</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -830,7 +828,7 @@ export default function BasicTableOne({ id }: { id: number }) {
 
               <div className="col-span-1">
                 <Label>Choose Teacher:</Label>
-                <select name="teacher" defaultValue={selectedStu.teacher} onChange={handleChange} className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
+                <select name="teacher" defaultValue={selectedStu.pguardian} onChange={handleChange} className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
                   <option value="">--Select--</option>
                   <option value="YoungMilly">Young, Milly</option>
                   <option value="SmithSara">Smith, Sara</option>
@@ -839,7 +837,7 @@ export default function BasicTableOne({ id }: { id: number }) {
 
               <div className="col-span-1">
                 <Label>Choose School:</Label>
-                <select name="school" defaultValue={selectedStu.school} onChange={handleChange} className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
+                <select name="school" defaultValue={selectedStu.a_ies} onChange={handleChange} className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
                   <option value="">--Select--</option>
                   <option value="">Option 1</option>
                   <option value="">Option 2</option>
@@ -850,7 +848,7 @@ export default function BasicTableOne({ id }: { id: number }) {
 
               <div className="col-span-1">
                 <Label>School Year:</Label>
-                <select name="schoolYear" defaultValue={selectedStu.schoolYear} onChange={handleChange} className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
+                <select name="schoolYear" defaultValue={selectedStu.a_ims} onChange={handleChange} className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
                   <option value="">--Select--</option>
                   <option value="21-22">21-22</option>
                   <option value="22-23">22-23</option>
@@ -976,7 +974,7 @@ export default function BasicTableOne({ id }: { id: number }) {
             </div>
           </div>
         )}
-      </Modal> */}
+      </Modal>
     </div>
   );
 }

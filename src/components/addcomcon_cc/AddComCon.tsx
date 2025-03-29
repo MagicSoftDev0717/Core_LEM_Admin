@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Button from "../ui/button/Button";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
+import Alert from "../ui/alert/Alert"
 // import TextArea from "@/components/form/input/TextArea";
 
 export default function BasicTableOne() {
@@ -190,7 +191,7 @@ export default function BasicTableOne() {
             <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
                 <div className="col-span-1">
                     <textarea rows={6} cols={80} name="descrip" defaultValue={formData.descrip} onChange={handleChange}
-                    className="bg-white dark:bg-gray-900 text-gray-600 border rounded-lg" placeholder="Type your message here..." />
+                        className="bg-white dark:bg-gray-900 text-gray-600 border rounded-lg" placeholder="Type your message here..." />
                 </div>
             </div>
 
@@ -204,6 +205,15 @@ export default function BasicTableOne() {
                 <Button size="sm" onClick={handleAddComcon}>
                     Save
                 </Button>
+                {alert && (
+                    <Alert
+                        title={alert.title}
+                        message={alert.message}
+                        variant={alert.variant}
+                        duration={2000}
+                        onClose={() => setAlert(null)} // Clear alert after timeout
+                    />
+                )}
             </div>
         </div>
     );
