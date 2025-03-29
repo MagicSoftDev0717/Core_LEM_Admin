@@ -492,7 +492,7 @@ export default function BasicTableOne() {
                         {order.note}
                       </TableCell>
                       <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                        <Link href="/students">{order.stuConcern}</Link>
+                        <Link href="/students/">{order.stuConcern}</Link>
                       </TableCell>
                       <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400 cursor-pointer">
                         <Link href={`/details_ld_a/${encodeURIComponent(order.parConcern)}`}>{order.parConcern}</Link>
