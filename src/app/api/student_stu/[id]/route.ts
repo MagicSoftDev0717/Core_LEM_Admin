@@ -29,7 +29,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: numb
           id: true,         // Include the student's ID
           fname: true,      // Include first name
           lname: true,      // Include last name
-          year: true,        // Include year
+          // year: true,        // Include year
           schoolYear: true
         },
       });
