@@ -28,9 +28,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: numb
         select: {
           id: true,         // Include the student's ID
           fname: true,      // Include first name
-          lname: true,      // Include last name
-          // year: true,        // Include year
-          schoolYear: true
+          lname: true,      // Include last nam
         },
       });
 
