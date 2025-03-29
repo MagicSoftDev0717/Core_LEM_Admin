@@ -1,6 +1,6 @@
 
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/light.css";
@@ -19,61 +19,60 @@ import Label from "../form/Label";
 import Input from "../form/input/InputField";
 import Button from "../ui/button/Button";
 import * as XLSX from "xlsx";
+import Alert from "../ui/alert/Alert"
 
-interface Order {
+interface Teacher {
     id: number;
-    user: {
-        //image: string;
-        firstName: string;
-        lastName: string;
-    };
-    joinDate: string;
-    Status: string;
-    timeWorked: string;
-    Description: string;
-    mobilePnone: number;
-    Email: string;
+    fname: string;
+    lname: string;
+    gender: string;
+    status: string;
+    createdAt: string;
+    updatedAt: string;
+    mobile: string;
+    email: string;
+    homePhone: string;
+    otherPhone: string;
+    address1: string;
+    address2: string;
+    city: string;
+    postalCode: number;
+    descrip: string;
+    primarySc: string;
+    secondarySc: string;
+    collegeForm: string;
+    undergraU: string;
+    postgraU: string;
+    phdU: string;
+    academicY: number;
+    curStu: string;
+    religion: string;
+    allergies: string;
 }
 
-const tableData: Order[] = [
-    {
-        id: 1,
-        user: {
-            //image: "/images/user/user-17.jpg",
-            firstName: "Lindsey",
-            lastName: "Curtis"
-        },
-        joinDate: "13/05/2023",
-        Status: "Active",
-        timeWorked: "01234567890",
-        Description: "Working as a Mechanical Engineer for 4 years. ",
-        mobilePnone: 447981234,
-        Email: "test@gmail.com",
-    },
-    {
-        id: 2,
-        user: {
-            //image: "/images/user/user-18.jpg",
-            firstName: "Kaiya",
-            lastName: "George"
-            // role: "Project Manager",
-        },
-        joinDate: "13/05/2023",
-        Status: "Active",
-        timeWorked: "01234567890",
-        Description: "‘Studying Medicine at Nottingham University, in 3rd year.",
-        mobilePnone: 442684237,
-        Email: "test@gmail.com",
-    },
-
-];
-
 export default function BasicTableOne() {
+
+    const [alert, setAlert] = useState<{ title: string; message: string; variant: "success" | "error" | "warning" | "info" } | null>(null);
+    const [formData, setFormData] = useState({
+        fname: "",
+        lname: "",
+        gender: "",
+        email: "",
+        mobile: "",
+        status: ""
+    });
+
+    const [teachers, setTeachers] = useState<Teacher[]>([]);
+    const [currentTeachers, setCurrentTeachers] = useState<Teacher[]>([]);
+    const [updateTeacher, setUpdateTeacher] = useState<Teacher>();
+    // const [delupdateLead, setDelUpdateLead] = useState<Teacher>();
+
     const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = 5;
+    const [itemsPerPage, setItemsPerPage] = useState(5);
+    const [totalPages, setTotalPages] = useState(1);
 
     const [isEditOpen, setIsEditOpen] = useState(false);
-    const [selectedActivity, setSelectedActivity] = useState<Order | null>(null);
+    const [selectedTeacher, setSelectedTeacher] = useState<Teacher | null>(null);
 
     const [dateOfStart, setDateOfStart] = useState("");
     const [dateOfEnd, setDateOfEnd] = useState("");
@@ -86,44 +85,155 @@ export default function BasicTableOne() {
         setDateOfEnd(date[0].toLocaleDateString()); // Handle selected date and format it
     };
 
-    const openEditModal = (activity: Order) => {
-        setSelectedActivity(activity);
+    const closeEditModal = () => {
+        setIsEditOpen(false);
+        setSelectedTeacher(null);
+    };
+
+    const handleEditTeacher = (teacher: Teacher) => {
+        setSelectedTeacher(teacher);
         setIsEditOpen(true);
     };
 
-    const closeEditModal = () => {
-        setIsEditOpen(false);
-        setSelectedActivity(null);
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            [e.target.name]: e.target.value,
+        }));
     };
+    /////////////
+    const [selectedSts, setSelectedSts] = useState("");
+    const [totalActive, setTotalActive] = useState("");
+
+    useEffect(() => {
+        async function fetchTeachers() {
+            try {
+                const response = await fetch(`/api/teacher_ld?page=${currentPage}&items=${itemsPerPage}&selectedSts=${selectedSts}`);
+
+                const data = await response.json();
+                if (data.teacher_data !== undefined) {
+                    const totalPage = Math.ceil(data.totalTeacher / itemsPerPage);
+                    const lastIndex = currentPage * itemsPerPage;
+
+                    setTeachers(data.teacher_data);
+                    setCurrentTeachers(data.teacher_data.slice(lastIndex - itemsPerPage, lastIndex));
+                    setTotalActive(data.totalActive);
+                    setFormData({
+                        fname: data.teacher_data.fname,
+                        lname: data.teacher_data.lname,
+                        gender: data.teacher_data.gender,
+                        email: data.teacher_data.email,
+                        status: data.teacher_data.status,
+                        mobile: data.teacher_data.mobile,
+                    });
+                    setTotalPages(totalPage);
+
+                } else {
+                   
+                    setTeachers([]); // Ensure leads remains an array
+                    setCurrentTeachers([]);
+
+                }
+            } catch (error) {
+                console.error("Error fetching leads:", error);
+            }
+        }
+        fetchTeachers();
+    }, [currentPage, itemsPerPage, updateTeacher, selectedSts, totalActive]);
 
     const exportToExcel = () => {
-        const ws = XLSX.utils.json_to_sheet(
-            tableData.map((order) => ({
-                "First Name": order.user.firstName,
-                "Last Name": order.user.lastName,
-                "Join Date": order.joinDate,
-                Status: order.Status,
-                "Time Worked": order.timeWorked,
-                Description: order.Description,
-                "Mobile Phone": order.mobilePnone,
-                "Email": order.Email,
-            }))
-        );
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, "Orders");
-        XLSX.writeFile(wb, "table_data.xlsx");
+        // const ws = XLSX.utils.json_to_sheet(
+        //     tableData.map((order) => ({
+        //         "First Name": order.user.firstName,
+        //         "Last Name": order.user.lastName,
+        //         "Join Date": order.joinDate,
+        //         Status: order.Status,
+        //         "Time Worked": order.timeWorked,
+        //         Description: order.Description,
+        //         "Mobile Phone": order.mobilePnone,
+        //         "Email": order.Email,
+        //     }))
+        // );
+        // const wb = XLSX.utils.book_new();
+        // XLSX.utils.book_append_sheet(wb, ws, "Orders");
+        // XLSX.writeFile(wb, "table_data.xlsx");
     };
 
     //Add to Teachers
     const router = useRouter();
 
     const addtoTeacher = () => {
-        router.push("/addteacher_tc"); // Navigate to the 'lead' page
+        router.push("/addteacher_tc"); 
     };
 
-    const detailToTeacher = () => {
-        router.push("/detateacher_ld"); // Navigate to the 'lead' page
+    const detailToTeacher =  async (id: number) => {
+        router.push(`/detateacher_ld/${id}`); 
     };
+
+    ////////////////////////Pagination///////////////
+    const getPageNumbers = (currentPage: number, totalPages: number) => {
+        if (totalPages <= 5) {
+            return Array.from({ length: totalPages }, (_, i) => i + 1);
+        }
+
+        if (currentPage <= 3) {
+            return [1, 2, 3, 4, 5];
+        }
+
+        if (currentPage >= totalPages - 2) {
+            return [totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+        }
+
+        return [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2];
+    };
+
+    const pageNumbers = getPageNumbers(currentPage, totalPages);
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+    //////////////////
+
+    const handleItemsPerPageChange = (event: ChangeEvent<HTMLSelectElement>) => {
+
+        const newItemsPerPage = Number(event.target.value);
+        setTeachers([]);
+        setItemsPerPage(newItemsPerPage);
+        setCurrentPage(1); // Reset to first page when changing rows per page
+    };
+
+    const saveEditedTeacher = async (id: number) => {
+        try {
+            const response = await fetch(`/api/teacher_ld/${id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                setUpdateTeacher(await response.json());
+                setAlert({
+                    title: "Success!",
+                    message: "Lead updated successfully!",
+                    variant: "success",
+                });
+                closeEditModal();
+            } else {
+                setAlert({
+                    title: "Warning!",
+                    message: "Error updating lead.",
+                    variant: "warning",
+                });
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            setAlert({
+                title: "Error!",
+                message: "An error occurred.",
+                variant: "error",
+            });
+        }
+    };
+
     return (
         <div>
 
@@ -132,7 +242,7 @@ export default function BasicTableOne() {
                     {/* Label and Combo Box */}
                     <div className="flex flex-row">
                         <label className="block text-2xl font-medium text-gray-700 dark:text-gray-300">Total Active Mentors:&nbsp;</label>
-                        <label className="block text-2xl font-medium text-green-600 dark:text-green-300">2</label>
+                        <label className="block text-2xl font-medium text-green-600 dark:text-green-300">&nbsp;{totalActive}</label>
                     </div>
                 </div>
 
@@ -213,165 +323,254 @@ export default function BasicTableOne() {
                 </div>
             </div>
 
-            <div className="flex items-center mt-4">
-                <div className="flex gap-x-8" style={{ marginBottom: '10px' }}>
-                    <button onClick={addtoTeacher}
-                        className="px-4 py-2 bg-blue-600 text-white rounded-lg"
-                    >
-                        Add Mentor
-                    </button>
+            <div className="overflow-hidden bg-white dark:bg-white/[0.03] rounded-xl border border-gray-200 dark:border-white/[0.1]">
+                <div className="flex flex-col gap-2 px-4 py-4 border border-b border-gray-200 dark:border-white/[0.05] rounded-t-xl sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="flex justify-start">
+                            <button
+                                onClick={addtoTeacher}
+                                className="px-2 py-1 bg-blue-600 text-white rounded-lg"
+                            >
+                                Add Mentor
+                            </button>
+                        </div>
+                        <div className="relative z-20 bg-transparent">
+                            <div className="flex items-center gap-3">
+                                <span className="text-gray-500 dark:text-gray-400"> Show </span>
+                                <select value={itemsPerPage}
+                                    onChange={handleItemsPerPageChange}
+                                    className="w-full py-2 pl-3 pr-6 text-sm text-gray-800 bg-transparent border border-gray-300 rounded-lg appearance-none dark:bg-dark-900 h-9 bg-none shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-none focus:ring focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
+                    <div className="max-w-full overflow-x-auto">
+                        <div className="min-w-[1102px]">
+                            <Table>
+                                {/* Table Header */}
+                                <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
+                                    <TableRow>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            First Name
+                                        </TableCell>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            Last Name
+                                        </TableCell>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            Join Date
+                                        </TableCell>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            <div className="flex flex-row items-center justify-center gap-1">
+                                                <Label className="flex ">Status</Label>
+                                                <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-1/6"
+                                                    onChange={(e) => setSelectedSts(e.target.value)}
+                                                    value={selectedSts}
+                                                >
+                                                    <option value="all">All</option>
+                                                    <option value="active">Active</option>
+                                                    <option value="inactive">Assessed</option>
+                                                    <option value="frozen">Frozen</option>
 
-            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
-                <div className="max-w-full overflow-x-auto">
-                    <div className="min-w-[1102px]">
-                        <Table>
-                            {/* Table Header */}
-                            <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
-                                <TableRow>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        First Name
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Last Name
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Join Date
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Status
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Time worked<br />(since CORE)
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Description
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Mobile number
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Email
-                                    </TableCell>
-                                    <TableCell
-                                        isHeader
-                                        className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                                    >
-                                        Action
-                                    </TableCell>
-                                </TableRow>
-                            </TableHeader>
-                            {/* Table Body */}
-                            <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                                {tableData.map((order) => (
-                                    <TableRow key={order.id}>
-                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.user.firstName}
-                                        </TableCell>
-                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.user.lastName}
-                                        </TableCell>
-                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.joinDate}
-                                        </TableCell>
-                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.Status}
-                                        </TableCell>
-                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.timeWorked}
-                                        </TableCell>
-                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.Description}
-                                        </TableCell>
-                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.mobilePnone}
-                                        </TableCell>
-                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            {order.Email}
-                                        </TableCell>
-                                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                            <div className="flex items-center justify-center gap-2">
-                                                <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={() => openEditModal(order)}>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                                                    </svg>
-                                                </button>
-                                                <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={detailToTeacher}>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-6">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 4h.01M4.5 12a7.5 7.5 0 1115 0 7.5 7.5 0 01-15 0z" />
-                                                    </svg>
-                                                </button>
-                                                <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                                                    </svg>
-
-                                                </button>
+                                                </select>
                                             </div>
                                         </TableCell>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            Time worked<br />(since CORE)
+                                        </TableCell>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            Description
+                                        </TableCell>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            Mobile number
+                                        </TableCell>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            Email
+                                        </TableCell>
+                                        <TableCell
+                                            isHeader
+                                            className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                                        >
+                                            Action
+                                        </TableCell>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
+                                </TableHeader>
+                                {/* Table Body */}
+                                <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
+                                    {Array.isArray(currentTeachers) && currentTeachers.length > 0 ? (
+                                        currentTeachers.map((teacher: Teacher, index) => (
+                                            <TableRow key={teacher.id}>
+                                                <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                                    {teacher.fname}
+                                                </TableCell>
+                                                <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                                    {teacher.lname}
+                                                </TableCell>
+                                                <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                                    {teacher.gender}
+                                                </TableCell>
+                                                <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                                    {teacher.status}
+                                                </TableCell>
+                                                <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                                    {teacher.mobile}
+                                                </TableCell>
+                                                <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                                    {teacher.descrip}
+                                                </TableCell>
+                                                <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                                    {teacher.mobile}
+                                                </TableCell>
+                                                <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                                    {teacher.email}
+                                                </TableCell>
+                                                <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                                                    <div className="flex items-center justify-center gap-2">
+                                                        <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={() => handleEditTeacher(teacher)}>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                                                            </svg>
+                                                        </button>
+                                                        <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={() => detailToTeacher(teacher.id)}>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-6">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 4h.01M4.5 12a7.5 7.5 0 1115 0 7.5 7.5 0 01-15 0z" />
+                                                            </svg>
+                                                        </button>
+                                                        <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                                            </svg>
+
+                                                        </button>
+                                                    </div>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))
+                                    ) : (
+                                        // If no leads are found, display a "No results found" row
+                                        <TableRow className="text-blue-400 px-5 py-3 text-center text-theme-x1 text-gray-500 dark:text-gray-400">
+                                            <TableCell>
+                                                No results found
+                                            </TableCell>
+                                        </TableRow>
+                                    )}
+                                </TableBody>
+                            </Table>
+                        </div>
+                    </div>
+                </div>
+                <div className="border border-t-0 rounded-b-xl border-gray-100 py-4 pl-[18px] pr-4 dark:border-white/[0.05]">
+                    <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between">
+                        <div className="flex justify-center mt-4 space-x-2 flex-grow">
+                            {/* First Page Button - Disabled on first page */}
+                            <button
+                                onClick={() => handlePageChange(1)}
+                                disabled={currentPage === 1}
+                                className={`w-8 h-8  flex rounded-full items-center justify-center ${currentPage === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-gray-200 hover:bg-gray-300"}`}
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" className="h-5 w-5">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"></path></svg>
+                            </button>
+
+                            {/* Previous Page Button - Disabled on first page */}
+                            <button
+                                onClick={() => handlePageChange(currentPage - 1)}
+                                disabled={currentPage === 1}
+                                className={`w-8 h-8 flex rounded-full items-center justify-center ${currentPage === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-gray-200 hover:bg-gray-300"}`}
+                            >
+                                <span><svg className="fill-current" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M2.58203 9.99868C2.58174 10.1909 2.6549 10.3833 2.80152 10.53L7.79818 15.5301C8.09097 15.8231 8.56584 15.8233 8.85883 15.5305C9.15183 15.2377 9.152 14.7629 8.85921 14.4699L5.13911 10.7472L16.6665 10.7472C17.0807 10.7472 17.4165 10.4114 17.4165 9.99715C17.4165 9.58294 17.0807 9.24715 16.6665 9.24715L5.14456 9.24715L8.85919 5.53016C9.15199 5.23717 9.15184 4.7623 8.85885 4.4695C8.56587 4.1767 8.09099 4.17685 7.79819 4.46984L2.84069 9.43049C2.68224 9.568 2.58203 9.77087 2.58203 9.99715C2.58203 9.99766 2.58203 9.99817 2.58203 9.99868Z" fill=""></path></svg></span>
+                            </button>
+
+                            {/* Page Numbers */}
+                            {pageNumbers.map((page) => (
+                                <button
+                                    key={page}
+                                    onClick={() => handlePageChange(page)}
+                                    className={`w-8 h-8 rounded-full ${currentPage === page ? "bg-blue-500 text-white" : "bg-gray-200 hover:bg-gray-300"}`}
+                                >
+                                    {page}
+                                </button>
+                            ))}
+
+                            {/* Ellipsis before the last page when necessary */}
+                            {totalPages > 5 && currentPage < totalPages - 2 && <span className="w-8 h-8 flex items-center justify-center dark:text-gray-300">...</span>}
+
+                            {/* Last Page Button when not already shown */}
+                            {totalPages > 5 && !pageNumbers.includes(totalPages) && (
+                                <button
+                                    onClick={() => handlePageChange(totalPages)}
+                                    className={`w-8 h-8 rounded-full ${currentPage === totalPages ? "bg-blue-500 text-white" : "bg-gray-200 hover:bg-gray-300"}`}
+                                >
+                                    {totalPages}
+                                </button>
+                            )}
+
+                            {/* Next Page Button - Disabled on last page */}
+                            <button
+                                onClick={() => handlePageChange(currentPage + 1)}
+                                disabled={currentPage === totalPages}
+                                className={`w-8 h-8 flex rounded-full items-center justify-center ${currentPage === totalPages ? "bg-gray-300 cursor-not-allowed" : "bg-gray-200 hover:bg-gray-300"}`}
+                            ><span><svg className="fill-current" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M17.4165 9.9986C17.4168 10.1909 17.3437 10.3832 17.197 10.53L12.2004 15.5301C11.9076 15.8231 11.4327 15.8233 11.1397 15.5305C10.8467 15.2377 10.8465 14.7629 11.1393 14.4699L14.8594 10.7472L3.33203 10.7472C2.91782 10.7472 2.58203 10.4114 2.58203 9.99715C2.58203 9.58294 2.91782 9.24715 3.33203 9.24715L14.854 9.24715L11.1393 5.53016C10.8465 5.23717 10.8467 4.7623 11.1397 4.4695C11.4327 4.1767 11.9075 4.17685 12.2003 4.46984L17.1578 9.43049C17.3163 9.568 17.4165 9.77087 17.4165 9.99715C17.4165 9.99763 17.4165 9.99812 17.4165 9.9986Z" fill=""></path></svg></span>
+                            </button>
+
+                            {/* Last Page Button - Disabled on last page */}
+                            <button
+                                onClick={() => handlePageChange(totalPages)}
+                                disabled={currentPage === totalPages}
+                                className={`w-8 h-8 flex rounded-full items-center justify-center  ${currentPage === totalPages ? "bg-gray-300 cursor-not-allowed" : "bg-gray-200 hover:bg-gray-300"}`}
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" className="h-5 w-5">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path></svg>
+                            </button>
+                        </div>
+
+                        {/* Export to Excel button (Right aligned) */}
+                        <div className="flex justify-end">
+                            <button
+                                onClick={exportToExcel}
+                                className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+                            >
+                                Export to Excel
+                            </button>
+                        </div>
+
                     </div>
                 </div>
             </div>
 
-            {/* Pagination and Export to Excel button aligned */}
-            <div className="flex justify-between items-center mt-4">
-                {/* Pagination (Centered) */}
-                <div className="flex justify-center space-x-2 flex-grow">
-                    {[...Array(totalPages)].map((_, index) => (
-                        <button
-                            key={index}
-                            className={`w-8 h-8 rounded-full ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-200"
-                                }`}
-                            onClick={() => setCurrentPage(index + 1)}
-                        >
-                            {index + 1}
-                        </button>
-                    ))}
-                </div>
 
-                {/* Export to Excel button (Right aligned) */}
-                <div className="flex justify-end">
-                    <button
-                        onClick={exportToExcel}
-                        className="px-4 py-2 bg-blue-600 text-white rounded-lg"
-                    >
-                        Export to Excel
-                    </button>
-                </div>
-            </div>
 
             <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[1000px] p-5 lg:p-10">
                 <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Edit Mentor</h2>
-                {selectedActivity && (
+                {selectedTeacher && (
                     <div>
                         <h4 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">
                             Mentor Information
@@ -388,33 +587,44 @@ export default function BasicTableOne() {
                             </div>
                             <div className="col-span-1">
                                 <Label>Status</Label>
-                                <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:tex-gray-400 w-full">
-                                    <option value="">--Select--</option>
-                                    <option value="1">Active</option>
-                                    <option value="2">Inactive</option>
-                                    <option value="2">Frozen</option>
+                                <select name="status" defaultValue={selectedTeacher.status} onChange={handleChange}
+                                    className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:tex-gray-400 w-full">
+                                    <option value="all">--Select--</option>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                    <option value="frozen">Frozen</option>
                                 </select>
                             </div>
 
                             <div className="col-span-1">
                                 <Label>First Name*:</Label>
-                                <Input type="text" placeholder="Hasan" />
+                                <Input type="text" name="fname" defaultValue={selectedTeacher.fname} onChange={handleChange} placeholder="Hasan" />
                             </div>
 
                             <div className="col-span-1">
                                 <Label>Last Name*:</Label>
-                                <Input type="email" placeholder="Ali" />
+                                <Input type="text" name="lname" defaultValue={selectedTeacher.lname} onChange={handleChange} placeholder="Ali" />
                             </div>
 
                             <div className="col-span-1">
                                 <Label>Email:</Label>
-                                <Input type="text" placeholder="hasaneducationadvisor@gmail.com" />
+                                <Input type="email" name="email" defaultValue={selectedTeacher.email} onChange={handleChange} placeholder="hasaneducationadvisor@gmail.com" />
                             </div>
 
                             <div className="col-span-1">
                                 <Label>Email:</Label>
-                                <input type="checkbox" className="mr-2" placeholder="Team Manager" />
+                                <input type="checkbox" className="mr-2" />
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Email Opt Out:</label>
+                            </div>
+
+                            <div className="col-span-1">
+                                <Label>Gender</Label>
+                                <select name="gender" defaultValue={selectedTeacher.gender} onChange={handleChange}
+                                    className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:tex-gray-400 w-full">
+                                    <option value="all">--Select--</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
                             </div>
 
                             <div className="col-span-1">
@@ -458,10 +668,10 @@ export default function BasicTableOne() {
                             </div>
                         </div>
 
-                        {/* Line Separator */}
+
                         <hr className="my-6" />
 
-                        {/* Address Information */}
+
 
                         <h4 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">
                             Address Information
@@ -499,10 +709,10 @@ export default function BasicTableOne() {
                             </div>
                         </div>
 
-                        {/* Line Separator */}
+
                         <hr className="my-6" />
 
-                        {/* Description Information */}
+
 
                         <h4 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">
                             Description Information
@@ -514,16 +724,25 @@ export default function BasicTableOne() {
                             </div>
                         </div>
 
-                        {/* Line Separator */}
+
                         <hr className="my-2" />
 
                         <div className="flex items-center justify-end w-full gap-3 mt-6">
                             <Button size="sm" variant="outline">
                                 Cancel
                             </Button>
-                            <Button size="sm">
+                            <Button size="sm" onClick={() => saveEditedTeacher(selectedTeacher.id)}>
                                 Save
                             </Button>
+                            {alert && (
+                                <Alert
+                                    title={alert.title}
+                                    message={alert.message}
+                                    variant={alert.variant}
+                                    duration={2000}
+                                    onClose={() => setAlert(null)} // Clear alert after timeout
+                                />
+                            )}
                         </div>
                     </div>
                 )}

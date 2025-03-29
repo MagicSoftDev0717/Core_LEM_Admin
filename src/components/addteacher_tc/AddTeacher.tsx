@@ -7,21 +7,70 @@ import Input from "../form/input/InputField";
 // import TextArea from "@/components/form/input/TextArea";
 
 export default function BasicTableOne() {
+    const [alert, setAlert] = useState<{ title: string; message: string; variant: "success" | "error" | "warning" | "info" } | null>(null);
+    const [formData, setFormData] = useState({
+        fname: "",
+        lname: "",
+        gender: "",
+        status: "",
+        email: "",
+        academicY: "",
+        curStu: "",
+        mobile: "",
+        descrip: "",
+
+    });
 
     //Add to Leads
     const router = useRouter();
 
-    const handleSave = () => {
-        router.push("/teacher_ld"); // Navigate to the 'lead' page
-        // Handle save logic here
-        console.log("Saving changes...");
+    const handleAddTeacher = async () => {
+
+        try {
+            const response = await fetch("/api/addteacher_ld", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                setAlert({
+                    title: "Success!",
+                    message: "Teacher saved successfully!",
+                    variant: "success",
+                });
+                setTimeout(() => router.push("/teacher_ld"), 2000); // Navigate after 3s
+            } else {
+                setAlert({
+                    title: "Failure!",
+                    message: "Error saving teacher.",
+                    variant: "error",
+                });
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            setAlert({
+                title: "Failure!",
+                message: "An error occurred.",
+                variant: "error",
+            });
+        }
 
     };
-    const handleCancel = () => {
-        router.push("/teacher_ld"); // Navigate to the 'lead' page
-        // Handle save logic here
-        console.log("Canceling...");
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+
+        // Update both formData and academicYear if the academic year field is changed
+        if (name === "academic") {
+            setAcademicYear(value);  // Updates academicYear separately
+        }
+
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
     };
 
 
@@ -51,17 +100,17 @@ export default function BasicTableOne() {
 
                 <div className="col-span-1">
                     <Label>First Name*:</Label>
-                    <Input type="text" placeholder="Hasan" />
+                    <Input type="text" name="fname" defaultValue={formData.fname} onChange={handleChange} placeholder="Hasan" />
                 </div>
 
                 <div className="col-span-1">
                     <Label>Last Name*:</Label>
-                    <Input type="email" placeholder="Ali" />
+                    <Input type="text" name="lname" defaultValue={formData.lname} onChange={handleChange} placeholder="Ali" />
                 </div>
 
                 <div className="col-span-1">
                     <Label>Email:</Label>
-                    <Input type="text" placeholder="hasaneducationadvisor@gmail.com" />
+                    <Input type="email" name="email" defaultValue={formData.email} onChange={handleChange} placeholder="hasaneducationadvisor@gmail.com" />
                 </div>
 
                 <div className="col-span-1">
@@ -93,6 +142,17 @@ export default function BasicTableOne() {
                     <Label>Email:</Label>
                     <input type="checkbox" className="mr-2" placeholder="Team Manager" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Email Opt Out:</label>
+                </div>
+
+                <div className="col-span-1">
+                    <Label>Status</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full"
+                        name="status" value={formData.status} onChange={handleChange}>
+                        <option value="all">All</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="frozen">Frozen</option>
+                    </select>
                 </div>
 
             </div>
@@ -178,8 +238,12 @@ export default function BasicTableOne() {
                 <div className="col-span-1">
                     <Label>Academic Year:</Label>
                     <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full"
-                        value={academicYear}
-                        onChange={(e) => setAcademicYear(e.target.value)}
+                        name="academicY"
+                        value={formData.academicY}
+                        onChange={(e) => {
+                            setAcademicYear(e.target.value); // Separate state update
+                            handleChange(e); // Also update formData
+                        }}
                     >
                         <option value="">--Select--</option>
                         <option value="1">College/ Sixth Form – Y12</option>
@@ -207,8 +271,12 @@ export default function BasicTableOne() {
 
                 <div className="col-span-1">
                     <Label>Currently studying:</Label>
-                    <Input type="text" placeholder="Type description"
-                        className={`px-6 py-3 border rounded-lg text-sm w-full ${isStudyingActive() ? "text-gray-900 dark:text-white" : "opacity-50 cursor-not-allowed"
+                    <input type="text"
+                        name="curStu"
+                        value={formData.curStu}
+                        onChange={handleChange}
+                        placeholder="Type description"
+                        className={`px-6 py-3 border bg-gray-900 rounded-lg text-sm w-full ${isStudyingActive() ? "text-gray-900 dark:text-white" : "opacity-50 cursor-not-allowed"
                             }`}
                         disabled={!isStudyingActive()}
                     />
@@ -225,13 +293,14 @@ export default function BasicTableOne() {
             </h4>
 
             <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-6">
-                
+
                 <div className="col-span-1">
                     <Label>Sex</Label>
-                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full"
+                        name="gender" value={formData.gender} onChange={handleChange}>
                         <option value="">--Select--</option>
-                        <option value="1">Male</option>
-                        <option value="2">Female</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
                     </select>
                 </div>
 
@@ -253,14 +322,14 @@ export default function BasicTableOne() {
                 </div>
 
                 <div className="col-span-1">
-                    
+
                 </div>
 
                 <div className="col-span-1">
-                    
+
                 </div>
                 <div className="col-span-1">
-                   
+
                 </div>
 
             </div>
@@ -284,10 +353,10 @@ export default function BasicTableOne() {
             <hr className="my-6" />
 
             <div className="flex items-center justify-end w-full gap-3 mt-6">
-                <Button size="sm" variant="outline" onClick={handleCancel}>
+                <Button size="sm" variant="outline">
                     Cancel
                 </Button>
-                <Button size="sm" onClick={handleSave}>
+                <Button size="sm" onClick={handleAddTeacher}>
                     Save
                 </Button>
             </div>

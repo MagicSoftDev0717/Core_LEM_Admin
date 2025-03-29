@@ -15,12 +15,28 @@ export default function BasicTableOne({ id }: { id: number }) {
     const [formData, setFormData] = useState({
         fname: "",
         lname: "",
-        gender: "",
-        school: "",
-        schoolYear: "",
-        year: "",
-        teacher: "",
         birth: "",
+        gender: "",
+        pguardian: "",
+        sguardian: "",
+        religion: "",
+        allerigies: "",
+        a_pschool: "",
+        a_sschool: "",
+        a_yeargrp: "",
+        a_ies: "",
+        a_ims: "",
+        a_ics: "",
+        a_hs: "",
+        l_startdate: "",
+        l_pcentre: "",
+        l_scentre: "",
+        l_ies: "",
+        l_ims: "",
+        l_ics: "",
+        l_hs: "",
+        l_ptutor: "",
+        l_otutor: "",
         parent_id: Number(id)
     });
 
@@ -70,9 +86,7 @@ export default function BasicTableOne({ id }: { id: number }) {
 
     };
     const handleCancel = () => {
-        router.push("/students"); // Navigate to the 'lead' page
-        // Handle save logic here
-        console.log("Canceling...");
+        router.push("/students");
 
     };
 
@@ -80,7 +94,14 @@ export default function BasicTableOne({ id }: { id: number }) {
 
     const handleBirth = (date: Date[]) => {
         const birthDate = date[0].toISOString().split("T")[0];
-        setDateOfBirth(birthDate); // Handle selected date and format it
+        setDateOfBirth(birthDate);
+    };
+
+    const [dateOfStart, setDateOfStart] = useState("");
+
+    const handleStartDate = (date: Date[]) => {
+        const startDate = date[0].toISOString().split("T")[0];
+        setDateOfStart(startDate);
     };
 
     return (
@@ -100,58 +121,9 @@ export default function BasicTableOne({ id }: { id: number }) {
                     <Input type="text" name="lname" defaultValue={formData.lname} onChange={handleChange} placeholder="Ali" />
                 </div>
 
-                <div className="col-span-1">
-                    <Label>Gender:</Label>
-                    <select name="gender"
-                        defaultValue={formData.gender} onChange={handleChange}
-                        className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
-                        <option value="">All</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
-                </div>
 
-                <div className="col-span-1">
-                    <Label>Year:</Label>
-                    <select name="year"
-                        defaultValue={formData.year} onChange={handleChange}
-                        className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
-                        <option value="">--Select--</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
-                </div>
-
-                <div className="col-span-1">
-                    <Label>Choose Teacher:</Label>
-                    <select name="teacher"
-                        defaultValue={formData.teacher} onChange={handleChange}
-                        className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
-                        <option value="">--Select--</option>
-                        <option value="YoungMilly">Young, Milly</option>
-                        <option value="SmithSara">Smith, Sara</option>
-                    </select>
-                </div>
-
-                <div className="col-span-1">
-                    <Label>School Year:</Label>
-                    <select name="schoolYear"
-                        defaultValue={formData.schoolYear} onChange={handleChange}
-                        className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
-                        <option value="">--Select--</option>
-                        <option value="21-22">21-22</option>
-                        <option value="22-23">22-23</option>
-                        <option value="23-24">23-24</option>
-                        <option value="24-25">24-25</option>
-                    </select>
-                </div>
 
                 <div className="flex items-center gap-2">
-                    {/* Start Field */}
                     <div className="flatpickr-wrapper flex flex-col w-full"> {/* Adjusted width */}
                         <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                             Date of Birth:
@@ -173,23 +145,6 @@ export default function BasicTableOne({ id }: { id: number }) {
                             </span>
                         </div>
                     </div>
-                </div>
-
-                <div className="col-span-1">
-                    <Label>Account:</Label>
-                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
-                        <option value="All">--Select--</option>
-                        <option value="1">option 1</option>
-                        <option value="2">option 2</option>
-                    </select>
-                </div>
-
-                <div className="col-span-1">
-                    <Label>Virtual Center:</Label>
-                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-400 w-full">
-                        <option value="">--Select--</option>
-                        <option value="1">Traning Online</option>
-                    </select>
                 </div>
 
                 <div className="col-span-1">
@@ -217,49 +172,274 @@ export default function BasicTableOne({ id }: { id: number }) {
                     <Input type="text" placeholder="" />
                 </div>
 
-                <div className="col-span-1 mt-4">
-                    <div className="col-span-1">
-                        <input type="checkbox" className="mr-2" />
-                        <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Consent to Media Release</label>
-                    </div>
 
-                    <div className="col-span-1">
-                        <input type="checkbox" className="mr-2" />
-                        <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Consent to Contact Teacher</label>
-                    </div>
-                </div>
-
-                <div className="col-span-1 mt-4">
-                    <div className="col-span-1">
-                        <input type="checkbox" className="mr-2" />
-                        <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Consent to Leave Unescorted</label>
-                    </div>
-
-                    <div className="col-span-1">
-                        <input type="checkbox" className="mr-2" />
-                        <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Scholarship</label>
-                    </div>
-                </div>
                 <div></div>
                 <div></div>
-                <div className="flex items-center justify-end w-full gap-3 mt-6">
-                    <Button size="sm" variant="outline" onClick={handleCancel}>
-                        Cancel
-                    </Button>
-                    <Button size="sm" onClick={handleAddStudent}>
-                        Save
-                    </Button>
-                    {alert && (
-                        <Alert
-                            title={alert.title}
-                            message={alert.message}
-                            variant={alert.variant}
-                            duration={2000}
-                            onClose={() => setAlert(null)} // Clear alert after timeout
-                        />
-                    )}
+
+            </div>
+
+            <hr className="my-6" />
+
+            <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
+                Guardian Information
+            </h4>
+
+            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-4">
+                <div className="col-span-1">
+                    <Label>Primary Guardian:</Label>
+                    <Input type="text" name="pguardian" defaultValue={formData.pguardian} onChange={handleChange} />
+                </div>
+
+                <div className="col-span-1">
+                    <Label>Secondary Guardian:</Label>
+                    <Input type="text" name="sguardian" defaultValue={formData.sguardian} onChange={handleChange} />
+                </div>
+
+
+
+                <div></div>
+                <div></div>
+
+            </div>
+
+            <hr className="my-6" />
+
+            <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
+                Personal Information
+            </h4>
+
+            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-6">
+
+                <div className="col-span-1">
+                    <Label>Sex</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full"
+                        name="gender" value={formData.gender} onChange={handleChange}>
+                        <option value="">--Select--</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div className="col-span-1">
+                    <Label>Religion</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                    </select>
+                </div>
+                <div className="col-span-1">
+                    <Label>Allergies</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                    </select>
+                </div>
+
+                <div className="col-span-1">
+
+                </div>
+
+                <div className="col-span-1">
+
+                </div>
+                <div className="col-span-1">
+
+                </div>
+
+            </div>
+
+            <hr className="my-6" />
+
+            <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
+                Academic Information
+            </h4>
+
+            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-5">
+
+                <div className="col-span-1">
+                    <Label>Primary School</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full"
+                        name="gender" value={formData.gender} onChange={handleChange}>
+                        <option value="">--Select--</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div className="col-span-1">
+                    <Label>Secondary School</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                    </select>
+                </div>
+                <div className="col-span-1">
+                    <Label>Year Group</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                    </select>
+                </div>
+
+                <div className="col-span-1">
+                    <Label>Initial English Group</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                    </select>
+                </div>
+
+                <div className="col-span-1">
+                    <Label>Initial Math Group</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                    </select>
+                </div>
+                <div className="col-span-1">
+                    <Label>In-centre sessions</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                    </select>
+                </div>
+
+                <div className="col-span-1">
+                    <Label>Home sessions</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                    </select>
                 </div>
             </div>
+
+            <hr className="my-6" />
+
+            <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
+                LEM Information
+            </h4>
+
+            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-5">
+                <div className="col-span-1">
+                    <Label>Date started</Label>
+                    <div className="flatpickr-wrapper flex flex-col w-full"> {/* Adjusted width */}
+                        <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
+                            <Flatpickr name="l_startdate"
+                                value={dateOfStart} // Set the value to the state
+                                onChange={handleStartDate} // Handle the date change
+                                options={{
+                                    dateFormat: "Y-m-d", // Set the date format
+                                }}
+                                placeholder="Select Date"
+                                className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+               dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            />
+                            <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
+                                <CalenderIcon />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-span-1">
+                    <Label>Primary Centre</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                    </select>
+                </div>
+                <div className="col-span-1">
+                    <Label>Secondary Centre</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                    </select>
+                </div>
+
+                <div className="col-span-1">
+                    <Label>Initial English Step</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                    </select>
+                </div>
+
+                <div className="col-span-1">
+                    <Label>Initial Math Step</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                    </select>
+                </div>
+                <div className="col-span-1">
+                    <Label>In-centre sessions</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                    </select>
+                </div>
+
+                <div className="col-span-1">
+                    <Label>Home sessions</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                    </select>
+                </div>
+
+                <div className="col-span-1">
+                    <Label>Primary Tutor</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                    </select>
+                </div>
+
+                <div className="col-span-1">
+                    <Label>Other Tutors</Label>
+                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                        <option value="">--Select--</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div className="flex items-center justify-end w-full gap-3 mt-6">
+                <Button size="sm" variant="outline" onClick={handleCancel}>
+                    Cancel
+                </Button>
+                <Button size="sm" onClick={handleAddStudent}>
+                    Save
+                </Button>
+                {alert && (
+                    <Alert
+                        title={alert.title}
+                        message={alert.message}
+                        variant={alert.variant}
+                        duration={2000}
+                        onClose={() => setAlert(null)} // Clear alert after timeout
+                    />
+                )}
+            </div>
+
+
 
 
         </div>

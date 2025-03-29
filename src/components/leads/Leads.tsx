@@ -122,6 +122,12 @@ export default function BasicTableOne() {
     setCurrentPage(page);
   };
 
+  const [totalOpen, setTotalOpen] = useState("");
+  const [totalActive, setTotalActive] = useState("");
+  const [totalInactive, setTotalInactive] = useState("");
+  const [totalVisited, setTotalVisited] = useState("");
+  const [totalOnhold, setTotalOnhold] = useState("");
+  const [totalContacted, setTotalContacted] = useState("");
 
   // Fetch leads from the server (Replace with actual API)
   useEffect(() => {
@@ -133,6 +139,12 @@ export default function BasicTableOne() {
         if (data.lead_data !== undefined) {
           const totalPage = Math.ceil(data.totalLead / itemsPerPage);
           const lastIndex = currentPage * itemsPerPage;
+          setTotalOpen(data.totalOpen);
+          setTotalActive(data.totalActive);
+          setTotalInactive(data.totalInactive);
+          setTotalVisited(data.totalVisited);
+          setTotalOnhold(data.totalOnhold);
+          setTotalContacted(data.totalContacted);
           setLeads(data.lead_data);
           setCurrentLeads(data.lead_data.slice(lastIndex - itemsPerPage, lastIndex));
           setFormData({
@@ -151,7 +163,7 @@ export default function BasicTableOne() {
           // console.error("API response is not an array:", data);
           setLeads([]); // Ensure leads remains an array
           setCurrentLeads([]);
-        
+
         }
       } catch (error) {
         console.error("Error fetching leads:", error);
@@ -345,10 +357,6 @@ export default function BasicTableOne() {
   };
 
   const pageNumbers = getPageNumbers(currentPage, totalPages);
-
-  /////////////////////
- 
-
 
 
   return (
@@ -589,22 +597,22 @@ export default function BasicTableOne() {
                     UK Traning
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                    9
+                    {totalOpen}
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                    5
+                    {totalContacted}
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                    34
+                    {totalActive}
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                    1
+                    {totalInactive}
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                    29
+                    {totalVisited}
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                    02
+                    {totalOnhold}
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                     -
@@ -613,7 +621,7 @@ export default function BasicTableOne() {
                     -
                   </TableCell>
                 </TableRow>
-                {/* ))} */}
+
               </TableBody>
             </Table>
           </div>
@@ -695,8 +703,8 @@ export default function BasicTableOne() {
                       <div className="flex flex-row items-center justify-center gap-1">
                         <Label className="flex ">Lead Status</Label>
                         <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-1/6"
-                        onChange={(e) => setSelectedLdSts(e.target.value)}
-                        value={selectedLdSts}
+                          onChange={(e) => setSelectedLdSts(e.target.value)}
+                          value={selectedLdSts}
                         >
                           <option value="all">All</option>
                           <option value="open">Open</option>
@@ -726,8 +734,8 @@ export default function BasicTableOne() {
                       <div className="flex flex-row items-center justify-center gap-1">
                         <Label className="flex ">Gender</Label>
                         <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-1/6"
-                        value={selectedGen}
-                        onChange={(e) => setSelectedGen(e.target.value)}
+                          value={selectedGen}
+                          onChange={(e) => setSelectedGen(e.target.value)}
                         >
                           <option value="all" >All</option>
                           <option value="male">Male</option>
@@ -742,8 +750,8 @@ export default function BasicTableOne() {
                       <div className="flex flex-row items-center justify-center gap-1">
                         <Label className="flex ">Year</Label>
                         <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-1/6"
-                        value={selectedYear}
-                        onChange={(e) => setSelectedYear(e.target.value)}
+                          value={selectedYear}
+                          onChange={(e) => setSelectedYear(e.target.value)}
                         >
                           <option value="all" >All</option>
                           <option value="1">1</option>

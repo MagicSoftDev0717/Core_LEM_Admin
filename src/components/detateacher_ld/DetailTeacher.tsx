@@ -1,46 +1,97 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Button from "../ui/button/Button";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
 
+interface TeacherDetails {
+    id: number | null;
+    fname: string | null;
+    lname: string | null;
+    gender: string | null;
+    status: string | null;
+    createdAt: string | null;
+    updatedAt: string | null;
+    mobile: string | null;
+    email: string | null;
+    homePhone: string | null;
+    otherPhone: string | null;
+    address1: string | null;
+    address2: string | null;
+    city: string | null;
+    postalCode: number | null;
+    descrip: string | null;
+    primarySc: string | null;
+    secondarySc: string | null;
+    collegeForm: string | null;
+    undergraU: string | null;
+    postgraU: string | null;
+    phdU: string | null;
+    academicY: number | null;
+    curStu: string | null;
+    religion: string | null;
+    allergies: string | null;
+}
 
-export default function BasicTableOne() {
+export default function BasicTableOne({ id }: { id: number }) {
 
     //Add to Leads
     const router = useRouter();
 
     const handleSave = () => {
         router.push("/teacher_ld"); // Navigate to the 'Teacher' page
-        // Handle save logic here
-        console.log("Saving changes...");
-
-     };
-    const handleCancel = () => {
-        router.push("/teacher_ld"); // Navigate to the 'lead' page
-        // Handle save logic here
-        console.log("Canceling...");
-
     };
+    // const handleCancel = () => {
+    //     router.push("/teacher_ld"); // Navigate to the 'lead' page
+
+    // };
+
+    const [teacher, setTeacher] = useState<TeacherDetails | null>(null);
+    useEffect(() => {
+
+        if (!id) return; // Prevent execution if id is not yet available
+        async function fetchTeachers() {
+
+            try {
+                const response = await fetch(`/api/details_tc/${id}`);
+                const data = await response.json();
+                if (data.teacher_data !== undefined) {
+                    setTeacher(data.teacher_data);
+                } else {
+                    console.error("API response is not an array:", data);
+                }
+            } catch (error) {
+                console.error("Error fetching leads:", error);
+            }
+        }
+        fetchTeachers();
+
+    }, [id]);
+
+
     return (
         <div>
-            
-                <div className="grid grid-cols-6 gap-x-1 gap-y-1 mt-6">
-                    <Button size="sm" variant="outline" onClick={handleSave}>Save</Button>
-                    <Button size="sm" variant="outline" onClick={handleCancel}>Cancel</Button>
-                </div>
-            
+
+            <div className="grid grid-cols-6 gap-x-1 gap-y-1 mt-6">
+                <Button size="sm" variant="outline" onClick={handleSave}>Save</Button>
+                <Button size="sm" variant="outline" >Cancel</Button>
+            </div>
+
             <hr className="my-4" />
             <div className="bg-gray-200 dark:bg-gray-800 p-6 rounded-3xl w-full">
                 <div className="p-4 rounded-2xl bg-gray-300 dark:bg-gray-700">
                     <h4 className="mb-2 text-base font-medium text-gray-800 dark:text-white/90">
                         Teacher Information
                     </h4>
-                    <h1 className="mb-2 text-4xl font-bold text-gray-800 dark:text-white/90">Mr.SS</h1>
-                    {/* <h5 className="mb-4 text-lg font-medium text-gray-800 dark:text-white/90">
-                        xerir80514@namewok.com
-                    </h5> */}
+                    {teacher ? (
+                        <h1 className="mb-2 text-4xl font-bold text-gray-800 dark:text-white/90">Mr.{teacher.fname + " " + teacher.lname}</h1>
+                    ) : (
+                        <p>Loading...</p>
+                    )}
+                    <h5 className="mb-4 text-lg font-medium text-gray-800 dark:text-white/90">
+                        {teacher?.email}
+                    </h5>
                 </div>
 
                 <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-5 mt-6">
@@ -51,12 +102,12 @@ export default function BasicTableOne() {
 
                     <div className="col-span-1">
                         <Label>First Name:</Label>
-                        <Input type="text" placeholder="Hasan" />
+                        <Input type="text" defaultValue={teacher?.fname || ""} placeholder="Hasan" />
                     </div>
 
                     <div className="col-span-1">
                         <Label>Last Name:</Label>
-                        <Input type="text" placeholder="Ali" />
+                        <Input type="text" defaultValue={teacher?.lname || ""} placeholder="Ali" />
                     </div>
 
                     <div className="col-span-1">
@@ -74,7 +125,7 @@ export default function BasicTableOne() {
                         <Input type="text" placeholder="" />
                     </div>
 
-                    <div className="col-span-1">
+                    {/* <div className="col-span-1">
                         <Label>Year:</Label>
                         <Input type="text" placeholder="+011 999 9999" />
                     </div>
@@ -87,7 +138,7 @@ export default function BasicTableOne() {
                     <div className="col-span-1">
                         <Label>Department:</Label>
                         <Input type="text" placeholder="" />
-                    </div>
+                    </div> */}
 
                     <div className="col-span-1">
                         <Label>Title:</Label>
@@ -96,7 +147,7 @@ export default function BasicTableOne() {
 
                     <div className="col-span-1">
                         <Label>Email:</Label>
-                        <Input type="text" placeholder="" />
+                        <Input type="text" defaultValue={teacher?.email || ""} placeholder="" />
                     </div>
 
                     <div className="col-span-1">
@@ -180,9 +231,9 @@ export default function BasicTableOne() {
             <hr className="my-6" />
 
             <div className="bg-gray-200 dark:bg-gray-800 p-6 rounded-3xl w-full">
-            <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
-                System Information
-            </h4>         
+                <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
+                    System Information
+                </h4>
             </div>
         </div>
 

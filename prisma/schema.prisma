@@ -92,6 +92,7 @@ model Lead {
   homePhone     String?
   otherPhone    String?
   status        String?
+  type          String?
   emailOpt      Boolean?
   address1      String?
   address2      String?
@@ -116,23 +117,101 @@ model Student {
   parent_id    Int
   fname        String
   lname        String
-  year         String?
-  schoolYear   String?
-  school       String?
-  teacher      String?
+  birth        DateTime?
+  gender       String
+  pguardian    String?
+  sguardian    String?
+  religion     String?
+  allerigies   String?
+  a_pschool    String?
+  a_sschool    String?
+  a_yeargrp    String?
+  a_ies        String?
+  a_ims        String?
+  a_ics        String?
+  a_hs         String?
+  l_startdate  String?
+  l_pcentre    String?
+  l_scentre    String?
+  l_ies        String?
+  l_ims        String?
+  l_ics        String?
+  l_hs         String?
+  l_ptutor     String?
+  l_otutor     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
+}
+
+model Teacher {
+  id           Int      @id @default(autoincrement())
+  fname        String
+  lname        String
   gender       String?
+  email        String   @unique
   birth        String?
-  account      String?
-  virCen       String?
+  mobile       String?
+  status       String?
+  address1     String?
+  address2     String?
+  city         String?
+  county       String?
+  country      String?
+  postalCode   Int?
+  primarySc    String? 
+  secondarySc  String? 
+  collegeForm  String? 
+  undergraU    String?
+  postgraU     String?
+  phdU         String? 
+  academicY    Int?
+  curStu       String? 
+  religion     String?
+  allergies    String?
   descript     String?
-  medicInfo    String?
-  cenDir       String?
-  subMat       String?
-  stuNote      String?
-  mediaRele    Boolean?
-  leaveUnder   Boolean?
-  contactTeach Boolean?
-  scholarShip  Boolean?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
+}
+
+model School {
+  id           Int      @id @default(autoincrement())
+  sname       String
+  level       String?
+  type        String?  
+  enroll      String?
+  site         String?
+  sitePsta     String?
+  district     String?
+  mobile       String?
+  number_s     Int?
+  area         String?
+  email        String   @unique
+  address1     String?
+  address2     String?
+  city         String?
+  county       String?
+  country      String?
+  postalCode   Int?
+  descrip      String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
+}
+
+model Comcon {
+  id           Int      @id @default(autoincrement())
+  fname        String
+  lname        String
+  institution  String?
+  role         String?  
+  mobile       String?
+  email        String   @unique
+  address1     String?
+  address2     String?
+  city         String?
+  county       String?
+  country      String?
+  postalCode   Int?
+  descrip      String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now())
 }

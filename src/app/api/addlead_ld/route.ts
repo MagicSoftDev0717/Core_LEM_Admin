@@ -74,8 +74,14 @@ export async function GET(req: Request) {
 
     // Get the total count of messages for calculating the number of pages
     const totalLead = await prisma.lead.count({ where: whereCondition });
+    const totalOpen = await prisma.lead.count({ where: { type: "open" }});
+    const totalActive = await prisma.lead.count({ where: { type: "active" }});
+    const totalInactive = await prisma.lead.count({ where: { type: "inactive" }});
+    const totalOnhold = await prisma.lead.count({ where: { type: "onhold" }});
+    const totalVisited = await prisma.lead.count({ where: { type: "visited" }});
+    const totalContacted = await prisma.lead.count({ where: { type: "contacted" }});
 
-    return NextResponse.json({ lead_data, totalLead });
+    return NextResponse.json({ lead_data, totalLead, totalOpen, totalActive, totalContacted, totalInactive, totalOnhold, totalVisited });
   } catch (error) {
     console.error("Error fetching messages:", error);
     return NextResponse.json({ error: "Failed to fetch leads" }, { status: 500 });
@@ -85,7 +91,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { fname, lname, gender, year, email, mobile, status } = body;
+    const { fname, lname, gender, year, email, mobile, status, type } = body;
 
     // Validate input
     // if (!name || !email || !mobile || !lead) {
@@ -103,7 +109,7 @@ export async function POST(req: Request) {
 
     // Save new lead in the database
     const newLead = await prisma.lead.create({
-      data: { fname, lname, gender, year: year ? parseInt(year, 10) : null, email, mobile, status },
+      data: { fname, lname, gender, year: year ? parseInt(year, 10) : null, email, mobile, status, type },
     });
 
     return NextResponse.json({ success: true, lead: newLead }, { status: 201 });

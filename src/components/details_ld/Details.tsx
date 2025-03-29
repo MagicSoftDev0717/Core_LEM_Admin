@@ -63,7 +63,6 @@ export default function BasicTableOne({ id }: { id: number }) {
     //Payment Method
     const handlePayMethod = () => {
         router.push("/paymethod_ld"); // Navigate to the 'lead' page
-        console.log("Saving changes...");
 
     };
     return (

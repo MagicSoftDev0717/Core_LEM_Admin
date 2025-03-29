@@ -69,7 +69,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { fname, lname, gender, year, school, birth, schoolYear, teacher, parent_id } = body;
+    const { fname, lname, gender, birth, pguardian, parent_id } = body;
 
     // Validate input
     // if (!name || !email || !mobile || !lead) {
@@ -87,7 +87,9 @@ export async function POST(req: Request) {
 
     // Save new lead in the database
     const newStudent = await prisma.student.create({
-      data: { fname, lname, gender, year, school, birth, schoolYear, teacher, parent_id },
+      data: { fname, lname, gender, 
+        birth: birth ? new Date(birth) : null, 
+        pguardian, parent_id },
     });
 
     return NextResponse.json({ success: true, student: newStudent }, { status: 201 });

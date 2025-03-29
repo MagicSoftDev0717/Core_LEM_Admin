@@ -27,23 +27,28 @@ interface Student {
   id: number;
   fname: string;
   lname: string;
-  year: string;
-  schoolYear: string;
-  school: string;
-  teacher: string;
-  gender: string;
   birth: string;
-  account: string;
-  virCen: string;
-  descript: string;
-  medicInfo: string;
-  cenDir: string;
-  subMat: string;
-  stuNote: string;
-  mediaRele: boolean;
-  leaveUnder: boolean;
-  contactTeach: boolean;
-  scholarShip: boolean;
+  gender: string;
+  pguardian: string;
+  sguardian: string;
+  religion: string;
+  allerigies: string;
+  a_pschool: string;
+  a_sschool: string;
+  a_yeargrp: string;
+  a_ies: string;
+  a_ims: string;
+  a_ics: string;
+  a_hs: string;
+  l_startdate: string;
+  l_pcentre: string;
+  l_scentre: string;
+  l_ies: string;
+  l_ims: string;
+  l_ics: string;
+  l_hs: string;
+  l_ptutor: string;
+  l_otutor: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -55,10 +60,12 @@ export default function BasicTableOne({ id }: { id: number }) {
     fname: "",
     lname: "",
     gender: "",
-    year: "",
-    school: "",
-    teacher: "",
-    schoolYear: "",
+    birth: "",
+    pguardian: "",
+    a_ies: "",
+    a_ims: "",
+    l_ies: "",
+    l_ims: "",
   });
   const [alert, setAlert] = useState<{ title: string; message: string; variant: "success" | "error" | "warning" | "info" } | null>(null);
   const [students, setStudents] = useState<Student[]>([]);
@@ -134,10 +141,12 @@ export default function BasicTableOne({ id }: { id: number }) {
             fname: data.student_data.fname,
             lname: data.student_data.lname,
             gender: data.student_data.gender,
-            year: data.student_data.year,
-            schoolYear: data.student_data.schoolYear,
-            teacher: data.student_data.teacher,
-            school: data.student_data.school,
+            birth: data.student_data.birth,
+            pguardian: data.student_data.pguardian,
+            a_ies: data.student_data.a_ies,
+            a_ims: data.student_data.a_ims,
+            l_ies: data.student_data.l_ies,
+            l_ims: data.student_data.l_ims,
           });
 
           setTotalPages(totalPage);
@@ -169,20 +178,20 @@ export default function BasicTableOne({ id }: { id: number }) {
 
 
   const exportToExcel = () => {
-    const ws = XLSX.utils.json_to_sheet(
-      students.map((order) => ({
-        "First Name": order.fname,
-        "Last Name": order.lname,
-        "Contact Type": order.gender,
-        Subject: order.year,
-        "Contact Info": order.school,
-        Status: order.schoolYear,
-        Priority: order.teacher
-      }))
-    );
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Orders");
-    XLSX.writeFile(wb, "table_data.xlsx");
+    // const ws = XLSX.utils.json_to_sheet(
+    //   students.map((order) => ({
+    //     "First Name": order.fname,
+    //     "Last Name": order.lname,
+    //     "Contact Type": order.gender,
+    //     Subject: order.year,
+    //     "Contact Info": order.school,
+    //     Status: order.schoolYear,
+    //     Priority: order.teacher
+    //   }))
+    // );
+    // const wb = XLSX.utils.book_new();
+    // XLSX.utils.book_append_sheet(wb, ws, "Orders");
+    // XLSX.writeFile(wb, "table_data.xlsx");
   };
 
   ///ItemsPerPage
@@ -579,37 +588,49 @@ export default function BasicTableOne({ id }: { id: number }) {
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Year
+                      Join date
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      School Year
+                      Year group
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Teacher
+                      Primary Guardian
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Lead/Account
+                      Initial<br />English Step
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Enrolment Status
+                      Initial<br />Math Step
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Last Attendance
+                      Current<br />English Step
+                    </TableCell>
+                    <TableCell
+                      isHeader
+                      className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    >
+                      Current<br />Math Step
+                    </TableCell>
+                    <TableCell
+                      isHeader
+                      className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    >
+                      Last<br />Session attended
                     </TableCell>
                     <TableCell
                       isHeader
@@ -634,22 +655,25 @@ export default function BasicTableOne({ id }: { id: number }) {
                           {student.lname}
                         </TableCell>
                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                          {student.year}
+                          {student.a_yeargrp}
                         </TableCell>
                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                          {student.schoolYear}
+                          {student.pguardian}
                         </TableCell>
                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                          {student.teacher}
+                          {student.a_ies}
                         </TableCell>
                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                          {student.teacher}
+                          {student.a_ims}
                         </TableCell>
                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                          {student.teacher}
+                          {student.l_ies}
                         </TableCell>
                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                          {student.teacher}
+                          {student.l_ims}
+                        </TableCell>
+                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                          {student.l_ims}
                         </TableCell>
                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                           <div className="flex items-center justify-center gap-2">
@@ -763,7 +787,7 @@ export default function BasicTableOne({ id }: { id: number }) {
         </div>
       </div>
 
-      <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[1000px] p-5 lg:p-10">
+      {/* <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[1000px] p-5 lg:p-10">
         <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Edit Student</h2>
 
         {selectedStu && (
@@ -836,17 +860,17 @@ export default function BasicTableOne({ id }: { id: number }) {
               </div>
 
               <div className="flex items-center gap-2">
-                {/* Start Field */}
-                <div className="flatpickr-wrapper flex flex-col w-full"> {/* Adjusted width */}
+                
+                <div className="flatpickr-wrapper flex flex-col w-full"> 
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     Date of Birth:
                   </label>
-                  <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
+                  <div className="relative w-full"> 
                     <Flatpickr
-                      value={dateOfBirth} // Set the value to the state
-                      onChange={handleDateofBirth} // Handle the date change
+                      value={dateOfBirth} 
+                      onChange={handleDateofBirth} 
                       options={{
-                        dateFormat: "Y-m-d", // Set the date format
+                        dateFormat: "Y-m-d", 
                       }}
                       placeholder="Start Date"
                       className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
@@ -932,7 +956,6 @@ export default function BasicTableOne({ id }: { id: number }) {
 
             <hr className="my-1" />
 
-            {/* Action Buttons */}
             <div className="flex justify-end space-x-3">
               <Button size="sm" onClick={closeEditModal} className="bg-gray-500 text-white">
                 Cancel
@@ -940,20 +963,20 @@ export default function BasicTableOne({ id }: { id: number }) {
               <Button size="sm" className="bg-blue-500 text-white" onClick={() => saveEditedStu(selectedStu.id)}>
                 Save
               </Button>
-              {/* Show alert when triggered */}
+             
               {alert && (
                 <Alert
                   title={alert.title}
                   message={alert.message}
                   variant={alert.variant}
                   duration={2000}
-                  onClose={() => setAlert(null)} // Clear alert after timeout
+                  onClose={() => setAlert(null)} 
                 />
               )}
             </div>
           </div>
         )}
-      </Modal>
+      </Modal> */}
     </div>
   );
 }

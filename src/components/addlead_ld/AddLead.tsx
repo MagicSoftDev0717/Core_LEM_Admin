@@ -15,7 +15,8 @@ export default function BasicTableOne() {
         year: "",
         email: "",
         mobile: "",
-        status: ""
+        status: "",
+        type: ""
     });
 
     //Add to Leads
@@ -26,6 +27,7 @@ export default function BasicTableOne() {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
+            type: e.target.checked ? e.target.value : "",
         });
     };
 
@@ -178,8 +180,6 @@ export default function BasicTableOne() {
             {/* Line Separator */}
             <hr className="my-6" />
 
-            {/* Address Information */}
-
             <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
                 Address Information
             </h4>
@@ -213,6 +213,55 @@ export default function BasicTableOne() {
                 <div className="col-span-1">
                     <Label>Country:</Label>
                     <Input type="text" placeholder="United Kingdom" />
+                </div>
+            </div>
+
+            {/* Line Separator */}
+            <hr className="my-6" />
+
+
+            <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
+                Type
+            </h4>
+
+            <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-6">
+
+                <div className="col-span-1">
+                    <input type="radio" value="active" checked={formData.type === "active"}
+                        onChange={handleChange} className="mr-2" />
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Active</label>
+                </div>
+                <div className="col-span-1">
+                    <input type="radio" value="inactive" checked={formData.type === "inactive"}
+                        onChange={handleChange} className="mr-2" />
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Inactive</label>
+                </div>
+                <div className="col-span-1">
+                    <input type="radio" value="onhold" checked={formData.type === "onhold"}
+                        onChange={handleChange} className="mr-2" />
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">On hold</label>
+                </div>
+                <div className="col-span-1">
+                    <input type="radio" value="contacted" checked={formData.type === "contacted"}
+                        onChange={handleChange} className="mr-2" />
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Contacted</label>
+                </div>
+                <div className="col-span-1">
+                    <input type="radio" value="open" checked={formData.type === "open"}
+                        onChange={handleChange} className="mr-2" />
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Open</label>
+                </div>
+                <div className="col-span-1">
+                    <input type="radio" value="visited" checked={formData.type === "visited"}
+                        onChange={handleChange} className="mr-2" />
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Visited</label>
+                </div>
+                <div className="col-span-2">
+                    <div className="flex flex-row items-center">
+                        <input type="radio" className="mr-2" />
+                        <Input type="text" placeholder="Other" className="mr-2" />
+                    </div>
+
                 </div>
             </div>
 
