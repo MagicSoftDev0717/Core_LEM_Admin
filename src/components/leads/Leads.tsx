@@ -57,8 +57,6 @@ interface Student {
   id: number;      // Assuming 'id' is a number
   fname: string;
   lname: string;
-  year: string;
-  schoolYear: string;
 
 }
 
@@ -1319,12 +1317,6 @@ export default function BasicTableOne() {
                       Last Name
                     </th>
                     <th className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
-                      Year
-                    </th>
-                    <th className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
-                      School Year
-                    </th>
-                    <th className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
                       Action
                     </th>
                   </tr>
@@ -1343,12 +1335,6 @@ export default function BasicTableOne() {
                         </td>
                         <td className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
                           {student.lname}
-                        </td>
-                        <td className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
-                          {student.year}
-                        </td>
-                        <td className="dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-200 text-center">
-                          {student.schoolYear}
                         </td>
                         <td className="dark:border-gray-600 px-3 py-2 text-center">
                           <button className="text-blue-600 dark:text-gray-400 dark:hover:text-blue-500" onClick={() => viewToDetailChild(student.id)}>
