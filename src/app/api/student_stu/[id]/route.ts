@@ -50,9 +50,7 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: numb
       where: { id: Number(id) },
       data: {
         fname: body.fname, lname: body.lname,
-        gender: body.gender, year: body.year,
-        schoolYear: body.schoolYear, school: body.school,
-        teacher: body.teacher
+        gender: body.gender
       },
     });
     return NextResponse.json(updatedStu);
