@@ -24,10 +24,10 @@ export default function BasicTableOne() {
     const [alert, setAlert] = useState<{ title: string; message: string; variant: "success" | "error" | "warning" | "info" } | null>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+         const { name, value, type } = e.target;
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value,
-            type: e.target.checked ? e.target.value : "",
+            [name]: type === "radio" || type === "checkbox" ? (e.target as HTMLInputElement).checked ? value : "" : value
         });
     };
 
@@ -227,32 +227,32 @@ export default function BasicTableOne() {
             <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-6">
 
                 <div className="col-span-1">
-                    <input type="radio" value="active" checked={formData.type === "active"}
+                    <input type="radio" name="type" value="active" checked={formData.type === "active"}
                         onChange={handleChange} className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Active</label>
                 </div>
                 <div className="col-span-1">
-                    <input type="radio" value="inactive" checked={formData.type === "inactive"}
+                    <input type="radio" name="type" value="inactive" checked={formData.type === "inactive"}
                         onChange={handleChange} className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Inactive</label>
                 </div>
                 <div className="col-span-1">
-                    <input type="radio" value="onhold" checked={formData.type === "onhold"}
+                    <input type="radio" name="type" value="onhold" checked={formData.type === "onhold"}
                         onChange={handleChange} className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">On hold</label>
                 </div>
                 <div className="col-span-1">
-                    <input type="radio" value="contacted" checked={formData.type === "contacted"}
+                    <input type="radio" name="type" value="contacted" checked={formData.type === "contacted"}
                         onChange={handleChange} className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Contacted</label>
                 </div>
                 <div className="col-span-1">
-                    <input type="radio" value="open" checked={formData.type === "open"}
+                    <input type="radio" name="type" value="open" checked={formData.type === "open"}
                         onChange={handleChange} className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Open</label>
                 </div>
                 <div className="col-span-1">
-                    <input type="radio" value="visited" checked={formData.type === "visited"}
+                    <input type="radio" name="type" value="visited" checked={formData.type === "visited"}
                         onChange={handleChange} className="mr-2" />
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Visited</label>
                 </div>
