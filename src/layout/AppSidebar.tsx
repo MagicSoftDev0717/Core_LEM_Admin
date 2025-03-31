@@ -220,7 +220,7 @@ const AppSidebar: React.FC = () => {
                     : "menu-item-icon-inactive"
                     }`}
                 >
-                  <img src={typeof nav.icon === "string" ? nav.icon : ""} alt={nav.name ?? "icon"} className="icon" />
+                  <Image src={typeof nav.icon === "string" ? nav.icon : ""} alt={nav.name ?? "icon"} className="icon" />
 
                   {/* <img src={nav.icon} alt={nav.name} className="icon" /> */}
                 </span>
