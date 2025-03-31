@@ -1,4 +1,4 @@
-import Landing from "@/components/Landing/Landing";
+// import Landing from "@/components/Landing/Landing";
 import type { Metadata } from "next";
 import React from "react";
 
@@ -14,7 +14,7 @@ export default function page() {
 
   return (
     <body style={{ backgroundColor: 'white' }}>
-      <Landing />
+      {/* <Landing /> */}
     </body>
   );
 }
