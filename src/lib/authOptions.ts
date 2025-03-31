@@ -5,6 +5,12 @@ import bcrypt from "bcryptjs";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma"; // Ensure Prisma is correctly set up
 // const prisma = new PrismaClient();
+interface UserType {
+    id: string;
+    name: string | null;
+    email: string;
+    image?: string | null;
+}
 
 
 export const authOptions: NextAuthOptions = {
@@ -36,11 +42,11 @@ export const authOptions: NextAuthOptions = {
     ],
     callbacks: {
         async jwt({ token, user }) {
-            if (user) token.user = user;
+            if (user) token.user = user as UserType;
             return token;
         },
         async session({ session, token }) {
-            session.user = token.user;
+            session.user = token.user as UserType;
             return session;
         },
     },
