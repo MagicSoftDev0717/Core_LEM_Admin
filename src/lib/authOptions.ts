@@ -32,7 +32,14 @@ export const authOptions: NextAuthOptions = {
                     where: { email: credentials.email },
                 });
 
-                if (!user || !(await bcrypt.compare(credentials.password, user.password))) {
+                
+                if (!user || !user.password) {  
+                    throw new Error("Invalid email or password");
+                }
+
+                const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password || ""); 
+
+                if (!isPasswordCorrect) {
                     throw new Error("Invalid email or password");
                 }
 
