@@ -4,7 +4,7 @@ import type { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
   const token = await getToken({ req });
-  const publicRoutes = ["/", "/signup"];
+  const publicRoutes = ["/", "/signup", "reset-password"];
 
   if (!token && !publicRoutes.includes(req.nextUrl.pathname)) {
     return NextResponse.redirect(new URL("/", req.url));
