@@ -25,18 +25,22 @@ export default function BasicTableOne() {
     return (
         <div>
             <div className="mb-6">
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-6 gap-2">
                     {/* Label and Combo Box */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
-                            <option value="">--Select--</option>
-                            <option value="1">Option 1</option>
-                        </select>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Student Name:</label>
+                        <input type="text" className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2" placeholder="Type a name" />
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center justify-center gap-2">
+                        <button
+                            className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/2"
+                        >Scan QR
+                        </button>
+                    </div>
+
+                    <div className="flex items-center justify-between gap-2">
                         {/* Start Field */}
-                        <div className="flatpickr-wrapper flex flex-col w-1/3"> {/* Adjusted width */}
+                        <div className="flatpickr-wrapper flex flex-col w-1/2"> {/* Adjusted width */}
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Start:
                             </label>
@@ -59,7 +63,7 @@ export default function BasicTableOne() {
                         </div>
 
                         {/* End Field */}
-                        <div className="flatpickr-wrapper flex flex-col w-1/3"> {/* Adjusted width */}
+                        <div className="flatpickr-wrapper flex flex-col w-1/2"> {/* Adjusted width */}
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 End:
                             </label>
@@ -83,6 +87,14 @@ export default function BasicTableOne() {
                     </div>
 
                     <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                            <option value="">--Select--</option>
+                            <option value="1">Option 1</option>
+                        </select>
+                    </div>
+
+                    <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Sessions:</label>
                         <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
                             <option value="">--Select--</option>
@@ -102,7 +114,7 @@ export default function BasicTableOne() {
                         </button>
                     </div>
                     <div></div>
-                  
+
                 </div>
             </div>
 

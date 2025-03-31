@@ -82,7 +82,7 @@ export default function BasicTableOne({ id }: { id: number }) {
             <div className="bg-gray-200 dark:bg-gray-800 p-6 rounded-3xl w-full">
                 <div className="p-4 rounded-2xl bg-gray-300 dark:bg-gray-700">
                     <h4 className="mb-2 text-base font-medium text-gray-800 dark:text-white/90">
-                        Teacher Information
+                        Mentor Information
                     </h4>
                     {teacher ? (
                         <h1 className="mb-2 text-4xl font-bold text-gray-800 dark:text-white/90">Mr.{teacher.fname + " " + teacher.lname}</h1>

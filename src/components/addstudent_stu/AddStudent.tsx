@@ -280,8 +280,18 @@ export default function BasicTableOne({ id }: { id: number }) {
                     <Label>Year Group</Label>
                     <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
                         <option value="">--Select--</option>
-                        <option value="1"></option>
-                        <option value="2"></option>
+                        <option value="Reception">Reception</option>
+                        <option value="Y1">Y1</option>
+                        <option value="Y2">Y2</option>
+                        <option value="Y3">Y3</option>
+                        <option value="Y4">Y4</option>
+                        <option value="Y5">Y5</option>
+                        <option value="Y6">Y6</option>
+                        <option value="Y7">Y7</option>
+                        <option value="Y8">Y8</option>
+                        <option value="Y9">Y9</option>
+                        <option value="Y10">Y10</option>
+                        <option value="Y11">Y11</option>
                     </select>
                 </div>
 

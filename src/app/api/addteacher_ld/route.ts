@@ -12,7 +12,7 @@ const prisma = new PrismaClient();
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { fname, lname, gender, email, mobile, status, academicY, curStu } = body;
+    const { fname, lname, gender, email, mobile, status, academicY, curStu, descript } = body;
 
     // Validate input
     // if (!name || !email || !mobile || !lead) {
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
 
     // Save new lead in the database
     const newTeacher = await prisma.teacher.create({
-      data: { fname, lname, gender, email, mobile, status, academicY, curStu},
+      data: { fname, lname, gender, email, mobile, status, academicY: academicY ? parseInt(academicY, 10) : null, curStu, descript},
     });
 
     return NextResponse.json({ success: true, teacher: newTeacher }, { status: 201 });

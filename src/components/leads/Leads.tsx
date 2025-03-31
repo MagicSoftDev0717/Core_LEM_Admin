@@ -22,7 +22,8 @@ import Input from "../form/input/InputField";
 import Button from "../ui/button/Button";
 import * as XLSX from "xlsx";
 import Alert from "../ui/alert/Alert"
-
+import { motion } from "framer-motion";
+import { BsInfoCircle  } from "react-icons/bs";
 interface Lead {
   id: number;
   fname: string;
@@ -114,8 +115,6 @@ export default function BasicTableOne() {
   };
 
 
-
-  //Click the page button , set a page number
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
@@ -356,6 +355,19 @@ export default function BasicTableOne() {
 
   const pageNumbers = getPageNumbers(currentPage, totalPages);
 
+  const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
+
+  const [tooltipVisibility, setTooltipVisibility] = useState({
+    open: false,
+    contacted: false,
+    active: false,
+    inactive: false,
+    visited: false,
+    onhold: false,
+    pending: false,
+    assessed: false,
+
+  });
 
   return (
     <div>
@@ -363,15 +375,6 @@ export default function BasicTableOne() {
       <div className="flex justify-between mb-6">
         <div className="space-x-2">
           <label className="block font-medium text-gray-700 dark:text-gray-300  p-2 rounded-lg text-xl">Lead Management Summary</label>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-          <select className="px-4 py-2 dark:bg-gray-900 text-gray-700 border rounded-lg text-sm dark:text-gray-400 w-full">
-            <option value="">--Select--</option>
-            <option value="1">All</option>
-            <option value="2">LEM Norbury</option>
-          </select>
         </div>
 
         {/* Filter Button with reduced width */}
@@ -422,8 +425,8 @@ export default function BasicTableOne() {
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
               <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
                 <option value="">--Select--</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
+                <option value="all">All</option>
+                <option value="2">LEM Norbury</option>
               </select>
             </div>
 
@@ -494,98 +497,221 @@ export default function BasicTableOne() {
                 <TableRow>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    className="px-2 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
                     Centre
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    className="px-2 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
-                    <div className="flex flex-row gap-1 justify-center">
-                      <span>Open</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                      </svg>
+                    <div className="relative flex items-center justify-center">
+                      {tooltipVisibility.open && (
+                        <motion.div
+                          initial={{ opacity: 0, x: 10 }}
+                          animate={{ opacity: 1, x: 5 }}
+                          exit={{ opacity: 0, x: 10 }}
+                          className="absolute left-full bg-gray-800 dark:text-white text-sm rounded py-1 px-2 shadow-md whitespace-nowrap z-50"
+                        >
+                          New prospects, who’s contact details are in the CORE system
+                        </motion.div>
+                      )}
+
+                      <div
+                        className="flex flex-row gap-1 justify-center items-center"
+                        onMouseEnter={() => setTooltipVisibility({ ...tooltipVisibility, open: true })}
+                        onMouseLeave={() => setTooltipVisibility({ ...tooltipVisibility, open: false })}
+                      >
+                        <span>Open</span>
+                        <BsInfoCircle />
+                      </div>
+                    </div>
+                  </TableCell>
+
+                  <TableCell
+                    isHeader
+                    className="px-2 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                  >
+                    <div className="relative flex items-center justify-center">
+                      {tooltipVisibility.contacted && (
+                        <motion.div
+                          initial={{ opacity: 0, x: 10 }}
+                          animate={{ opacity: 1, x: 5 }}
+                          exit={{ opacity: 0, x: 10 }}
+                          className="absolute left-full bg-gray-800 text-white text-lg rounded py-1 px-2 shadow-md whitespace-nowrap z-50"
+                        >
+                          New prospects who have been contacted by a member<br />of the team via email, telephone or text.
+                        </motion.div>
+                      )}
+
+                      <div
+                        className="flex flex-row gap-1 justify-center items-center"
+                        onMouseEnter={() => setTooltipVisibility({ ...tooltipVisibility, contacted: true })}
+                        onMouseLeave={() => setTooltipVisibility({ ...tooltipVisibility, contacted: false })}
+                      >
+                        <span>Contacted</span>
+                        <BsInfoCircle />
+                      </div>
+                    </div>
+                  </TableCell>
+
+                  <TableCell
+                    isHeader
+                    className="px-2 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                  >
+                    <div className="relative flex items-center justify-center">
+                      {tooltipVisibility.active && (
+                        <motion.div
+                          initial={{ opacity: 0, x: 10 }}
+                          animate={{ opacity: 1, x: 5 }}
+                          exit={{ opacity: 0, x: 10 }}
+                          className="absolute left-full bg-gray-800 text-white text-sm rounded py-1 px-2 shadow-md whitespace-nowrap z-50"
+                        >
+                          Currently student, who has started lessons and enrolled.
+                        </motion.div>
+                      )}
+
+                      <div
+                        className="flex flex-row gap-1 justify-center items-center"
+                        onMouseEnter={() => setTooltipVisibility({ ...tooltipVisibility, active: true })}
+                        onMouseLeave={() => setTooltipVisibility({ ...tooltipVisibility, active: false })}
+                      >
+                        <span>Active</span>
+                        <BsInfoCircle />
+                      </div>
                     </div>
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    className="py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
-                    <div className="flex flex-row gap-1 justify-center">
-                      <span>Contacted</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                      </svg>
+                    <div className="relative flex items-center justify-center">
+                      {tooltipVisibility.inactive && (
+                        <motion.div
+                          initial={{ opacity: 0, x: 10 }}
+                          animate={{ opacity: 1, x: 5 }}
+                          exit={{ opacity: 0, x: 10 }}
+                          className="absolute left-full bg-gray-800 dark:text-white text-sm rounded py-1 px-2 shadow-md whitespace-nowrap z-50"
+                        >
+                          Alumni who has not enrolled.
+                        </motion.div>
+                      )}
+
+                      <div
+                        className="flex flex-row gap-1 justify-center items-center"
+                        onMouseEnter={() => setTooltipVisibility({ ...tooltipVisibility, inactive: true })}
+                        onMouseLeave={() => setTooltipVisibility({ ...tooltipVisibility, inactive: false })}
+                      >
+                        <span>Inactive</span>
+                        <BsInfoCircle />
+                      </div>
                     </div>
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    className="px-2 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
-                    <div className="flex flex-row gap-1 justify-center">
-                      <span>Active</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                      </svg>
+                    <div className="relative flex items-center justify-center">
+                      {tooltipVisibility.visited && (
+                        <motion.div
+                          initial={{ opacity: 0, x: 10 }}
+                          animate={{ opacity: 1, x: 5 }}
+                          exit={{ opacity: 0, x: 10 }}
+                          className="absolute left-full bg-gray-800 dark:text-white text-sm rounded py-1 px-2 shadow-md whitespace-nowrap z-50"
+                        >
+                          Lead who has come to visit the centre prior to enrollment.
+                        </motion.div>
+                      )}
+
+                      <div
+                        className="flex flex-row gap-1 justify-center items-center"
+                        onMouseEnter={() => setTooltipVisibility({ ...tooltipVisibility, visited: true })}
+                        onMouseLeave={() => setTooltipVisibility({ ...tooltipVisibility, visited: false })}
+                      >
+                        <span>Visited</span>
+                        <BsInfoCircle />
+                      </div>
                     </div>
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    className="px-2 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
-                    <div className="flex flex-row gap-1 justify-center">
-                      <span>Inactive</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                      </svg>
+                    <div className="relative flex items-center justify-center">
+                      {tooltipVisibility.onhold && (
+                        <motion.div
+                          initial={{ opacity: 0, x: 10 }}
+                          animate={{ opacity: 1, x: 5 }}
+                          exit={{ opacity: 0, x: 10 }}
+                          className="absolute left-full bg-gray-800 dark:text-white text-sm rounded py-1 px-2 shadow-md whitespace-nowrap z-50"
+                        >
+                          A student that is currently frozen
+                        </motion.div>
+                      )}
+
+                      <div
+                        className="flex flex-row gap-1 justify-center items-center"
+                        onMouseEnter={() => setTooltipVisibility({ ...tooltipVisibility, onhold: true })}
+                        onMouseLeave={() => setTooltipVisibility({ ...tooltipVisibility, onhold: false })}
+                      >
+                        <span>On hold</span>
+                        <BsInfoCircle />
+                      </div>
                     </div>
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    className="px-2 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
-                    <div className="flex flex-row gap-1 justify-center">
-                      <span>Visited</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                      </svg>
+                    <div className="relative flex items-center justify-center">
+                      {tooltipVisibility.pending && (
+                        <motion.div
+                          initial={{ opacity: 0, x: 10 }}
+                          animate={{ opacity: 1, x: 5 }}
+                          exit={{ opacity: 0, x: 10 }}
+                          className="absolute right-full bg-gray-800 dark:text-white text-sm rounded py-1 px-2 shadow-md whitespace-nowrap z-50"
+                        >
+                          A pre-diagnostic mock assessment has not been taken.
+                        </motion.div>
+                      )}
+
+                      <div
+                        className="flex flex-row gap-1 justify-center items-center"
+                        onMouseEnter={() => setTooltipVisibility({ ...tooltipVisibility, pending: true })}
+                        onMouseLeave={() => setTooltipVisibility({ ...tooltipVisibility, pending: false })}
+                      >
+                        <span>Asmt.Pending</span>
+                        <BsInfoCircle />
+                      </div>
                     </div>
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
+                    className="px-2 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                   >
-                    <div className="flex flex-row gap-1 justify-center">
-                      <span>On Hold</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                      </svg>
+                    <div className="relative flex items-center justify-center">
+                      {tooltipVisibility.assessed && (
+                        <motion.div
+                          initial={{ opacity: 0, x: 10 }}
+                          animate={{ opacity: 1, x: 5 }}
+                          exit={{ opacity: 0, x: 10 }}
+                          className="absolute right-full bg-gray-800 dark:text-white text-sm rounded py-1 px-2 shadow-md whitespace-nowrap z-50"
+                        >
+                          A pre-diagnostic mock assessment has been taken
+                        </motion.div>
+                      )}
+
+                      <div
+                        className="flex flex-row gap-1 justify-center items-center"
+                        onMouseEnter={() => setTooltipVisibility({ ...tooltipVisibility, assessed: true })}
+                        onMouseLeave={() => setTooltipVisibility({ ...tooltipVisibility, assessed: false })}
+                      >
+                        <span>Open</span>
+                        <BsInfoCircle />
+                      </div>
                     </div>
                   </TableCell>
-                  <TableCell
-                    isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                  >
-                    <div className="flex flex-row gap-1 justify-center">
-                      <span>Asmt.Pending</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                      </svg>
-                    </div>
-                  </TableCell>
-                  <TableCell
-                    isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
-                  >
-                    <div className="flex flex-row gap-1 justify-center">
-                      <span>Assessed</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                      </svg>
-                    </div>
-                  </TableCell>
+
                 </TableRow>
               </TableHeader>
               {/* Table Body */}
@@ -623,6 +749,24 @@ export default function BasicTableOne() {
               </TableBody>
             </Table>
           </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col justify-end space-x-2 mb-4">
+        <div className="flex justify-end">
+          <span className="text-gray-900 dark:text-gray-300">Filter by first letter:</span>
+        </div>
+        <div className="flex justify-end gap-1">
+          {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(letter => (
+            <button
+              key={letter}
+              onClick={() => setSelectedLetter(selectedLetter === letter ? null : letter)}
+              className={`px-1 py-0.5 rounded-lg text-sm font-semibold transition duration-200 ${selectedLetter === letter ? "bg-blue-500 text-white" : "bg-gray-300 text-gray-800"
+                }`}
+            >
+              {letter}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -700,7 +844,7 @@ export default function BasicTableOne() {
                     >
                       <div className="flex flex-row items-center justify-center gap-1">
                         <Label className="flex ">Lead Status</Label>
-                        <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-1/6"
+                        <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-8"
                           onChange={(e) => setSelectedLdSts(e.target.value)}
                           value={selectedLdSts}
                         >
@@ -731,7 +875,7 @@ export default function BasicTableOne() {
                     >
                       <div className="flex flex-row items-center justify-center gap-1">
                         <Label className="flex ">Gender</Label>
-                        <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-1/6"
+                        <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-8"
                           value={selectedGen}
                           onChange={(e) => setSelectedGen(e.target.value)}
                         >
@@ -747,7 +891,7 @@ export default function BasicTableOne() {
                     >
                       <div className="flex flex-row items-center justify-center gap-1">
                         <Label className="flex ">Year</Label>
-                        <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-1/6"
+                        <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-8"
                           value={selectedYear}
                           onChange={(e) => setSelectedYear(e.target.value)}
                         >
@@ -820,9 +964,7 @@ export default function BasicTableOne() {
                                 </svg>
                               </button>
                               <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={() => handleDetails(lead.id)}>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-6">
-                                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 4h.01M4.5 12a7.5 7.5 0 1115 0 7.5 7.5 0 01-15 0z" />
-                                </svg>
+                                <BsInfoCircle className="w-5 h-auto"/>
                               </button>
                               <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={() => handleRemove(lead.id)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">

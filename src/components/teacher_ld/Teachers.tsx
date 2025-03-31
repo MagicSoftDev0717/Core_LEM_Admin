@@ -20,7 +20,7 @@ import Input from "../form/input/InputField";
 import Button from "../ui/button/Button";
 import * as XLSX from "xlsx";
 import Alert from "../ui/alert/Alert"
-
+import { BsInfoCircle } from "react-icons/bs";
 interface Teacher {
     id: number;
     fname: string;
@@ -37,7 +37,7 @@ interface Teacher {
     address2: string;
     city: string;
     postalCode: number;
-    descrip: string;
+    descript: string;
     primarySc: string;
     secondarySc: string;
     collegeForm: string;
@@ -59,7 +59,8 @@ export default function BasicTableOne() {
         gender: "",
         email: "",
         mobile: "",
-        status: ""
+        status: "",
+        descript: ""
     });
 
     const [teachers, setTeachers] = useState<Teacher[]>([]);
@@ -95,7 +96,7 @@ export default function BasicTableOne() {
         setIsEditOpen(true);
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         setFormData((prevData) => ({
             ...prevData,
             [e.target.name]: e.target.value,
@@ -125,11 +126,12 @@ export default function BasicTableOne() {
                         email: data.teacher_data.email,
                         status: data.teacher_data.status,
                         mobile: data.teacher_data.mobile,
+                        descript: data.teacher_data.descript,
                     });
                     setTotalPages(totalPage);
 
                 } else {
-                   
+
                     setTeachers([]); // Ensure leads remains an array
                     setCurrentTeachers([]);
 
@@ -161,11 +163,11 @@ export default function BasicTableOne() {
     const router = useRouter();
 
     const addtoTeacher = () => {
-        router.push("/addteacher_tc"); 
+        router.push("/addteacher_tc");
     };
 
-    const detailToTeacher =  async (id: number) => {
-        router.push(`/detateacher_ld/${id}`); 
+    const detailToTeacher = async (id: number) => {
+        router.push(`/detateacher_ld/${id}`);
     };
 
     ////////////////////////Pagination///////////////
@@ -231,6 +233,13 @@ export default function BasicTableOne() {
             });
         }
     };
+
+    const formatDate = (date: Date) => {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+        const year = date.getFullYear();
+        return `${year}-${month}-${day}`;
+      };
 
     return (
         <div>
@@ -377,7 +386,7 @@ export default function BasicTableOne() {
                                         >
                                             <div className="flex flex-row items-center justify-center gap-1">
                                                 <Label className="flex ">Status</Label>
-                                                <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-1/6"
+                                                <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-6"
                                                     onChange={(e) => setSelectedSts(e.target.value)}
                                                     value={selectedSts}
                                                 >
@@ -433,7 +442,7 @@ export default function BasicTableOne() {
                                                     {teacher.lname}
                                                 </TableCell>
                                                 <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                                    {teacher.gender}
+                                                    {formatDate(new Date(teacher.createdAt))}
                                                 </TableCell>
                                                 <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                                     {teacher.status}
@@ -442,7 +451,7 @@ export default function BasicTableOne() {
                                                     {teacher.mobile}
                                                 </TableCell>
                                                 <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                                                    {teacher.descrip}
+                                                    {teacher.descript}
                                                 </TableCell>
                                                 <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                                                     {teacher.mobile}
@@ -458,15 +467,12 @@ export default function BasicTableOne() {
                                                             </svg>
                                                         </button>
                                                         <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={() => detailToTeacher(teacher.id)}>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-6">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 4h.01M4.5 12a7.5 7.5 0 1115 0 7.5 7.5 0 01-15 0z" />
-                                                            </svg>
+                                                            <BsInfoCircle className="w-5 h-auto" />
                                                         </button>
                                                         <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500">
                                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
                                                             </svg>
-
                                                         </button>
                                                     </div>
                                                 </TableCell>
@@ -564,10 +570,8 @@ export default function BasicTableOne() {
                 </div>
             </div>
 
-
-
             <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[1000px] p-5 lg:p-10">
-                <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Edit Mentor</h2>
+                <h2 className="mb-2 text-2xl font-medium text-gray-800 dark:text-white/90">Edit Mentor</h2>
                 {selectedTeacher && (
                     <div>
                         <h4 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">
@@ -641,21 +645,6 @@ export default function BasicTableOne() {
                             </div>
 
                             <div className="col-span-1">
-                                <Label>Year:</Label>
-                                <Input type="text" placeholder="Team Manager" />
-                            </div>
-
-                            <div className="col-span-1">
-                                <Label>Choose Your School:</Label>
-                                <Input type="text" placeholder="" />
-                            </div>
-
-                            <div className="col-span-1">
-                                <Label>Department:</Label>
-                                <Input type="text" placeholder="" />
-                            </div>
-
-                            <div className="col-span-1">
                                 <Label>Title:</Label>
                                 <Input type="text" placeholder="" />
                             </div>
@@ -718,7 +707,7 @@ export default function BasicTableOne() {
 
                         <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
                             <div className="col-span-1">
-                                <textarea rows={6} cols={80} className="dark:bg-gray-900 text-gray-600 border rounded-lg" placeholder="Type your message here..." />
+                                <textarea rows={6} cols={80} name="descript" defaultValue={selectedTeacher.descript} onChange={handleChange} className="dark:bg-gray-900 dark:text-gray-300  border rounded-lg" placeholder="Type here..." />
                             </div>
                         </div>
 

@@ -57,8 +57,9 @@ const navItems: NavItem[] = [
     subItems: [{ name: "Students", path: "/students", pro: false },
     { name: "Learning Plan Manager", path: "/planmanager_stu", pro: false },
     { name: "Student Attenance", path: "/attendance_stu", pro: false },
-    { name: "Student Roster", path: "/roster_stu", pro: false },
-    { name: "Attendance Summary Chart", path: "/summarychart_stu", pro: false },
+    // { name: "Student Roster", path: "/roster_stu", pro: false },
+    { name: "Centre Attendance Summary", path: "/centresummary_stu", pro: false },
+    { name: "Student Attendance Summary", path: "/stusummary_stu", pro: false },
     { name: "School Year Bulk Update", path: "/yearbulk_stu", pro: false }
     ],
   },

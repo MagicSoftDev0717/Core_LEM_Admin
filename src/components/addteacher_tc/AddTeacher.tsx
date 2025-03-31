@@ -18,7 +18,7 @@ export default function BasicTableOne() {
         academicY: "",
         curStu: "",
         mobile: "",
-        descrip: "",
+        descript: "",
 
     });
 
@@ -60,10 +60,9 @@ export default function BasicTableOne() {
 
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
 
-        // Update both formData and academicYear if the academic year field is changed
         if (name === "academic") {
             setAcademicYear(value);  // Updates academicYear separately
         }
@@ -150,18 +149,15 @@ export default function BasicTableOne() {
                     <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full"
                         name="status" value={formData.status} onChange={handleChange}>
                         <option value="all">All</option>
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
-                        <option value="frozen">Frozen</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                        <option value="Frozen">Frozen</option>
                     </select>
                 </div>
 
             </div>
 
-            {/* Line Separator */}
             <hr className="my-6" />
-
-            {/* Address Information */}
 
             <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
                 Address Information
@@ -277,7 +273,7 @@ export default function BasicTableOne() {
                         value={formData.curStu}
                         onChange={handleChange}
                         placeholder="Type description"
-                        className={`px-6 py-3 border bg-gray-900 rounded-lg text-sm w-full ${isStudyingActive() ? "text-gray-900 dark:text-white" : "opacity-50 cursor-not-allowed"
+                        className={`px-6 py-3 border bg-white dark:bg-gray-900 rounded-lg text-sm w-full ${isStudyingActive() ? "text-gray-600 dark:text-gray-600" : "opacity-50 cursor-not-allowed"
                             }`}
                         disabled={!isStudyingActive()}
                     />
@@ -322,35 +318,26 @@ export default function BasicTableOne() {
                     </select>
                 </div>
 
-                <div className="col-span-1">
-
-                </div>
-
-                <div className="col-span-1">
-
-                </div>
-                <div className="col-span-1">
-
-                </div>
+                <div className="col-span-1"></div>
+                <div className="col-span-1"></div>
+                <div className="col-span-1"></div>
 
             </div>
 
-            {/* Line Separator */}
             <hr className="my-6" />
 
-            {/* Description Information */}
-
+            
             <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
                 Description Information
             </h4>
 
             <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
                 <div className="col-span-1">
-                    <textarea rows={6} cols={80} className="dark:bg-gray-900 text-gray-600 border rounded-lg" placeholder="Type your description here..." />
+                    <textarea rows={6} cols={80} name="descript" value={formData.descript} onChange={handleChange} className="dark:bg-gray-900 text-gray-900 dark:text-gray-300 border rounded-lg" 
+                    placeholder="Type your description here..." />
                 </div>
             </div>
 
-            {/* Line Separator */}
             <hr className="my-6" />
 
             <div className="flex items-center justify-end w-full gap-3 mt-6">

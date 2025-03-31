@@ -375,7 +375,7 @@ export default function BasicTableOne() {
                                         >
                                             <div className="flex flex-row items-center justify-center gap-1">
                                                 <Label className="flex ">Level</Label>
-                                                <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-1/6"
+                                                <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-6"
                                                     onChange={(e) => setSelectedLvl(e.target.value)}
                                                     value={selectedLvl}
                                                 >
@@ -391,7 +391,7 @@ export default function BasicTableOne() {
                                         >
                                             <div className="flex flex-row items-center justify-center gap-1">
                                                 <Label className="flex ">Type</Label>
-                                                <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-1/6"
+                                                <select className="dark:bg-gray-900 px-4 py-2 dark:text-gray-500 text-xs w-6"
                                                     onChange={(e) => setSelectedType(e.target.value)}
                                                     value={selectedType}
                                                 >

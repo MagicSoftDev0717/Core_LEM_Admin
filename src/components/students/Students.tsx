@@ -406,7 +406,7 @@ export default function BasicTableOne({ id }: { id: number }) {
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Delivery:</label>
               <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
                 <option value="">--Select--</option>
-                <option value="1">Option 1</option>
+                <option value="all">Option 1</option>
                 <option value="2">Option 2</option>
               </select>
             </div>
@@ -415,7 +415,7 @@ export default function BasicTableOne({ id }: { id: number }) {
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
               <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
                 <option value="">--Select--</option>
-                <option value="1">Option 1</option>
+                <option value="all">All</option>
                 <option value="2">Option 2</option>
               </select>
             </div>
@@ -435,7 +435,6 @@ export default function BasicTableOne({ id }: { id: number }) {
           <div className="max-w-full overflow-x-auto">
             <div className="min-w-[1102px]">
               <Table>
-                {/* Table Header */}
                 <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
                   <TableRow>
                     <TableCell

@@ -1,14 +1,50 @@
 "use client";
-import Checkbox from "@/components/form/input/Checkbox";
+// import Checkbox from "@/components/form/input/Checkbox";
 import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
 import { EyeCloseIcon, EyeIcon } from "@/icons";
 import Link from "next/link";
 import React, { useState } from "react";
-
+import { useRouter } from "next/navigation";
 export default function SignUpForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
+  // const [isChecked, setIsChecked] = useState(false);
+
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
+  const [error, setError] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+  
+
+    const response = await fetch("/api/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    
+    if (response.ok) {
+      router.push("/");
+    } else {
+      const data = await response.json();
+      setError(data.error);
+    }
+  };
+
+
   return (
     <div className="flex flex-col flex-1 p-6 rounded-2xl sm:rounded-none sm:border-0 sm:p-8">
       <div className="w-full max-w-md pt-5 mx-auto sm:py-10">
@@ -97,7 +133,8 @@ export default function SignUpForm() {
               </span>
             </div>
           </div>
-          <form>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {error && <p className="text-red-500">{error}</p>}
             <div className="space-y-5">
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 {/* <!-- First Name --> */}
@@ -108,7 +145,8 @@ export default function SignUpForm() {
                   <Input
                     type="text"
                     id="fname"
-                    name="fname"
+                    name="firstName"
+                    onChange={handleChange}
                     placeholder="Enter your first name"
                   />
                 </div>
@@ -120,7 +158,8 @@ export default function SignUpForm() {
                   <Input
                     type="text"
                     id="lname"
-                    name="lname"
+                    name="lastName"
+                    onChange={handleChange}
                     placeholder="Enter your last name"
                   />
                 </div>
@@ -134,6 +173,7 @@ export default function SignUpForm() {
                   type="email"
                   id="email"
                   name="email"
+                  onChange={handleChange}
                   placeholder="Enter your email"
                 />
               </div>
@@ -144,6 +184,8 @@ export default function SignUpForm() {
                 </Label>
                 <div className="relative">
                   <Input
+                    name="password"
+                    onChange={handleChange}
                     placeholder="Enter your password"
                     type={showPassword ? "text" : "password"}
                   />
@@ -160,7 +202,7 @@ export default function SignUpForm() {
                 </div>
               </div>
               {/* <!-- Checkbox --> */}
-              <div className="flex items-center gap-3">
+              {/* <div className="flex items-center gap-3">
                 <Checkbox
                   className="w-5 h-5"
                   checked={isChecked}
@@ -176,7 +218,7 @@ export default function SignUpForm() {
                     Privacy Policy
                   </span>
                 </p>
-              </div>
+              </div> */}
               {/* <!-- Button --> */}
               <div>
                 <button className="flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600">
