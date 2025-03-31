@@ -21,7 +21,7 @@ export default function SignIn() {
             <Image
               width={231}
               height={48}
-               src="auth-logo.svg"
+              src="./images/logo/auth-logo.svg"
               alt="Logo"
             />
           </Link>
