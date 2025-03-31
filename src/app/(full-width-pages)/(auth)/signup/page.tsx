@@ -21,7 +21,7 @@ export default function SignUp() {
         <div className="flex flex-col items-center max-w-xs">
           <Link href="" className="block mb-4">
             <Image
-              src="/images/logo/auth-logo.svg"
+              src="https://corelemadmin-production.up.railway.app/images/logo/auth-logo.svg"
               width={231}
               height={48}
               alt="Logo"
