@@ -15,5 +15,5 @@ export async function middleware(req: NextRequest) {
 
 // Apply middleware to all routes except public ones
 export const config = {
-  matcher: "/((?!_next|api|static|public).*)",
+  matcher: "/((?!_next|api|static|images|assets).*)",
 };
