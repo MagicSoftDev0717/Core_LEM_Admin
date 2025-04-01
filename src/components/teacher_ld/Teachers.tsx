@@ -239,7 +239,9 @@ export default function BasicTableOne() {
         const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
         const year = date.getFullYear();
         return `${year}-${month}-${day}`;
-      };
+    };
+
+    const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
 
     return (
         <div>
@@ -327,6 +329,24 @@ export default function BasicTableOne() {
                         >Search
                         </button>
                     </div>
+                </div>
+            </div>
+
+            <div className="flex flex-col justify-end space-x-2 mb-4">
+                <div className="flex justify-end">
+                    <span className="text-gray-900 dark:text-gray-300">Filter by first letter:</span>
+                </div>
+                <div className="flex justify-end gap-1">
+                    {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(letter => (
+                        <button
+                            key={letter}
+                            onClick={() => setSelectedLetter(selectedLetter === letter ? null : letter)}
+                            className={`px-1 py-0.5 rounded-lg text-sm font-semibold transition duration-200 ${selectedLetter === letter ? "bg-blue-500 text-white" : "bg-gray-300 text-gray-800"
+                                }`}
+                        >
+                            {letter}
+                        </button>
+                    ))}
                 </div>
             </div>
 

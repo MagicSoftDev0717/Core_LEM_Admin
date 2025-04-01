@@ -135,6 +135,18 @@ model School {
   updatedAt  DateTime @default(now())
 }
 
+model SchoolVisit {
+  id            Int      @id @default(autoincrement())
+  school_id     Int
+  v_date        String
+  reason        String?
+  p_visiting    String?
+  p_visited     String?
+  leaflet       String?
+  notes         String?
+ 
+}
+
 model Comcon {
   id          Int      @id @default(autoincrement())
   fname       String
