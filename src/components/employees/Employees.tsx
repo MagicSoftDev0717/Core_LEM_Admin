@@ -15,7 +15,7 @@ import {
   TableRow,
 } from "../ui/table";
 
-import { BsSortAlphaUp, BsSortAlphaDown, BsPencil, BsInfoCircle, BsTrash3 } from "react-icons/bs";
+import { BsSortAlphaUp, BsSortAlphaDown } from "react-icons/bs";
 import Label from "../form/Label";
 import * as XLSX from "xlsx";
 
@@ -31,6 +31,7 @@ interface Employee {
   e_status: string;
   e_pricen: string;
   e_hiredate: string;
+  e_enddate: string;
   createdAt: string;
   updatedAt: string;
   mobile: string;
@@ -120,6 +121,14 @@ export default function BasicTableOne() {
 
   const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
 
+  const handleItemsPerPageChange = (event: ChangeEvent<HTMLSelectElement>) => {
+
+    const newItemsPerPage = Number(event.target.value);
+    setEmployees([]);
+    setItemsPerPage(newItemsPerPage);
+    setCurrentPage(1); // Reset to first page when changing rows per page
+  };
+
   //Click the page button , set a page number
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -155,7 +164,7 @@ export default function BasicTableOne() {
       setCurrentEmployees(data.employee_data);
 
     } catch (error) {
-      console.error("Failed to fetch students:", error);
+      console.error("Failed to fetch employees:", error);
     }
   };
 
@@ -253,6 +262,18 @@ export default function BasicTableOne() {
                 >
                   ORG Chart
                 </button>
+              </div>
+            </div>
+            <div className="relative z-20 bg-transparent">
+              <div className="flex items-center gap-3">
+                <span className="text-gray-500 dark:text-gray-400"> Show </span>
+                <select value={itemsPerPage}
+                  onChange={handleItemsPerPageChange}
+                  className="w-full py-2 pl-3 pr-6 text-sm text-gray-800 bg-transparent border border-gray-300 rounded-lg appearance-none dark:bg-dark-900 h-9 bg-none shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-none focus:ring focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                </select>
               </div>
             </div>
           </div>
@@ -448,10 +469,10 @@ export default function BasicTableOne() {
                           {employee.e_status}
                         </TableCell>
                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                          {employee.e_hiredate}
+                          {employee.e_enddate}
                         </TableCell>
                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                          ""
+                          {employee.e_hiredate}
                         </TableCell>
                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                           {employee.e_pricen}
