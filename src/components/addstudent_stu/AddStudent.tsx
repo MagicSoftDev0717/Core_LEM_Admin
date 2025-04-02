@@ -11,6 +11,11 @@ import {
     CalenderIcon
 } from "../../icons/index";
 
+interface School {
+    id: number;
+    sname: string;
+  }
+
 export default function BasicTableOne({ id }: { id: number }) {
 
     const [formData, setFormData] = useState({
@@ -116,8 +121,8 @@ export default function BasicTableOne({ id }: { id: number }) {
     };
 
 
-    const [primarySchools, setPrimarySchools] = useState([]);
-    const [secondarySchools, setSecondarySchools] = useState([]);
+    const [primarySchools, setPrimarySchools] = useState<School[]>([]);
+    const [secondarySchools, setSecondarySchools] = useState<School[]>([]);
 
     useEffect(() => {
         // Fetch primary schools
