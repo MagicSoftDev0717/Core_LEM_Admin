@@ -111,8 +111,6 @@ export default function BasicTableOne() {
   };
 
   const handleSave = () => {
-    // Handle save logic here
-    console.log("Saving changes...");
     closeModal();
   };
 

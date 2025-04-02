@@ -1,7 +1,7 @@
 
 "use client";
 import React, { useState, useEffect, ChangeEvent } from "react";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Filter } from "lucide-react";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/light.css";
@@ -22,6 +22,7 @@ import Button from "../ui/button/Button";
 import { Modal } from "../ui/modal";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
+import { BsSortAlphaUp, BsSortAlphaDown, BsPencil, BsInfoCircle, BsTrash3 } from "react-icons/bs";
 
 interface Student {
   id: number;
@@ -112,6 +113,13 @@ export default function BasicTableOne({ id }: { id: number }) {
     setDateOfEnd(date[0].toLocaleDateString()); // Handle selected date and format it
   };
 
+  const formatDate = (date: Date) => {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+    const year = date.getFullYear();
+    return `${year}-${month}-${day}`;
+  };
+
 
 
   useEffect(() => {
@@ -128,7 +136,6 @@ export default function BasicTableOne({ id }: { id: number }) {
         else {
           response = await fetch(`/api/student_stu?page=${currentPage}&items=${itemsPerPage}&searchQuery=${searchQuery}&dateOfStart=${dateOfStart}&dateOfEnd=${dateOfEnd}`);
           data = await response.json();
-          console.log("dddddd: ");
         }
 
         if (data.student_data !== undefined) {
@@ -175,6 +182,10 @@ export default function BasicTableOne({ id }: { id: number }) {
   // const addToStudent = () => {
   //   router.push("/addstudent_stu"); // Navigate to the 'lead' page
   // };
+  const router = useRouter();
+  const detailToStudent = async (id: number) => {
+    router.push(`/detastudent_stu/${id}`);
+  };
 
 
   const exportToExcel = () => {
@@ -295,7 +306,38 @@ export default function BasicTableOne({ id }: { id: number }) {
     }
   };
 
+  const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
 
+  ///////////////Sort/////////////////////
+
+  const [sortColumn, setSortColumn] = useState<string>(""); // Default sorting column
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc"); // Default sorting direction
+
+  // Function to fetch sorted student data from the API
+  const fetchStudents = async (column: string, direction: "asc" | "desc") => {
+    try {
+      const response = await fetch(`/api/student_stu?sort=${column}&direction=${direction}`);
+      const data = await response.json();
+      console.log("ad: ", data);
+      setCurStudents(data.student_data);
+
+    } catch (error) {
+      console.error("Failed to fetch students:", error);
+    }
+  };
+
+  // Fetch students when component mounts
+  useEffect(() => {
+    fetchStudents(sortColumn, sortDirection);
+  }, [sortColumn, sortDirection]);
+
+  // Handle sorting when clicking a column
+  const handleSort = (column: string) => {
+    const newDirection = sortColumn === column && sortDirection === "asc" ? "desc" : "asc";
+    setSortColumn(column);
+    setSortDirection(newDirection);
+    fetchStudents(sortColumn, sortDirection);
+  };
 
   return (
     <div>
@@ -531,6 +573,24 @@ export default function BasicTableOne({ id }: { id: number }) {
         </div>
       </div>
 
+      <div className="flex flex-col justify-end space-x-2 mb-4">
+        <div className="flex justify-end">
+          <span className="text-gray-900 dark:text-gray-300">Filter by first letter:</span>
+        </div>
+        <div className="flex justify-end gap-1">
+          {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(letter => (
+            <button
+              key={letter}
+              onClick={() => setSelectedLetter(selectedLetter === letter ? null : letter)}
+              className={`px-1 py-0.5 rounded-lg text-sm font-semibold transition duration-200 ${selectedLetter === letter ? "bg-blue-500 text-white" : "bg-gray-300 text-gray-800"
+                }`}
+            >
+              {letter}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="overflow-hidden bg-white dark:bg-white/[0.03] rounded-xl border border-gray-200 dark:border-white/[0.1]">
         <div className="flex flex-col gap-2 px-4 py-4 border border-b border-gray-200 dark:border-white/[0.05] rounded-t-xl sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
@@ -573,61 +633,171 @@ export default function BasicTableOne({ id }: { id: number }) {
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      First Name
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="flex items-center justify-center text-center">
+                          <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">First Name</p>
+                        </div>
+                        <button className="flex flex-col" onClick={() => handleSort("fname")}>
+                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                            <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
+                          ) : (
+                            <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
+                          )}
+                        </button>
+                      </div>
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Last Name
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="flex items-center justify-center text-center">
+                          <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Last Name</p>
+                        </div>
+                        <button className="flex flex-col" onClick={() => handleSort("lname")}>
+                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                            <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
+                          ) : (
+                            <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
+                          )}
+                        </button>
+                      </div>
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Join date
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="flex items-center justify-center text-center">
+                          <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Join Date</p>
+                        </div>
+                        <button className="flex flex-col" onClick={() => handleSort("createdAt")}>
+                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                            <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
+                          ) : (
+                            <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
+                          )}
+                        </button>
+                      </div>
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Year group
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="flex items-center justify-center text-center">
+                          <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Year Group</p>
+                        </div>
+                        <button className="flex flex-col" onClick={() => handleSort("a_yeargrp")}>
+                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                            <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
+                          ) : (
+                            <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
+                          )}
+                        </button>
+                      </div>
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Primary Guardian
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="flex items-center justify-center text-center">
+                          <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Primary Guardian</p>
+                        </div>
+                        <button className="flex flex-col" onClick={() => handleSort("pguardian")}>
+                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                            <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
+                          ) : (
+                            <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
+                          )}
+                        </button>
+                      </div>
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Initial<br />English Step
+                      <div className="flex items-center justify-center gap-1">
+                        <div className="flex items-center justify-center text-center">
+                          <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Initial English Step</p>
+                        </div>
+                        <button className="flex flex-col" onClick={() => handleSort("a_ies")}>
+                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                            <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
+                          ) : (
+                            <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
+                          )}
+                        </button>
+                      </div>
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Initial<br />Math Step
+                      <div className="flex items-center justify-center gap-1">
+                        <div className="flex items-center justify-center text-center">
+                          <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Initial Maths Step</p>
+                        </div>
+                        <button className="flex flex-col" onClick={() => handleSort("a_ims")}>
+                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                            <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
+                          ) : (
+                            <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
+                          )}
+                        </button>
+                      </div>
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Current<br />English Step
+                      <div className="flex items-center justify-center gap-1">
+                        <div className="flex items-center justify-center text-center">
+                          <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400"> Current English Step</p>
+                        </div>
+                        <button className="flex flex-col" onClick={() => handleSort("1_ies")}>
+                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                            <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
+                          ) : (
+                            <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
+                          )}
+                        </button>
+                      </div>
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Current<br />Math Step
+                      <div className="flex items-center justify-center gap-1">
+                        <div className="flex items-center justify-center text-center">
+                          <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400"> Current Maths Step</p>
+                        </div>
+                        <button className="flex flex-col" onClick={() => handleSort("l_ims")}>
+                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                            <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
+                          ) : (
+                            <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
+                          )}
+                        </button>
+                      </div>
                     </TableCell>
                     <TableCell
                       isHeader
                       className="px-5 py-3 font-medium text-gray-500 text-center text-theme-sm dark:text-gray-400"
                     >
-                      Last<br />Session attended
+                      <div className="flex items-center justify-center gap-1">
+                        <div className="flex items-center justify-center text-center">
+                          <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Last Session attended</p>
+                        </div>
+                        <button className="flex flex-col" onClick={() => handleSort("l_hs")}>
+                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                            <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
+                          ) : (
+                            <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
+                          )}
+                        </button>
+                      </div>
                     </TableCell>
                     <TableCell
                       isHeader
@@ -652,6 +822,9 @@ export default function BasicTableOne({ id }: { id: number }) {
                           {student.lname}
                         </TableCell>
                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
+                          {formatDate(new Date(student.createdAt))}
+                        </TableCell>
+                        <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                           {student.a_yeargrp}
                         </TableCell>
                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
@@ -670,24 +843,18 @@ export default function BasicTableOne({ id }: { id: number }) {
                           {student.l_ims}
                         </TableCell>
                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
-                          {student.l_ims}
+                          {student.l_hs}
                         </TableCell>
                         <TableCell className="px-4 py-3 text-gray-500 text-center text-theme-sm dark:text-gray-400">
                           <div className="flex items-center justify-center gap-2">
                             <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={() => handleEditStudent(student)}>
-                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                              </svg>
+                              <BsPencil className="w-5 h-auto" />
+                            </button>
+                            <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={() => detailToStudent(student.id)}>
+                              <BsInfoCircle className="w-5 h-auto" />
                             </button>
                             <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500">
-                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 4h.01M4.5 12a7.5 7.5 0 1115 0 7.5 7.5 0 01-15 0z" />
-                              </svg>
-                            </button>
-                            <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500">
-                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6" onClick={() => handleRemove(student.id)}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                              </svg>
+                              <BsTrash3 className="w-5 h-auto" />
                             </button>
                           </div>
                         </TableCell>
@@ -785,7 +952,7 @@ export default function BasicTableOne({ id }: { id: number }) {
       </div>
 
       <Modal isOpen={isEditOpen} onClose={closeEditModal} className="max-w-[1000px] p-5 lg:p-10">
-        <h2 className="mb-2 text-lg font-medium text-gray-800 dark:text-white/90">Edit Student</h2>
+        <h2 className="mb-2 text-2xl font-medium text-gray-800 dark:text-white/90">Edit Student</h2>
 
         {selectedStu && (
           <div>
@@ -812,9 +979,9 @@ export default function BasicTableOne({ id }: { id: number }) {
                 </select>
               </div>
 
-              <div className="col-span-1">
+              {/* <div className="col-span-1">
                 <Label>Year:</Label>
-                <select name="year" defaultValue={selectedStu. birth} onChange={handleChange} className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
+                <select name="year" defaultValue={selectedStu.birth} onChange={handleChange} className="w-full bg-gray-900 px-2 py-2 border rounded-lg text-sm text-gray-500">
                   <option value="">--Select--</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -854,20 +1021,20 @@ export default function BasicTableOne({ id }: { id: number }) {
                   <option value="23-24">23-24</option>
                   <option value="24-25">24-25</option>
                 </select>
-              </div>
+              </div> */}
 
               <div className="flex items-center gap-2">
-                
-                <div className="flatpickr-wrapper flex flex-col w-full"> 
+
+                <div className="flatpickr-wrapper flex flex-col w-full">
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     Date of Birth:
                   </label>
-                  <div className="relative w-full"> 
+                  <div className="relative w-full">
                     <Flatpickr
-                      value={dateOfBirth} 
-                      onChange={handleDateofBirth} 
+                      value={dateOfBirth}
+                      onChange={handleDateofBirth}
                       options={{
-                        dateFormat: "Y-m-d", 
+                        dateFormat: "Y-m-d",
                       }}
                       placeholder="Start Date"
                       className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
@@ -925,7 +1092,7 @@ export default function BasicTableOne({ id }: { id: number }) {
               </div>
 
 
-              <div className="col-span-1 mt-4">
+              {/* <div className="col-span-1 mt-4">
                 <div className="col-span-1">
                   <input type="checkbox" className="mr-2" />
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Consent to Media Release</label>
@@ -947,7 +1114,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                   <input type="checkbox" className="mr-2" />
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-400">Scholarship</label>
                 </div>
-              </div>
+              </div> */}
             </div>
 
 
@@ -960,14 +1127,14 @@ export default function BasicTableOne({ id }: { id: number }) {
               <Button size="sm" className="bg-blue-500 text-white" onClick={() => saveEditedStu(selectedStu.id)}>
                 Save
               </Button>
-             
+
               {alert && (
                 <Alert
                   title={alert.title}
                   message={alert.message}
                   variant={alert.variant}
                   duration={2000}
-                  onClose={() => setAlert(null)} 
+                  onClose={() => setAlert(null)}
                 />
               )}
             </div>

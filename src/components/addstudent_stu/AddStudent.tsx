@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Button from "../ui/button/Button";
 import Label from "../form/Label";
@@ -10,6 +10,7 @@ import Alert from "../ui/alert/Alert"
 import {
     CalenderIcon
 } from "../../icons/index";
+
 export default function BasicTableOne({ id }: { id: number }) {
 
     const [formData, setFormData] = useState({
@@ -90,19 +91,48 @@ export default function BasicTableOne({ id }: { id: number }) {
 
     };
 
-    const [dateOfBirth, setDateOfBirth] = useState("");
+    // const [dateOfBirth, setDateOfBirth] = useState("");
 
     const handleBirth = (date: Date[]) => {
         const birthDate = date[0].toISOString().split("T")[0];
-        setDateOfBirth(birthDate);
+        // setDateOfBirth(birthDate);
+
+        setFormData((prevData) => ({
+            ...prevData,
+            birth: birthDate, // Update formData with the selected date
+        }));
     };
 
-    const [dateOfStart, setDateOfStart] = useState("");
+    // const [dateOfStart, setDateOfStart] = useState("");
 
     const handleStartDate = (date: Date[]) => {
         const startDate = date[0].toISOString().split("T")[0];
-        setDateOfStart(startDate);
+        // setDateOfStart(startDate);
+
+        setFormData((prevData) => ({
+            ...prevData,
+            l_startdate: startDate, // Update formData with the selected date
+        }));
     };
+
+
+    const [primarySchools, setPrimarySchools] = useState([]);
+    const [secondarySchools, setSecondarySchools] = useState([]);
+
+    useEffect(() => {
+        // Fetch primary schools
+        fetch("/api/getschool_stu?level=Primary")
+            .then((res) => res.json())
+            .then((data) => setPrimarySchools(data.schools))
+            .catch((err) => console.error("Error fetching primary schools:", err));
+
+        // Fetch secondary schools
+        fetch("/api/getschool_stu?level=Secondary")
+            .then((res) => res.json())
+            .then((data) => setSecondarySchools(data.schools))
+            .catch((err) => console.error("Error fetching secondary schools:", err));
+    }, []);
+
 
     return (
         <div>
@@ -121,8 +151,6 @@ export default function BasicTableOne({ id }: { id: number }) {
                     <Input type="text" name="lname" defaultValue={formData.lname} onChange={handleChange} placeholder="Ali" />
                 </div>
 
-
-
                 <div className="flex items-center gap-2">
                     <div className="flatpickr-wrapper flex flex-col w-full"> {/* Adjusted width */}
                         <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -130,15 +158,15 @@ export default function BasicTableOne({ id }: { id: number }) {
                         </label>
                         <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
                             <Flatpickr name="birth"
-                                value={dateOfBirth} // Set the value to the state
+                                value={formData.birth} // Set the value to the state
                                 onChange={handleBirth} // Handle the date change
                                 options={{
                                     dateFormat: "Y-m-d", // Set the date format
                                 }}
                                 placeholder="Select Date"
                                 className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
-               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
-               dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+                                        dark:bg-gray-800 dark:border-gray-700 dark:text-white"
                             />
                             <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
                                 <CalenderIcon />
@@ -149,12 +177,12 @@ export default function BasicTableOne({ id }: { id: number }) {
 
                 <div className="col-span-1">
                     <Label>Description:</Label>
-                    <Input type="email" placeholder="hasaneducationadvisor@gmail.com" />
+                    <Input type="email" placeholder="" />
                 </div>
 
                 <div className="col-span-1">
                     <Label>Medical Informaion:</Label>
-                    <Input type="text" placeholder="core.learnenglishmaths.com" />
+                    <Input type="text" placeholder="" />
                 </div>
 
                 <div className="col-span-1">
@@ -260,25 +288,33 @@ export default function BasicTableOne({ id }: { id: number }) {
 
                 <div className="col-span-1">
                     <Label>Primary School</Label>
-                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full"
-                        name="gender" value={formData.gender} onChange={handleChange}>
+                    <select name="a_pschool" value={formData.a_pschool} onChange={handleChange}
+                        className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
                         <option value="">--Select--</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        {primarySchools.map((school) => (
+                            <option key={school.id} value={school.sname}>
+                                {school.sname}
+                            </option>
+                        ))}
                     </select>
                 </div>
 
                 <div className="col-span-1">
                     <Label>Secondary School</Label>
-                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                    <select name="a_sschool" value={formData.a_sschool} onChange={handleChange}
+                        className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
                         <option value="">--Select--</option>
-                        <option value="1"></option>
-                        <option value="2"></option>
+                        {secondarySchools.map((school) => (
+                            <option key={school.id} value={school.sname}>
+                                {school.sname}
+                            </option>
+                        ))}
                     </select>
                 </div>
                 <div className="col-span-1">
                     <Label>Year Group</Label>
-                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                    <select name="a_yeargrp" value={formData.a_yeargrp} onChange={handleChange}
+                        className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
                         <option value="">--Select--</option>
                         <option value="Reception">Reception</option>
                         <option value="Y1">Y1</option>
@@ -297,20 +333,22 @@ export default function BasicTableOne({ id }: { id: number }) {
 
                 <div className="col-span-1">
                     <Label>Initial English Group</Label>
-                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                    <Input type="number" name="a_ies" min="1" max="72" defaultValue={formData.a_ies} onChange={handleChange} />
+                    {/* <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
                         <option value="">--Select--</option>
                         <option value="1"></option>
                         <option value="2"></option>
-                    </select>
+                    </select> */}
                 </div>
 
                 <div className="col-span-1">
                     <Label>Initial Math Group</Label>
-                    <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
+                    <Input type="number" name="a_ims" min="1" max="72" defaultValue={formData.a_ims} onChange={handleChange} />
+                    {/* <select className="px-6 py-3 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:bg-text-400 w-full">
                         <option value="">--Select--</option>
                         <option value="1"></option>
                         <option value="2"></option>
-                    </select>
+                    </select> */}
                 </div>
                 <div className="col-span-1">
                     <Label>In-centre sessions</Label>
@@ -343,15 +381,15 @@ export default function BasicTableOne({ id }: { id: number }) {
                     <div className="flatpickr-wrapper flex flex-col w-full"> {/* Adjusted width */}
                         <div className="relative w-full"> {/* Adjusted to full width within the wrapper */}
                             <Flatpickr name="l_startdate"
-                                value={dateOfStart} // Set the value to the state
+                                value={formData.l_startdate} // Set the value to the state
                                 onChange={handleStartDate} // Handle the date change
                                 options={{
                                     dateFormat: "Y-m-d", // Set the date format
                                 }}
                                 placeholder="Select Date"
                                 className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
-               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
-               dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                                          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+                                          dark:bg-gray-800 dark:border-gray-700 dark:text-white"
                             />
                             <span className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400">
                                 <CalenderIcon />

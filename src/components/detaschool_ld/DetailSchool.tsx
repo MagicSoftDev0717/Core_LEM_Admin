@@ -61,7 +61,35 @@ export default function BasicTableOne({ id }: { id: number }) {
     const handleCancel = () => {
         router.push("/school_ld"); // Navigate to the 'lead' page
     };
-    const [school, setSchool] = useState<SchoolDetails | null>(null);
+    const [school, setSchool] = useState({
+        sname: "",
+        level: "",
+        type: "",
+        enroll: "",
+        site: "",
+        email: "",
+        number_s: "",
+        area: "",
+        postalCode: "",
+        address1: "",
+        address2: "",
+        city: "",
+        county: "",
+        createdAt: "",
+        updatedAt: ""
+    });
+
+    const formatDate = (date: Date) => {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+        const year = date.getFullYear();
+        const sec = String(date.getSeconds()).padStart(2, '0');
+        const min = String(date.getMinutes() + 1).padStart(2, '0'); // Months are zero-indexed
+        const hr = date.getHours();
+        return `${year}-${month}-${day} ${hr}:${min}:${sec}`;
+    };
+
+
     useEffect(() => {
 
         if (!id) return; // Prevent execution if id is not yet available
@@ -70,7 +98,6 @@ export default function BasicTableOne({ id }: { id: number }) {
             try {
                 const response = await fetch(`/api/details_sc/${id}`);
                 const data = await response.json();
-                console.log("dddd:", data);
                 if (data.school_data !== undefined) {
                     setSchool(data.school_data);
                 } else {
@@ -121,20 +148,27 @@ export default function BasicTableOne({ id }: { id: number }) {
         ]);
     };
 
-    const saveVisitedLog = async () => {
+    const saveVisitedLog = async (rowIndex: number) => {
         try {
-            for (const row of visitRows) {
-                const method = row.id ? "PUT" : "POST"; // If ID exists, update; otherwise, create
-                const url = row.id ? `/api/school_visit/${row.id}` : "/api/school_visit";
+            const row = visitRows[rowIndex]; // Get only the row being saved
+            if (!row) return;
 
-                const response = await fetch(url, {
-                    method,
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(row),
-                });
+            const method = row.id ? "PUT" : "POST"; // If ID exists, update; otherwise, create
+            const url = row.id ? `/api/school_visit/${row.id}` : "/api/school_visit";
 
-                if (!response.ok) throw new Error("Failed to save visit log");
-            }
+            const response = await fetch(url, {
+                method,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(row),
+            });
+
+            if (!response.ok) throw new Error("Failed to save visit log");
+            const data = await response.json();
+
+            // 🔹 Update state with saved row data (including generated ID)
+            setVisitRows((prevRows) =>
+                prevRows.map((r, index) => (index === rowIndex ? { ...r, id: data.id } : r))
+            );
 
             alert("Visit logs saved successfully!");
         } catch (error) {
@@ -203,18 +237,13 @@ export default function BasicTableOne({ id }: { id: number }) {
 
                 <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-5 mt-6">
                     <div className="col-span-1">
-                        <Label>Name:</Label>
+                        <Label>School Name:</Label>
                         <Input type="text" defaultValue={school?.sname || ""} />
                     </div>
 
                     <div className="col-span-1">
-                        <Label>Principal:</Label>
-                        <Input type="text" placeholder="Hanan" />
-                    </div>
-
-                    <div className="col-span-1">
-                        <Label>Assistant:</Label>
-                        <Input type="text" placeholder="Ali" />
+                        <Label>Email:</Label>
+                        <Input type="text" defaultValue={school?.email || ""} />
                     </div>
 
                     <div className="col-span-1">
@@ -241,8 +270,8 @@ export default function BasicTableOne({ id }: { id: number }) {
                         <Label>School Level:</Label>
                         {/* <Input type="text"  /> */}
                         <select className="px-6 py-3 bg-gray-200 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-500 w-full"
-                            value={school?.level || ""}
-                        // onChange={handleChange}
+                            value={school?.level || ""} // Use value instead of defaultValue
+                            onChange={(e) => setSchool({ ...school, level: e.target.value })} // Update state
                         >
                             <option value="">--Select--</option>
                             <option value="Primary">Primary</option>
@@ -252,10 +281,10 @@ export default function BasicTableOne({ id }: { id: number }) {
 
                     <div className="col-span-1">
                         <Label>School Type:</Label>
-                        {/* <Input type="text" defaultValue={school?.type || ""} /> */}
                         <select
                             className="px-6 py-3 bg-gray-200 dark:bg-gray-900 text-gray-600 border rounded-lg text-sm dark:text-gray-500 w-full"
-                            defaultValue={school?.type || ""}
+                            value={school?.type || ""} // Use value instead of defaultValue
+                            onChange={(e) => setSchool({ ...school, type: e.target.value })} // Update state
                         >
                             <option value="">--Select--</option>
                             <option value="Academy">Academy</option>
@@ -269,9 +298,16 @@ export default function BasicTableOne({ id }: { id: number }) {
                     </div>
 
                     <div className="col-span-1">
-                        <Label>Email:</Label>
-                        <Input type="text" defaultValue={school?.email || ""} />
+                        <Label>Principal:</Label>
+                        <Input type="text" placeholder="Hanan" />
                     </div>
+
+                    <div className="col-span-1">
+                        <Label>Assistant:</Label>
+                        <Input type="text" placeholder="Ali" />
+                    </div>
+
+
                 </div>
             </div>
 
@@ -392,7 +428,7 @@ export default function BasicTableOne({ id }: { id: number }) {
 
                                                 <TableCell className="dark:bg-gray-800 border border-gray-300 px-4 py-2">
                                                     <div className="flex items-center justify-center gap-2">
-                                                        <button onClick={saveVisitedLog} className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500">
+                                                        <button onClick={() => saveVisitedLog(rowIndex)} className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500">
                                                             <BsSave2 className="w-5 h-auto" />
                                                         </button>
                                                         {/* <button className="text-gray-500 hover:text-error-500">
@@ -463,6 +499,25 @@ export default function BasicTableOne({ id }: { id: number }) {
                 <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
                     System Information
                 </h4>
+
+                <div className="flex flex-col items-start dark:text-gray-300 gap-4">
+                    <div className="flex flex-row items-center">
+                        <span className="font-bold">Created By:</span>
+                        <span></span>
+                    </div>
+                    <div className="flex flex-row items-center justify-between">
+                        <span className="font-bold">Created Date:</span>
+                        <span>&nbsp;&nbsp;{formatDate(new Date(school?.createdAt))}</span>
+                    </div>
+                    <div className="flex flex-row items-center">
+                        <span className="font-bold">Last Modified By:</span>
+                        <span></span>
+                    </div>
+                    <div className="flex flex-row items-center">
+                        <span className="font-bold">Last Modified On:</span>
+                        <span>&nbsp;&nbsp;{formatDate(new Date(school?.updatedAt))}</span>
+                    </div>
+                </div>
             </div>
         </div>
 

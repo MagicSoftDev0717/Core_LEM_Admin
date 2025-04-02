@@ -17,12 +17,15 @@ export async function GET(req: Request) {
     const itemsPerPage = parseInt(url.searchParams.get("items") || "5");
     const searchName = url.searchParams.get("searchQuery") || "";
     const dateOfStart = url.searchParams.get("dateOfStart") || "";
-    const dateOfEnd= url.searchParams.get("dateOfEnd") || "";
+    const dateOfEnd = url.searchParams.get("dateOfEnd") || "";
+
+    const sort = url.searchParams.get("sort") || "createdAt"; // Default sorting by createdAt
+    const direction = url.searchParams.get("direction") === "desc" ? "desc" : "asc";
 
 
     // Fetch messages with pagination and order by date descending
 
-    const whereCondition: Prisma.StudentWhereInput = {}; 
+    const whereCondition: Prisma.StudentWhereInput = {};
 
     // Apply filters based on searchName and selectedLdSts conditions
     if (searchName !== "") {
@@ -51,7 +54,8 @@ export async function GET(req: Request) {
     }
 
     student_data = await prisma.student.findMany({
-      orderBy: { updatedAt: "desc" },
+      // orderBy: { updatedAt: "desc" },
+      orderBy: { [sort]: direction },
       take: page * itemsPerPage,
       where: whereCondition,
     });
@@ -69,7 +73,9 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { fname, lname, gender, birth, pguardian, parent_id } = body;
+    const { fname, lname, gender, birth, pguardian,
+      a_pschool, a_sschool, a_yeargrp, a_ies,
+      a_ims, l_startdate, parent_id } = body;
 
     // Validate input
     // if (!name || !email || !mobile || !lead) {
@@ -87,9 +93,11 @@ export async function POST(req: Request) {
 
     // Save new lead in the database
     const newStudent = await prisma.student.create({
-      data: { fname, lname, gender, 
-        birth: birth ? new Date(birth) : null, 
-        pguardian, parent_id },
+      data: {
+        fname, lname, gender, birth,
+        pguardian, a_pschool, a_sschool,
+        a_yeargrp, a_ies, a_ims, l_startdate, parent_id
+      },
     });
 
     return NextResponse.json({ success: true, student: newStudent }, { status: 201 });

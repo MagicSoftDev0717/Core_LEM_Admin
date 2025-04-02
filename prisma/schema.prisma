@@ -55,7 +55,7 @@ model Student {
   parent_id   Int
   fname       String
   lname       String
-  birth       DateTime?
+  birth       String?
   gender      String
   pguardian   String?
   sguardian   String?
