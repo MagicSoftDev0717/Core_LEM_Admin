@@ -853,7 +853,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                             <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={() => detailToStudent(student.id)}>
                               <BsInfoCircle className="w-5 h-auto" />
                             </button>
-                            <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500">
+                            <button className="text-gray-500 hover:text-error-500 dark:text-gray-300 dark:hover:text-gray-500" onClick={() => handleRemove(student.id)}>
                               <BsTrash3 className="w-5 h-auto" />
                             </button>
                           </div>

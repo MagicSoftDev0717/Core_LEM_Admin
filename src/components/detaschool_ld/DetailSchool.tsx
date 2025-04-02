@@ -18,25 +18,25 @@ import {
 } from "../ui/table";
 import { BsSave2 } from "react-icons/bs";
 
-interface SchoolDetails {
-    id: number | null;
-    sname: string | null;
-    level: string | null;
-    type: string | null;
-    enroll: string | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    site: string | null;
-    email: string | null;
-    number_s: string | null;
-    area: string | null;
-    postalCode: string | null;
-    address1: string | null;
-    address2: string | null;
-    city: string | null;
-    county: string | null;
+// interface SchoolDetails {
+//     id: number | null;
+//     sname: string | null;
+//     level: string | null;
+//     type: string | null;
+//     enroll: string | null;
+//     createdAt: string | null;
+//     updatedAt: string | null;
+//     site: string | null;
+//     email: string | null;
+//     number_s: string | null;
+//     area: string | null;
+//     postalCode: string | null;
+//     address1: string | null;
+//     address2: string | null;
+//     city: string | null;
+//     county: string | null;
 
-}
+// }
 
 interface SchoolVisits {
     id: number | null;
