@@ -4,11 +4,11 @@ import { useRouter } from "next/navigation";
 import Button from "../ui/button/Button";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
-import Flatpickr from "react-flatpickr";
+// import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/light.css";
-import {
-    CalenderIcon
-} from "../../icons/index";
+// import {
+//     CalenderIcon
+// } from "../../icons/index";
 
 
 // interface StudentDetails {
