@@ -91,6 +91,7 @@ export default function BasicTableOne({ id }: { id: number }) {
 
 
     };
+    
     const handleCancel = () => {
         router.push("/students");
 
@@ -120,9 +121,8 @@ export default function BasicTableOne({ id }: { id: number }) {
         }));
     };
 
-
     const [primarySchools, setPrimarySchools] = useState<School[]>([]);
-    const [secondarySchools, setSecondarySchools] = useState<School[]>([]);
+    const [secondarySchools, setSecondarySchools] = useState<School[]>([]); 
 
     useEffect(() => {
         // Fetch primary schools
@@ -137,7 +137,6 @@ export default function BasicTableOne({ id }: { id: number }) {
             .then((data) => setSecondarySchools(data.schools))
             .catch((err) => console.error("Error fetching secondary schools:", err));
     }, []);
-
 
     return (
         <div>
@@ -204,7 +203,6 @@ export default function BasicTableOne({ id }: { id: number }) {
                     <Label>Student Notes:</Label>
                     <Input type="text" placeholder="" />
                 </div>
-
 
                 <div></div>
                 <div></div>

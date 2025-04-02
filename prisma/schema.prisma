@@ -111,6 +111,34 @@ model Teacher {
   updatedAt   DateTime @default(now())
 }
 
+model Employee {
+  id          Int      @id @default(autoincrement())
+  fname       String
+  lname       String
+  gender      String?
+  email       String   @unique
+  birth       String?
+  mobile      String?
+  e_title     String?
+  e_manager   String?
+  e_type      String?
+  e_status    String?
+  e_role      String?
+  e_pricen    String?
+  e_hiredate  String?
+  e_enddate   String?
+  e_bgcheck   String?
+  e_bgcomple  String?
+  address1    String?
+  address2    String?
+  city        String?
+  county      String?
+  country     String?
+  postalCode  Int?
+  descript    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+}
 model School {
   id         Int      @id @default(autoincrement())
   sname      String

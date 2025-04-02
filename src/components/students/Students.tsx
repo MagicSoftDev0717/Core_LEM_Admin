@@ -655,7 +655,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                           <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Last Name</p>
                         </div>
                         <button className="flex flex-col" onClick={() => handleSort("lname")}>
-                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                          {sortColumn === "lname" && sortDirection === "asc" ? (
                             <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
                           ) : (
                             <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
@@ -672,7 +672,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                           <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Join Date</p>
                         </div>
                         <button className="flex flex-col" onClick={() => handleSort("createdAt")}>
-                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                          {sortColumn === "createdAt" && sortDirection === "asc" ? (
                             <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
                           ) : (
                             <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
@@ -689,7 +689,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                           <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Year Group</p>
                         </div>
                         <button className="flex flex-col" onClick={() => handleSort("a_yeargrp")}>
-                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                          {sortColumn === "a_yeargrp" && sortDirection === "asc" ? (
                             <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
                           ) : (
                             <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
@@ -706,7 +706,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                           <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Primary Guardian</p>
                         </div>
                         <button className="flex flex-col" onClick={() => handleSort("pguardian")}>
-                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                          {sortColumn === "pguardian" && sortDirection === "asc" ? (
                             <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
                           ) : (
                             <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
@@ -723,7 +723,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                           <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Initial English Step</p>
                         </div>
                         <button className="flex flex-col" onClick={() => handleSort("a_ies")}>
-                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                          {sortColumn === "a_ies" && sortDirection === "asc" ? (
                             <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
                           ) : (
                             <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
@@ -740,7 +740,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                           <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Initial Maths Step</p>
                         </div>
                         <button className="flex flex-col" onClick={() => handleSort("a_ims")}>
-                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                          {sortColumn === "a_ims" && sortDirection === "asc" ? (
                             <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
                           ) : (
                             <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
@@ -756,8 +756,8 @@ export default function BasicTableOne({ id }: { id: number }) {
                         <div className="flex items-center justify-center text-center">
                           <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400"> Current English Step</p>
                         </div>
-                        <button className="flex flex-col" onClick={() => handleSort("1_ies")}>
-                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                        <button className="flex flex-col" onClick={() => handleSort("l_ies")}>
+                          {sortColumn === "l_ies" && sortDirection === "asc" ? (
                             <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
                           ) : (
                             <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
@@ -774,7 +774,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                           <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400"> Current Maths Step</p>
                         </div>
                         <button className="flex flex-col" onClick={() => handleSort("l_ims")}>
-                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                          {sortColumn === "l_ims" && sortDirection === "asc" ? (
                             <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
                           ) : (
                             <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
@@ -791,7 +791,7 @@ export default function BasicTableOne({ id }: { id: number }) {
                           <p className="font-medium text-gray-700 text-theme-sm dark:text-gray-400">Last Session attended</p>
                         </div>
                         <button className="flex flex-col" onClick={() => handleSort("l_hs")}>
-                          {sortColumn === "fname" && sortDirection === "asc" ? (
+                          {sortColumn === "l_hs" && sortDirection === "asc" ? (
                             <BsSortAlphaDown className="w-4 h-auto text-blue-500" /> // Ascending Icon
                           ) : (
                             <BsSortAlphaUp className="w-4 h-auto text-blue-500" /> // Descending Icon
