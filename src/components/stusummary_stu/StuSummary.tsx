@@ -8,8 +8,8 @@ import {
 } from "../../icons/index";
 
 export default function BasicTableOne() {
-    const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = 5;
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const totalPages = 5;
 
     const [dateOfStart, setDateOfStart] = useState("");
     const [dateOfEnd, setDateOfEnd] = useState("");
@@ -25,22 +25,22 @@ export default function BasicTableOne() {
     return (
         <div>
             <div className="mb-6">
-                <div className="grid grid-cols-6 gap-2">
-                    {/* Label and Combo Box */}
-                    <div>
+                <div className="grid grid-cols-5 gap-2">
+                    <div></div>
+                    <div className="flex flex-col w-full">
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Student Name:</label>
-                        <input type="text" className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2" placeholder="Type a name" />
+                        <input type="text" className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-full" placeholder="Type a name" />
                     </div>
-                    <div className="flex items-center justify-center gap-2">
+
+                    <div className="flex flex-col items-center justify-center gap-2">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300"></label>
                         <button
                             className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/2"
                         >Scan QR
                         </button>
                     </div>
-
                     <div className="flex items-center justify-between gap-2">
-                        {/* Start Field */}
-                        <div className="flatpickr-wrapper flex flex-col w-1/2"> {/* Adjusted width */}
+                        <div className="flex flex-col w-full"> {/* Adjusted width */}
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Start:
                             </label>
@@ -52,7 +52,7 @@ export default function BasicTableOne() {
                                         dateFormat: "Y-m-d", // Set the date format
                                     }}
                                     placeholder="Start Date"
-                                    className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+                                    className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-10 
                                                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
                                                     dark:bg-gray-800 dark:border-gray-700 dark:text-white"
                                 />
@@ -62,8 +62,7 @@ export default function BasicTableOne() {
                             </div>
                         </div>
 
-                        {/* End Field */}
-                        <div className="flatpickr-wrapper flex flex-col w-1/2"> {/* Adjusted width */}
+                        <div className="flex flex-col w-full"> {/* Adjusted width */}
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                 End:
                             </label>
@@ -75,7 +74,7 @@ export default function BasicTableOne() {
                                         dateFormat: "Y-m-d", // Set the date format
                                     }}
                                     placeholder="End Date"
-                                    className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-11 
+                                    className="w-full py-2 pl-3 pr-10 text-sm border border-gray-300 rounded-md h-10 
                                                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
                                                     dark:bg-gray-800 dark:border-gray-700 dark:text-white"
                                 />
@@ -84,37 +83,35 @@ export default function BasicTableOne() {
                                 </span>
                             </div>
                         </div>
+
                     </div>
+
+                    <div></div>
+                    <div></div>
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Centres:</label>
-                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-full">
                             <option value="">--Select--</option>
                             <option value="1">Option 1</option>
                         </select>
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Sessions:</label>
-                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2">
-                            <option value="">--Select--</option>
-                            <option value="1">Option 1</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Report Mode:</label>
-                        <input type="text" className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-1/2" placeholder="Attendance Total By Day" />
-                    </div>
-
-                    <div className="self-end" style={{ marginTop: '15px' }}>
+                    <div className="self-end flex items-center justify-center">
                         <button
                             className="px-4 py-2 bg-blue-600 text-white rounded-lg w-1/2"
                         >Search
                         </button>
                     </div>
-                    <div></div>
 
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Sessions:</label>
+                        <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg text-sm dark:text-gray-400 w-full">
+                            <option value="">--Select--</option>
+                            <option value="1">Option 1</option>
+                        </select>
+                    </div>
+                    <div></div>
                 </div>
             </div>
 
@@ -127,8 +124,8 @@ export default function BasicTableOne() {
             </div>
 
             {/* Pagination and Export to Excel button aligned */}
-            <div className="flex justify-between items-center mt-4">
-                {/* Pagination (Centered) */}
+            {/* <div className="flex justify-between items-center mt-4">
+               
                 <div className="flex justify-center space-x-2 flex-grow">
                     {[...Array(totalPages)].map((_, index) => (
                         <button
@@ -141,7 +138,7 @@ export default function BasicTableOne() {
                         </button>
                     ))}
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

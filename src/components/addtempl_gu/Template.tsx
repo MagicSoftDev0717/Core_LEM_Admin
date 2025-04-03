@@ -1,7 +1,7 @@
 
 "use client";
 import React from "react";
-
+import RichTextEditor from "@/components/common/RichTextEditor";
 export default function BasicTableOne() {
 
 
@@ -28,6 +28,7 @@ export default function BasicTableOne() {
 
                     <div className="flex flex-col">
                         <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">Body:</label>
+                        
                     </div>
                 </div>
             </div>
@@ -35,7 +36,7 @@ export default function BasicTableOne() {
             <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03] p-4">
                 <div className="max-w-full overflow-x-auto">
                     <div className="min-w-[1102px]">
-                   
+                    <RichTextEditor />
                     </div>
                 </div>
             </div>

@@ -623,7 +623,7 @@ export default function BasicTableOne() {
           <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
             <div className="col-span-1">
               <Label>Task Type:</Label>
-              <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg dark:text-gray-500 text-sm w-full" defaultValue={selectedActivity.taskType}>
+              <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg dark:text-gray-300 text-sm w-full" defaultValue={selectedActivity.taskType}>
                 <option value="" disabled hidden >
                   --Select--</option>
                 <option value="call">Call</option>
@@ -659,12 +659,13 @@ export default function BasicTableOne() {
             </div>
             <div className="col-span-1">
               <Label>Priority:</Label>
-              <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg dark:text-gray-500 text-sm w-full" defaultValue={selectedActivity.priority}>
+              <select className="dark:bg-gray-900 px-4 py-2 border rounded-lg dark:text-gray-300 text-sm w-full" defaultValue={selectedActivity.priority}>
                 <option value="" disabled hidden >
                   --Select--</option>
-                <option value="later">Later</option>
-                <option value="soon">Soon</option>
-                <option value="urgent">Urgent</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Urgent">Urgent</option>
               </select>
             </div>
             <div className="col-span-3 text-right">

@@ -338,8 +338,6 @@ export default function BasicTableOne() {
             {/* Line Separator */}
             <hr className="my-6" />
 
-            {/* Address Information */}
-
             <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
                 Address Information
             </h4>
